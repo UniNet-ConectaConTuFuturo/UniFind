@@ -8,20 +8,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="box">
-        <input class="typebox" type="email" name="correo" id="correo" placeholder="Correo">
-        <input class="typebox" type="text" name="nombre" id="nombre" placeholder="Nombre">
-        <input class="typebox" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
-        <input class="typebox" type="password" name="contrasena2" id="contrasena2" placeholder="Repetir Contraseña">
-        <input class="typebox" type="date" name="nacimiento" id="nacimiento">
-        <input class="typebox" type="text" name="direccion" id="direccion" placeholder="Dirección">
-        <input class="typebox" type="tel" name="telefono" id="telefono" placeholder="Telefono">
-        
-        <input class="typebox" type="text" name="titulo secundario" id="titulo secundario" placeholder="Título Secundario">
-        
-        <input type="submit" name="boton" id="boton">
-        <a href="#">Ya tengo una cuenta</a>
-    </div>
+  <form action="/conregister" method="post">
+    <label for="correo">Correo:</label>
+    <input class="typebox" type="email" name="correo" id="correo">
 
+    <label for="nombre">Nombre:</label>
+    <input class="typebox" type="text" name="nombre" id="nombre">
+
+    <label for="contrasena">Contraseña:</label>
+    <input class="typebox" type="password" name="contrasena" id="contrasena">
+
+    <label for="contrasena2">Repetir Contraseña:</label>
+    <input class="typebox" type="password" name="contrasena2" id="contrasena2">
+
+    <label for="nacimiento">Fecha de Nacimiento:</label>
+    <input class="typebox" type="date" name="nacimiento" id="nacimiento">
+
+    <label for="direccion">Dirección:</label>
+    <input class="typebox" type="text" name="direccion" id="direccion">
+
+    <label for="telefono">Teléfono:</label>
+    <input class="typebox" type="tel" name="telefono" id="telefono">
+
+    <label for="titulo secundario">Título Secundario:</label>
+    <input class="typebox" type="text" name="titulo secundario" id="titulo secundario">
+
+    <input type="submit" name="boton" id="boton">
+
+    <a href="#">Ya tengo una cuenta</a>
 </body>
 </html>
