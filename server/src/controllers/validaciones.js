@@ -25,7 +25,7 @@ export async function validateEntrant(req, res, next) {
     res.status(404).end();
   }
 }
-export async function ValidateEntrantCode(req, res, next) {
+export async function validateEntrantCode(req, res, next) {
   try {
     const data = req.body;
 
