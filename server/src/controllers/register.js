@@ -64,10 +64,10 @@ export async function singupEntrantCode(req, res) {
 }
 
 export async function getUniversities(req, res) {
-  return res.json(await consult.selectFromUniversidades()).end();
+  return res.json(await consult.selectFromUniversidades("id_universidad, nombre_universidad",1)).end();
 }
 
-export async function singupEntrantRector(req, res) {
+export async function singupRector(req, res) {
   try {
     const data = req.body;
 
@@ -76,7 +76,7 @@ export async function singupEntrantRector(req, res) {
     let code = math.getRandomIntInclusive(100000, 999999);
     //Consulta a la base de datos para obtener el mail de la universidad
     const mail_universidad = await consult.selectFromUniversidades(
-      "corre_universidad",
+      "correo_universidad",
       data.title.id_universidad
     );
     //Envio a mail
@@ -102,8 +102,7 @@ export async function singupEntrantRector(req, res) {
     res.status(404).end();
   }
 }
-
-export async function singupEntrantCodeRector(req, res) {
+export async function singupCodeRector(req, res) {
   console.log(req.session);
   delete req.session;
 
@@ -121,7 +120,7 @@ export async function singupEntrantCodeRector(req, res) {
   //El codigo esta correcto
 
   //crear registro del Entrante y devolver el id;
-  await consult.setEntrant(req.session.data);
+  await consult.setRector(req.session.data);
   const user_id = await consult.selectFromUsuarios(
     "id_usuario",
     req.session.data.mail_user

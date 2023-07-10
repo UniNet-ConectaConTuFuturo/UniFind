@@ -1,14 +1,10 @@
 import { Router } from "express";
 
 //Import Controllers
+import * as registro from "../controllers/register.js";
+import * as login from "../controllers/login.js";
 import {
-  getSessionForm,
-  getUniversities,
-  singupEntrant,
-  singupEntrantCode,
-} from "../controllers/register.js";
-import {
-  ValidateEntrantCode,
+  validateEntrantCode,
   validateEntrant,
 } from "../controllers/validaciones.js";
 import end from "../controllers/end.js";
@@ -16,34 +12,22 @@ import end from "../controllers/end.js";
 const router = Router();
 
 //Rutas registro ingresante
-router.get("/registroRector/form", getUniversities);
-router.get("/api/entrant/second-step", getSessionForm);
+router.get("/api/entrant/second-step", registro.getSessionForm);
 
 router.post("/api/validate-registro", [validateEntrant, end]);
-router.post("/api/entrant/first-step", [validateEntrant, singupEntrant]);
-router.post("/api/entrant/second-step", ValidateEntrantCode, singupEntrantCode);
+router.post("/api/entrant/first-step", [validateEntrant, registro.singupEntrant]);
+router.post("/api/entrant/second-step", [validateEntrantCode, registro.singupEntrantCode]);
 
 //Rutas registro rector
+router.get("/api/rector/form", registro.getUniversities);
+
+router.post("/api/rector/first-step", [validateEntrant, registro.singupRector]);
+router.post("/api/rector/second-step", [validateEntrantCode, registro.singupRectorCode])
 
 //Rutas Ingreso
-router.get("/login", (req, res) => {
-  res.render("login.ejs");
-});
-router.post("/login", async (req, res) => {
-  const data = req.body;
-  console.log(req.body);
-  try {
-    let validate = await controller.ValidateData(data, pool);
-    if (validate.bool) {
-      dataUser = validate.objeto;
-      res.redirect("/index");
-    } else {
-      res.render("login.ejs");
-    }
-  } catch (err) {
-    console.log("error");
-    res.render("login.ejs");
-  }
-});
+router.get("/api/login");
+router.post("/api/login/user", [login.SignIn]);
 
+//Rutas Pagina principal
+router.get("/api/index");
 export default router;

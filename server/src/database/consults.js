@@ -58,14 +58,14 @@ export function setEntrant({
 }
 
 //Insertar Rector
-export function setEntrant({
+export function setRector({
   mail_user,
   name_user,
   password_user,
   date_user,
   direction_user,
   tel_user,
-  title,
+  id_universidad,
 }) {
   const data = {
     mail_user,
@@ -74,10 +74,10 @@ export function setEntrant({
     date_user,
     direction_user,
     tel_user,
-    title,
+    id_universidad,
   };
   return new Promise(function (resolve, reject) {
-    pool.query("INSERT INTO usuarios (mail_user, name_user, password_user, date_user, direction_user, tel_user, id_universidad) values ( ?, ?, ?, ?, ?, ?, ?)", [data], (err, data) => {
+    pool.query("INSERT INTO usuarios SET ?", [data], (err, data) => {
       if (err) reject(err);
       resolve(data);
     });
@@ -97,6 +97,7 @@ export function insertCode(user_code, mail_user) {
     );
   });
 }
+
 //Buscar Codigo de Verificacion
 export function selectFromVerCode({ mail_user }) {
   return new Promise((resolve, reject) => {
