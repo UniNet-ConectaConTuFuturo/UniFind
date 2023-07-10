@@ -13,7 +13,6 @@ function EntrantCode() {
       try {
         const res = await get("/entrant/second-step");
         const json = await res.json();
-        console.log(json);
         if (json.nosession) navegate("/registro/ingresante");
         setForm(json);
       } catch (error) {

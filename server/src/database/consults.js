@@ -60,9 +60,10 @@ export function setEntrant({
 //Insertar Codigo de Verificacion
 export function insertCode(user_code, mail_user) {
   return new Promise((resolve, reject) => {
+    console.log("pase por aqui", user_code, mail_user)
     pool.query(
-      "INSERT INTO verificationcode (mail_user, user_code) VALUES (?, ?)",
-      [mail_user, user_code],
+      "INSERT INTO verificationcode (user_code, mail_user) VALUES (?, ?)",
+      [user_code, mail_user],
       (err, data) => {
         if (err) reject(err);
         resolve(data);
@@ -86,7 +87,19 @@ export function selectFromVerCode({ mail_user }) {
 export function UpdateVerCode(user_code, mail_user) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE verificationcode SET user_code=[${user_code}],mail_user=[${mail_user}] WHERE mail_user = ?`,
+      `UPDATE verificationcode SET user_code=${user_code},mail_user="${mail_user}" WHERE mail_user = ?`,
+      [mail_user],
+      (err, code) => {
+        if (err) reject(err);
+        resolve(code);
+      }
+    );
+  });
+}
+export function DeleteVerCode(mail_user) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `DELETE FROM verificationcode WHERE mail_user = ?`,
       [mail_user],
       (err, code) => {
         if (err) reject(err);

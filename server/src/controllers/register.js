@@ -24,10 +24,9 @@ export async function singupEntrant(req, res) {
     /* Guardar Codigo temporal */
     const mail_user = data.mail_user;
     const user_code = code;
-    if (await consult.selectFromVerCode(mail_user))
-      //existe?
-      await consult.insertCode(user_code, mail_user); //inserta
-    else await consult.UpdateVerCode(user_code, mail_user); //actualiza
+    if (await consult.selectFromVerCode(mail_user)[0])
+      await consult.UpdateVerCode(user_code, mail_user); //actualiza
+    else await consult.insertCode(user_code, mail_user); //inserta
 
     /* Continue */
     req.session.data = data;
@@ -45,7 +44,9 @@ export async function getSessionForm(req, res) {
 export async function singupEntrantCode(req, res) {
   try {
     const data = req.body;
+    //Eliminar datos ya usados
     delete req.session.data;
+    await consult.DeleteVerCode(data.mail_user)
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
     const user_id = await consult.selectFromUsuarios(
