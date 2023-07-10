@@ -57,6 +57,33 @@ export function setEntrant({
   });
 }
 
+//Insertar Rector
+export function setEntrant({
+  mail_user,
+  name_user,
+  password_user,
+  date_user,
+  direction_user,
+  tel_user,
+  title,
+}) {
+  const data = {
+    mail_user,
+    name_user,
+    password_user,
+    date_user,
+    direction_user,
+    tel_user,
+    title,
+  };
+  return new Promise(function (resolve, reject) {
+    pool.query("INSERT INTO usuarios (mail_user, name_user, password_user, date_user, direction_user, tel_user, id_universidad) values ( ?, ?, ?, ?, ?, ?, ?)", [data], (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+
 //Insertar Codigo de Verificacion
 export function insertCode(user_code, mail_user) {
   return new Promise((resolve, reject) => {
