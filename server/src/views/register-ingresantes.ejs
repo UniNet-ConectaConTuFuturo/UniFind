@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Ingresante</title>
+  <link rel="stylesheet" href="/styles/register.css">
+</head>
+
+<body>
+  <div className="container">
+    <div className="box">
+      <form action="/registro/form" method="post">
+        <h2>Registrarse</h2>
+        <div className="input-box">
+          <input className="typebox" type="text" name="mail_user" id="mail_user" placeholder=" " <% if (typeof mail_user == "string") { %> value="<%= mail_user %>" <% } %>>
+          <span>
+            <% if (typeof spanEmail == "string") { %>
+            <%= spanEmail %>
+            <% } %>
+          </span>
+          <label htmlFor="correo">Correo</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="text" name="name_user" id="name_user" placeholder=" " <% if (typeof name_user == "string") { %> value="<%= name_user %>" <% } %>>
+          <span>
+            <% if (typeof spanName == "string") { %>
+            <%= spanName %>
+            <% } %>
+          </span>
+          <label htmlFor="nombre">Nombre</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="password" name="password_user" id="password_user" placeholder=" " <% if (typeof password_user == "string") { %> value="<%= password_user %>" <% } %>>
+          <span>
+            <% if (typeof spanPassword == "string") { %>
+            <%= spanPassword %>
+            <% } %>
+          </span>
+          <label htmlFor="contrasena">Contraseña</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="password" name="password2_user" id="password2_user" placeholder=" " <% if (typeof password2_user == "string") { %> value="<%= password2_user %>" <% } %>>
+          <span>
+            <% if (typeof spanPassword2 == "string") { %>
+            <%= spanPassword2 %>
+            <% } %>
+          </span>
+          <label htmlFor="password2_user">Repetir Contraseña</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="date" name="date_user" id="date_user" placeholder=" " <% if (typeof date_user == "string") { %> value="<%= date_user %>" <% } %>>
+          <span>
+            <% if (typeof spanDate == "string") { %>
+            <%= spanDate %>
+            <% } %>
+          </span>
+          <label htmlFor="nacimiento">Fecha de Nacimiento</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="text" name="direction_user" id="direction_user" placeholder=" " <% if (typeof direction_user == "string") { %> value="<%= direction_user %>" <% } %>>
+          <span>
+            <% if (typeof spanDirection == "string") { %>
+            <%= spanDirection %>
+            <% } %>
+          </span>
+          <label htmlFor="direccion">Dirección</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="tel" name="tel_user" id="tel_user" placeholder=" " <% if (typeof tel_user == "string") { %> value="<%= tel_user %>" <% } %>>
+          <span>
+            <% if (typeof spanTel == "string") { %>
+            <%= spanTel %>
+            <% } %>
+          </span>
+          <label htmlFor="telefono">Teléfono</label>
+        </div>
+        <div className="input-box">
+          <input className="typebox" type="text" name="title" id="title" placeholder=" " <% if (typeof title == "string") { %> value="<%= title %>" <% } %>>
+          <span>
+            <% if (typeof title == "string") { %>
+            <%= spanTitle %>
+            <% } %>
+          </span>
+          <label htmlFor="titulo">Título Secundario</label>
+        </div>
+
+        <input type="submit" name="boton" id="boton">
+        <br>
+        <p><a href="#">Ya tengo una cuenta</a></p>
+      </form>
+    </div>
+</body>
+
+</html>
