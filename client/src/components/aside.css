@@ -1,0 +1,35 @@
+
+/* @layer components{
+  .sidebar-icon{
+    @apply flex relative items-center justify-content w-12 h-12;
+  }
+} */
+
+:root{
+  --hover: 0;
+}
+
+svg{
+  filter: invert(1);
+}
+
+.sidebar-icon:nth-child(1):hover{
+  background-color: #21d0d3;
+}
+
+.sidebar-icon:nth-child(2):hover{
+  background-color: #5c37a0;
+}
+
+.sidebar-icon:nth-child(3){
+  margin-top: 67vh;
+}
+
+.sidebar-icon:nth-child(3):hover{
+  background-color: white;
+}
+
+.sidebar-icon:nth-child(3):hover svg{
+    filter: invert(0);
+    transition: 0.5s;
+}
