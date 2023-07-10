@@ -11,14 +11,11 @@ export function wrongData({
   try {
     console.log(mail_user);
     //Validaciones
-    let regexEmail =
-        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
-      regexName = /[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
+    let regexName = /[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
       regexPassword = /^.{4,255}$/;
     //Email Validation
-    if (!mail_user.trim()) return { spanEmail: "Completar" };
-    else if (!regexEmail.test(mail_user.trim()))
-      return { spanEmail: "Formato invalido" };
+    const wrongmail = wrongMail({mail_user})
+    if(wrongmail) return wrongmail;
     //Name Validation
     else if (!name_user.trim()) return { spanName: "Completar" };
     else if (!regexName.test(name_user.trim()))
@@ -45,4 +42,12 @@ export function wrongData({
   } catch (error) {
     console.error(error);
   }
+}
+export function wrongMail({mail_user}){
+  let regexEmail =
+        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        if (!mail_user.trim()) return { spanEmail: "Completar" };
+        else if (!regexEmail.test(mail_user.trim()))
+          return { spanEmail: "Formato invalido" };
+        else return false
 }
