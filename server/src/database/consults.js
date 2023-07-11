@@ -87,7 +87,6 @@ export function setRector({
 //Insertar Codigo de Verificacion
 export function insertCode(user_code, mail_user) {
   return new Promise((resolve, reject) => {
-    console.log("pase por aqui", user_code, mail_user)
     pool.query(
       "INSERT INTO verificationcode (user_code, mail_user) VALUES (?, ?)",
       [user_code, mail_user],

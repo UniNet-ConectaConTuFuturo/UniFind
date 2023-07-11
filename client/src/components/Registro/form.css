@@ -1,17 +1,6 @@
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background: url("../../public/backgroundRegister.jpg") no-repeat;
-  background-color: darkslategrey;
-  background-position: center;
-  background-size: cover;
-}
-
 .box {
   position: relative;
+  margin: auto;
   width: 600px;
   height: 650px;
   display: flex;

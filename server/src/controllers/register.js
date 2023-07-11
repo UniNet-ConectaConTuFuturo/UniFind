@@ -29,24 +29,18 @@ export async function singupEntrant(req, res) {
     else await consult.insertCode(user_code, mail_user); //inserta
 
     /* Continue */
-    req.session.data = data;
     return res.status(200).json({ success: true }).end();
   } catch (error) {
     console.error(error);
     res.status(404).end();
   }
 }
-export async function getSessionForm(req, res) {
-  const data = req.session.data;
-  if (!data) return res.json({ nosession: true }).end();
-  return res.json(data).end();
-}
+
 export async function singupEntrantCode(req, res) {
   try {
     const data = req.body;
-    //Eliminar datos ya usados
-    delete req.session.data;
-    await consult.DeleteVerCode(data.mail_user)
+    //Eliminar Codigo ya usado
+    await consult.DeleteVerCode(data.mail_user);
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
     const user_id = await consult.selectFromUsuarios(
@@ -56,8 +50,7 @@ export async function singupEntrantCode(req, res) {
     );
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
-    //Guardar Token en Cookie
-    req.session.token = token;
+    //Responder Token
     return res.json({ success: true }).end();
   } catch (err) {
     console.error(err);
@@ -65,7 +58,14 @@ export async function singupEntrantCode(req, res) {
 }
 
 export async function getUniversities(req, res) {
-  return res.json(await consult.selectFromUniversidades("id_universidad, nombre_universidad",1)).end();
+  return res
+    .json(
+      await consult.selectFromUniversidades(
+        "id_universidad, nombre_universidad",
+        1
+      )
+    )
+    .end();
 }
 
 export async function singupRector(req, res) {
@@ -104,9 +104,6 @@ export async function singupRector(req, res) {
   }
 }
 export async function singupCodeRector(req, res) {
-  console.log(req.session);
-  delete req.session;
-
   const data = req.body;
   const mail_universidad = await consult.selectFromUniversidades(
     "correo_universidad",
@@ -129,14 +126,5 @@ export async function singupCodeRector(req, res) {
   //Guardar id en Token
   const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
   //Guardar Token en Cookie
-  req.session.token = token;
-  /* const serialized = serialize("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    maxAge: 1000 * jwtConfig.params.expiresIn,
-    path: "/",
-  });
-  res.setHeader("Set-Cookie", serialized); */
   return res.json("login succesfully");
 }
