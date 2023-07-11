@@ -18,7 +18,7 @@ export async function singupEntrant(req, res) {
       name: data.name_user,
       email: data.mail_user,
     };
-    await sendMail(params);
+    //await sendMail(params);
 
     /* Guardar Codigo temporal */
     const mail_user = data.mail_user;
@@ -28,7 +28,7 @@ export async function singupEntrant(req, res) {
       await consult.DeleteVerCode(data.mail_user);
       return res
         .status(301)
-        .send({ error: "codigos de mas en la base de datos" })
+        .json({ error: "codigos de mas en la base de datos" })
         .end();
     }
     if (consulta[0])

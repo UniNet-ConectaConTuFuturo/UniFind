@@ -22,35 +22,33 @@ function Registro() {
     setForm({ ...form, [name]: value });
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [classForm, setClassForm] = useState("");
   const [classCode, setClassCode] = useState(
-    "translate-x-1/2 opacity-0 invisible"
+    "translate-x-1/2 opacity-0 hidden"
   );
 
-  useEffect(
-    (classCode) => {
-      if (step === 1) {
-        setTimeout(() => {
-          setClassForm("");
-        }, "1100");
-        if (classCode === "invisible") return;
-        setClassCode("translate-x-1/2 opacity-0 ");
-        setTimeout(() => {
-          setClassCode("translate-x-1/2 opacity-0 invisible");
-        }, "1050");
-      } else if (step === 2) {
-        setTimeout(() => {
-          setClassCode("");
-        }, "1100");
-        setClassForm("-translate-x-1/2 opacity-0 ");
-        setTimeout(() => {
-          setClassForm("-translate-x-1/2 opacity-0 invisible");
-        }, "1050");
-      }
-    },
-    [step]
-  );
+  useEffect(() => {
+    if (step === 1) {
+      setClassForm("-translate-x-1/2 opacity-0 ");
+      setTimeout(() => {
+        setClassForm("");
+      }, "1100");
+      setClassCode("translate-x-1/2 opacity-0 ");
+      setTimeout(() => {
+        setClassCode("translate-x-1/2 opacity-0 hidden");
+      }, "1050");
+    } else if (step === 2) {
+      setClassCode("translate-x-1/2 opacity-0 ");
+      setTimeout(() => {
+        setClassCode("");
+      }, "1100");
+      setClassForm("-translate-x-1/2 opacity-0 ");
+      setTimeout(() => {
+        setClassForm("-translate-x-1/2 opacity-0 hidden");
+      }, "1050");
+    }
+  }, [step]);
   return (
     <section className="h-screen flex justify-end pr-4 items-center ">
       <div className={classForm + " transition duration-1000 absolute"}>
