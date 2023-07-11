@@ -99,7 +99,7 @@ export function insertCode(user_code, mail_user) {
 }
 
 //Buscar Codigo de Verificacion
-export function selectFromVerCode({ mail_user }) {
+export function selectFromVerCode(mail_user) {
   return new Promise((resolve, reject) => {
     pool.query(
       "SELECT user_code FROM verificationcode WHERE mail_user = ?",

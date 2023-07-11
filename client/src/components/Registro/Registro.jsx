@@ -30,8 +30,6 @@ function Registro() {
 
   useEffect(
     (classCode) => {
-      console.log("step cambió");
-      console.log(step);
       if (step === 1) {
         setTimeout(() => {
           setClassForm("");

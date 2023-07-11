@@ -16,9 +16,8 @@ function EntrantForm({ handleChange, form, setStep }) {
   };
   const [span, setSpan] = useState(spanVacio);
 
-  const handleBlur = async (e) => {
+  const handleBlur = async () => {
     try {
-      handleChange(e);
       const response = await post("/validate-registro", form);
       const data = await response.json();
       setSpan({ ...spanVacio, ...data });
@@ -30,7 +29,6 @@ function EntrantForm({ handleChange, form, setStep }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      handleChange(e);
       const response = await post("/entrant/first-step", form);
       const data = await response.json();
       if (data.success) {

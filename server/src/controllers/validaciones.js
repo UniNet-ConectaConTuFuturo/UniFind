@@ -29,17 +29,29 @@ export async function validateEntrantCode(req, res, next) {
     const data = req.body;
 
     //Ver codigo temporal de la Base de Datos
-    const consulta = (await consult.selectFromVerCode(data))[0];
-    if (!consulta)
+    const consulta = (await consult.selectFromVerCode(data.mail_user))[0];
+    if (!consulta) {
+      //El código no se encuentra en la Base de datos
+      return res.json({ error: "Error: Vuelve a solicitar un código" }).end();
+    }
+    if (consulta.length > 1) {
+      //Más de 1 código en la base de datos
+      await consult.DeleteVerCode(data.mail_user);
+      return res.json({ error: "Error: Vuelve a solicitar un código" }).end();
+    }
+    //Verificar intentos
+    if (req.session.attempts === undefined)
+      return res.json({ error: "Error: Vuelves a solicitar un código" }).end();
+    if (req.session.attempts >= 3)
       return res
-        .status(404)
-        .send({ error: "El código no se encuentra en la Base de Datos" })
+        .json({ error: "Demasiados intentos: Vuelve a solicitar un código" })
         .end();
-
+    //Comparar Codigos
     const { user_code } = consulta;
-    console.log(data.code, user_code);
-    if (parseInt(data.code) !== user_code)
-      return res.json({ spanCode: "Código Erróneo" }).end();
+    if (parseInt(data.code) !== user_code) {
+      req.session.attempts++;
+      return res.json({ error: "Código Erróneo" }).end();
+    }
 
     return next();
   } catch (err) {

@@ -4,10 +4,27 @@ import { useState } from "react";
 import { post } from "../../api/api";
 
 function EntrantCode({ form, setStep }) {
-  const [code, setCode] = useState(0);
+  const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
 
   const handleClick = () => setStep(1);
+
+  const sendMail = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await post("/entrant/first-step", form);
+      const data = await response.json();
+      if (data.success) {
+        setCode("");
+        setSpanCode("");
+      } else {
+        const { err } = data;
+        setSpanCode("Error: " + err);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleChange = (e) => setCode(e.target.value);
 
@@ -20,11 +37,12 @@ function EntrantCode({ form, setStep }) {
       });
       const data = await response.json();
       console.log(data);
-      if (data.success) {
-        setSpanCode("");
-        setStep(3);
+      if (data.error) {
+        setSpanCode(data.error);
       } else {
-        setSpanCode(data.spanCode);
+        setSpanCode("");
+        localStorage.setItem("TokenUniNet", data);
+        setStep(3);
       }
     } catch (error) {
       console.log(error);
@@ -44,7 +62,7 @@ function EntrantCode({ form, setStep }) {
         </button>
         <form onSubmit={handleSubmit}>
           <p>
-            <a id="repeat" href="">
+            <a onClick={sendMail} id="repeat" href="">
               Solicitar nuevo código
             </a>
           </p>
@@ -53,7 +71,6 @@ function EntrantCode({ form, setStep }) {
               className="typebox"
               type="number"
               name="code"
-              placeholder="000000"
               value={code}
               disabled={disabled}
               onChange={handleChange}

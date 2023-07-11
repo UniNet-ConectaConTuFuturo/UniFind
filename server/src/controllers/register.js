@@ -19,16 +19,24 @@ export async function singupEntrant(req, res) {
       email: data.mail_user,
     };
     await sendMail(params);
-    console.log("Enviado");
 
     /* Guardar Codigo temporal */
     const mail_user = data.mail_user;
     const user_code = code;
-    if (await consult.selectFromVerCode(mail_user)[0])
+    const consulta = await consult.selectFromVerCode(mail_user);
+    if (consulta.length > 1) {
+      await consult.DeleteVerCode(data.mail_user);
+      return res
+        .status(301)
+        .send({ error: "codigos de mas en la base de datos" })
+        .end();
+    }
+    if (consulta[0])
       await consult.UpdateVerCode(user_code, mail_user); //actualiza
     else await consult.insertCode(user_code, mail_user); //inserta
 
     /* Continue */
+    req.session.attempts = 0;
     return res.status(200).json({ success: true }).end();
   } catch (error) {
     console.error(error);
@@ -41,6 +49,7 @@ export async function singupEntrantCode(req, res) {
     const data = req.body;
     //Eliminar Codigo ya usado
     await consult.DeleteVerCode(data.mail_user);
+    delete req.session.attempts;
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
     const user_id = await consult.selectFromUsuarios(
@@ -51,7 +60,7 @@ export async function singupEntrantCode(req, res) {
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
     //Responder Token
-    return res.json({ success: true }).end();
+    return res.json(token).end();
   } catch (err) {
     console.error(err);
   }
