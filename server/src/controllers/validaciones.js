@@ -52,8 +52,8 @@ export function IdUniversidad(req, res, next) {
 
 export async function EntrantCode(req, res, next) {
   try {
-    const { mail_user } = req.body;
-    wrongCode = await codeValidation(mail_user);
+    const { mail_user, code } = req.body;
+    const wrongCode = await codeValidation(mail_user, code, req);
     if (wrongCode) return res.json(wrongCode).end();
 
     return next();
@@ -64,12 +64,12 @@ export async function EntrantCode(req, res, next) {
 }
 export async function RectorCode(req, res, next) {
   try {
-    const { id_universidad } = req.body;
+    const { id_universidad, code } = req.body;
     const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
       id_universidad
     );
-    wrongCode = await codeValidation(mail_universidad);
+    const wrongCode = await codeValidation(mail_universidad, code, req);
     if (wrongCode) return res.json(wrongCode).end();
 
     return next();

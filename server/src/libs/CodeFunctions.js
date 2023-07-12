@@ -1,4 +1,4 @@
-import consult from "../database/consults";
+import * as consult from "../database/consults.js";
 export async function InsertOrUpdateCode(mail, code, res) {
   try {
     const consulta = await consult.selectFromVerCode(mail);
@@ -18,7 +18,7 @@ export async function InsertOrUpdateCode(mail, code, res) {
     return res.status(404).end();
   }
 }
-export async function codeValidation(mail) {
+export async function codeValidation(mail, code, req) {
   try {
     //Ver codigo temporal de la Base de Datos
     const consulta = (await consult.selectFromVerCode(mail))[0];
@@ -40,7 +40,7 @@ export async function codeValidation(mail) {
       };
     //Comparar Codigos
     const { user_code } = consulta;
-    if (parseInt(data.code) !== user_code) {
+    if (parseInt(code) !== user_code) {
       req.session.attempts++;
       return { error: "Código Erróneo" };
     }

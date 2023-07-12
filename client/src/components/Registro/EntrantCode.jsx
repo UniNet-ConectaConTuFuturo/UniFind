@@ -35,8 +35,8 @@ function EntrantCode({ form, setStep }) {
         ...form,
         code: code,
       });
+      console.log(response);
       const data = await response.json();
-      console.log(data);
       if (data.error) {
         setSpanCode(data.error);
       } else {
