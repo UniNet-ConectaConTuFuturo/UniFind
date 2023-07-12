@@ -3,32 +3,43 @@ import { Router } from "express";
 //Import Controllers
 import * as registro from "../controllers/register.js";
 import * as login from "../controllers/login.js";
-import {
-  validateEntrantCode,
-  validateEntrant,
-} from "../controllers/validaciones.js";
+import * as validate from "../controllers/validaciones.js";
 import end from "../controllers/end.js";
 
 const router = Router();
 
 //Rutas registro ingresante
-router.post("/api/validate-registro", [validateEntrant, end]);
+router.post("/api/validate-registro", [validate.User, validate.Title, end]);
 router.post("/api/entrant/first-step", [
-  validateEntrant,
-  registro.singupEntrant,
+  validate.User,
+  validate.Title,
+  registro.EntrantFirstStep,
 ]);
 router.post("/api/entrant/second-step", [
-  validateEntrantCode,
-  registro.singupEntrantCode,
+  validate.User,
+  validate.Title,
+  validate.EntrantCode,
+  registro.EntrantSecondStep,
 ]);
 
 //Rutas registro rector
 router.get("/api/rector/form", registro.getUniversities);
 
-router.post("/api/rector/first-step", [validateEntrant, registro.singupRector]);
+router.post("/api/validate-registro-rector", [
+  validate.User,
+  validate.IdUniversidad,
+  end,
+]);
+router.post("/api/rector/first-step", [
+  validate.User,
+  validate.IdUniversidad,
+  registro.RectorFirstStep,
+]);
 router.post("/api/rector/second-step", [
-  validateEntrantCode,
-  registro.singupCodeRector,
+  validate.User,
+  validate.IdUniversidad,
+  validate.RectorCode,
+  registro.RectorSecondStep,
 ]);
 
 //Rutas Ingreso

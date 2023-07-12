@@ -3,10 +3,11 @@ import sendMail from "../libs/sendMail.js";
 import * as math from "../libs/math_functions.js";
 import jwt from "jsonwebtoken";
 import { jwtConfig } from "../config.js";
+import InsertOrUpdateCode from "../libs/CodeFunctions.js";
 
 //import { serialize } from "cookie";
 
-export async function singupEntrant(req, res) {
+export async function EntrantFirstStep(req, res) {
   try {
     const data = req.body;
 
@@ -21,19 +22,7 @@ export async function singupEntrant(req, res) {
     //await sendMail(params);
 
     /* Guardar Codigo temporal */
-    const mail_user = data.mail_user;
-    const user_code = code;
-    const consulta = await consult.selectFromVerCode(mail_user);
-    if (consulta.length > 1) {
-      await consult.DeleteVerCode(data.mail_user);
-      return res
-        .status(301)
-        .json({ error: "codigos de mas en la base de datos" })
-        .end();
-    }
-    if (consulta[0])
-      await consult.UpdateVerCode(user_code, mail_user); //actualiza
-    else await consult.insertCode(user_code, mail_user); //inserta
+    InsertOrUpdateCode(data.mail_user, code, res);
 
     /* Continue */
     req.session.attempts = 0;
@@ -44,7 +33,7 @@ export async function singupEntrant(req, res) {
   }
 }
 
-export async function singupEntrantCode(req, res) {
+export async function EntrantSecondStep(req, res) {
   try {
     const data = req.body;
     //Eliminar Codigo ya usado
@@ -77,7 +66,7 @@ export async function getUniversities(req, res) {
     .end();
 }
 
-export async function singupRector(req, res) {
+export async function RectorFirstStep(req, res) {
   try {
     const data = req.body;
 
@@ -87,32 +76,30 @@ export async function singupRector(req, res) {
     //Consulta a la base de datos para obtener el mail de la universidad
     const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
-      data.title.id_universidad
+      data.id_universidad
     );
+    console.log(mail_universidad);
     //Envio a mail
     const params = {
       code,
       name: data.name_user,
       email: mail_universidad,
     };
-    await sendMail(params);
+    //await sendMail(params);
     console.log("Enviado");
 
     /* Guardar Codigo temporal */
-    //insertar a VerificationCode el data.mail_user y el code
-    await consult.insertCode(params);
+    InsertOrUpdateCode(mail_universidad, code, res);
 
     /* Continue */
-    return res.json("success");
-    req.session.data = data;
-    return res.redirect("/registro/code");
+    return res.status(200).json({ success: true }).end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();
   }
 }
-export async function singupCodeRector(req, res) {
+export async function RectorSecondStep(req, res) {
   const data = req.body;
   const mail_universidad = await consult.selectFromUniversidades(
     "correo_universidad",

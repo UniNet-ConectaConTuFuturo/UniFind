@@ -31,22 +31,20 @@ function Registro() {
   useEffect(() => {
     if (step === 1) {
       setClassForm("-translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setClassForm("");
-      }, "1100");
+      setTimeout(() => setClassForm(""), "1100");
       setClassCode("translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setClassCode("translate-x-1/2 opacity-0 hidden");
-      }, "1050");
+      setTimeout(
+        () => setClassCode("translate-x-1/2 opacity-0 hidden"),
+        "1050"
+      );
     } else if (step === 2) {
       setClassCode("translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setClassCode("");
-      }, "1100");
+      setTimeout(() => setClassCode(""), "1100");
       setClassForm("-translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setClassForm("-translate-x-1/2 opacity-0 hidden");
-      }, "1050");
+      setTimeout(
+        () => setClassForm("-translate-x-1/2 opacity-0 hidden"),
+        "1050"
+      );
     }
   }, [step]);
   return (
