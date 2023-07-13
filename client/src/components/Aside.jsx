@@ -10,7 +10,7 @@ class SideBarIcon extends React.Component {
     return (
       <div
         className="sidebar-icon relative flex items-center justify-center 
-      w-16 h-16 mt-8 mb-2 mx-auto 
+      w-16 h-16 mt-6 mb-2 mx-auto 
       shadow-lg bg-in_bg rounded-xl  hover:rounded-3xl transition-all duration-300"
       >
         {this.props.icon}
@@ -25,8 +25,8 @@ SideBarIcon.propTypes = {
 const SideBar = () => {
   return (
     <div
-      className="flex flex-col fixed z-10 top-0 left-0 h-screen w-32 m-0
-        bg-black opacity-90 "
+      className="flex flex-col float-right fixed z-10 top-0 left-0 content-end h-screen w-32 m-0
+        bg-bg-sb_bg opacity-90"
     >
       <SideBarIcon icon={<FaHome size="40" />} />
       <SideBarIcon icon={<FaUserAlt size="40" />} />
