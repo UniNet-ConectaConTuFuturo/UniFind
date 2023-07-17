@@ -22,43 +22,45 @@ function Registro() {
     setForm({ ...form, [name]: value });
   };
 
+  const [formVisible, setFormVisible] = useState(true);
+  const [codeVisible, setCodeVisible] = useState(false);
   const [step, setStep] = useState(0);
   const [classForm, setClassForm] = useState("");
-  const [classCode, setClassCode] = useState(
-    "translate-x-1/2 opacity-0 hidden"
-  );
+  const [classCode, setClassCode] = useState("translate-x-1/2 opacity-0");
 
   useEffect(() => {
     if (step === 1) {
-      setClassForm("-translate-x-1/2 opacity-0 ");
-      setTimeout(() => setClassForm(""), "1100");
       setClassCode("translate-x-1/2 opacity-0 ");
-      setTimeout(
-        () => setClassCode("translate-x-1/2 opacity-0 hidden"),
-        "1050"
-      );
+      setTimeout(() => {
+        setCodeVisible(false);
+        setFormVisible(true);
+        setTimeout(() => setClassForm(""), "100");
+      }, "700");
     } else if (step === 2) {
-      setClassCode("translate-x-1/2 opacity-0 ");
-      setTimeout(() => setClassCode(""), "1100");
       setClassForm("-translate-x-1/2 opacity-0 ");
-      setTimeout(
-        () => setClassForm("-translate-x-1/2 opacity-0 hidden"),
-        "1050"
-      );
+      setTimeout(() => {
+        setFormVisible(false);
+        setCodeVisible(true);
+        setTimeout(() => setClassCode(""), "100");
+      }, "700");
     }
   }, [step]);
   return (
-    <section className="h-screen flex justify-end pr-4 items-center ">
-      <div className={classForm + " transition duration-1000 absolute"}>
-        <EntrantForm
-          handleChange={handleChange}
-          form={form}
-          setStep={setStep}
-        />
-      </div>
-      <div className={classCode + " transition duration-1000 absolute"}>
-        <EntrantCode form={form} setStep={setStep} />
-      </div>
+    <section className="flex justify-end pr-4 items-center ">
+      {formVisible && (
+        <div className={classForm + " transition duration-700"}>
+          <EntrantForm
+            handleChange={handleChange}
+            form={form}
+            setStep={setStep}
+          />
+        </div>
+      )}
+      {codeVisible && (
+        <div className={classCode + " transition duration-700"}>
+          <EntrantCode form={form} setStep={setStep} />
+        </div>
+      )}
     </section>
   );
 }
