@@ -43,7 +43,7 @@ router.post("/api/rector/second-step", [
 ]);
 
 //Rutas Ingreso
-router.get("/api/login");
+//router.get("/api/login"); //no creo que lo uses
 router.post("/api/login/user", [login.SignIn]);
 
 //Rutas Pagina principal

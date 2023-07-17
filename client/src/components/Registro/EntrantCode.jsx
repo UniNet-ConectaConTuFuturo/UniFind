@@ -18,8 +18,7 @@ function EntrantCode({ form, setStep }) {
         setCode("");
         setSpanCode("");
       } else {
-        const { err } = data;
-        setSpanCode("Error: " + err);
+        setSpanCode("Error: " + Object.values(data));
       }
     } catch (error) {
       console.log(error);
@@ -37,12 +36,12 @@ function EntrantCode({ form, setStep }) {
       });
       console.log(response);
       const data = await response.json();
-      if (data.error) {
-        setSpanCode(data.error);
-      } else {
+      if (data.token) {
         setSpanCode("");
-        localStorage.setItem("TokenUniNet", data);
+        localStorage.setItem("TokenUniNet", data.token);
         setStep(3);
+      } else {
+        setSpanCode(data.error);
       }
     } catch (error) {
       console.log(error);

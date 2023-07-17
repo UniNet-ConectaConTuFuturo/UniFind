@@ -49,7 +49,7 @@ export async function EntrantSecondStep(req, res) {
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
     //Responder Token
-    return res.json(token).end();
+    return res.json({ token }).end();
   } catch (err) {
     console.error(err);
   }

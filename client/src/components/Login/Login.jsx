@@ -16,24 +16,24 @@ function Login() {
     spanPassword: "",
   };
   const [span, setSpan] = useState(spanVacio);
-  const handleBlur = async () => {
+  /* const handleBlur = async () => {
     try {
-      /* const response = await post("/validate-registro", form);
+      const response = await post("/validate-registro", form);
       const data = await response.json();
-      setSpan({ ...spanVacio, ...data }); */
+      setSpan({ ...spanVacio, ...data }); 
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      /* const response = await post("/entrant/first-step", form);
+      /* const response = await post("/login/user", form);
       const data = await response.json();
-      if (data.success) {
-        console.log("Etapa 2");
-        setStep(2);
+      if (data.token) {
+        setSpan("");
+        localStorage.setItem("TokenUniNet", data.token);
       } else {
         setSpan({ ...spanVacio, ...data });
       } */
@@ -54,7 +54,7 @@ function Login() {
             placeholder=" "
             value={form.mail_user}
             onChange={handleChange}
-            onBlur={handleBlur}
+            /* onBlur={handleBlur} */
           />
           <span>{span.spanEmail}</span>
           <label htmlFor="correo">Correo</label>
@@ -68,7 +68,7 @@ function Login() {
             placeholder=" "
             value={form.password_user}
             onChange={handleChange}
-            onBlur={handleBlur}
+            /* onBlur={handleBlur} */
           />
           <span>{span.spanPassword}</span>
           <label htmlFor="contrasena">Contraseña</label>
