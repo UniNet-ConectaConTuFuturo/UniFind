@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "../../components/Login/Login";
-import Registro from "../../components/Registro/Registro";
+import Login from "../../components/Identification/Login/Login";
+import Registro from "../../components/Identification/Registro/Registro";
 function Ingresante() {
   const [bgColor, setBgColor] = useState("bg-sky-600");
   const [loginVisible, setLoginVisible] = useState(true);

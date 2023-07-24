@@ -1,10 +1,9 @@
 import { Pane, useMap, useMapEvent } from "react-leaflet";
 import DisplayDepartaments from "./geoJSON/DisplayDepartaments";
 import DisplayProvincias from "./geoJSON/DisplayProvincias";
-import "../../styles.css";
 import { useState } from "react";
 import DisplayPais from "./geoJSON/DisplayPais";
-import { lookFeature } from "./geoJSON/highlight";
+import { lookFeature } from "../../api/onEachFeature/highlight";
 
 function DisplayGeoJSON() {
   const map = useMap();

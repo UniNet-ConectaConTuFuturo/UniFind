@@ -1,6 +1,6 @@
-import provincias from "./provincia.json";
+import provincias from "../../../geoJSON/provincia.json";
 import { GeoJSON, Pane, useMap } from "react-leaflet";
-import onEachFeature from "./highlight";
+import onEachFeature from "../../../api/onEachFeature/highlight";
 import PropTypes from "prop-types";
 function DisplayProvincias({ children }) {
   const className = {

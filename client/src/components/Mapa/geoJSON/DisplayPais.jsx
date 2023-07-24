@@ -1,5 +1,5 @@
 import { GeoJSON, Pane } from "react-leaflet";
-import pais from "./pais.json";
+import pais from "../../../geoJSON/pais.json";
 import PropTypes from "prop-types";
 function DisplayPais({ children }) {
   const className = {

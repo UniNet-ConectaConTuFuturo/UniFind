@@ -4,6 +4,7 @@ let currentLayer,
   lastStyle,
   interactive = true;
 export function lookFeature(map) {
+  if (typeof currentLayer === "undefined") return 0;
   if (borderView(currentLayer, map)) {
     interactive = true;
   } else {

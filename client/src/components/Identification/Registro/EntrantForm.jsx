@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../api/api";
+import { post } from "../../../api/api";
 import "./form.css";
 
 function EntrantForm({ handleChange, form, setStep }) {

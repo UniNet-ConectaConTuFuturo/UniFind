@@ -1,6 +1,6 @@
-import departamentos from "./departamentos-argentina.json";
+import departamentos from "../../../geoJSON/departamentos-argentina.json";
 import { GeoJSON, useMap } from "react-leaflet";
-import onEachFeature from "./highlight";
+import onEachFeature from "../../../api/onEachFeature/highlight";
 function DisplayDepartaments() {
   const className = {
       fillOpacity: 0,

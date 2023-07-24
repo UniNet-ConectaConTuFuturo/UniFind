@@ -1,7 +1,7 @@
 import "./form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { post } from "../../api/api";
+import { post } from "../../../api/api";
 
 function EntrantCode({ form, setStep }) {
   const [code, setCode] = useState("");
