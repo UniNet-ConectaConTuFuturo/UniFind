@@ -4,6 +4,7 @@ import Registro from "./components/Registro/Registro";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Ingresante from "./pages/singUp-singIn/Ingresante";
+import Mapa from "./components/Mapa/Mapa";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/registro/ingresante" element={<Registro />} />
           <Route path="/ingresante" element={<Ingresante />} />
+          <Route path="/mapa" element={<Mapa />} />
         </Routes>
       </Layout>
     </BrowserRouter>
