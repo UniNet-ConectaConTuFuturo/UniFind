@@ -9,8 +9,8 @@ function DisplayGeoJSON() {
   const map = useMap();
   const [provincias, setProvincias] = useState(true);
   const [departaments, setDepartaments] = useState(false);
-  useMapEvent("zoom", () => {
-    const zoom = map.getZoom();
+  useMapEvent("zoom", ({ target }) => {
+    const zoom = target._zoom;
     if (zoom >= 3.5) {
       setProvincias(true);
       if (zoom >= 6.5) {

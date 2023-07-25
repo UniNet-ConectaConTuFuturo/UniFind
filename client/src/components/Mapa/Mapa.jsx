@@ -3,7 +3,11 @@ import "./leaflet.css";
 import Tiles from "./Tiles";
 import DisplayGeoJSON from "./DisplayGeoJSON";
 import DisplayMarkers from "./DisplayMarkers";
+import ControlLayers from "./LayersControl";
+import { useRef, useState } from "react";
 function Mapa() {
+  const distanciaMarcadores = useRef(6.5);
+  const [displayMarkers, setDisplayMarkers] = useState(false);
   return (
     <MapContainer
       className="h-screen w-screen z-0"
@@ -17,7 +21,15 @@ function Mapa() {
       <ZoomControl position="bottomright" />
       <Tiles />
       <DisplayGeoJSON />
-      <DisplayMarkers />
+      <ControlLayers
+        distanciaMarcadores={distanciaMarcadores}
+        setDisplayMarkers={setDisplayMarkers}
+      />
+      <DisplayMarkers
+        distanciaMarcadores={distanciaMarcadores}
+        displayMarkers={displayMarkers}
+        setDisplayMarkers={setDisplayMarkers}
+      />
       <Marker position={[51.505, -0.09]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
