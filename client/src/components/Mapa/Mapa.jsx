@@ -2,6 +2,7 @@ import { MapContainer, Marker, Popup, ZoomControl } from "react-leaflet";
 import "./leaflet.css";
 import Tiles from "./Tiles";
 import DisplayGeoJSON from "./DisplayGeoJSON";
+import DisplayMarkers from "./DisplayMarkers";
 function Mapa() {
   return (
     <MapContainer
@@ -16,7 +17,8 @@ function Mapa() {
       <ZoomControl position="bottomright" />
       <Tiles />
       <DisplayGeoJSON />
-      <Marker dataset="1" position={[51.505, -0.09]}>
+      <DisplayMarkers />
+      <Marker position={[51.505, -0.09]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>

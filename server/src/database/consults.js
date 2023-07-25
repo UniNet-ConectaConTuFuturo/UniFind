@@ -137,13 +137,25 @@ export function DeleteVerCode(mail_user) {
 }
 
 //Configurar cuenta
-export function updateUser(table_name,update,mail_user){
-  return new Promise((resolve, reject)=>{
-    pool.query(`UPDATE ${table_name} SET ${update} WHERE mail_user = ?`,
-    [mail_user],
-    (err,data)=>{
+export function updateUser(table_name, update, mail_user) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `UPDATE ${table_name} SET ${update} WHERE mail_user = ?`,
+      [mail_user],
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
+  });
+}
+
+//Prueba Point
+export function selectPoint() {
+  return new Promise(function (resolve, reject) {
+    pool.query(`SELECT * FROM type_point`, (err, data) => {
       if (err) reject(err);
       resolve(data);
-    })
-  })
+    });
+  });
 }

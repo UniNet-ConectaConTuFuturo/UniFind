@@ -1,0 +1,62 @@
+[
+  {
+    "id_universidad": 1,
+    "nombre_universidad": "Universidad Nacional de La Defensa",
+    "direccion_universidad": "Maipu 262",
+    "maps_universidad": "https://goo.gl/maps/QWR84PeaJ9zBuh3t6",
+    "localidad_universidad": "Monserrat",
+    "web_universidad": "https://www.undef.edu.ar",
+    "gestion_universidad": "Publica",
+    "zona_universidad": "Capital Federal",
+    "correo_universidad": "comunicacion@undef.edu.ar",
+    "Point": {
+      "x": -34.6051205,
+      "y": -58.3766535
+    }
+  },
+  {
+    "id_universidad": 2,
+    "nombre_universidad": "Instituto Universitario de la Policia Federal Argentina",
+    "direccion_universidad": "Rosario 532",
+    "maps_universidad": "https://goo.gl/maps/2CRgJJw2zZQUsPdEA",
+    "localidad_universidad": "Caballito",
+    "web_universidad": "https://www.iupfa.edu.ar",
+    "gestion_universidad": "Publica",
+    "zona_universidad": "Capital Federal",
+    "correo_universidad": "academica@iupfa.edu.ar",
+    "Point": {
+      "x": -34.6167633,
+      "y": -58.4501997
+    }
+  },
+  {
+    "id_universidad": 3,
+    "nombre_universidad": "Instituto Universitario Nacional de Derechos Humanos Madres de Plaza Mayo",
+    "direccion_universidad": "Defensa 119",
+    "maps_universidad": "https://goo.gl/maps/WVBLWMrJ9tCS7ixw6",
+    "localidad_universidad": "Monserrat",
+    "web_universidad": "http://www.iunma.edu.ar",
+    "gestion_universidad": "Publica",
+    "zona_universidad": "Capital Federal",
+    "correo_universidad": "mesadeentradasiunma@gmail.com",
+    "Point": {
+      "x": -34.6093122,
+      "y": -58.3721953
+    }
+  },
+  {
+    "id_universidad": 4,
+    "nombre_universidad": "Facultad Latinoamericana de Ciencias Sociales",
+    "direccion_universidad": "Tucuman 1966",
+    "maps_universidad": "https://goo.gl/maps/3NK1RTNh5irT3CY6A",
+    "localidad_universidad": "Balvanera",
+    "web_universidad": "https://www.flacso.org.ar",
+    "gestion_universidad": "Publica",
+    "zona_universidad": "Capital Federal",
+    "correo_universidad": "comunicacion@flacso.edu.ar",
+    "Point": {
+      "x": -34.6021779,
+      "y": -58.395111
+    }
+  }
+]
