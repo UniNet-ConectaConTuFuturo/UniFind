@@ -5,6 +5,7 @@ import DisplayGeoJSON from "./DisplayGeoJSON";
 import DisplayMarkers from "./DisplayMarkers";
 import ControlLayers from "./LayersControl";
 import { useRef, useState } from "react";
+import ControlZoom from "./ControlZoom";
 function Mapa() {
   const distanciaMarcadores = useRef(6.5);
   const [displayMarkers, setDisplayMarkers] = useState(false);
@@ -17,8 +18,9 @@ function Mapa() {
       zoomControl={false}
       attributionControl={false}
       zoomSnap={0.5}
+      doubleClickZoom={false}
     >
-      <ZoomControl position="bottomright" />
+      <ControlZoom />
       <Tiles />
       <DisplayGeoJSON />
       <ControlLayers
