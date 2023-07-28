@@ -13,6 +13,8 @@ function DisplayMarkers() {
     carreras,
     nombres,
     gestion,
+    setDisplayInfo,
+    setUniToDisplay,
   } = useMarkers();
   useMapEvent("zoom", ({ target }) => {
     if (target._zoom >= distanciaMarcadores.current) {
@@ -24,6 +26,13 @@ function DisplayMarkers() {
   useEffect(() => {
     setMarkersWithFilters(setMarkers, nombres, gestion);
   }, [setMarkers, carreras, nombres, gestion]);
+
+  const handleClick = ({ target }) => {
+    setUniToDisplay(target.dataset.key);
+    console.log(target.dataset.key);
+    setDisplayInfo(true);
+  };
+
   return (
     <LayerGroup>
       {displayMarkers &&
@@ -38,7 +47,13 @@ function DisplayMarkers() {
                   {u.zona_universidad}
                 </a>
                 <br />
-                <button type="button">Ver Más...</button>
+                <button
+                  data-key={u.id_universidad}
+                  type="button"
+                  onClick={handleClick}
+                >
+                  Ver Más...
+                </button>
               </Popup>
             </Marker>
           );

@@ -1,5 +1,5 @@
 // Back
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMarkers } from "../../../context/Markers/useMarkers";
 import * as set from "../../../api/markers/setFilters.js";
 
@@ -20,6 +20,7 @@ function Filters() {
     selectNombre,
     setGestion,
     selectGestion,
+    displayInfo,
   } = useMarkers();
 
   function onClick() {
@@ -35,8 +36,14 @@ function Filters() {
     control.current.classList.toggle("leaflet-control-layers-expanded");
     setOpen(!open);
   }
+  const [rightLeftStyle, setRightLeftStyle] = useState("left-48 right-48");
+  useEffect(() => {
+    displayInfo
+      ? setRightLeftStyle("left-36 right-1/3")
+      : setRightLeftStyle("left-48 right-48");
+  }, [displayInfo]);
   return (
-    <div className="leaflet-top left-48 right-1/4">
+    <div className={"leaflet-top right- " + rightLeftStyle}>
       <div
         className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"

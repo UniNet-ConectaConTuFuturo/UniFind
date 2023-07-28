@@ -1,10 +1,11 @@
-import { MapContainer, Marker, Popup } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import "./leaflet.css";
 import Tiles from "./Tiles";
 import DisplayGeoJSON from "./DisplayGeoJSON";
 import DisplayMarkers from "./DisplayMarkers";
 import ControlLayers from "./LayersControl";
 import ControlZoom from "./ControlZoom";
+import Info from "./Info";
 import MarkersProvider from "../../context/Markers/MarkersProvider";
 function Mapa() {
   return (
@@ -24,12 +25,8 @@ function Mapa() {
       <MarkersProvider>
         <ControlLayers />
         <DisplayMarkers />
+        <Info />
       </MarkersProvider>
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
     </MapContainer>
   );
 }

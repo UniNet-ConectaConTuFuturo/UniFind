@@ -5,16 +5,23 @@ import PropTypes from "prop-types";
 import json from "../../api/markers.json";
 
 function MarkersProvider({ children }) {
+  /* Mark Options */
   const distanciaMarcadores = useRef(6.5);
   const [displayMarkers, setDisplayMarkers] = useState(false);
   const [markers, setMarkers] = useState(json);
 
+  /* Mark filters */
   const [carreras, setCarreras] = useState([]);
   const selectCarreras = useRef("");
   const [nombres, setNombres] = useState([]);
   const selectNombre = useRef("");
   const [gestion, setGestion] = useState("0");
   const selectGestion = useRef("0");
+
+  /* Mark Info */
+  const [displayInfo, setDisplayInfo] = useState(false);
+  const [uniToDisplay, setUniToDisplay] = useState("");
+
   return (
     <MarkersContext.Provider
       value={{
@@ -32,6 +39,10 @@ function MarkersProvider({ children }) {
         gestion,
         setGestion,
         selectGestion,
+        displayInfo,
+        setDisplayInfo,
+        uniToDisplay,
+        setUniToDisplay,
       }}
     >
       {children}
