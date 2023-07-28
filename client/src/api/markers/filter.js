@@ -7,11 +7,11 @@ export default function setMarkersWithFilters(setMarkers, nombres, gestion) {
         (gestion === "0" ? true : gestion === u.gestion_universidad)
     )
   );
-  console.log(
+  /* console.log(
     json.filter(
       (u) =>
         nombres.every((n) => n === u.nombre_universidad) &&
         (gestion == "0" ? true : gestion === u.gestion_universidad)
     )
-  );
+  ); */
 }

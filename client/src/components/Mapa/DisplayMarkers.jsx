@@ -2,6 +2,7 @@ import { LayerGroup, Marker, Popup, useMapEvent } from "react-leaflet";
 import { useMarkers } from "../../context/Markers/useMarkers";
 import { useEffect } from "react";
 import setMarkersWithFilters from "../../api/markers/filter";
+import setAside from "../../api/markers/setAside";
 
 function DisplayMarkers() {
   const {
@@ -28,8 +29,7 @@ function DisplayMarkers() {
   }, [setMarkers, carreras, nombres, gestion]);
 
   const handleClick = ({ target }) => {
-    setUniToDisplay(target.dataset.key);
-    console.log(target.dataset.key);
+    setAside(setUniToDisplay, target.dataset.key);
     setDisplayInfo(true);
   };
 

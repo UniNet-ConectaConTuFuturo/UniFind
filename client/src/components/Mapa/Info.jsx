@@ -1,14 +1,10 @@
+import { useEffect } from "react";
 import { useMarkers } from "../../context/Markers/useMarkers";
-import json from "../../api/markers.json";
-import { useEffect, useRef } from "react";
 function Info() {
   const { displayInfo, uniToDisplay, setDisplayInfo } = useMarkers();
-  const uni = useRef({});
-  useEffect(
-    () =>
-      (uni.current = json.filter((u) => u.id_universidad == uniToDisplay)[0]),
-    [uniToDisplay]
-  );
+  /* useEffect(() => {
+    console.log(uniToDisplay);
+  }, []); */
   return (
     <>
       {displayInfo && (
@@ -16,7 +12,7 @@ function Info() {
           <button type="button" onClick={() => setDisplayInfo(false)}>
             Cerrar
           </button>
-          {uni.current.nombre_universidad}
+          {uniToDisplay.nombre_universidad}
         </div>
       )}
     </>
