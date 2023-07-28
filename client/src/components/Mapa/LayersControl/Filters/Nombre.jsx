@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-
-import markers from "../../markers.json";
-function Nombre({ nombres, setNombres, selectNombre }) {
+import markers from "../../../../api/markers.json";
+import { useMarkers } from "../../../../context/Markers/useMarkers";
+function Nombre() {
+  const { nombres, setNombres, selectNombre } = useMarkers();
   function onDelete({ target }) {
     setNombres(nombres.filter((c, i) => i != target.dataset.key));
   }
@@ -38,9 +38,4 @@ function Nombre({ nombres, setNombres, selectNombre }) {
     </section>
   );
 }
-Nombre.propTypes = {
-  nombres: PropTypes.array,
-  setNombres: PropTypes.func,
-  selectNombre: PropTypes.any,
-};
 export default Nombre;

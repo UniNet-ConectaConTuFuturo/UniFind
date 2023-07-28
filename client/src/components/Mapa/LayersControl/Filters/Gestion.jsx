@@ -1,6 +1,7 @@
-import PropTypes from "prop-types";
+import { useMarkers } from "../../../../context/Markers/useMarkers";
 
-function Gestion({ selectGestion }) {
+function Gestion() {
+  const { selectGestion } = useMarkers();
   return (
     <section className="w-1/3 mt-1 mx-4">
       <h3>Filtrar por Gestion</h3>
@@ -13,15 +14,12 @@ function Gestion({ selectGestion }) {
             defaultValue="0"
           >
             <option value="0">---</option>
-            <option value="1">Público</option>
-            <option value="2">Privado</option>
+            <option value="Publica">Público</option>
+            <option value="Privada">Privado</option>
           </select>
         </span>
       </label>
     </section>
   );
 }
-Gestion.propTypes = {
-  selectGestion: PropTypes.any,
-};
 export default Gestion;

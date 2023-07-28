@@ -1,8 +1,9 @@
 import { useRef } from "react";
-import PropTypes from "prop-types";
 import { useMap } from "react-leaflet";
+import { useMarkers } from "../../../context/Markers/useMarkers";
 
-function Options({ distanciaMarcadores, setDisplayMarkers }) {
+function Options() {
+  const { distanciaMarcadores, setDisplayMarkers } = useMarkers();
   const control = useRef(null);
   /* function onMouseOver() {
     control.current.className =
@@ -60,8 +61,4 @@ function Options({ distanciaMarcadores, setDisplayMarkers }) {
     </div>
   );
 }
-Options.propTypes = {
-  distanciaMarcadores: PropTypes.any,
-  setDisplayMarkers: PropTypes.func,
-};
 export default Options;

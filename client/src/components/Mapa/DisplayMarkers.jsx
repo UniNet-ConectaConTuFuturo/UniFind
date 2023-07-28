@@ -1,12 +1,19 @@
-import json from "./markers.json";
 import { LayerGroup, Marker, Popup, useMapEvent } from "react-leaflet";
-import PropTypes from "prop-types";
+import { useMarkers } from "../../context/Markers/useMarkers";
+import { useEffect } from "react";
+import setMarkersWithFilters from "../../api/markers/filter";
 
-function DisplayMarkers({
-  distanciaMarcadores,
-  displayMarkers,
-  setDisplayMarkers,
-}) {
+function DisplayMarkers() {
+  const {
+    distanciaMarcadores,
+    displayMarkers,
+    setDisplayMarkers,
+    markers,
+    setMarkers,
+    carreras,
+    nombres,
+    gestion,
+  } = useMarkers();
   useMapEvent("zoom", ({ target }) => {
     if (target._zoom >= distanciaMarcadores.current) {
       setDisplayMarkers(true);
@@ -14,10 +21,13 @@ function DisplayMarkers({
       setDisplayMarkers(false);
     }
   });
+  useEffect(() => {
+    setMarkersWithFilters(setMarkers, nombres, gestion);
+  }, [setMarkers, carreras, nombres, gestion]);
   return (
     <LayerGroup>
       {displayMarkers &&
-        json.map((u) => {
+        markers.map((u) => {
           return (
             <Marker key={u.id_universidad} position={[u.Point.x, u.Point.y]}>
               <Popup>
@@ -36,9 +46,4 @@ function DisplayMarkers({
     </LayerGroup>
   );
 }
-DisplayMarkers.propTypes = {
-  distanciaMarcadores: PropTypes.any,
-  displayMarkers: PropTypes.bool,
-  setDisplayMarkers: PropTypes.func,
-};
 export default DisplayMarkers;

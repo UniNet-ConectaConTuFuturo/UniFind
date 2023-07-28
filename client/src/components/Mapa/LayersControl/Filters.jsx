@@ -1,79 +1,75 @@
+// Back
 import { useRef, useState } from "react";
+import { useMarkers } from "../../../context/Markers/useMarkers";
+import * as set from "../../../api/markers/setFilters.js";
+
+// Components
 import Carrera from "./Filters/Carrera";
 import Nombre from "./Filters/Nombre";
 import Gestion from "./Filters/Gestion";
+import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 
 function Filters() {
-  const control = useRef(null);
-  /* function onMouseOver() {
-    control.current.className =
-      "leaflet-control-layers  leaflet-control leaflet-control-layers-expanded";
-  }
-  function onMouseOut() {
-    control.current.className = "leaflet-control-layers  leaflet-control";
-  } */
-  const [carreras, setCarreras] = useState([]);
-  const selectCarreras = useRef("");
-  function filterCarreras() {
-    const value = selectCarreras.current.value;
-    if (value !== "") setCarreras([...carreras, value]);
-    selectCarreras.current.value = "";
-  }
+  /* Back */
+  const {
+    carreras,
+    setCarreras,
+    selectCarreras,
+    nombres,
+    setNombres,
+    selectNombre,
+    setGestion,
+    selectGestion,
+  } = useMarkers();
 
-  const [nombres, setNombres] = useState([]);
-  const selectNombre = useRef("");
-  function filterNombres() {
-    const value = selectNombre.current.value;
-    if (value != "") setNombres([...nombres, value]);
-    selectNombre.current.value = "";
-  }
-
-  const [gestion, setGestion] = useState(0);
-  const selectGestion = useRef("0");
-  function filterGestion() {
-    setGestion(selectGestion.current.value);
-  }
   function onClick() {
-    filterCarreras();
-    filterNombres();
-    filterGestion();
+    set.filterCarreras(selectCarreras, setCarreras, carreras);
+    set.filterNombres(selectNombre, setNombres, nombres);
+    set.filterGestion(setGestion, selectGestion);
+  }
+
+  /* Front */
+  const control = useRef(null);
+  const [open, setOpen] = useState(false);
+  function toggle() {
+    control.current.classList.toggle("leaflet-control-layers-expanded");
+    setOpen(!open);
   }
   return (
     <div className="leaflet-top left-48 right-1/4">
       <div
-        className="leaflet-control-layers  leaflet-control leaflet-control-layers-expanded w-full"
+        className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"
-        /* onMouseOver={onMouseOver}
-        onMouseOut={onMouseOut} */
         ref={control}
       >
+        <div className="leaflet-control-layers-list">
+          <div className="w-full flex justify-between items-start ">
+            <button
+              className="border-black border relative self-center py-4"
+              onClick={onClick}
+            >
+              Filtrar
+            </button>
+            <section className="w-full flex justify-between items-start flex-row text-center">
+              <Carrera />
+              <Nombre />
+              <Gestion />
+            </section>
+          </div>
+        </div>
         <a
-          className="leaflet-control-layers-toggle"
+          className="w-full flex justify-center"
           title="Layers"
           href="#"
           role="button"
-        ></a>
-        <div className="w-full flex justify-between items-start">
-          <button
-            className="border-black border relative self-center py-4"
-            onClick={onClick}
-          >
-            Filtrar
-          </button>
-          <section className="w-full flex justify-between items-start flex-row text-center">
-            <Carrera
-              carreras={carreras}
-              setCarreras={setCarreras}
-              selectCarreras={selectCarreras}
-            />
-            <Nombre
-              nombres={nombres}
-              setNombres={setNombres}
-              selectNombre={selectNombre}
-            />
-            <Gestion selectGestion={selectGestion} />
-          </section>
-        </div>
+          onClick={toggle}
+        >
+          {open ? (
+            <BsFillCaretUpFill color="white" />
+          ) : (
+            <BsFillCaretDownFill color="white" />
+          )}
+        </a>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
-import PropTypes from "prop-types";
+import { useMarkers } from "../../../../context/Markers/useMarkers";
 
-function Carrera({ carreras, setCarreras, selectCarreras }) {
+function Carrera() {
+  const { carreras, setCarreras, selectCarreras } = useMarkers();
   function onDelete({ target }) {
     setCarreras(carreras.filter((c, i) => i != target.dataset.key));
   }
@@ -36,9 +37,4 @@ function Carrera({ carreras, setCarreras, selectCarreras }) {
     </section>
   );
 }
-Carrera.propTypes = {
-  carreras: PropTypes.array,
-  setCarreras: PropTypes.func,
-  selectCarreras: PropTypes.any,
-};
 export default Carrera;
