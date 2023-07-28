@@ -13,7 +13,7 @@ function MarkersProvider({ children }) {
   const selectCarreras = useRef("");
   const [nombres, setNombres] = useState([]);
   const selectNombre = useRef("");
-  const [gestion, setGestion] = useState(0);
+  const [gestion, setGestion] = useState("0");
   const selectGestion = useRef("0");
   return (
     <MarkersContext.Provider
