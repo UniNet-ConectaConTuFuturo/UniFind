@@ -1,6 +1,6 @@
 .box {
   position: relative;
-  margin: auto;
+  /* margin: auto; */
   width: 600px;
   height: 650px;
   display: flex;

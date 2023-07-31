@@ -1,9 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { post } from "../../../api/api";
-import "./form.css";
+import "../form.css";
+import { useRegistro } from "../../../context/Registro/useRegistro";
 
-function EntrantForm({ handleChange, form, setStep }) {
+function EntrantForm({ className }) {
+  const { handleChange, form, setStep } = useRegistro();
   const spanVacio = {
     spanEmail: "",
     spanName: "",
@@ -43,7 +45,7 @@ function EntrantForm({ handleChange, form, setStep }) {
   };
 
   return (
-    <div className="box">
+    <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
         <h2>Registrarse</h2>
         <div className="inputbox">
@@ -169,17 +171,6 @@ function EntrantForm({ handleChange, form, setStep }) {
   );
 }
 EntrantForm.propTypes = {
-  handleChange: PropTypes.func,
-  form: PropTypes.shape({
-    mail_user: PropTypes.string,
-    name_user: PropTypes.string,
-    password_user: PropTypes.string,
-    password2_user: PropTypes.string,
-    date_user: PropTypes.string,
-    direction_user: PropTypes.string,
-    tel_user: PropTypes.string,
-    title: PropTypes.string,
-  }),
-  setStep: PropTypes.func,
+  className: PropTypes.string,
 };
 export default EntrantForm;

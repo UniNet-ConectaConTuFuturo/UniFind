@@ -1,9 +1,11 @@
-import "./form.css";
+import "../form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { post } from "../../../api/api";
+import { useRegistro } from "../../../context/Registro/useRegistro";
 
-function EntrantCode({ form, setStep }) {
+function EntrantCode({ className }) {
+  const { form, setStep } = useRegistro();
   const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
 
@@ -50,7 +52,7 @@ function EntrantCode({ form, setStep }) {
   let disabled;
   return (
     <>
-      <div className="box">
+      <div className={className + " " + "box"}>
         <button
           className="absolute top-8 left-8"
           type="button"
@@ -90,16 +92,6 @@ function EntrantCode({ form, setStep }) {
   );
 }
 EntrantCode.propTypes = {
-  form: PropTypes.shape({
-    mail_user: PropTypes.string,
-    name_user: PropTypes.string,
-    password_user: PropTypes.string,
-    password2_user: PropTypes.string,
-    date_user: PropTypes.string,
-    direction_user: PropTypes.string,
-    tel_user: PropTypes.string,
-    title: PropTypes.string,
-  }),
-  setStep: PropTypes.func,
+  className: PropTypes.string,
 };
 export default EntrantCode;

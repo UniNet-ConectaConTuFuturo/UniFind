@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Login from "../../components/Identification/Login/Login";
 import Registro from "../../components/Identification/Registro/Registro";
+import RegistroProvider from "../../context/Registro/RegistroProvider";
+import CheckBox from "../../components/Identification/CheckBox";
 function Ingresante() {
   const [bgColor, setBgColor] = useState("bg-sky-600");
   const [loginVisible, setLoginVisible] = useState(true);
@@ -9,52 +11,38 @@ function Ingresante() {
   const [classRegistro, setClassRegistro] = useState(
     "translate-x-1/2 opacity-0"
   );
-  const handleChange = ({ target }) => {
-    if (target.checked) {
-      setBgColor("bg-sky-700");
-      setClassRegistro("translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setRegistroVisible(false);
-        setLoginVisible(true);
-        setTimeout(() => setClassLogin(""), "100");
-      }, "700");
-    } else {
-      setBgColor("");
-      setClassLogin("-translate-x-1/2 opacity-0 ");
-      setTimeout(() => {
-        setLoginVisible(false);
-        setRegistroVisible(true);
-        setTimeout(() => setClassRegistro(""), "100");
-      }, "700");
-    }
-  };
   return (
-    <>
+    <div
+      className={
+        "transition-colors duration-700 overflow-hidden" + " " + bgColor
+      }
+    >
+      <CheckBox
+        value={{
+          setBgColor,
+          setLoginVisible,
+          setRegistroVisible,
+          setClassLogin,
+          setClassRegistro,
+        }}
+      />
       <section
         className={
-          bgColor +
-          " h-screen flex justify-end pr-4 items-center transition duration-1000"
+          " h-screen flex relative left-1/2 right-4 items-center overflow-x-visible"
         }
       >
         {loginVisible && (
-          <div className={classLogin + " transition duration-700"}>
-            <Login />
-          </div>
+          <Login className={classLogin + " " + "transition-all duration-700"} />
         )}
         {registroVisible && (
-          <div className={classRegistro + " transition duration-700"}>
-            <Registro />
-          </div>
+          <RegistroProvider>
+            <Registro
+              className={classRegistro + " " + "transition-all duration-700"}
+            />
+          </RegistroProvider>
         )}
       </section>
-      <input
-        type="checkbox"
-        role="switch"
-        defaultChecked
-        className="block m-auto rounded-xl "
-        onChange={handleChange}
-      />
-    </>
+    </div>
   );
 }
 

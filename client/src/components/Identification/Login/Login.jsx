@@ -1,8 +1,9 @@
 import { useState } from "react";
-import "../Registro/form.css";
-import {post } from "../../../api/api"
+import "../form.css";
+import { post } from "../../../api/api";
+import PropTypes from "prop-types";
 
-function Login() {
+function Login({ className }) {
   const formNuevo = {
     mail_user: "",
     password_user: "",
@@ -43,7 +44,7 @@ function Login() {
     }
   };
   return (
-    <div className="box">
+    <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
         <h2>Ingresar</h2>
         <div className="inputbox">
@@ -79,5 +80,7 @@ function Login() {
     </div>
   );
 }
-
+Login.propTypes = {
+  className: PropTypes.string,
+};
 export default Login;

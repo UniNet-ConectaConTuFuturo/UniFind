@@ -2,29 +2,14 @@
 import { useState, useEffect } from "react";
 import EntrantForm from "./EntrantForm";
 import EntrantCode from "./EntrantCode";
+import PropTypes from "prop-types";
+import { useRegistro } from "../../../context/Registro/useRegistro";
 
-function Registro() {
+function Registro({ className }) {
   //const navigate = useNavigate();
-  const formNuevo = {
-    mail_user: "",
-    name_user: "",
-    password_user: "",
-    password2_user: "",
-    date_user: "",
-    direction_user: "",
-    tel_user: "",
-    title: "",
-    code: "",
-  };
-  const [form, setForm] = useState(formNuevo);
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setForm({ ...form, [name]: value });
-  };
-
+  const { step } = useRegistro();
   const [formVisible, setFormVisible] = useState(true);
   const [codeVisible, setCodeVisible] = useState(false);
-  const [step, setStep] = useState(0);
   const [classForm, setClassForm] = useState("");
   const [classCode, setClassCode] = useState("translate-x-1/2 opacity-0");
 
@@ -46,23 +31,23 @@ function Registro() {
     }
   }, [step]);
   return (
-    <section className="flex justify-end pr-4 items-center ">
+    <section
+      className={className + " " + "flex justify-end pr-4 items-center "}
+    >
       {formVisible && (
-        <div className={classForm + " transition duration-700"}>
-          <EntrantForm
-            handleChange={handleChange}
-            form={form}
-            setStep={setStep}
-          />
-        </div>
+        <EntrantForm
+          className={classForm + " " + "transition-all duration-700"}
+        />
       )}
       {codeVisible && (
-        <div className={classCode + " transition duration-700"}>
-          <EntrantCode form={form} setStep={setStep} />
-        </div>
+        <EntrantCode
+          className={classCode + " " + "transition-all duration-700"}
+        />
       )}
     </section>
   );
 }
-
+Registro.propTypes = {
+  className: PropTypes.string,
+};
 export default Registro;
