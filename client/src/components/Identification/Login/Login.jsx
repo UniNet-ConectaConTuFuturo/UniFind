@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../Registro/form.css";
+import {post } from "../../../api/api"
 
 function Login() {
   const formNuevo = {
@@ -29,14 +30,14 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      /* const response = await post("/login/user", form);
+      const response = await post("/login/user", form);
       const data = await response.json();
       if (data.token) {
-        setSpan("");
+        setSpan(spanVacio);
         localStorage.setItem("TokenUniNet", data.token);
       } else {
         setSpan({ ...spanVacio, ...data });
-      } */
+      }
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +63,7 @@ function Login() {
         <div className="inputbox">
           <input
             className="typebox"
-            type="password"
+            type="      "
             name="password_user"
             id="password_user"
             placeholder=" "
