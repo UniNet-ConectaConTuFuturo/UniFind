@@ -49,8 +49,9 @@ function Ingresante() {
       </section>
       <input
         type="checkbox"
+        role="switch"
         defaultChecked
-        className="block m-auto"
+        className="block m-auto rounded-xl "
         onChange={handleChange}
       />
     </>
