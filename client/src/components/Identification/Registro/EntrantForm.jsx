@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { post } from "../../../api/api";
 import "../form.css";
 import { useRegistro } from "../../../context/Registro/useRegistro";
+import { useIngresante } from "../../../context/Ingresante/useIngresante";
 
 function EntrantForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -43,7 +44,7 @@ function EntrantForm({ className }) {
       console.log(error);
     }
   };
-
+  const {checkboxRef, handleCheckboxChange} = useIngresante()
   return (
     <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
@@ -164,7 +165,10 @@ function EntrantForm({ className }) {
         <input className="boton" type="submit" name="boton" id="boton" />
         <br />
         <p>
-          <a href="#">Ya tengo una cuenta</a>
+          <a href="#" onClick={()=>{
+            checkboxRef.current.checked = !checkboxRef.current.checked;
+            handleCheckboxChange();
+          }}>Ya tengo una cuenta</a>
         </p>
       </form>
     </div>
