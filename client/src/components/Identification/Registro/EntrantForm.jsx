@@ -4,6 +4,7 @@ import { post } from "../../../api/api";
 import "../form.css";
 import { useRegistro } from "../../../context/Registro/useRegistro";
 import { useIngresante } from "../../../context/Ingresante/useIngresante";
+import Image from "../../../../public/images/graduation.png";
 
 function EntrantForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -47,9 +48,12 @@ function EntrantForm({ className }) {
   const {checkboxRef, handleCheckboxChange} = useIngresante()
   return (
     <div className={className + " " + "box"}>
+      <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
       <form onSubmit={handleSubmit}>
-        <h2>Registrarse</h2>
-        <div className="inputbox">
+        <div className="ml-48">
+          <h2>Registrarse</h2>
+        </div>
+        <div className="inputbox ml-40">
           <input
             className="typebox"
             type="text"
@@ -63,7 +67,7 @@ function EntrantForm({ className }) {
           <span>{span.spanEmail}</span>
           <label htmlFor="correo">Correo</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox ml-32">
           <input
             className="typebox"
             type="text"
@@ -77,7 +81,7 @@ function EntrantForm({ className }) {
           <span>{span.spanName}</span>
           <label htmlFor="nombre">Nombre</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox ml-24">
           <input
             className="typebox"
             type="password"
@@ -91,7 +95,7 @@ function EntrantForm({ className }) {
           <span>{span.spanPassword}</span>
           <label htmlFor="contrasena">Contraseña</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox ml-16">
           <input
             className="typebox"
             type="password"
@@ -105,7 +109,7 @@ function EntrantForm({ className }) {
           <span>{span.spanPassword2}</span>
           <label htmlFor="password2_user">Repetir Contraseña</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox ml-8">
           <input
             className="typebox"
             type="date"
@@ -119,7 +123,7 @@ function EntrantForm({ className }) {
           <span>{span.spanDate}</span>
           <label htmlFor="nacimiento">Fecha de Nacimiento</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox ml-0">
           <input
             className="typebox"
             type="text"
@@ -133,7 +137,7 @@ function EntrantForm({ className }) {
           <span>{span.spanDirection}</span>
           <label htmlFor="direccion">Dirección</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox -ml-8">
           <input
             className="typebox"
             type="tel"
@@ -147,7 +151,7 @@ function EntrantForm({ className }) {
           <span>{span.spanTel}</span>
           <label htmlFor="telefono">Teléfono</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox -ml-16">
           <input
             className="typebox"
             type="text"
@@ -162,9 +166,9 @@ function EntrantForm({ className }) {
           <label htmlFor="titulo">Título Secundario</label>
         </div>
 
-        <input className="boton" type="submit" name="boton" id="boton" />
+        <input className="boton -ml-24" type="submit" name="boton" id="boton" />
         <br />
-        <p>
+        <p className="-ml-20 max-w-xs">
           <a href="#" onClick={()=>{
             checkboxRef.current.checked = !checkboxRef.current.checked;
             handleCheckboxChange();

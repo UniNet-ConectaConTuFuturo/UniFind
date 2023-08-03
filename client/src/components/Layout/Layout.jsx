@@ -8,7 +8,7 @@ class Layout extends React.Component {
         <aside>
           <Aside />
         </aside>
-        <main className="bg-cyan-950 text-slate-50 m-0 w-full min-h-screen h-full">
+        <main className="absolute bg-cyan-950 text-slate-50 m-0 w-full min-h-screen h-full">
           {this.props.children}
         </main>
       </>

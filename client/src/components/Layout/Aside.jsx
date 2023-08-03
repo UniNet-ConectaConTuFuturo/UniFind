@@ -30,7 +30,9 @@ const SideBar = () => {
       <Link to="/">
         <SideBarIcon icon={<FaHome size="40" />} />
       </Link>
+      <Link to="/Ingresante">
       <SideBarIcon icon={<FaUserAlt size="40" />} />
+      </Link>
       <SideBarIcon icon={<FaCog size="40" />} />
     </div>
   );
