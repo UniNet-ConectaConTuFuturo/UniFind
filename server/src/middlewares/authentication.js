@@ -1,90 +1,33 @@
 import jwt from "jsonwebtoken";
 import { jwtConfig } from "../config.js";
-import * as consult from "../database/consults.js"
-const authenticated = (req, res, next) => {
+import * as consult from "../database/consults.js";
+export const whoIs = async (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
-    const token = req.headers.authorization.split(" ")[1];
-    console.log(token);
+    //const token = req.headers.authorization.split(" ")[1];
+    const { token } = req.body;
 
-    jwt.verify(token, jwtConfig.SECRET);
-    /* 
+    const decoded = jwt.verify(token, jwtConfig.SECRET);
+
     //Consultar por decodedToken.id en la Tabla de Ingresantes
-    const user_data = await consult.select("user_id", decoded.id)
-    console.log(user_data);
-    */
-    if (user_data) {
-      next();
-    } else {
-      res.status(401).json("nope");
+    const user_data = await consult.selectFromUsuarios(
+      "*",
+      "id_usuario",
+      decoded.id[0].id_usuario
+    );
+    if (user_data.length === 0) {
+      res.statusMessage = "La cuenta fue borrada de la base de datos";
+      return res.status(401).json({ user: "noAuthenticated" }).end();
+    }
+    if (typeof user_data[0].title !== "undefined") {
+      return res.json({ user: "entrant" }).end();
+    }
+    if (typeof user_data[0].verificado !== "undefined") {
+      return res.json({ user: "rector" }).end();
     }
 
-    next();
+    return res.status(401).json({ user: "noAuthenticated" }).end();
   } catch {
-    res.status(401).json({ logout: true });
-  }
-};
-
-const onlyOwner = async (req, res, next) => {
-  try {
-    //const token = req.headers["x-access-token"];
-    const token = req.headers.authorization.split(" ")[1];
-    console.log(token);
-
-    const decodedToken = jwt.verify(token, jwtConfig.SECRET);
-    if (decodedToken.id === parseInt(req.params.id)) {
-      next();
-    } else {
-      res.status(401).json("nope");
-    }
-  } catch {
-    res.status(401).json("Unauthorized");
-  }
-};
-
-const isEntrant = async (req, res, next) => {
-  try {
-    //const token = req.headers["x-access-token"];
-    const token = req.headers.authorization.split(" ")[1];
-    console.log(token);
-
-    const decodedToken = jwt.verify(token, jwtConfig.SECRET);
-     
-    /* 
-    //Consultar por decodedToken.id en la Tabla de Ingresantes
-    const user_data = await consult.select("title", decoded.id)
-    console.log(user_data);
-    */
-   let user_data = "test";//Borrar esta linea
-    if (user_data.length) {
-      next();
-    } else {
-      res.status(401).json("nope");
-    }
-  } catch {
-    res.status(401).json("Unauthorized");
-  }
-};
-const isRector = async (req, res, next) => {
-  try {
-    //const token = req.headers["x-access-token"];
-    const token = req.headers.authorization.split(" ")[1];
-    console.log(token);
-
-    const decodedToken = jwt.verify(token, jwtConfig.SECRET);
-     
-    /* 
-    //Consultar por decodedToken.id en la Tabla de Rectores
-    const user_data = await consult.select("verificado", decoded.id)
-    console.log(user_data);
-    */
-   let user_data = 1;//Borrar esta linea
-    if (user_data) {
-      next();
-    } else {
-      res.status(401).json("nope");
-    }
-  } catch {
-    res.status(401).json("Unauthorized");
+    return res.json({ user: "noAuthenticated" }).end();
   }
 };

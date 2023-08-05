@@ -1,22 +1,31 @@
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import getAuth from "./api/authentication";
+import { NotAuthenticated } from "./middlewares/authentication";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import Ingresante from "./pages/singUp-singIn/Ingresante";
 import Mapa from "./components/Mapa/Mapa";
-
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: Layout,
+    children: [
+      { index: true, Component: Home },
+      {
+        path: "/identification/",
+        loader: async () => await getAuth(),
+        Component: NotAuthenticated,
+        children: [
+          { path: "ingresante", Component: Ingresante },
+          { path: "rector", Component: Ingresante },
+        ],
+      },
+      { path: "/mapa", Component: Mapa },
+    ],
+  },
+]);
 function App() {
-  return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ingresante" element={<Ingresante />} />
-          <Route path="/mapa" element={<Mapa />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

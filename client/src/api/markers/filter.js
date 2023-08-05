@@ -1,4 +1,4 @@
-import json from "../markers.json";
+import json from "./markers.json";
 export default function setMarkersWithFilters(setMarkers, nombres, gestion) {
   console.log(nombres.length)
   setMarkers(

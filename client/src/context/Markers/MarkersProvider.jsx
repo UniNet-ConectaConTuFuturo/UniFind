@@ -2,7 +2,7 @@ import { MarkersContext } from "./MarkersContext";
 import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
-import json from "../../api/markers.json";
+import json from "../../api/markers/markers.json";
 
 function MarkersProvider({ children }) {
   /* Mark Options */

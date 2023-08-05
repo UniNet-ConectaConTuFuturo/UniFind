@@ -4,6 +4,7 @@ import { Router } from "express";
 import * as registro from "../controllers/register.js";
 import * as login from "../controllers/login.js";
 import * as validate from "../controllers/validaciones.js";
+import { whoIs } from "../middlewares/authentication.js";
 import end from "../controllers/end.js";
 
 const router = Router();
@@ -46,6 +47,6 @@ router.post("/api/rector/second-step", [
 //router.get("/api/login"); //no creo que lo uses
 router.post("/api/login/user", [login.SignIn]);
 
-//Rutas Pagina principal
-router.get("/api/index");
+//Rutas Middleware
+router.post("/api/auth", [whoIs]);
 export default router;

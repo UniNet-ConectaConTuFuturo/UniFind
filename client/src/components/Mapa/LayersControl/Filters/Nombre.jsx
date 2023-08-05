@@ -1,4 +1,4 @@
-import markers from "../../../../api/markers.json";
+import markers from "../../../../api/markers/markers.json";
 import { useMarkers } from "../../../../context/Markers/useMarkers";
 function Nombre() {
   const { nombres, setNombres, selectNombre } = useMarkers();
