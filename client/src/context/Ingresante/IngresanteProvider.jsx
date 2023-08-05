@@ -1,8 +1,8 @@
+import { Outlet } from "react-router-dom";
 import { IngresanteContext } from "./IngresanteContext";
 import { useRef, useState } from "react";
-import PropTypes from "prop-types";
 
-function IngresanteProvider({ children }) {
+function IngresanteProvider() {
   const [bgColor, setBgColor] = useState("bg-sky-600");
   const [loginVisible, setLoginVisible] = useState(true);
   const [registroVisible, setRegistroVisible] = useState(false);
@@ -10,7 +10,7 @@ function IngresanteProvider({ children }) {
   const [classRegistro, setClassRegistro] = useState(
     "translate-x-1/2 opacity-0"
   );
-  const checkboxRef = useRef()
+  const checkboxRef = useRef();
   const handleCheckboxChange = () => {
     if (checkboxRef.current.checked) {
       setBgColor("");
@@ -42,11 +42,8 @@ function IngresanteProvider({ children }) {
         classRegistro,
       }}
     >
-      {children}
+      <Outlet />
     </IngresanteContext.Provider>
   );
 }
-IngresanteProvider.propTypes = {
-  children: PropTypes.any,
-};
 export default IngresanteProvider;
