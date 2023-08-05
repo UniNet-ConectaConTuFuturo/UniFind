@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { post } from "../../../api/api";
 import { useRegistro } from "../../../context/Registro/useRegistro";
+import Image from "../../../../public/images/graduation.png";
 
 function EntrantCode({ className }) {
   const { form, setStep } = useRegistro();
@@ -52,7 +53,7 @@ function EntrantCode({ className }) {
   let disabled;
   return (
     <>
-      <div className={className + " " + "box"}>
+      <div className={className + " " + "box"}> 
         <button
           className="absolute top-8 left-8"
           type="button"

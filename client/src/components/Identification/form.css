@@ -8,8 +8,11 @@
   align-items: center;
   background: transparent;
   backdrop-filter: blur(10px);
-  border: 2px solid white;
-  border-radius: 10%;
+}
+
+h2{
+  display: flex;
+  justify-content: center;
 }
 
 .inputbox {
@@ -32,7 +35,7 @@
 .inputbox label {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   padding: 10px 0;
   font-size: 16px;
   transition: 0.5s;
@@ -41,7 +44,7 @@
 .inputbox input:focus ~ label,
 .inputbox input:not(:placeholder-shown) ~ label {
   top: -20px;
-  left: 0;
+  right: 0;
   color: rgb(202, 202, 202);
   font-size: 12px;
 }
@@ -49,7 +52,7 @@
 .inputbox span {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 10px 0;
   font-size: 16px;
   transition: 0.5s;
@@ -58,7 +61,7 @@
 .inputbox input:focus ~ span,
 .inputbox input:not(:placeholder-shown) ~ span {
   top: -20px;
-  right: 0;
+  left: 0;
   color: rgb(202, 202, 202);
   font-size: 12px;
 }
