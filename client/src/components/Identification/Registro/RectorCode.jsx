@@ -1,4 +1,4 @@
-import "../form.css";
+/* import "../form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { post } from "../../../api/api";
@@ -97,3 +97,4 @@ EntrantCode.propTypes = {
   className: PropTypes.string,
 };
 export default EntrantCode;
+*/
