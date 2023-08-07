@@ -5,7 +5,7 @@ import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import Ingresante from "./pages/singUp-singIn/Ingresante";
 import IngresanteProvider from "./context/Ingresante/IngresanteProvider";
-import Rector from "./pages/singUp-singIn/Rector";
+/* import Rector from "./pages/singUp-singIn/Rector"; */
 import Mapa from "./components/Mapa/Mapa";
 const router = createBrowserRouter([
   {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
             path: "ingresante",
             Component: IngresanteProvider,
             children: [{ index: true, Component: Ingresante }],
-          },
-          { path: "rector", Component: Rector },
+          }
+      /*    { path: "rector", Component: Rector }, */
         ],
       },
       { path: "/mapa", Component: Mapa },
