@@ -153,7 +153,25 @@ export function updateUser(table_name, update, mail_user) {
 //Prueba Point
 export function selectPoint() {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT * FROM type_point`, (err, data) => {
+    pool.query(`SELECT id_universidad,astext(point) FROM universidades`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+
+export function selectPoint() {
+  return new Promise(function (resolve, reject) {
+    pool.query(`SELECT id_universidad, nombre_universidad, gestion_universidad, astext(point) FROM universidades`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+
+export function selectPoint() {
+  return new Promise(function (resolve, reject) {
+    pool.query(`SELECT nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, zona_universidad, astext(point) FROM universidades WHERE id_universidad=${where}`), (err, data) => {
       if (err) reject(err);
       resolve(data);
     });
