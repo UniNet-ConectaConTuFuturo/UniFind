@@ -1,10 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../../api/api";
-import "../form.css";
-import { useRegistro } from "../../../context/Registro/useRegistro";
-import { useIngresante } from "../../../context/Ingresante/useIngresante";
-import Image from "../../../../public/images/graduation.png";
+import { post } from "../../../../api/api";
+import "../../form.css";
+import { useRegistro } from "../../../../context/Registro/useRegistro";
+import { useIdentification } from "../../../../context/Identification/useIdentification";
 
 function EntrantForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -45,10 +44,9 @@ function EntrantForm({ className }) {
       console.log(error);
     }
   };
-  const {checkboxRef, handleCheckboxChange} = useIngresante()
+  const { checkboxRef, handleCheckboxChange } = useIdentification();
   return (
     <div className={className + " " + "box"}>
-      <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
       <form onSubmit={handleSubmit}>
         <div className="ml-48">
           <h2>Registrarse</h2>
@@ -169,10 +167,15 @@ function EntrantForm({ className }) {
         <input className="boton -ml-24" type="submit" name="boton" id="boton" />
         <br />
         <p className="-ml-20 max-w-xs">
-          <a href="#" onClick={()=>{
-            checkboxRef.current.checked = !checkboxRef.current.checked;
-            handleCheckboxChange();
-          }}>Ya tengo una cuenta</a>
+          <a
+            href="#"
+            onClick={() => {
+              checkboxRef.current.checked = !checkboxRef.current.checked;
+              handleCheckboxChange();
+            }}
+          >
+            Ya tengo una cuenta
+          </a>
         </p>
       </form>
     </div>

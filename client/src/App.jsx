@@ -4,8 +4,8 @@ import { NotAuthenticated } from "./middlewares/authentication";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import Ingresante from "./pages/singUp-singIn/Ingresante";
-import IngresanteProvider from "./context/Ingresante/IngresanteProvider";
-/* import Rector from "./pages/singUp-singIn/Rector"; */
+import IdentificationProvider from "./context/Identification/IdentificationProvider";
+import Rector from "./pages/singUp-singIn/Rector";
 import Mapa from "./components/Mapa/Mapa";
 const router = createBrowserRouter([
   {
@@ -20,10 +20,13 @@ const router = createBrowserRouter([
         children: [
           {
             path: "ingresante",
-            Component: IngresanteProvider,
+            Component: IdentificationProvider,
             children: [{ index: true, Component: Ingresante }],
+          },
+          { path: "rector",
+            Component: IdentificationProvider,
+            children: [{ index: true, Component: Rector }]
           }
-      /*    { path: "rector", Component: Rector }, */
         ],
       },
       { path: "/mapa", Component: Mapa },

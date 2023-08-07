@@ -1,9 +1,10 @@
 //import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import EntrantForm from "./EntrantForm";
-import EntrantCode from "./EntrantCode";
+import RectorForm from "./RectorForm";
+import RectorCode from "./RectorCode";
 import PropTypes from "prop-types";
-import { useRegistro } from "../../../context/Registro/useRegistro";
+import { useRegistro } from "../../../../context/Registro/useRegistro";
+import "../registro.css";
 
 function Registro({ className }) {
   //const navigate = useNavigate();
@@ -34,21 +35,16 @@ function Registro({ className }) {
     <>
       <section
         className={
-          className + " " + "relative flex justify-end pr-4 items-center "
+          className + " " + "caja relative flex justify-end pr-4 items-center bg-gorro bg-[left_1em]"
         }
       >
-        <img
-          className="absolute  -left-1/2 opacity-50"
-          src="/images/graduation.png?url"
-          alt=""
-        />
         {formVisible && (
-          <EntrantForm
+          <RectorForm
             className={classForm + " " + "transition-all duration-700"}
           />
         )}
         {codeVisible && (
-          <EntrantCode
+          <RectorCode
             className={classCode + " " + "transition-all duration-700"}
           />
         )}

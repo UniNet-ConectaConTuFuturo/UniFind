@@ -1,10 +1,11 @@
-import "../form.css";
+import "../../form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { post } from "../../../api/api";
-import { useRegistro } from "../../../context/Registro/useRegistro";
+import { post } from "../../../../api/api";
+import { useRegistro } from "../../../../context/Registro/useRegistro";
+import Image from "../../../../../public/images/graduation.png";
 
-function EntrantCode({ className }) {
+function RectorCode({ className }) {
   const { form, setStep } = useRegistro();
   const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
@@ -52,7 +53,8 @@ function EntrantCode({ className }) {
   let disabled;
   return (
     <>
-      <div className={className + " " + "box"}>
+      <div className={className + " " + "box"}> 
+        <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
         <button
           className="absolute top-8 left-8"
           type="button"
@@ -91,7 +93,7 @@ function EntrantCode({ className }) {
     </>
   );
 }
-EntrantCode.propTypes = {
+RectorCode.propTypes = {
   className: PropTypes.string,
 };
-export default EntrantCode;
+export default RectorCode;

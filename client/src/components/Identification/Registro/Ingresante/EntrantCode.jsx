@@ -1,9 +1,8 @@
-/* import "../form.css";
+import "../registro.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { post } from "../../../api/api";
-import { useRegistro } from "../../../context/Registro/useRegistro";
-import Image from "../../../../public/images/graduation.png";
+import { post } from "../../../../api/api";
+import { useRegistro } from "../../../../context/Registro/useRegistro";
 
 function EntrantCode({ className }) {
   const { form, setStep } = useRegistro();
@@ -53,8 +52,7 @@ function EntrantCode({ className }) {
   let disabled;
   return (
     <>
-      <div className={className + " " + "box"}> 
-        <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
+      <div className={className + " " + "box"}>
         <button
           className="absolute top-8 left-8"
           type="button"
@@ -97,4 +95,3 @@ EntrantCode.propTypes = {
   className: PropTypes.string,
 };
 export default EntrantCode;
-*/

@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { IngresanteContext } from "./IngresanteContext";
+import { IdentificationContext } from "./IdentificationContext";
 import { useRef, useState } from "react";
 
-function IngresanteProvider() {
+function IdentificationProvider() {
   const [bgColor, setBgColor] = useState("bg-sky-600");
   const [loginVisible, setLoginVisible] = useState(true);
   const [registroVisible, setRegistroVisible] = useState(false);
@@ -31,7 +31,7 @@ function IngresanteProvider() {
     }
   };
   return (
-    <IngresanteContext.Provider
+    <IdentificationContext.Provider
       value={{
         checkboxRef,
         handleCheckboxChange,
@@ -43,7 +43,7 @@ function IngresanteProvider() {
       }}
     >
       <Outlet />
-    </IngresanteContext.Provider>
+    </IdentificationContext.Provider>
   );
 }
-export default IngresanteProvider;
+export default IdentificationProvider;

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../../api/api";
-import "../form.css";
-import { useRegistro } from "../../../context/Registro/useRegistro";
-import { useIngresante } from "../../../context/Ingresante/useIngresante";
+import { post } from "../../../../api/api";
+import "../../form.css";
+import { useRegistro } from "../../../../context/Registro/useRegistro";
+import { useIdentification } from "../../../../context/Identification/useIdentification";
+import Image from "../../../../../public/images/graduation.png";
 
-function EntrantForm({ className }) {
+function RectorForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
   const spanVacio = {
     spanEmail: "",
@@ -15,7 +16,7 @@ function EntrantForm({ className }) {
     spanDate: "",
     spanDirection: "",
     spanTel: "",
-    spanTitle: "",
+    spanUniversity: "",
   };
   const [span, setSpan] = useState(spanVacio);
 
@@ -44,9 +45,10 @@ function EntrantForm({ className }) {
       console.log(error);
     }
   };
-  const { checkboxRef, handleCheckboxChange } = useIngresante();
+  const {checkboxRef, handleCheckboxChange} = useIdentification()
   return (
     <div className={className + " " + "box"}>
+      <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
       <form onSubmit={handleSubmit}>
         <div className="ml-48">
           <h2>Registrarse</h2>
@@ -150,38 +152,36 @@ function EntrantForm({ className }) {
           <label htmlFor="telefono">Teléfono</label>
         </div>
         <div className="inputbox -ml-16">
-          <input
+          <select 
             className="typebox"
             type="text"
-            name="title"
-            id="title"
+            name="university"
+            id="university"
             placeholder=" "
-            value={form.title}
+            value={form.university}
             onChange={handleChange}
             onBlur={handleBlur}
-          />
-          <span>{span.spanTitle}</span>
-          <label htmlFor="titulo">Título Secundario</label>
+          >
+            <option value="UNLAM">Universidad Nacional de La Matanza</option>
+            <option value="UBA">Universidad de Buenos Aires</option>
+          </select>
+          <span>{span.spanUniversity}</span>
+          <label htmlFor="universidad">Universidad</label>
         </div>
 
         <input className="boton -ml-24" type="submit" name="boton" id="boton" />
         <br />
         <p className="-ml-20 max-w-xs">
-          <a
-            href="#"
-            onClick={() => {
-              checkboxRef.current.checked = !checkboxRef.current.checked;
-              handleCheckboxChange();
-            }}
-          >
-            Ya tengo una cuenta
-          </a>
+          <a href="#" onClick={()=>{
+            checkboxRef.current.checked = !checkboxRef.current.checked;
+            handleCheckboxChange();
+          }}>Ya tengo una cuenta</a>
         </p>
       </form>
     </div>
   );
 }
-EntrantForm.propTypes = {
+RectorForm.propTypes = {
   className: PropTypes.string,
 };
-export default EntrantForm;
+export default RectorForm;

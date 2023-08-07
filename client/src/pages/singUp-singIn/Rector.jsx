@@ -1,8 +1,8 @@
 import Login from "../../components/Identification/Login/Login";
-import Registro from "../../components/Identification/Registro/Registro";
+import Registro from "../../components/Identification/Registro/Rector/Registro";
 import RegistroProvider from "../../context/Registro/RegistroProvider";
 import CheckBox from "../../components/Identification/CheckBox";
-import { useRector } from "../../context/Ingresante/useIngresante";
+import { useIdentification } from "../../context/Identification/useIdentification";
 function Rector() {
   const {
     bgColor,
@@ -10,7 +10,7 @@ function Rector() {
     registroVisible,
     classLogin,
     classRegistro,
-  } = useRector() 
+  } = useIdentification() 
   return (
       <div
         className={

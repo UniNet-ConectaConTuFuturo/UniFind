@@ -1,8 +1,8 @@
 import Login from "../../components/Identification/Login/Login";
-import Registro from "../../components/Identification/Registro/Registro";
+import Registro from "../../components/Identification/Registro/Ingresante/Ingresante";
 import RegistroProvider from "../../context/Registro/RegistroProvider";
 import CheckBox from "../../components/Identification/CheckBox";
-import { useIngresante } from "../../context/Ingresante/useIngresante";
+import { useIdentification } from "../../context/Identification/useIdentification";
 function Ingresante() {
   const {
     bgColor,
@@ -10,7 +10,7 @@ function Ingresante() {
     registroVisible,
     classLogin,
     classRegistro,
-  } = useIngresante() 
+  } = useIdentification() 
   return (
       <div
         className={

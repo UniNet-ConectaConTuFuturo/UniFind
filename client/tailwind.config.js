@@ -15,6 +15,10 @@ export default {
     },
 
     extend: {
+      backgroundImage: {
+        'gorro': "url('/public/images/graduation.png')",
+        'footer-texture': "url('/img/footer-texture.png')",
+      },
       margin: {
         '100': '-70rem'
       },
