@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useMarkers } from "../../../../context/Markers/useMarkers";
 
+const GESTION = {
+  Publica: "Publica",
+  Privada: "Privada",
+};
 function Gestion() {
   const { gestion, setGestion } = useMarkers();
   const [display, setDisplay] = useState(false);
@@ -10,10 +14,10 @@ function Gestion() {
       case null:
         setChecked([false, false]);
         break;
-      case "Público":
+      case GESTION.Publica:
         setChecked([false, true]);
         break;
-      case "Privado":
+      case GESTION.Privada:
         setChecked([true, false]);
         break;
     }
@@ -48,11 +52,11 @@ function Gestion() {
                     onClick={handleClick}
                     type="radio"
                     name="gestion"
-                    value="Privado"
+                    value={GESTION.Privada}
                     checked={checked[0]}
                     readOnly
                   />
-                  <span className="mx-auto">Privado</span>
+                  <span className="mx-auto">{GESTION.Privada}</span>
                 </div>
               </label>
               <label>
@@ -61,11 +65,11 @@ function Gestion() {
                     onClick={handleClick}
                     type="radio"
                     name="gestion"
-                    value="Público"
+                    value={GESTION.Publica}
                     checked={checked[1]}
                     readOnly
                   />
-                  <span className="mx-auto">Público</span>
+                  <span className="mx-auto">{GESTION.Publica}</span>
                 </div>
               </label>
             </div>

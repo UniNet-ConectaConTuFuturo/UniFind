@@ -6,7 +6,7 @@ export default function setMarkersWithFilters(setMarkers, nombres, gestion) {
         (nombres.length > 0
           ? nombres.some((n) => n === u.nombre_universidad)
           : true) &&
-        (gestion === "0" ? true : gestion === u.gestion_universidad)
+        (gestion === null ? true : gestion === u.gestion_universidad)
     )
   );
 }
