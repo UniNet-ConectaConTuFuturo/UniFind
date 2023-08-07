@@ -31,20 +31,29 @@ function Registro({ className }) {
     }
   }, [step]);
   return (
-    <section
-      className={className + " " + "flex justify-end pr-4 items-center "}
-    >
-      {formVisible && (
-        <EntrantForm
-          className={classForm + " " + "transition-all duration-700"}
+    <>
+      <section
+        className={
+          className + " " + "relative flex justify-end pr-4 items-center "
+        }
+      >
+        <img
+          className="absolute  -left-1/2 opacity-50"
+          src="/images/graduation.png?url"
+          alt=""
         />
-      )}
-      {codeVisible && (
-        <EntrantCode
-          className={classCode + " " + "transition-all duration-700"}
-        />
-      )}
-    </section>
+        {formVisible && (
+          <EntrantForm
+            className={classForm + " " + "transition-all duration-700"}
+          />
+        )}
+        {codeVisible && (
+          <EntrantCode
+            className={classCode + " " + "transition-all duration-700"}
+          />
+        )}
+      </section>
+    </>
   );
 }
 Registro.propTypes = {

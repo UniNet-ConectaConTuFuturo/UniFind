@@ -12,7 +12,7 @@ function DisplayMarkers() {
     markers,
     setMarkers,
     carreras,
-    nombres,
+    names,
     gestion,
     setDisplayInfo,
     setUniToDisplay,
@@ -25,8 +25,8 @@ function DisplayMarkers() {
     }
   });
   useEffect(() => {
-    setMarkersWithFilters(setMarkers, nombres, gestion);
-  }, [setMarkers, carreras, nombres, gestion]);
+    setMarkersWithFilters(setMarkers, names.array, gestion);
+  }, [setMarkers, carreras, names.array, gestion]);
 
   const handleClick = ({ target }) => {
     setAside(setUniToDisplay, target.dataset.key);

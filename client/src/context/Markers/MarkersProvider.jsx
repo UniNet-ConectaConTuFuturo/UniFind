@@ -1,5 +1,5 @@
 import { MarkersContext } from "./MarkersContext";
-import { useState, useRef } from "react";
+import { useState, useRef, useReducer } from "react";
 import PropTypes from "prop-types";
 
 import json from "../../api/markers/markers.json";
@@ -13,10 +13,39 @@ function MarkersProvider({ children }) {
   /* Mark filters */
   const [carreras, setCarreras] = useState([]);
   const selectCarreras = useRef("");
-  const [nombres, setNombres] = useState([]);
-  const selectNombre = useRef("");
-  const [gestion, setGestion] = useState("0");
-  const selectGestion = useRef("0");
+  function reducerNombre(state, action) {
+    switch (action.type) {
+      case "add":
+        return {
+          array: [...state.array, action.value],
+        };
+
+      case "delete":
+        return {
+          array: state.array.filter((n) => n != action.value),
+        };
+
+      case "addSome": {
+        const addition = json.filter(
+          (u) =>
+            u.nombre_universidad
+              .toLowerCase()
+              .includes(action.inputValue.toLowerCase()) &&
+            !state.array.some((n) => u.nombre_universidad === n)
+        );
+        return {
+          array: [...state.array, ...addition.map((u) => u.nombre_universidad)],
+        };
+      }
+      case "deleteAll":
+        return {
+          array: [],
+        };
+    }
+    throw Error("Unknown action: " + action.type);
+  }
+  const [names, dispatchNames] = useReducer(reducerNombre, { array: [] });
+  const [gestion, setGestion] = useState(null);
 
   /* Mark Info */
   const [displayInfo, setDisplayInfo] = useState(false);
@@ -33,12 +62,10 @@ function MarkersProvider({ children }) {
         carreras,
         setCarreras,
         selectCarreras,
-        nombres,
-        setNombres,
-        selectNombre,
+        names,
+        dispatchNames,
         gestion,
         setGestion,
-        selectGestion,
         displayInfo,
         setDisplayInfo,
         uniToDisplay,

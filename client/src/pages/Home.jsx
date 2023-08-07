@@ -1,11 +1,13 @@
-import React from 'react';
-import Promocion from '../../public/images/hero-section-centroinformacion.png';
 import "./home.css";
 
 function Home() {
   return (
-    <img src={Promocion} className='promocion' alt="" />
-    );
+    <img
+      src="/images/hero-section-centroinformacion.png?url"
+      className="promocion"
+      alt=""
+    />
+  );
 }
 
 export default Home;
