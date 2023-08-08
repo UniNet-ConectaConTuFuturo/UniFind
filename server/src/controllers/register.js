@@ -41,10 +41,9 @@ export async function EntrantSecondStep(req, res) {
     delete req.session.attempts;
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
-    const user_id = await consult.selectFromUsuariosWhere(
+    const user_id = await consult.selectFromUsuarios(
       "id_usuario",
-      "mail_user",
-      data.mail_user
+      "mail_user" + "=" + data.mail_user
     );
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
@@ -79,10 +78,9 @@ export async function RectorFirstStep(req, res) {
     console.log("Usuario nuevo");
     let code = math.getRandomIntInclusive(100000, 999999);
     //Consulta a la base de datos para obtener el mail de la universidad
-    const mail_universidad = await consult.selectFromUniversidadesWhere(
+    const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
-      "id_universidad",
-      data.id_universidad
+      "id_universidad" + "=" + data.id_universidad
     );
     console.log(mail_universidad);
     //Envio a mail
@@ -108,10 +106,9 @@ export async function RectorFirstStep(req, res) {
 export async function RectorSecondStep(req, res) {
   try {
     const data = req.body;
-    const mail_universidad = await consult.selectFromUniversidadesWhere(
+    const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
-      "id_universidad",
-      data.id_universidad
+      "id_universidad" + "=" + data.id_universidad
     );
     //Consulta para saber el code del data.mail_user
     const code = await consult.selectFromVerCode(mail_universidad);
@@ -123,10 +120,9 @@ export async function RectorSecondStep(req, res) {
 
     //crear registro del Rector y devolver el id;
     await consult.setRector(data);
-    const user_id = await consult.selectFromUsuariosWhere(
+    const user_id = await consult.selectFromUsuarios(
       "id_usuario",
-      "mail_user",
-      data.mail_user
+      "mail_user" + "=" + data.mail_user
     );
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);

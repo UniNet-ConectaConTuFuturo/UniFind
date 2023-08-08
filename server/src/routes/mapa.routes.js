@@ -5,6 +5,6 @@ import * as mapa from "../controllers/mapa.js";
 
 const router = Router();
 
-router.get("/api/mapa/allpoints", mapa.getAllUniPoints);
+router.post("/api/mapa/getpoints", mapa.getUniPoints);
 
 export default router;

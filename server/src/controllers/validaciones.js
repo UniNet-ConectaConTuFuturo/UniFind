@@ -11,10 +11,9 @@ export async function User(req, res, next) {
     const wrongmail = mailValidation(data);
     if (wrongmail) return res.json(wrongmail).end();
     /* Comprobar que no Exista */
-    const user_data = await consult.selectFromUsuariosWhere(
+    const user_data = await consult.selectFromUsuarios(
       "id_usuario",
-      "mail_user",
-      data.mail_user
+      "mail_user" + "=" + data.mail_user
     );
     if (user_data.length)
       return res.json({ spanEmail: "Este usuario ya está registrado" }).end();
@@ -65,10 +64,9 @@ export async function EntrantCode(req, res, next) {
 export async function RectorCode(req, res, next) {
   try {
     const { id_universidad, code } = req.body;
-    const mail_universidad = await consult.selectFromUniversidadesWhere(
+    const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
-      "id_universidad",
-      id_universidad
+      "id_universidad" + "=" + id_universidad
     );
     const wrongCode = await codeValidation(mail_universidad, code, req);
     if (wrongCode) return res.json(wrongCode).end();

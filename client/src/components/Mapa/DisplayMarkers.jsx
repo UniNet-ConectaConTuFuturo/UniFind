@@ -1,10 +1,9 @@
 import { LayerGroup, Marker, Popup, useMapEvent } from "react-leaflet";
 import { useMarkers } from "../../context/Markers/useMarkers";
 import { useEffect } from "react";
-import setMarkersWithFilters from "../../api/markers/filter";
 import setAside from "../../api/markers/setAside";
 
-import * as get from "../../api/getUniPoints";
+import * as api from "../../api/api";
 
 function DisplayMarkers() {
   const {
@@ -28,11 +27,17 @@ function DisplayMarkers() {
   });
   useEffect(() => {
     (async () => {
-      const arr = await get.AllPoints();
-      console.log(arr);
-      setMarkers(arr);
+      try {
+        const res = await api.post("/mapa/getpoints", {
+          names: names.array,
+          gestion,
+        });
+        const arr = await res.json();
+        setMarkers(arr);
+      } catch (error) {
+        console.log(error);
+      }
     })();
-    //setMarkersWithFilters(setMarkers, names.array, gestion);
   }, [setMarkers, carreras, names.array, gestion]);
 
   const handleClick = ({ target }) => {

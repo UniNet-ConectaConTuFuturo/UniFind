@@ -1,43 +1,20 @@
 import pool from "./connection.js";
 
 //Buscar Usuario
-export function selectFromUsuarios(select) {
+export function selectFromUsuarios(select, where = 1) {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT ${select} FROM usuarios`, (err, data) => {
+    pool.query(`SELECT ${select} FROM usuarios WHERE ${where}`, (err, data) => {
       if (err) reject(err);
       resolve(data);
     });
-  });
-}
-export function selectFromUsuariosWhere(select, whereAtributte, whereValue) {
-  return new Promise(function (resolve, reject) {
-    pool.query(
-      `SELECT ${select} FROM usuarios WHERE ${whereAtributte} = ${whereValue}`,
-      (err, data) => {
-        if (err) reject(err);
-        resolve(data);
-      }
-    );
   });
 }
 
 //Mostrar universidades
-export function selectFromUniversidades(select) {
-  return new Promise(function (resolve, reject) {
-    pool.query(`SELECT ${select} FROM universidades`, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
-  });
-}
-export function selectFromUniversidadesWhere(
-  select,
-  whereAtributte,
-  whereValue
-) {
+export function selectFromUniversidades(select, where = 1) {
   return new Promise(function (resolve, reject) {
     pool.query(
-      `SELECT ${select} FROM universidades WHERE ${whereAtributte} = ${whereValue}`,
+      `SELECT ${select} FROM universidades WHERE ${where}`,
       (err, data) => {
         if (err) reject(err);
         resolve(data);
