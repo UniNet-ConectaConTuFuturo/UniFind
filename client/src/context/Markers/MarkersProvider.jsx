@@ -8,7 +8,7 @@ function MarkersProvider({ children }) {
   /* Mark Options */
   const distanciaMarcadores = useRef(6.5);
   const [displayMarkers, setDisplayMarkers] = useState(false);
-  const [markers, setMarkers] = useState(json);
+  const [markers, setMarkers] = useState([]);
 
   /* Mark filters */
   const [carreras, setCarreras] = useState([]);

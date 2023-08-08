@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import setMarkersWithFilters from "../../api/markers/filter";
 import setAside from "../../api/markers/setAside";
 
+import * as get from "../../api/getUniPoints";
+
 function DisplayMarkers() {
   const {
     distanciaMarcadores,
@@ -25,7 +27,12 @@ function DisplayMarkers() {
     }
   });
   useEffect(() => {
-    setMarkersWithFilters(setMarkers, names.array, gestion);
+    (async () => {
+      const arr = await get.AllPoints();
+      console.log(arr);
+      setMarkers(arr);
+    })();
+    //setMarkersWithFilters(setMarkers, names.array, gestion);
   }, [setMarkers, carreras, names.array, gestion]);
 
   const handleClick = ({ target }) => {

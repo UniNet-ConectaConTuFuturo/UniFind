@@ -1,14 +1,18 @@
-import { resolve } from "path";
 import pool from "./connection.js";
-import { rejects } from "assert";
-import { promises } from "dns";
 
 //Buscar Usuario
-export function selectFromUsuarios(select, whereAtributte, whereValue) {
+export function selectFromUsuarios(select) {
+  return new Promise(function (resolve, reject) {
+    pool.query(`SELECT ${select} FROM usuarios`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+export function selectFromUsuariosWhere(select, whereAtributte, whereValue) {
   return new Promise(function (resolve, reject) {
     pool.query(
-      `SELECT ${select} FROM usuarios WHERE ${whereAtributte} = ?`,
-      [whereValue],
+      `SELECT ${select} FROM usuarios WHERE ${whereAtributte} = ${whereValue}`,
       (err, data) => {
         if (err) reject(err);
         resolve(data);
@@ -18,10 +22,22 @@ export function selectFromUsuarios(select, whereAtributte, whereValue) {
 }
 
 //Mostrar universidades
-export function selectFromUniversidades(select, where) {
+export function selectFromUniversidades(select) {
+  return new Promise(function (resolve, reject) {
+    pool.query(`SELECT ${select} FROM universidades`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+export function selectFromUniversidadesWhere(
+  select,
+  whereAtributte,
+  whereValue
+) {
   return new Promise(function (resolve, reject) {
     pool.query(
-      `SELECT ${select} FROM universidades WHERE ${where}`,
+      `SELECT ${select} FROM universidades WHERE ${whereAtributte} = ${whereValue}`,
       (err, data) => {
         if (err) reject(err);
         resolve(data);
@@ -151,29 +167,38 @@ export function updateUser(table_name, update, mail_user) {
 }
 
 //Prueba Point
-export function selectPoint() {
+/* export function selectPoint() {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT id_universidad,astext(point) FROM universidades`, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    pool.query(
+      `SELECT id_universidad, ASTEXT(point) FROM universidades`,
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
   });
 }
 
 export function selectPoint() {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT id_universidad, nombre_universidad, gestion_universidad, astext(point) FROM universidades`, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    pool.query(
+      `SELECT id_universidad, nombre_universidad, gestion_universidad, ASTEXT(point) FROM universidades`,
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
   });
 }
 
 export function selectPoint() {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, zona_universidad, astext(point) FROM universidades WHERE id_universidad=${where}`), (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    pool.query(
+      `SELECT nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, zona_universidad, astext(point) FROM universidades WHERE id_universidad=${where}`,
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
   });
-}
+} */

@@ -41,7 +41,7 @@ export async function EntrantSecondStep(req, res) {
     delete req.session.attempts;
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
-    const user_id = await consult.selectFromUsuarios(
+    const user_id = await consult.selectFromUsuariosWhere(
       "id_usuario",
       "mail_user",
       data.mail_user
@@ -56,14 +56,19 @@ export async function EntrantSecondStep(req, res) {
 }
 
 export async function getUniversities(req, res) {
-  return res
-    .json(
-      await consult.selectFromUniversidades(
-        "id_universidad, nombre_universidad",
-        1
+  try {
+    return res
+      .json(
+        await consult.selectFromUniversidades(
+          "id_universidad, nombre_universidad"
+        )
       )
-    )
-    .end();
+      .end();
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
 }
 
 export async function RectorFirstStep(req, res) {
@@ -74,8 +79,9 @@ export async function RectorFirstStep(req, res) {
     console.log("Usuario nuevo");
     let code = math.getRandomIntInclusive(100000, 999999);
     //Consulta a la base de datos para obtener el mail de la universidad
-    const mail_universidad = await consult.selectFromUniversidades(
+    const mail_universidad = await consult.selectFromUniversidadesWhere(
       "correo_universidad",
+      "id_universidad",
       data.id_universidad
     );
     console.log(mail_universidad);
@@ -100,27 +106,35 @@ export async function RectorFirstStep(req, res) {
   }
 }
 export async function RectorSecondStep(req, res) {
-  const data = req.body;
-  const mail_universidad = await consult.selectFromUniversidades(
-    "correo_universidad",
-    data.title.id_universidad
-  );
-  //Consulta para saber el code del data.mail_user
-  const code = await consult.selectFromVerCode(mail_universidad);
+  try {
+    const data = req.body;
+    const mail_universidad = await consult.selectFromUniversidadesWhere(
+      "correo_universidad",
+      "id_universidad",
+      data.id_universidad
+    );
+    //Consulta para saber el code del data.mail_user
+    const code = await consult.selectFromVerCode(mail_universidad);
 
-  if (parseInt(data.code) !== code) {
-    return res.json({ spanCode: "Código Erróneo" });
+    if (parseInt(data.code) !== code) {
+      return res.json({ spanCode: "Código Erróneo" });
+    }
+    //El codigo esta correcto
+
+    //crear registro del Rector y devolver el id;
+    await consult.setRector(data);
+    const user_id = await consult.selectFromUsuariosWhere(
+      "id_usuario",
+      "mail_user",
+      data.mail_user
+    );
+    //Guardar id en Token
+    const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
+    //Guardar Token en Cookie
+    return res.json({ token }).end();
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
   }
-  //El codigo esta correcto
-
-  //crear registro del Entrante y devolver el id;
-  await consult.setRector(req.session.data);
-  const user_id = await consult.selectFromUsuarios(
-    "id_usuario",
-    req.session.data.mail_user
-  );
-  //Guardar id en Token
-  const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
-  //Guardar Token en Cookie
-  return res.json("login succesfully");
 }

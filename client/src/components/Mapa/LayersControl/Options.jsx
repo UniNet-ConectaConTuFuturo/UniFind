@@ -3,7 +3,7 @@ import { useMap } from "react-leaflet";
 import { useMarkers } from "../../../context/Markers/useMarkers";
 
 function Options() {
-  const { distanciaMarcadores, setDisplayMarkers } = useMarkers();
+  const { distanciaMarcadores, setDisplayMarkers, markers } = useMarkers();
   const control = useRef(null);
   /* function onMouseOver() {
     control.current.className =
@@ -14,6 +14,7 @@ function Options() {
   } */
   const map = useMap();
   function distanciaOnChange(e) {
+    console.log(markers);
     distanciaMarcadores.current = e.target.value;
     if (map.getZoom() >= e.target.value) setDisplayMarkers(true);
     else setDisplayMarkers(false);

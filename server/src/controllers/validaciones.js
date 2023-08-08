@@ -11,7 +11,7 @@ export async function User(req, res, next) {
     const wrongmail = mailValidation(data);
     if (wrongmail) return res.json(wrongmail).end();
     /* Comprobar que no Exista */
-    const user_data = await consult.selectFromUsuarios(
+    const user_data = await consult.selectFromUsuariosWhere(
       "id_usuario",
       "mail_user",
       data.mail_user
@@ -65,8 +65,9 @@ export async function EntrantCode(req, res, next) {
 export async function RectorCode(req, res, next) {
   try {
     const { id_universidad, code } = req.body;
-    const mail_universidad = await consult.selectFromUniversidades(
+    const mail_universidad = await consult.selectFromUniversidadesWhere(
       "correo_universidad",
+      "id_universidad",
       id_universidad
     );
     const wrongCode = await codeValidation(mail_universidad, code, req);
