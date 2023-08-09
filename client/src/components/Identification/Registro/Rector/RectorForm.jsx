@@ -4,7 +4,6 @@ import { post } from "../../../../api/api";
 import "../../form.css";
 import { useRegistro } from "../../../../context/Registro/useRegistro";
 import { useIdentification } from "../../../../context/Identification/useIdentification";
-import Image from "../../../../../public/images/graduation.png";
 
 function RectorForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -47,8 +46,8 @@ function RectorForm({ className }) {
   };
   const {checkboxRef, handleCheckboxChange} = useIdentification()
   return (
-    <div className={className + " " + "box"}>
-      <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
+    <div className={className + " " + "box"} role="Form">
+      <div></div>
       <form onSubmit={handleSubmit}>
         <div className="ml-48">
           <h2>Registrarse</h2>
@@ -153,8 +152,7 @@ function RectorForm({ className }) {
         </div>
         <div className="inputbox -ml-16">
           <select 
-            className="typebox"
-            type="text"
+            className="typebox uni mb-3"
             name="university"
             id="university"
             placeholder=" "
@@ -164,7 +162,7 @@ function RectorForm({ className }) {
           >
             <option value="UNLAM">Universidad Nacional de La Matanza</option>
             <option value="UBA">Universidad de Buenos Aires</option>
-          </select>
+          </select> 
           <span>{span.spanUniversity}</span>
           <label htmlFor="universidad">Universidad</label>
         </div>

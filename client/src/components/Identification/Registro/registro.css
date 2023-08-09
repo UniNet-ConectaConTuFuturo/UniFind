@@ -1,4 +1,13 @@
-.caja{
+.img{
     background-image: url(/client/public/images/graduation.png);    
+    bottom: 0;
+}
 
+select{
+    background: none;
+}
+
+option{
+    background: none;
+    
 }

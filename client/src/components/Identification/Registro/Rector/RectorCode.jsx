@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { post } from "../../../../api/api";
 import { useRegistro } from "../../../../context/Registro/useRegistro";
-import Image from "../../../../../public/images/graduation.png";
 
 function RectorCode({ className }) {
   const { form, setStep } = useRegistro();
@@ -54,7 +53,6 @@ function RectorCode({ className }) {
   return (
     <>
       <div className={className + " " + "box"}> 
-        <img className="-z-10 absolute bottom-0 ml-100 opacity-50" src={Image} alt="" />
         <button
           className="absolute top-8 left-8"
           type="button"

@@ -48,6 +48,9 @@ h2 {
   color: rgb(202, 202, 202);
   font-size: 12px;
 }
+.uni{
+  margin-top: 10px;
+}
 
 .inputbox span {
   position: absolute;

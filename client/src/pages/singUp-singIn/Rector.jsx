@@ -18,7 +18,7 @@ function Rector() {
         }
       >
         <CheckBox />
-        <section
+        <section role="Formularios"
           className={
             " h-screen flex relative left-1/2 right-0 items-center overflow-x-visible"
           }
