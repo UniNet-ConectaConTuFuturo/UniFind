@@ -143,6 +143,16 @@ export function updateUser(table_name, update, mail_user) {
   });
 }
 
+//Mostrar carreras
+export function selectFromCarreras(select, where = 1) {
+  return new Promise((resolve, reject) => {
+    pool.query(`SELECT ${select} FROM carreras WHERE ${where}`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+
 //Prueba Point
 /* export function selectPoint() {
   return new Promise(function (resolve, reject) {

@@ -14,8 +14,7 @@ function RectorCode({ className }) {
   const sendMail = async (e) => {
     try {
       e.preventDefault();
-      const response = await post("/entrant/first-step", form);
-      const data = await response.json();
+      const data = await post("/entrant/first-step", form);
       if (data.success) {
         setCode("");
         setSpanCode("");
@@ -32,12 +31,10 @@ function RectorCode({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await post("/entrant/second-step", {
+      const data = await post("/entrant/second-step", {
         ...form,
         code: code,
       });
-      console.log(response);
-      const data = await response.json();
       if (data.token) {
         setSpanCode("");
         localStorage.setItem("TokenUniNet", data.token);
@@ -52,7 +49,7 @@ function RectorCode({ className }) {
   let disabled;
   return (
     <>
-      <div className={className + " " + "box"}> 
+      <div className={className + " " + "box"}>
         <button
           className="absolute top-8 left-8"
           type="button"

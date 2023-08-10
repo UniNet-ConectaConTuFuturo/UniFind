@@ -21,8 +21,7 @@ function RectorForm({ className }) {
 
   const handleBlur = async () => {
     try {
-      const response = await post("/validate-registro", form);
-      const data = await response.json();
+      const data = await post("/validate-registro", form);
       setSpan({ ...spanVacio, ...data });
     } catch (error) {
       console.log(error);
@@ -32,8 +31,7 @@ function RectorForm({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await post("/entrant/first-step", form);
-      const data = await response.json();
+      const data = await post("/entrant/first-step", form);
       if (data.success) {
         console.log("Etapa 2");
         setStep(2);
@@ -44,7 +42,7 @@ function RectorForm({ className }) {
       console.log(error);
     }
   };
-  const {checkboxRef, handleCheckboxChange} = useIdentification()
+  const { checkboxRef, handleCheckboxChange } = useIdentification();
   return (
     <div className={className + " " + "box"} role="Form">
       <div></div>
@@ -151,7 +149,7 @@ function RectorForm({ className }) {
           <label htmlFor="telefono">Teléfono</label>
         </div>
         <div className="inputbox -ml-16">
-          <select 
+          <select
             className="typebox uni mb-3"
             name="university"
             id="university"
@@ -162,7 +160,7 @@ function RectorForm({ className }) {
           >
             <option value="UNLAM">Universidad Nacional de La Matanza</option>
             <option value="UBA">Universidad de Buenos Aires</option>
-          </select> 
+          </select>
           <span>{span.spanUniversity}</span>
           <label htmlFor="universidad">Universidad</label>
         </div>
@@ -170,10 +168,15 @@ function RectorForm({ className }) {
         <input className="boton -ml-24" type="submit" name="boton" id="boton" />
         <br />
         <p className="-ml-20 max-w-xs">
-          <a href="#" onClick={()=>{
-            checkboxRef.current.checked = !checkboxRef.current.checked;
-            handleCheckboxChange();
-          }}>Ya tengo una cuenta</a>
+          <a
+            href="#"
+            onClick={() => {
+              checkboxRef.current.checked = !checkboxRef.current.checked;
+              handleCheckboxChange();
+            }}
+          >
+            Ya tengo una cuenta
+          </a>
         </p>
       </form>
     </div>

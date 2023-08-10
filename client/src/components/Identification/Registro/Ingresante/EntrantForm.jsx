@@ -21,8 +21,7 @@ function EntrantForm({ className }) {
 
   const handleBlur = async () => {
     try {
-      const response = await post("/validate-registro", form);
-      const data = await response.json();
+      const data = await post("/validate-registro", form);
       setSpan({ ...spanVacio, ...data });
     } catch (error) {
       console.log(error);
@@ -32,8 +31,7 @@ function EntrantForm({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await post("/entrant/first-step", form);
-      const data = await response.json();
+      const data = await post("/entrant/first-step", form);
       if (data.success) {
         console.log("Etapa 2");
         setStep(2);

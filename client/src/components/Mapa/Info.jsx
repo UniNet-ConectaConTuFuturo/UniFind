@@ -12,7 +12,7 @@ function Info() {
           <button type="button" onClick={() => setDisplayInfo(false)}>
             Cerrar
           </button>
-          {uniToDisplay.nombre_universidad}
+          {/* {uniToDisplay.nombre_universidad} */}
         </div>
       )}
     </>

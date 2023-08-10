@@ -1,23 +1,29 @@
 import PropTypes from "prop-types";
 
-function CheckboxOption({ check, nombre_universidad, handleCheckboxs }) {
+function CheckboxOption({ check, nombre, dispatch }) {
+  function handleCheckboxs(e, dispatch) {
+    const value = e.target.value;
+    e.target.checked
+      ? dispatch({ type: "add", value })
+      : dispatch({ type: "delete", value });
+  }
   return (
     <label className="text-xs border border-black">
       <div className="flex">
         <input
           type="checkbox"
           defaultChecked={check}
-          value={nombre_universidad}
-          onClick={handleCheckboxs}
+          value={nombre}
+          onClick={(e) => handleCheckboxs(e, dispatch)}
         />
-        <span className="mx-auto">{nombre_universidad}</span>
+        <span className="mx-auto">{nombre}</span>
       </div>
     </label>
   );
 }
 CheckboxOption.propTypes = {
   check: PropTypes.bool,
-  nombre_universidad: PropTypes.string,
-  handleCheckboxs: PropTypes.func,
+  nombre: PropTypes.string,
+  dispatch: PropTypes.func,
 };
 export default CheckboxOption;

@@ -1,7 +1,6 @@
 import { LayerGroup, Marker, Popup, useMapEvent } from "react-leaflet";
 import { useMarkers } from "../../context/Markers/useMarkers";
 import { useEffect } from "react";
-import setAside from "../../api/markers/setAside";
 
 import * as api from "../../api/api";
 
@@ -28,20 +27,20 @@ function DisplayMarkers() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await api.post("/mapa/getpoints", {
-          names: names.array,
+        const points = await api.post("/mapa/getpoints", {
+          names: names,
           gestion,
+          carreras: carreras,
         });
-        const arr = await res.json();
-        setMarkers(arr);
+        setMarkers(points);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [setMarkers, carreras, names.array, gestion]);
+  }, [setMarkers, carreras, names, gestion]);
 
   const handleClick = ({ target }) => {
-    setAside(setUniToDisplay, target.dataset.key);
+    //setAside(setUniToDisplay, target.dataset.key);
     setDisplayInfo(true);
   };
 

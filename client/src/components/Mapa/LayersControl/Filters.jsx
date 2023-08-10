@@ -11,8 +11,15 @@ import Filtrado from "../../UI/Filtrado";
 
 function Filters() {
   /* Back */
-  const { names, dispatchNames, gestion, setGestion, displayInfo } =
-    useMarkers();
+  const {
+    carreras,
+    dispatchCarreras,
+    names,
+    dispatchNames,
+    gestion,
+    setGestion,
+    displayInfo,
+  } = useMarkers();
   /* Front */
   const control = useRef(null);
   const [open, setOpen] = useState(false);
@@ -35,7 +42,16 @@ function Filters() {
       >
         <div className="leaflet-control-layers-list">
           <article className="break-words">
-            {names.array.map((n, i) => (
+            {carreras.map((n, i) => (
+              <Filtrado
+                key={i}
+                texto={n}
+                handleClick={(e) =>
+                  dispatchCarreras({ type: "delete", value: e.target.value })
+                }
+              />
+            ))}
+            {names.map((n, i) => (
               <Filtrado
                 key={i}
                 texto={n}

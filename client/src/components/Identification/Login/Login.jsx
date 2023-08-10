@@ -20,8 +20,7 @@ function Login({ className }) {
   const [span, setSpan] = useState(spanVacio);
   /* const handleBlur = async () => {
     try {
-      const response = await post("/validate-registro", form);
-      const data = await response.json();
+      const data = await post("/validate-registro", form);
       setSpan({ ...spanVacio, ...data }); 
     } catch (error) {
       console.log(error);
@@ -31,8 +30,7 @@ function Login({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await post("/login/user", form);
-      const data = await response.json();
+      const data = await post("/login/user", form);
       if (data.token) {
         setSpan(spanVacio);
         localStorage.setItem("TokenUniNet", data.token);

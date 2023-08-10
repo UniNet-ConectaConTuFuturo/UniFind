@@ -2,7 +2,26 @@ import { MarkersContext } from "./MarkersContext";
 import { useState, useRef, useReducer } from "react";
 import PropTypes from "prop-types";
 
-import json from "../../api/markers/markers.json";
+function reducer(state, action) {
+  switch (action.type) {
+    case "add":
+      return [...state, action.value];
+
+    case "delete":
+      return state.filter((n) => n != action.value);
+
+    case "addSome": {
+      const addition = action.nombres.filter(
+        (u) => !state.some((N) => u.nombre_universidad === N)
+      );
+      return [...state, ...addition];
+    }
+
+    case "deleteAll":
+      return [];
+  }
+  throw Error("Unknown action: " + action.type);
+}
 
 function MarkersProvider({ children }) {
   /* Mark Options */
@@ -11,40 +30,8 @@ function MarkersProvider({ children }) {
   const [markers, setMarkers] = useState([]);
 
   /* Mark filters */
-  const [carreras, setCarreras] = useState([]);
-  const selectCarreras = useRef("");
-  function reducerNombre(state, action) {
-    switch (action.type) {
-      case "add":
-        return {
-          array: [...state.array, action.value],
-        };
-
-      case "delete":
-        return {
-          array: state.array.filter((n) => n != action.value),
-        };
-
-      case "addSome": {
-        const addition = json.filter(
-          (u) =>
-            u.nombre_universidad
-              .toLowerCase()
-              .includes(action.inputValue.toLowerCase()) &&
-            !state.array.some((n) => u.nombre_universidad === n)
-        );
-        return {
-          array: [...state.array, ...addition.map((u) => u.nombre_universidad)],
-        };
-      }
-      case "deleteAll":
-        return {
-          array: [],
-        };
-    }
-    throw Error("Unknown action: " + action.type);
-  }
-  const [names, dispatchNames] = useReducer(reducerNombre, { array: [] });
+  const [carreras, dispatchCarreras] = useReducer(reducer, []);
+  const [names, dispatchNames] = useReducer(reducer, []);
   const [gestion, setGestion] = useState(null);
 
   /* Mark Info */
@@ -60,8 +47,7 @@ function MarkersProvider({ children }) {
         setMarkers,
         setDisplayMarkers,
         carreras,
-        setCarreras,
-        selectCarreras,
+        dispatchCarreras,
         names,
         dispatchNames,
         gestion,
