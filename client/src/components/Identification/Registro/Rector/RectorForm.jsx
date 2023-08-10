@@ -172,7 +172,7 @@ function RectorForm({ className }) {
           <label htmlFor="universidad">Universidad</label>
         </div>
 
-        <input className="boton -ml-24" type="submit" name="boton" id="boton" />
+        <input className="boton hover:bg-white -ml-24" type="submit" name="boton" id="boton" />
         <br />
         <p className="-ml-20 max-w-xs">
           <a
