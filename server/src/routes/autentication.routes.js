@@ -10,7 +10,11 @@ import end from "../controllers/end.js";
 const router = Router();
 
 //Rutas registro ingresante
-router.post("/api/validate-registro", [validate.User, validate.Title, end]);
+router.post("/api/validate-registro-ingresante", [
+  validate.User,
+  validate.Title,
+  end,
+]);
 router.post("/api/entrant/first-step", [
   validate.User,
   validate.Title,
@@ -24,7 +28,6 @@ router.post("/api/entrant/second-step", [
 ]);
 
 //Rutas registro rector
-router.get("/api/rector/form", registro.getUniversities);
 
 router.post("/api/validate-registro-rector", [
   validate.User,

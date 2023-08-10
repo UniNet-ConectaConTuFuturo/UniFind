@@ -31,7 +31,7 @@ function RectorCode({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post("/entrant/second-step", {
+      const data = await post("/rector/second-step", {
         ...form,
         code: code,
       });

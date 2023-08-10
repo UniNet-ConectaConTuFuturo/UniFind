@@ -27,7 +27,7 @@ function DisplayMarkers() {
   useEffect(() => {
     (async () => {
       try {
-        const points = await api.post("/mapa/getpoints", {
+        const points = await api.post("/filter/uni/id-points", {
           names: names,
           gestion,
           carreras: carreras,

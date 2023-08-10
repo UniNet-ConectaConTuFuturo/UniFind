@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../../../api/api";
+import { get, post } from "../../../../api/api";
 import "../../form.css";
 import { useRegistro } from "../../../../context/Registro/useRegistro";
 import { useIdentification } from "../../../../context/Identification/useIdentification";
@@ -21,7 +21,7 @@ function RectorForm({ className }) {
 
   const handleBlur = async () => {
     try {
-      const data = await post("/validate-registro", form);
+      const data = await post("/validate-registro-rector", form);
       setSpan({ ...spanVacio, ...data });
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ function RectorForm({ className }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post("/entrant/first-step", form);
+      const data = await post("/rector/first-step", form);
       if (data.success) {
         console.log("Etapa 2");
         setStep(2);
@@ -43,6 +43,10 @@ function RectorForm({ className }) {
     }
   };
   const { checkboxRef, handleCheckboxChange } = useIdentification();
+  const [universidades, setUniversidades] = useState([]);
+  useEffect(() => {
+    async () => setUniversidades(await get("/uni/names"));
+  }, []);
   return (
     <div className={className + " " + "box"} role="Form">
       <div></div>
@@ -158,8 +162,11 @@ function RectorForm({ className }) {
             onChange={handleChange}
             onBlur={handleBlur}
           >
-            <option value="UNLAM">Universidad Nacional de La Matanza</option>
-            <option value="UBA">Universidad de Buenos Aires</option>
+            {universidades.map((u) => (
+              <option key={u.id_universidad} value={u.id_universidad}>
+                {u.nombre_universidad}
+              </option>
+            ))}
           </select>
           <span>{span.spanUniversity}</span>
           <label htmlFor="universidad">Universidad</label>

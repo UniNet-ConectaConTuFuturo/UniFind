@@ -11,13 +11,13 @@ function Carrera() {
       target.value.trim() === ""
         ? dispatchList({
             type: "show", //All
-            nombres: await get("/mapa/getcarreras"),
+            nombres: await get("/carrera/names"),
             filtrados: carreras,
             dispatch: dispatchCarreras,
           })
         : dispatchList({
             type: "show", //Some
-            nombres: await post("/mapa/getcarreras", {
+            nombres: await post("/filter/carrera/names", {
               inputValue: target.value,
             }),
             filtrados: carreras,

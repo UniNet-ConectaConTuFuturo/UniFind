@@ -17,16 +17,16 @@ export const whoIs = async (req, res) => {
     );
     if (user_data.length === 0) {
       res.statusMessage = "La cuenta fue borrada de la base de datos";
-      return res.status(401).json({ user: "noAuthenticated" }).end();
+      return res.json({ user: "noAuthenticated" }).end();
     }
     if (typeof user_data[0].title !== "undefined") {
       return res.json({ user: "entrant" }).end();
     }
-    if (typeof user_data[0].verificado !== "undefined") {
+    if (typeof user_data[0].id_universidad !== "undefined") {
       return res.json({ user: "rector" }).end();
     }
 
-    return res.status(401).json({ user: "noAuthenticated" }).end();
+    return res.json({ user: "noAuthenticated" }).end();
   } catch {
     return res.json({ user: "noAuthenticated" }).end();
   }

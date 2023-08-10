@@ -10,13 +10,13 @@ function Nombre() {
     target.value.trim() === ""
       ? dispatchList({
           type: "show", //all
-          nombres: await get("/mapa/getnames"),
+          nombres: await get("/uni/names"),
           filtrados: names,
           dispatch: dispatchNames,
         })
       : dispatchList({
           type: "show", //some
-          nombres: await post("/mapa/getnames", {
+          nombres: await post("/filter/uni/names", {
             inputValue: target.value,
           }),
           filtrados: names,

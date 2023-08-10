@@ -12,8 +12,8 @@ import { sess } from "./config.js";
 
 //Import Routes
 import autenticationRoutes from "./routes/autentication.routes.js";
-import indexRoutes from "./routes/index.js";
-import mapaRoutes from "./routes/mapa.routes.js";
+import filterRoutes from "./routes/filter.routes.js";
+import getRoutes from "./routes/getdata.routes.js";
 
 const app = express();
 
@@ -41,9 +41,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
-app.use(mapaRoutes);
-app.use(indexRoutes);
 app.use(autenticationRoutes);
+app.use(getRoutes);
+app.use(filterRoutes);
 //app.use(express.static(path.join(__dirname, "public")));
 
 export default app;

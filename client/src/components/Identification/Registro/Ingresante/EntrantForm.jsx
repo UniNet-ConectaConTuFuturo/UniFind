@@ -21,7 +21,7 @@ function EntrantForm({ className }) {
 
   const handleBlur = async () => {
     try {
-      const data = await post("/validate-registro", form);
+      const data = await post("/validate-registro-ingresante", form);
       setSpan({ ...spanVacio, ...data });
     } catch (error) {
       console.log(error);

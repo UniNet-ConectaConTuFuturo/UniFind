@@ -54,22 +54,6 @@ export async function EntrantSecondStep(req, res) {
   }
 }
 
-export async function getUniversities(req, res) {
-  try {
-    return res
-      .json(
-        await consult.selectFromUniversidades(
-          "id_universidad, nombre_universidad"
-        )
-      )
-      .end();
-  } catch (error) {
-    console.error(error);
-    res.statusMessage = "Ocurrio un error";
-    res.status(404).end();
-  }
-}
-
 export async function RectorFirstStep(req, res) {
   try {
     const data = req.body;

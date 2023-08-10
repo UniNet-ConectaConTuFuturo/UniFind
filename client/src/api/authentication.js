@@ -6,7 +6,7 @@ export default async function getAuth() {
     const res = await post("/auth", {
       token: localStorage.getItem("TokenUniNet"),
     });
-    const { user } = await res.json();
+    const { user } = res;
     return user;
   } catch (error) {
     console.log(error);
