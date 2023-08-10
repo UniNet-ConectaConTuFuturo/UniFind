@@ -1,9 +1,10 @@
 select{
     background: none;
+    max-width: 100%;
 }
 
 option{
-    background: none;
+    color: black;
 }
 
 @media only screen and (max-width: 1300px){

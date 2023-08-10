@@ -4,10 +4,12 @@ import { post } from "../../../api/api";
 import PropTypes from "prop-types";
 
 function Login({ className }) {
+  const { checkboxRef, handleCheckboxChange } = useIdentification();
   const formNuevo = {
     mail_user: "",
     password_user: "",
   };
+  
   const [form, setForm] = useState(formNuevo);
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -42,12 +44,15 @@ function Login({ className }) {
     }
   };
   return (
+    
+    <>
+    <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
     <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
-        <div className="ml-96 mb-20">
+        <div className="ml-96 mb-10">
           <h2>INGRESAR</h2>
         </div>
-        <div className="inputbox ml-40 mb-20">
+        <div className="inputbox ml-40">
           <input
             className="typebox"
             type="text"
@@ -61,7 +66,7 @@ function Login({ className }) {
           <span>{span.spanEmail}</span>
           <label htmlFor="correo">Correo</label>
         </div>
-        <div className="inputbox mb-20">
+        <div className="inputbox ml-32">
           <input
             className="typebox"
             type="      "
@@ -75,9 +80,22 @@ function Login({ className }) {
           <span>{span.spanPassword}</span>
           <label htmlFor="contrasena">Contraseña</label>
         </div>
-        <input className="boton -ml-40 hover:bg-white" type="submit" name="boton" id="boton" />
+        <input className="boton ml-32 hover:bg-white" type="submit" name="boton" id="boton" />
+        <br />
+        <p className="ml-36 max-w-xs">
+          <a
+            href="#"
+            onClick={() => {
+              checkboxRef.current.checked = !checkboxRef.current.checked;
+              handleCheckboxChange();
+            }}
+          >
+            Ya tengo una cuenta
+          </a>
+        </p>
       </form>
     </div>
+    </>
   );
 }
 Login.propTypes = {
