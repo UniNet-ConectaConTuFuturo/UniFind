@@ -36,7 +36,7 @@ function Carrera() {
       } else {
         dispatchCarreras({
           type: "addSome",
-          nombres: await post("/mapa/getcarreras", {
+          nombres: await post("/filter/carrera/names", {
             inputValue,
           }),
         });

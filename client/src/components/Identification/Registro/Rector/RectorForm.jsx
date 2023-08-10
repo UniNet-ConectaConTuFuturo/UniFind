@@ -45,7 +45,7 @@ function RectorForm({ className }) {
   const { checkboxRef, handleCheckboxChange } = useIdentification();
   const [universidades, setUniversidades] = useState([]);
   useEffect(() => {
-    async () => setUniversidades(await get("/uni/names"));
+    (async () => setUniversidades(await get("/uni/id-names")))();
   }, []);
   return (
     <div className={className + " " + "box"} role="Form">
@@ -162,11 +162,12 @@ function RectorForm({ className }) {
             onChange={handleChange}
             onBlur={handleBlur}
           >
-            {universidades.map((u) => (
-              <option key={u.id_universidad} value={u.id_universidad}>
+            {universidades.map((u) => {
+              console.log(u)
+              return (<option key={u.id_universidad} value={u.id_universidad}>
                 {u.nombre_universidad}
-              </option>
-            ))}
+              </option>)
+            })}
           </select>
           <span>{span.spanUniversity}</span>
           <label htmlFor="universidad">Universidad</label>

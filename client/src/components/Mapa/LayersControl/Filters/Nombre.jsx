@@ -31,7 +31,7 @@ function Nombre() {
     } else {
       dispatchNames({
         type: "addSome",
-        nombres: await post("/mapa/getnames", {
+        nombres: await post("/filter/uni/names", {
           inputValue,
         }),
       });

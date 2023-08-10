@@ -4,7 +4,7 @@ import { useEffect } from "react";
 function CheckBox() {
   const {checkboxRef, handleCheckboxChange} = useIdentification()
   return (
-    <div role="Boton" className="absolute left-0 right-0 bottom-0 top-0 flex items-center justify-center">
+    <div role="Boton" className="absolute left-0 right-1/2 bottom-0 top-0 flex items-center justify-center">
       <div className="button b2 flex relative text-center" id="button-10">
         <input type="checkbox" ref={checkboxRef} className="checkbox" onChange={handleCheckboxChange} />
         <div className="knobs">
