@@ -1,13 +1,23 @@
-.img{
-    background-image: url(/client/public/images/graduation.png);    
-    bottom: 0;
-}
-
 select{
     background: none;
 }
 
 option{
     background: none;
-    
+}
+
+@media only screen and (max-width: 1300px){
+    form{
+        margin-right: 200px;
+    }
+}
+@media only screen and (max-width: 1000px){
+    form{
+        margin-right: 300px;
+    }
+}
+@media only screen and (max-width: 875px){
+    form{
+        margin-right: 400px;
+    }
 }

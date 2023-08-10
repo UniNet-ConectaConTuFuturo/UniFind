@@ -44,8 +44,10 @@ function Login({ className }) {
   return (
     <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
-        <h2>Ingresar</h2>
-        <div className="inputbox">
+        <div className="ml-96 mb-20">
+          <h2>INGRESAR</h2>
+        </div>
+        <div className="inputbox ml-40 mb-20">
           <input
             className="typebox"
             type="text"
@@ -59,7 +61,7 @@ function Login({ className }) {
           <span>{span.spanEmail}</span>
           <label htmlFor="correo">Correo</label>
         </div>
-        <div className="inputbox">
+        <div className="inputbox mb-20">
           <input
             className="typebox"
             type="      "
@@ -73,7 +75,7 @@ function Login({ className }) {
           <span>{span.spanPassword}</span>
           <label htmlFor="contrasena">Contraseña</label>
         </div>
-        <input className="boton" type="submit" name="boton" id="boton" />
+        <input className="boton -ml-40 hover:bg-white" type="submit" name="boton" id="boton" />
       </form>
     </div>
   );
