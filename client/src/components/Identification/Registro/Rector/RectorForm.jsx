@@ -155,25 +155,33 @@ function RectorForm({ className }) {
         <div className="inputbox -ml-16">
           <select
             className="typebox uni mb-3"
-            name="university"
-            id="university"
-            placeholder=" "
+            name="id_universidad"
+            id="id_universidad"
+            placeholder=""
             value={form.university}
             onChange={handleChange}
             onBlur={handleBlur}
           >
+            <option disabled selected value></option>
             {universidades.map((u) => {
-              console.log(u)
-              return (<option key={u.id_universidad} value={u.id_universidad}>
-                {u.nombre_universidad}
-              </option>)
+              console.log(u.id_universidad, u.nombre_universidad);
+              return (
+                <option key={u.id_universidad} value={u.id_universidad}>
+                  {u.nombre_universidad}
+                </option>
+              );
             })}
           </select>
           <span>{span.spanUniversity}</span>
-          <label htmlFor="universidad">Universidad</label>
+          <label htmlFor="id_universidad">Universidad</label>
         </div>
 
-        <input className="boton hover:bg-white -ml-24" type="submit" name="boton" id="boton" />
+        <input
+          className="boton hover:bg-white -ml-24"
+          type="submit"
+          name="boton"
+          id="boton"
+        />
         <br />
         <p className="-ml-20 max-w-xs">
           <a

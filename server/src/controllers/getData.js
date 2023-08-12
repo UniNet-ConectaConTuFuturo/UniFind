@@ -21,13 +21,10 @@ export async function carreras(req, res) {
 }
 export async function uniNamesAndId(req, res) {
   try {
-    return res
-      .json(
-        await consult.selectFromUniversidades(
-          "id_universidad, nombre_universidad"
-        )
-      )
-      .end();
+    const data = await consult.selectFromUniversidades(
+      "id_universidad, nombre_universidad"
+    );
+    return res.json(data).end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";

@@ -3,7 +3,7 @@ import pool from "./connection.js";
 //Buscar Usuario
 export function selectFromUsuarios(select, where = 1) {
   return new Promise(function (resolve, reject) {
-    pool.query(`SELECT "${select}" FROM usuarios WHERE "${where}"`, (err, data) => {
+    pool.query(`SELECT ${select} FROM usuarios WHERE ${where}`, (err, data) => {
       if (err) reject(err);
       resolve(data);
     });
@@ -14,7 +14,7 @@ export function selectFromUsuarios(select, where = 1) {
 export function selectFromUniversidades(select, where = 1) {
   return new Promise(function (resolve, reject) {
     pool.query(
-      `SELECT "${select}" FROM universidades WHERE "${where}"`,
+      `SELECT ${select} FROM universidades WHERE ${where}`,
       (err, data) => {
         if (err) reject(err);
         resolve(data);

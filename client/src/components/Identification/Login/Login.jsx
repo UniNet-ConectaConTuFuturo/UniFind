@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../form.css";
 import { post } from "../../../api/api";
 import PropTypes from "prop-types";
+import { useIdentification } from "../../../context/Identification/useIdentification";
 
 function Login({ className }) {
   const { checkboxRef, handleCheckboxChange } = useIdentification();
@@ -9,7 +10,7 @@ function Login({ className }) {
     mail_user: "",
     password_user: "",
   };
-  
+
   const [form, setForm] = useState(formNuevo);
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -44,57 +45,61 @@ function Login({ className }) {
     }
   };
   return (
-    
     <>
-    <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
-    <div className={className + " " + "box"}>
-      <form onSubmit={handleSubmit}>
-        <div className="ml-96 mb-10">
-          <h2>INGRESAR</h2>
-        </div>
-        <div className="inputbox ml-40">
+      <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
+      <div className={className + " " + "box"}>
+        <form onSubmit={handleSubmit}>
+          <div className="ml-96 mb-10">
+            <h2>INGRESAR</h2>
+          </div>
+          <div className="inputbox ml-40">
+            <input
+              className="typebox"
+              type="text"
+              name="mail_user"
+              id="mail_user"
+              placeholder=" "
+              value={form.mail_user}
+              onChange={handleChange}
+              /* onBlur={handleBlur} */
+            />
+            <span>{span.spanEmail}</span>
+            <label htmlFor="correo">Correo</label>
+          </div>
+          <div className="inputbox ml-32">
+            <input
+              className="typebox"
+              type="      "
+              name="password_user"
+              id="password_user"
+              placeholder=" "
+              value={form.password_user}
+              onChange={handleChange}
+              /* onBlur={handleBlur} */
+            />
+            <span>{span.spanPassword}</span>
+            <label htmlFor="contrasena">Contraseña</label>
+          </div>
           <input
-            className="typebox"
-            type="text"
-            name="mail_user"
-            id="mail_user"
-            placeholder=" "
-            value={form.mail_user}
-            onChange={handleChange}
-            /* onBlur={handleBlur} */
+            className="boton ml-32 hover:bg-white"
+            type="submit"
+            name="boton"
+            id="boton"
           />
-          <span>{span.spanEmail}</span>
-          <label htmlFor="correo">Correo</label>
-        </div>
-        <div className="inputbox ml-32">
-          <input
-            className="typebox"
-            type="      "
-            name="password_user"
-            id="password_user"
-            placeholder=" "
-            value={form.password_user}
-            onChange={handleChange}
-            /* onBlur={handleBlur} */
-          />
-          <span>{span.spanPassword}</span>
-          <label htmlFor="contrasena">Contraseña</label>
-        </div>
-        <input className="boton ml-32 hover:bg-white" type="submit" name="boton" id="boton" />
-        <br />
-        <p className="ml-36 max-w-xs">
-          <a
-            href="#"
-            onClick={() => {
-              checkboxRef.current.checked = !checkboxRef.current.checked;
-              handleCheckboxChange();
-            }}
-          >
-            Ya tengo una cuenta
-          </a>
-        </p>
-      </form>
-    </div>
+          <br />
+          <p className="ml-36 max-w-xs">
+            <a
+              href="#"
+              onClick={() => {
+                checkboxRef.current.checked = !checkboxRef.current.checked;
+                handleCheckboxChange();
+              }}
+            >
+              Ya tengo una cuenta
+            </a>
+          </p>
+        </form>
+      </div>
     </>
   );
 }

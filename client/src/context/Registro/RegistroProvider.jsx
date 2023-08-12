@@ -12,6 +12,7 @@ function RegistroProvider({ children }) {
     direction_user: "",
     tel_user: "",
     title: "",
+    id_universidad: "",
     code: "",
   };
   const [form, setForm] = useState(formNuevo);

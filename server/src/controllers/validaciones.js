@@ -13,7 +13,7 @@ export async function User(req, res, next) {
     /* Comprobar que no Exista */
     const user_data = await consult.selectFromUsuarios(
       "id_usuario",
-      "mail_user" + "=" + data.mail_user
+      "mail_user" + " = " + "'" + data.mail_user + "'"
     );
     if (user_data.length)
       return res.json({ spanEmail: "Este usuario ya está registrado" }).end();
@@ -40,8 +40,9 @@ export function Title(req, res, next) {
 export function IdUniversidad(req, res, next) {
   try {
     const { id_universidad } = req.body;
+    console.log(id_universidad);
     if (!id_universidad.trim())
-      return res.json({ spanIdUniversidad: "Completar" }).end();
+      return res.json({ spanUniversity: "Completar" }).end();
     next();
   } catch (error) {
     console.error(error);
@@ -66,7 +67,7 @@ export async function RectorCode(req, res, next) {
     const { id_universidad, code } = req.body;
     const mail_universidad = await consult.selectFromUniversidades(
       "correo_universidad",
-      "id_universidad" + "=" + id_universidad
+      "id_universidad" + " = " + "'" + id_universidad + "'"
     );
     const wrongCode = await codeValidation(mail_universidad, code, req);
     if (wrongCode) return res.json(wrongCode).end();
