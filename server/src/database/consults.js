@@ -153,6 +153,16 @@ export function selectFromCarreras(select, where = 1) {
   });
 }
 
+//Solcitudes
+export function insertSolicitud(userID,fileName,uniID){
+  return new Promise((resolve, reject) => {
+    pool.query('INSERT INTO solicitudes (id_usuario,id_universidad,solicitud,estado) VALUES (?,?,?,"pendiente")',[userID,uniID,fileName],(err, data) =>{
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
+
 //Prueba Point
 /* export function selectPoint() {
   return new Promise(function (resolve, reject) {
