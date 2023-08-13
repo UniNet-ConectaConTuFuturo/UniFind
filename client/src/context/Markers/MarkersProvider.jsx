@@ -1,27 +1,6 @@
 import { MarkersContext } from "./MarkersContext";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "add":
-      return [...state, action.value];
-
-    case "delete":
-      return state.filter((n) => n != action.value);
-
-    case "addSome": {
-      const addition = action.nombres.filter(
-        (u) => !state.some((N) => u.nombre_universidad === N)
-      );
-      return [...state, ...addition];
-    }
-
-    case "deleteAll":
-      return [];
-  }
-  throw Error("Unknown action: " + action.type);
-}
 
 function MarkersProvider({ children }) {
   /* Mark Options */
@@ -30,8 +9,8 @@ function MarkersProvider({ children }) {
   const [markers, setMarkers] = useState([]);
 
   /* Mark filters */
-  const [carreras, dispatchCarreras] = useReducer(reducer, []);
-  const [names, dispatchNames] = useReducer(reducer, []);
+  const [carreras, setCarreras] = useState([]);
+  const [names, setNames] = useState([]);
   const [gestion, setGestion] = useState(null);
 
   /* Mark Info */
@@ -47,9 +26,9 @@ function MarkersProvider({ children }) {
         setMarkers,
         setDisplayMarkers,
         carreras,
-        dispatchCarreras,
+        setCarreras,
         names,
-        dispatchNames,
+        setNames,
         gestion,
         setGestion,
         displayInfo,

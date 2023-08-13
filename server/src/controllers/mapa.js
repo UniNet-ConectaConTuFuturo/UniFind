@@ -5,10 +5,17 @@ export async function getNames(req, res) {
     const { inputValue } = req.body;
     console.log(inputValue);
     const data = await consult.selectFromUniversidades(
-      "nombre_universidad",
+      "id_universidad, nombre_universidad",
       "nombre_universidad LIKE '%" + inputValue + "%'"
     );
-    return res.send(data.map((d) => d.nombre_universidad)).end();
+    return res
+      .send(
+        data.map((d) => ({
+          value: d.id_universidad,
+          label: d.nombre_universidad,
+        }))
+      )
+      .end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
@@ -20,11 +27,18 @@ export async function getCarreras(req, res) {
     const { inputValue } = req.body;
     console.log(inputValue);
     const data = await consult.selectFromCarreras(
-      "nombre_carrera",
+      "id_carrera, nombre_carrera",
       "nombre_carrera LIKE '%" + inputValue + "%'"
     );
 
-    return res.send(data.map((d) => d.nombre_carrera)).end();
+    return res
+      .send(
+        data.map((d) => ({
+          value: d.id_carrera,
+          label: d.nombre_carrera,
+        }))
+      )
+      .end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
@@ -32,34 +46,64 @@ export async function getCarreras(req, res) {
   }
 }
 
-const whereNames = (names) =>
-  names.length === 0
+const whereNames = (names) => {
+  const ids = [],
+    creates = [];
+  names.forEach((id) =>
+    typeof id === "number" ? ids.push(id) : creates.push(id)
+  );
+  const whereId = ids.length === 0 ? "" : "id_universidad IN (" + ids + ")";
+  const whereNombre =
+    creates.length === 0
+      ? ""
+      : (ids.length === 0 ? "" : " OR ") +
+        creates.map(
+          (nombre, i) =>
+            (i === 0 ? "" : " OR ") +
+            "nombre_universidad LIKE '%" +
+            nombre +
+            "%'"
+        );
+  return whereId === "" && whereNombre === ""
     ? ""
-    : "nombre_universidad" +
-      " IN " +
-      "(" +
-      names.map((n) => "'" + n + "'") +
-      ")";
-const whereGestion = (gestion, where = "") =>
-  gestion === null
+    : "(" + whereId + whereNombre + ")";
+};
+const whereGestion = (gestion, where = "") => {
+  const whereG = "gestion_universidad = '" + gestion + "'";
+  return gestion === null ? "" : (where.length === 0 ? "" : " AND ") + whereG;
+};
+const whereCarrera = (carreras, where = "") => {
+  const ids = [],
+    creates = [];
+  carreras.forEach((id) =>
+    typeof id === "number" ? ids.push(id) : creates.push(id)
+  );
+  const whereId =
+    ids.length === 0
+      ? ""
+      : "id_universidad IN " +
+        "(SELECT id_universidad from carreras " +
+        ("WHERE id_carrera IN (" + ids + "))");
+  const whereNombre =
+    creates.length === 0
+      ? ""
+      : (ids.length === 0 ? "" : " OR ") +
+        "id_universidad IN " +
+        "(SELECT id_universidad from carreras WHERE " +
+        creates.map(
+          (nombre, i) =>
+            (i === 0 ? "" : " OR ") + "nombre_carrera LIKE '%" + nombre + "%'"
+        ) +
+        ")";
+  return whereId === "" && whereNombre === ""
     ? ""
-    : (where.length === 0 ? "" : " AND ") +
-      ("gestion_universidad" + "=" + ("'" + gestion + "'"));
-const whereCarrera = (carreras, where = "") =>
-  carreras.length === 0
-    ? ""
-    : (where.length === 0 ? "" : " AND ") +
-      ("id_universidad" +
-        " IN " +
-        "(SELECT id_universidad from carreras WHERE nombre_carrera IN " +
-        "(" +
-        carreras.map((n) => "'" + n + "'") +
-        "))");
+    : (where.length === 0 ? "" : " AND ") + "(" + whereId + whereNombre + ")";
+};
 export async function getUniPoints(req, res) {
   try {
     const { names, gestion, carreras } = req.body;
 
-    console.log(names, gestion);
+    console.log(names, carreras, gestion);
     let where = "";
 
     where += whereNames(names);
