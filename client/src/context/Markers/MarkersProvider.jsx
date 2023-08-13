@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function MarkersProvider({ children }) {
   /* Mark Options */
   const distanciaMarcadores = useRef(6.5);
-  const [displayMarkers, setDisplayMarkers] = useState(false);
+  const [displayMarkers, setDisplayMarkers] = useState(true);
   const [markers, setMarkers] = useState([]);
 
   /* Mark filters */

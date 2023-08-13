@@ -14,8 +14,8 @@ function Mapa() {
       <Filters />
       <MapContainer
         className="h-screen w-screen z-0"
-        center={[-38.9100392105676, -62.3851335705486]}
-        zoom={4}
+        center={[-34.66, -58.5]}
+        zoom={11}
         scrollWheelZoom={true}
         zoomControl={false}
         attributionControl={false}

@@ -8,7 +8,7 @@ import { lookFeature } from "../../api/onEachFeature/highlight";
 function DisplayGeoJSON() {
   const map = useMap();
   const [provincias, setProvincias] = useState(true);
-  const [departaments, setDepartaments] = useState(false);
+  const [departaments, setDepartaments] = useState(true);
   useMapEvent("zoom", ({ target }) => {
     const zoom = target._zoom;
     if (zoom >= 3.5) {

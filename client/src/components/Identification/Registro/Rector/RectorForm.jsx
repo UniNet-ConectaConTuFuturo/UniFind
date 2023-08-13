@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { get, post } from "../../../../api/api";
+import { post } from "../../../../api/api";
 import "../../form.css";
 import { useRegistro } from "../../../../context/Registro/useRegistro";
 import { useIdentification } from "../../../../context/Identification/useIdentification";
+import AsyncSelect from "react-select/async";
 
 function RectorForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -43,10 +44,19 @@ function RectorForm({ className }) {
     }
   };
   const { checkboxRef, handleCheckboxChange } = useIdentification();
-  const [universidades, setUniversidades] = useState([]);
-  useEffect(() => {
-    (async () => setUniversidades(await get("/uni/id-names")))();
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const asyncLoadOptions = async (inputValue) => {
+    try {
+      setIsLoading(true);
+      const res = await post("/filter/uni", {
+        inputValue,
+      });
+      setIsLoading(false);
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className={className + " " + "box"} role="Form">
       <div></div>
@@ -153,25 +163,29 @@ function RectorForm({ className }) {
           <label htmlFor="telefono">Teléfono</label>
         </div>
         <div className="inputbox -ml-16">
-          <select
-            className="typebox uni mb-3"
+          <AsyncSelect
             name="id_universidad"
-            id="id_universidad"
-            placeholder=""
-            value={form.university}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          >
-            <option disabled selected value></option>
-            {universidades.map((u) => {
-              console.log(u.id_universidad, u.nombre_universidad);
-              return (
-                <option key={u.id_universidad} value={u.id_universidad}>
-                  {u.nombre_universidad}
-                </option>
-              );
-            })}
-          </select>
+            cacheOptions
+            defaultOptions
+            onChange={(option) =>
+              handleChange({
+                target: {
+                  name: "id_universidad",
+                  value: option ? option.value : "",
+                },
+              })
+            }
+            onBlur={(option) =>
+              handleBlur({
+                target: {
+                  name: "id_universidad",
+                  value: option ? option.value : "",
+                },
+              })
+            }
+            loadOptions={asyncLoadOptions}
+            isLoading={isLoading}
+          />
           <span>{span.spanUniversity}</span>
           <label htmlFor="id_universidad">Universidad</label>
         </div>
