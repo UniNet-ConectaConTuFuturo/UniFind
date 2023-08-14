@@ -8,6 +8,7 @@ import IdentificationProvider from "./context/Identification/IdentificationProvi
 import Rector from "./pages/singUp-singIn/Rector";
 import Mapa from "./components/Mapa/Mapa";
 import AccountSettings from "./pages/AccountSettings";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,10 +25,11 @@ const router = createBrowserRouter([
             Component: IdentificationProvider,
             children: [{ index: true, Component: Ingresante }],
           },
-          { path: "rector",
+          {
+            path: "rector",
             Component: IdentificationProvider,
-            children: [{ index: true, Component: Rector }]
-          }
+            children: [{ index: true, Component: Rector }],
+          },
         ],
       },
       { path: "/configuracion", Component: AccountSettings },

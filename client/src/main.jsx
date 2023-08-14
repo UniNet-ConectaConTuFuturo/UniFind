@@ -1,11 +1,9 @@
 import { createRoot } from "react-dom/client";
-import App from "../App.jsx";
-import "./index.css";
-// Import our custom CSS
-import '../scss/styles.scss'
+import App from "./App.jsx";
 
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+import "./index.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
