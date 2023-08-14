@@ -7,6 +7,7 @@ import Ingresante from "./pages/singUp-singIn/Ingresante";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
 import Rector from "./pages/singUp-singIn/Rector";
 import Mapa from "./components/Mapa/Mapa";
+import AccountSettings from "./pages/AccountSettings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       {
-        path: "/identification/",
+        path: "/identificacion/",
         loader: async () => await getAuth(),
         Component: NotAuthenticated,
         children: [
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
           }
         ],
       },
+      { path: "/configuracion", Component: AccountSettings },
       { path: "/mapa", Component: Mapa },
     ],
   },

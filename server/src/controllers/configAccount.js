@@ -25,7 +25,7 @@ function handleFormSubmit(event) {
 
   updateUser('usuarios', updateObj, email)
     .then(() => {
-      alert('¡Actualización exitosa!');
+      alert('Actualización exitosa!');
     })
     .catch((error) => {
       console.error('Error al actualizar:', error);
