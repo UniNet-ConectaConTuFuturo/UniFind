@@ -82,19 +82,20 @@ const whereCarrera = (carreras, where = "") => {
     ids.length === 0
       ? ""
       : "id_universidad IN " +
-        "(SELECT id_universidad from carreras " +
+        "(SELECT id_universidad from car_uni " +
         ("WHERE id_carrera IN (" + ids + "))");
   const whereNombre =
     creates.length === 0
       ? ""
       : (ids.length === 0 ? "" : " OR ") +
         "id_universidad IN " +
-        "(SELECT id_universidad from carreras WHERE " +
+        "(SELECT id_universidad from car_uni WHERE id_carrera IN " +
+        "(SELECT id_carrera FROM carreras WHERE " +
         creates.map(
           (nombre, i) =>
             (i === 0 ? "" : " OR ") + "nombre_carrera LIKE '%" + nombre + "%'"
         ) +
-        ")";
+        "))";
   return whereId === "" && whereNombre === ""
     ? ""
     : (where.length === 0 ? "" : " AND ") + "(" + whereId + whereNombre + ")";
