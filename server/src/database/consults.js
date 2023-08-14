@@ -152,6 +152,14 @@ export function selectFromCarreras(select, where = 1) {
     });
   });
 }
+export function selectFromCarUni(select, where = 1) {
+  return new Promise((resolve, reject) => {
+    pool.query(`SELECT ${select} FROM car_uni WHERE ${where}`, (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+}
 
 //Solcitudes
 export function insertSolicitud(userID,fileName,uniID){
