@@ -2,11 +2,7 @@ import "./home.css";
 
 function Home() {
   return (
-    <img
-      src="/images/hero-section-centroinformacion.png?url"
-      className="promocion"
-      alt=""
-    />
+    <div className="h-screen w-full aspect-video bg-home1"></div>
   );
 }
 

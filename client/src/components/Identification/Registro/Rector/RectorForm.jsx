@@ -164,6 +164,7 @@ function RectorForm({ className }) {
         </div>
         <div className="inputbox -ml-16">
           <AsyncSelect
+          className="text-black bg-black"
             name="id_universidad"
             cacheOptions
             defaultOptions
