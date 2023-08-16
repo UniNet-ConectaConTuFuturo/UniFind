@@ -12,6 +12,7 @@ function Mapa() {
   return (
     <MarkersProvider>
       <Filters />
+      <Info />
       <MapContainer
         className="h-screen w-screen z-0"
         center={[-34.66, -58.5]}
@@ -27,7 +28,6 @@ function Mapa() {
         <Tiles />
         <DisplayGeoJSON />
         <DisplayMarkers />
-        <Info />
       </MapContainer>
     </MarkersProvider>
   );

@@ -14,8 +14,7 @@ function MarkersProvider({ children }) {
   const [gestion, setGestion] = useState(null);
 
   /* Mark Info */
-  const [displayInfo, setDisplayInfo] = useState(false);
-  const [uniToDisplay, setUniToDisplay] = useState("");
+  const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
 
   return (
     <MarkersContext.Provider
@@ -31,10 +30,8 @@ function MarkersProvider({ children }) {
         setNames,
         gestion,
         setGestion,
-        displayInfo,
-        setDisplayInfo,
-        uniToDisplay,
-        setUniToDisplay,
+        idUniToShowInfo,
+        setIdUniToShowInfo,
       }}
     >
       {children}

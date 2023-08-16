@@ -19,7 +19,8 @@ function highlightFeature(e) {
     color: "#666",
     dashArray: "",
     fillOpacity: 0.7,
-  });
+    });
+    colorizar(currentLayer.feature, currentLayer)
   currentLayer.bringToFront();
 }
 function resetHighlight(e, className) {
@@ -28,8 +29,19 @@ function resetHighlight(e, className) {
 function zoomToFeature(e, map) {
   map.fitBounds(e.target.getBounds());
 }
+function colorizar(feature, layer){
+  if(feature.properties && feature.properties.color){
+    layer.setStyle({
+      weight: 5,
+      color: feature.properties.color,
+      dashArray: "",
+      fillOpacity: 0.7,
+    });
+  }
+}
 export default function onEachFeature(feature, layer, className, map) {
   lastStyle = className;
+  //colorizar(feature, layer)
   layer.on({
     mouseover: (e) => {
       currentLayer = layer;
