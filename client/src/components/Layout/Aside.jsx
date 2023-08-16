@@ -28,12 +28,12 @@ const SideBar = () => {
   return (
     <div className="flex flex-col float-right fixed z-10 top-0 left-0 content-end h-screen w-32 m-0 bg-bg-sb_bg opacity-90">
       <Link to="/">
-        <SideBarIcon icon={<FaHome size="40" />}/>
+        <SideBarIcon icon={<FaHome size="40" />} />
       </Link>
-      <Link to="/identification/ingresante">
+      <Link to="/identificacion/ingresante">
         <SideBarIcon icon={<FaUserAlt size="40" />} />
       </Link>
-      <Link to="/mapa">
+      <Link to="/configuracion">
         <SideBarIcon icon={<FaCog size="40" />} />
       </Link>
     </div>
