@@ -14,6 +14,7 @@ import { sess } from "./config.js";
 import autenticationRoutes from "./routes/autentication.routes.js";
 import filterRoutes from "./routes/filter.routes.js";
 import getRoutes from "./routes/getdata.routes.js";
+import bddRoutes from "./database/modificar.js";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(autenticationRoutes);
 app.use(getRoutes);
 app.use(filterRoutes);
+app.use(bddRoutes);
 //app.use(express.static(path.join(__dirname, "public")));
 
 export default app;

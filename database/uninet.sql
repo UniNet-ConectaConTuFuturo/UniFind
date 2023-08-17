@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-08-2023 a las 19:56:39
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 17-08-2023 a las 03:21:32
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `carreras` (
   `id_carrera` int(11) NOT NULL,
   `nombre_carrera` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `carreras`
@@ -1444,7 +1444,7 @@ INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
 CREATE TABLE `car_uni` (
   `id_carrera` int(11) NOT NULL,
   `id_universidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `car_uni`
@@ -3178,144 +3178,144 @@ INSERT INTO `car_uni` (`id_carrera`, `id_universidad`) VALUES
 (1289, 64),
 (1290, 65),
 (1291, 65),
-(1728, 65),
-(1729, 65),
-(1730, 65),
-(1731, 65),
-(1732, 65),
-(1733, 65),
-(1734, 65),
+(1292, 65),
+(1293, 65),
+(1294, 65),
+(1295, 65),
+(1296, 65),
+(1297, 65),
+(1298, 65),
 (1219, 65),
-(1736, 65),
-(1737, 65),
-(1738, 65),
-(1739, 65),
-(1740, 65),
-(1741, 65),
-(1742, 65),
-(1743, 65),
-(1744, 65),
-(1745, 65),
-(1746, 65),
-(1747, 65),
-(1748, 65),
-(1749, 65),
-(1750, 65),
-(1751, 65),
-(1752, 65),
-(1753, 65),
-(1754, 65),
-(1755, 65),
-(1756, 65),
-(1757, 65),
-(1758, 65),
-(1759, 65),
-(1760, 65),
+(1299, 65),
+(1300, 65),
+(1301, 65),
+(1302, 65),
+(1303, 65),
+(1304, 65),
+(1305, 65),
+(1306, 65),
+(1307, 65),
+(1308, 65),
+(1309, 65),
+(1310, 65),
+(1311, 65),
+(1312, 65),
+(1313, 65),
+(1314, 65),
+(1315, 65),
+(1316, 65),
+(1317, 65),
+(1318, 65),
+(1319, 65),
+(1320, 65),
+(1321, 65),
+(1322, 65),
+(1323, 65),
 (53, 65),
 (12, 65),
-(1763, 65),
+(1324, 65),
 (920, 65),
 (6, 65),
-(1766, 65),
-(1767, 65),
+(1325, 65),
+(1326, 65),
 (783, 65),
 (324, 65),
 (756, 65),
-(1771, 65),
+(1327, 65),
 (757, 65),
-(1773, 65),
+(1328, 65),
 (11, 65),
-(1775, 65),
-(1776, 65),
-(1777, 65),
+(1329, 65),
+(1330, 65),
+(1331, 65),
 (435, 65),
-(1779, 65),
+(1332, 65),
 (376, 65),
-(1781, 65),
-(1782, 65),
-(1783, 65),
+(1333, 65),
+(1334, 65),
+(1335, 65),
 (1212, 65),
-(1785, 65),
-(1786, 65),
-(1787, 65),
+(1336, 65),
+(1337, 65),
+(1338, 65),
 (1004, 65),
-(1789, 65),
+(1339, 65),
 (263, 65),
-(1791, 65),
-(1792, 65),
-(1793, 65),
-(1794, 65),
-(1795, 65),
+(1340, 65),
+(1341, 65),
+(1342, 65),
+(1343, 65),
+(1344, 65),
 (57, 65),
-(1797, 65),
-(1798, 66),
+(1345, 65),
+(1346, 66),
 (327, 66),
 (329, 66),
 (1161, 66),
 (1278, 66),
 (944, 66),
-(1804, 66),
+(1293, 66),
 (890, 66),
-(1806, 66),
-(1807, 66),
-(1808, 66),
-(1809, 66),
-(1810, 66),
+(1347, 66),
+(1327, 66),
+(1348, 66),
+(1324, 66),
+(1349, 66),
 (409, 66),
-(1812, 66),
-(1813, 66),
+(1350, 66),
+(1300, 66),
 (317, 66),
 (159, 66),
 (261, 66),
 (792, 66),
 (986, 66),
 (874, 66),
-(1820, 66),
+(1351, 66),
 (869, 66),
-(1822, 66),
+(1352, 66),
 (866, 66),
-(1824, 66),
-(1825, 66),
+(1353, 66),
+(1354, 66),
 (1156, 67),
-(1827, 67),
-(1828, 67),
-(1829, 67),
-(1830, 67),
-(1831, 67),
-(1832, 67),
-(1833, 67),
-(1834, 67),
-(1835, 67),
-(1836, 67),
+(1355, 67),
+(1356, 67),
+(1357, 67),
+(1358, 67),
+(1359, 67),
+(1360, 67),
+(1361, 67),
+(1362, 67),
+(1363, 67),
+(1364, 67),
 (509, 67),
-(1838, 67),
+(1365, 67),
 (317, 67),
-(1840, 67),
-(1841, 67),
-(1842, 67),
-(1843, 67),
-(1844, 67),
-(1845, 67),
-(1846, 67),
-(1847, 67),
-(1848, 67),
-(1849, 67),
-(1850, 67),
-(1851, 67),
-(1852, 67),
+(1366, 67),
+(1367, 67),
+(1368, 67),
+(1369, 67),
+(1370, 67),
+(1321, 67),
+(1371, 67),
+(1372, 67),
+(1373, 67),
+(1374, 67),
+(1375, 67),
+(1376, 67),
+(1377, 67),
 (1219, 67),
-(1854, 67),
+(1378, 67),
 (1079, 67),
-(1856, 67),
-(1857, 67),
-(1858, 67),
+(1379, 67),
+(1380, 67),
+(1381, 67),
 (59, 67),
 (1035, 67),
 (792, 67),
 (120, 67),
-(1863, 67),
+(1382, 67),
 (58, 67),
-(1865, 67),
+(1383, 67),
 (93, 67),
 (425, 67),
 (375, 67),
@@ -3327,25 +3327,25 @@ INSERT INTO `car_uni` (`id_carrera`, `id_universidad`) VALUES
 (323, 67),
 (7, 67),
 (324, 67),
-(1877, 67),
-(1878, 67),
-(1879, 67),
+(1384, 67),
+(1385, 67),
+(1386, 67),
 (874, 67),
-(1881, 67),
-(1882, 67),
+(1387, 67),
+(1388, 67),
 (376, 67),
 (378, 67),
-(1885, 67),
-(1886, 67),
+(1389, 67),
+(1390, 67),
 (889, 67),
-(1888, 67),
-(1889, 67),
-(1890, 67),
+(1391, 67),
+(1392, 67),
+(1393, 67),
 (420, 67),
 (159, 67),
 (318, 67),
-(1894, 67),
-(1895, 67),
+(1394, 67),
+(1395, 67),
 (1212, 67),
 (118, 67),
 (264, 67),
@@ -3353,7 +3353,7 @@ INSERT INTO `car_uni` (`id_carrera`, `id_universidad`) VALUES
 (248, 67),
 (259, 67),
 (388, 67),
-(1903, 67),
+(1396, 67),
 (266, 67),
 (267, 67);
 
@@ -3367,7 +3367,7 @@ CREATE TABLE `favoritas` (
   `id_favorita` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_universidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3381,7 +3381,7 @@ CREATE TABLE `solicitudes` (
   `id_universidad` int(11) NOT NULL,
   `solicitud` text NOT NULL,
   `estado` enum('aceptada','rechazada','pendiente','senguda instancia') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3400,7 +3400,7 @@ CREATE TABLE `universidades` (
   `zona_universidad` varchar(255) NOT NULL,
   `correo_universidad` varchar(255) DEFAULT NULL,
   `point` point NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `universidades`
@@ -3496,7 +3496,7 @@ CREATE TABLE `usuarios` (
   `title` varchar(255) DEFAULT NULL,
   `verificado` int(11) DEFAULT NULL,
   `id_universidad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3507,7 +3507,7 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `verificationcode` (
   `user_code` int(11) NOT NULL,
   `mail_user` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas

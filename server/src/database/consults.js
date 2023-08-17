@@ -162,48 +162,25 @@ export function selectFromCarUni(select, where = 1) {
 }
 
 //Solcitudes
-export function insertSolicitud(userID,fileName,uniID){
+export function insertSolicitud(userID, fileName, uniID) {
   return new Promise((resolve, reject) => {
-    pool.query('INSERT INTO solicitudes (id_usuario,id_universidad,solicitud,estado) VALUES (?,?,?,"pendiente")',[userID,uniID,fileName],(err, data) =>{
+    pool.query(
+      'INSERT INTO solicitudes (id_usuario,id_universidad,solicitud,estado) VALUES (?,?,?,"pendiente")',
+      [userID, uniID, fileName],
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
+  });
+}
+
+//modificar manuelmente la bbd
+export function UpdateCarUni(set, where) {
+  return new Promise((resolve, reject) => {
+    pool.query(`UPDATE car_uni SET ${set} WHERE ${where}`, (err, code) => {
       if (err) reject(err);
-      resolve(data);
+      resolve(code);
     });
   });
 }
-
-//Prueba Point
-/* export function selectPoint() {
-  return new Promise(function (resolve, reject) {
-    pool.query(
-      `SELECT id_universidad, ASTEXT(point) FROM universidades`,
-      (err, data) => {
-        if (err) reject(err);
-        resolve(data);
-      }
-    );
-  });
-}
-
-export function selectPoint() {
-  return new Promise(function (resolve, reject) {
-    pool.query(
-      `SELECT id_universidad, nombre_universidad, gestion_universidad, ASTEXT(point) FROM universidades`,
-      (err, data) => {
-        if (err) reject(err);
-        resolve(data);
-      }
-    );
-  });
-}
-
-export function selectPoint() {
-  return new Promise(function (resolve, reject) {
-    pool.query(
-      `SELECT nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, zona_universidad, astext(point) FROM universidades WHERE id_universidad=${where}`,
-      (err, data) => {
-        if (err) reject(err);
-        resolve(data);
-      }
-    );
-  });
-} */
