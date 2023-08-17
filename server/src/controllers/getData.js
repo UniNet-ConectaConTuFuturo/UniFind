@@ -8,8 +8,8 @@ export async function uni(req, res) {
       "nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, web_universidad, gestion_universidad, zona_universidad, correo_universidad",
       "id_universidad = " + id_universidad
     );
-    console.log(data);
-    return res.json(data).end();
+    console.log(data[0]);
+    return res.json(data[0]).end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
