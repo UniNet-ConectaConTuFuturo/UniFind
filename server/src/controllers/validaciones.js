@@ -41,7 +41,7 @@ export function IdUniversidad(req, res, next) {
   try {
     const { id_universidad } = req.body;
     console.log(id_universidad);
-    if (!id_universidad.trim())
+    if (id_universidad === "")
       return res.json({ spanUniversity: "Completar" }).end();
     next();
   } catch (error) {
@@ -65,11 +65,13 @@ export async function EntrantCode(req, res, next) {
 export async function RectorCode(req, res, next) {
   try {
     const { id_universidad, code } = req.body;
-    const mail_universidad = await consult.selectFromUniversidades(
-      "correo_universidad",
-      "id_universidad" + " = " + "'" + id_universidad + "'"
-    );
-    const wrongCode = await codeValidation(mail_universidad, code, req);
+    const { correo_universidad } = (
+      await consult.selectFromUniversidades(
+        "correo_universidad",
+        "id_universidad" + " = " + "'" + id_universidad + "'"
+      )
+    )[0];
+    const wrongCode = await codeValidation(correo_universidad, code, req);
     if (wrongCode) return res.json(wrongCode).end();
 
     return next();

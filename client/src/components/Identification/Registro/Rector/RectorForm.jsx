@@ -57,6 +57,7 @@ function RectorForm({ className }) {
       console.error(error);
     }
   };
+  const [labelSelectClass, setLabelSelectClass] = useState("");
   return (
     <div className={className + " " + "box"} role="Form">
       <div></div>
@@ -76,7 +77,7 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanEmail}</span>
-          <label htmlFor="correo">Correo</label>
+          <label htmlFor="mail_user">Correo</label>
         </div>
         <div className="inputbox ml-32">
           <input
@@ -90,7 +91,7 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanName}</span>
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="name_user">Nombre</label>
         </div>
         <div className="inputbox ml-24">
           <input
@@ -104,7 +105,7 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanPassword}</span>
-          <label htmlFor="contrasena">Contraseña</label>
+          <label htmlFor="password_user">Contraseña</label>
         </div>
         <div className="inputbox ml-16">
           <input
@@ -132,7 +133,7 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanDate}</span>
-          <label htmlFor="nacimiento">Fecha de Nacimiento</label>
+          <label htmlFor="date_user">Fecha de Nacimiento</label>
         </div>
         <div className="inputbox ml-0">
           <input
@@ -146,7 +147,7 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanDirection}</span>
-          <label htmlFor="direccion">Dirección</label>
+          <label htmlFor="direction_user">Dirección</label>
         </div>
         <div className="inputbox -ml-8">
           <input
@@ -160,35 +161,36 @@ function RectorForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanTel}</span>
-          <label htmlFor="telefono">Teléfono</label>
+          <label htmlFor="tel_user">Teléfono</label>
         </div>
         <div className="inputbox -ml-16">
           <AsyncSelect
-          className="text-black bg-black"
+            className=""
+            classNamePrefix="border-0 bg-transparent text-white "
             name="id_universidad"
+            inputId="id_universidad"
+            placeholder=""
             cacheOptions
             defaultOptions
-            onChange={(option) =>
-              handleChange({
-                target: {
-                  name: "id_universidad",
-                  value: option ? option.value : "",
-                },
-              })
-            }
-            onBlur={(option) =>
-              handleBlur({
-                target: {
-                  name: "id_universidad",
-                  value: option ? option.value : "",
-                },
-              })
-            }
+            onChange={(option) => {
+              const target = {
+                name: "id_universidad",
+                value: option ? option.value : "",
+              };
+              handleChange({ target });
+              handleBlur({ target });
+            }}
+            onFocus={() => setLabelSelectClass("force-input-focus")}
+            onBlur={() => {
+              if (form.id_universidad === "") setLabelSelectClass("");
+            }}
             loadOptions={asyncLoadOptions}
             isLoading={isLoading}
           />
-          <span>{span.spanUniversity}</span>
-          <label htmlFor="id_universidad">Universidad</label>
+          <span className={labelSelectClass}>{span.spanUniversity}</span>
+          <label htmlFor="id_universidad" className={labelSelectClass}>
+            Universidad
+          </label>
         </div>
 
         <input

@@ -42,12 +42,14 @@ h2 {
   color: white;
 }
 .inputbox input:focus ~ label,
-.inputbox input:not(:placeholder-shown) ~ label {
+.inputbox input:not(:placeholder-shown) ~ label,
+label.force-input-focus {
   top: -20px;
   right: 0;
   color: rgb(202, 202, 202);
   font-size: 12px;
 }
+
 .uni {
   margin-top: 10px;
 }
@@ -62,7 +64,8 @@ h2 {
   color: white;
 }
 .inputbox input:focus ~ span,
-.inputbox input:not(:placeholder-shown) ~ span {
+.inputbox input:not(:placeholder-shown) ~ span,
+span.force-input-focus {
   top: -20px;
   left: 0;
   color: rgb(202, 202, 202);

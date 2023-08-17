@@ -14,7 +14,7 @@ function RectorCode({ className }) {
   const sendMail = async (e) => {
     try {
       e.preventDefault();
-      const data = await post("/entrant/first-step", form);
+      const data = await post("/rector/first-step", form);
       if (data.success) {
         setCode("");
         setSpanCode("");
@@ -69,12 +69,13 @@ function RectorCode({ className }) {
               className="typebox"
               type="number"
               name="code"
+              id="code"
               value={code}
               disabled={disabled}
               onChange={handleChange}
             />
             <span>{spanCode}</span>
-            <label htmlFor="">Ingresar Código</label>
+            <label htmlFor="code">Ingresar Código</label>
           </div>
           <input
             className="boton"

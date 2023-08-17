@@ -1,6 +1,4 @@
-
 function AccountSettings() {
-   
   return (
     <div className="d-flex flex-column flex-lg-row h-lg-full">
       <div className="py-6  bg-dark">
@@ -19,7 +17,7 @@ function AccountSettings() {
                         >
                           <img
                             alt="..."
-                            src="https://images.unsplash.com/photo-1579463148228-138296ac3b98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=htmlFormat&fit=facearea&facepad=3&w=256&h=256&q=80?url"
+                            src="https://images.unsplash.com/photo-1579463148228-138296ac3b98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80?url"
                           />
                         </a>
                         <div className="ms-4">
@@ -40,7 +38,7 @@ function AccountSettings() {
                   </div>
                 </div>
               </div>
-              {/* htmlForm */}
+              {/* form */}
               <div className="mb-5">
                 <h5 className="mb-0 text-success">Información de Contacto</h5>
               </div>
@@ -48,24 +46,24 @@ function AccountSettings() {
                 <div className="row mb-5">
                   <div className="col-md-6">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="first_name">
+                      <label className="form-label" htmlFor="first_name">
                         Nombre
                       </label>
                       <input
                         type="text"
-                        className="htmlForm-control"
+                        className="form-control"
                         id="first_name"
                       />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="last_name">
+                      <label className="form-label" htmlFor="last_name">
                         Apellido
                       </label>
                       <input
                         type="text"
-                        className="htmlForm-control"
+                        className="form-control"
                         id="last_name"
                       />
                     </div>
@@ -74,51 +72,51 @@ function AccountSettings() {
                 <div className="row g-5">
                   <div className="col-md-6">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="email">
+                      <label className="form-label" htmlFor="email">
                         Email
                       </label>
-                      <input type="email" className="htmlForm-control" id="email" />
+                      <input type="email" className="form-control" id="email" />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="phone_number">
+                      <label className="form-label" htmlFor="phone_number">
                         Número de Teléfono
                       </label>
                       <input
                         type="tel"
-                        className="htmlForm-control"
+                        className="form-control"
                         id="phone_number"
                       />
                     </div>
                   </div>
                   <div className="col-12">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="address">
+                      <label className="form-label" htmlFor="address">
                         Dirección
                       </label>
                       <input
                         type="text"
-                        className="htmlForm-control"
+                        className="form-control"
                         id="address"
                       />
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="city">
+                      <label className="form-label" htmlFor="city">
                         Ciudad
                       </label>
-                      <input type="text" className="htmlForm-control" id="city" />
+                      <input type="text" className="form-control" id="city" />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="country">
+                      <label className="form-label" htmlFor="country">
                         Zona
                       </label>
                       <select
-                        className="htmlForm-select"
+                        className="form-select"
                         id="country"
                         placeholder="Your email"
                         aria-label="Default select example"
@@ -134,14 +132,14 @@ function AccountSettings() {
                   </div>
                   <div className="col-md-2">
                     <div className="">
-                      <label className="htmlForm-label" htmlFor="zip">
+                      <label className="form-label" htmlFor="zip">
                         ZIP
                       </label>
-                      <input type="tel" className="htmlForm-control" id="zip" />
+                      <input type="tel" className="form-control" id="zip" />
                     </div>
                   </div>
                   <div className="col-12">
-                    <div className="htmlForm-check"></div>
+                    <div className="form-check"></div>
                   </div>
                 </div>
                 <div className="text-end">
@@ -162,8 +160,8 @@ function AccountSettings() {
                     <div>
                       <h5 className="text-danger mb-2">Desactivar cuenta</h5>
                       <p className="text-sm text-muted">
-                        Considera que esto no es cerrar sesión, una vez borrada la cuenta no hay vuelta atrás.
-                        Se certero.
+                        Considera que esto no es cerrar sesión, una vez borrada
+                        la cuenta no hay vuelta atrás. Se certero.
                       </p>
                     </div>
                     <div className="ms-auto">
@@ -182,4 +180,4 @@ function AccountSettings() {
   );
 }
 
-export default AccountSettings
+export default AccountSettings;

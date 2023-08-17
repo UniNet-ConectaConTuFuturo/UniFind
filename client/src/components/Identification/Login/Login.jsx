@@ -64,12 +64,12 @@ function Login({ className }) {
               /* onBlur={handleBlur} */
             />
             <span>{span.spanEmail}</span>
-            <label htmlFor="correo">Correo</label>
+            <label htmlFor="mail_user">Correo</label>
           </div>
           <div className="inputbox ml-32">
             <input
               className="typebox"
-              type="      "
+              type="password"
               name="password_user"
               id="password_user"
               placeholder=" "
@@ -78,7 +78,7 @@ function Login({ className }) {
               /* onBlur={handleBlur} */
             />
             <span>{span.spanPassword}</span>
-            <label htmlFor="contrasena">Contraseña</label>
+            <label htmlFor="password_user">Contraseña</label>
           </div>
           <input
             className="boton ml-32 hover:bg-white"

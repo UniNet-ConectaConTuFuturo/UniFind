@@ -61,7 +61,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanEmail}</span>
-          <label htmlFor="correo">Correo</label>
+          <label htmlFor="mail_user">Correo</label>
         </div>
         <div className="inputbox ml-32">
           <input
@@ -75,7 +75,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanName}</span>
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="name_user">Nombre</label>
         </div>
         <div className="inputbox ml-24">
           <input
@@ -89,7 +89,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanPassword}</span>
-          <label htmlFor="contrasena">Contraseña</label>
+          <label htmlFor="password_user">Contraseña</label>
         </div>
         <div className="inputbox ml-16">
           <input
@@ -117,7 +117,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanDate}</span>
-          <label htmlFor="nacimiento">Fecha de Nacimiento</label>
+          <label htmlFor="date_user">Fecha de Nacimiento</label>
         </div>
         <div className="inputbox ml-0">
           <input
@@ -131,7 +131,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanDirection}</span>
-          <label htmlFor="direccion">Dirección</label>
+          <label htmlFor="direction_user">Dirección</label>
         </div>
         <div className="inputbox -ml-8">
           <input
@@ -145,7 +145,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanTel}</span>
-          <label htmlFor="telefono">Teléfono</label>
+          <label htmlFor="tel_user">Teléfono</label>
         </div>
         <div className="inputbox -ml-16">
           <input
@@ -159,7 +159,7 @@ function EntrantForm({ className }) {
             onBlur={handleBlur}
           />
           <span>{span.spanTitle}</span>
-          <label htmlFor="titulo">Título Secundario</label>
+          <label htmlFor="title">Título Secundario</label>
         </div>
 
         <input className="boton -ml-24" type="submit" name="boton" id="boton" />

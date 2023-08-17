@@ -37,8 +37,7 @@ function DisplayMarkers() {
       }
     })();
   }, [setMarkers, carreras, names, gestion]);
-
-
+  function handleFavorito() {}
   return (
     <LayerGroup>
       {displayMarkers &&
@@ -46,6 +45,13 @@ function DisplayMarkers() {
           return (
             <Marker key={u.id_universidad} position={[u.Point.x, u.Point.y]}>
               <Popup>
+                <button
+                  value={u.id_universidad}
+                  type="button"
+                  onClick={({ target }) => setIdUniToShowInfo(target.value)}
+                >
+                  Ver Más...
+                </button>
                 <strong>{u.nombre_universidad}</strong>
                 <br />
                 <a href={u.maps_universidad} target="_blank" rel="noreferrer">
@@ -56,7 +62,7 @@ function DisplayMarkers() {
                 <button
                   value={u.id_universidad}
                   type="button"
-                  onClick={({target})=>setIdUniToShowInfo(target.value)}
+                  onClick={({ target }) => setIdUniToShowInfo(target.value)}
                 >
                   Ver Más...
                 </button>

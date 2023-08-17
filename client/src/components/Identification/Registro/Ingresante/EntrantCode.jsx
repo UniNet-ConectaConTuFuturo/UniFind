@@ -69,12 +69,13 @@ function EntrantCode({ className }) {
               className="typebox"
               type="number"
               name="code"
+              id="code"
               value={code}
               disabled={disabled}
               onChange={handleChange}
             />
             <span>{spanCode}</span>
-            <label htmlFor="">Ingresar Código</label>
+            <label htmlFor="code">Ingresar Código</label>
           </div>
           <input
             className="boton"

@@ -1,7 +1,8 @@
 import { Router } from "express";
 
 //Import Controllers
-import * as registro from "../controllers/register.js";
+import * as entrant from "../controllers/registerEntrant.js";
+import * as rector from "../controllers/registerRector.js";
 import * as login from "../controllers/login.js";
 import * as validate from "../controllers/validaciones.js";
 import { whoIs } from "../middlewares/authentication.js";
@@ -18,13 +19,13 @@ router.post("/api/validate-registro-ingresante", [
 router.post("/api/entrant/first-step", [
   validate.User,
   validate.Title,
-  registro.EntrantFirstStep,
+  entrant.EntrantFirstStep,
 ]);
 router.post("/api/entrant/second-step", [
   validate.User,
   validate.Title,
   validate.EntrantCode,
-  registro.EntrantSecondStep,
+  entrant.EntrantSecondStep,
 ]);
 
 //Rutas registro rector
@@ -37,13 +38,13 @@ router.post("/api/validate-registro-rector", [
 router.post("/api/rector/first-step", [
   validate.User,
   validate.IdUniversidad,
-  registro.RectorFirstStep,
+  rector.RectorFirstStep,
 ]);
 router.post("/api/rector/second-step", [
   validate.User,
   validate.IdUniversidad,
   validate.RectorCode,
-  registro.RectorSecondStep,
+  rector.RectorSecondStep,
 ]);
 
 //Rutas Ingreso

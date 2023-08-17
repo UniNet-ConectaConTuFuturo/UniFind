@@ -24,16 +24,16 @@ export async function codeValidation(mail, code, req) {
     const consulta = (await consult.selectFromVerCode(mail))[0];
     if (!consulta) {
       //El código no se encuentra en la Base de datos
-      return { error: "Error: Vuelve a solicitar un código" };
+      return { error: "Error: El código no se encuentra en la Base de datos" };
     }
     if (consulta.length > 1) {
       //Más de 1 código en la base de datos
       await consult.DeleteVerCode(mail);
-      return { error: "Error: Vuelve a solicitar un código" };
+      return { error: "Error: Más de 1 código en la base de datos" };
     }
     //Verificar intentos
     if (req.session.attempts === undefined)
-      return { error: "Error: Vuelves a solicitar un código" };
+      return { error: "Error: Vuelve a solicitar un código" };
     if (req.session.attempts >= 3)
       return {
         error: "Demasiados intentos: Vuelve a solicitar un código",
