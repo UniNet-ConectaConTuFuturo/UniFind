@@ -1,4 +1,4 @@
-import { useMarkers } from "../../../../context/Markers/useMarkers";
+import { useMarkers } from "../../../../hooks/useMarkers";
 import Select from "react-select";
 
 const gestionOptions = [

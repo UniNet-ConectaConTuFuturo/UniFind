@@ -1,5 +1,5 @@
 import { LayerGroup, Marker, useMapEvent } from "react-leaflet";
-import { useMarkers } from "../../context/Markers/useMarkers";
+import { useMarkers } from "../../hooks/useMarkers";
 import { useEffect } from "react";
 
 import * as api from "../../api/api";
@@ -37,6 +37,7 @@ function DisplayMarkers() {
       }
     })();
   }, [setMarkers, carreras, names, gestion]);
+
   return (
     <LayerGroup>
       {displayMarkers &&

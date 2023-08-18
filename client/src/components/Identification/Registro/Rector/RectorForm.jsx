@@ -2,8 +2,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { post } from "../../../../api/api";
 import "../../form.css";
-import { useRegistro } from "../../../../context/Registro/useRegistro";
-import { useIdentification } from "../../../../context/Identification/useIdentification";
+import { useRegistro } from "../../../../hooks/useRegistro";
+import { useIdentification } from "../../../../hooks/useIdentification";
 import AsyncSelect from "react-select/async";
 
 function RectorForm({ className }) {

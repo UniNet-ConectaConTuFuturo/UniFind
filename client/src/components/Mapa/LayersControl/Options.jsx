@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useMap } from "react-leaflet";
-import { useMarkers } from "../../../context/Markers/useMarkers";
+import { useMarkers } from "../../../hooks/useMarkers";
 
 function Options() {
   const { distanciaMarcadores, setDisplayMarkers, markers } = useMarkers();

@@ -2,14 +2,14 @@ import "../../form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { post } from "../../../../api/api";
-import { useRegistro } from "../../../../context/Registro/useRegistro";
+import { useRegistro } from "../../../../hooks/useRegistro";
+import { useGlobal } from "../../../../hooks/useGlobal";
 
 function RectorCode({ className }) {
   const { form, setStep } = useRegistro();
   const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
-
-  const handleClick = () => setStep(1);
+  const { setToken } = useGlobal();
 
   const sendMail = async (e) => {
     try {
@@ -37,7 +37,7 @@ function RectorCode({ className }) {
       });
       if (data.token) {
         setSpanCode("");
-        localStorage.setItem("TokenUniNet", data.token);
+        setToken(data.token);
         setStep(3);
       } else {
         setSpanCode(data.error);
@@ -54,7 +54,7 @@ function RectorCode({ className }) {
           className="absolute top-8 left-8"
           type="button"
           id="volver"
-          onClick={handleClick}
+          onClick={() => setStep(1)}
         >
           VOLVER
         </button>

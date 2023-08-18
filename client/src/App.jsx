@@ -1,18 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import getAuth from "./api/authentication";
 import { NotAuthenticated } from "./middlewares/authentication";
-import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import Ingresante from "./pages/singUp-singIn/Ingresante";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
 import Rector from "./pages/singUp-singIn/Rector";
 import Mapa from "./components/Mapa/Mapa";
 import AccountSettings from "./pages/AccountSettings";
+import GlobalProvider from "./context/Global/GlobalProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Layout,
+    Component: GlobalProvider,
     children: [
       { index: true, Component: Home },
       {

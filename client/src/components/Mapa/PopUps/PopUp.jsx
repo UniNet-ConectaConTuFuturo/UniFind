@@ -1,8 +1,9 @@
 import { Popup } from "react-leaflet";
-import { useMarkers } from "../../../context/Markers/useMarkers";
+import { useMarkers } from "../../../hooks/useMarkers";
 import { post } from "../../../api/api";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import BotonFavorito from "./BotonFavorito";
 
 function PopUp({ id_universidad }) {
   const { setIdUniToShowInfo } = useMarkers();
@@ -12,16 +13,11 @@ function PopUp({ id_universidad }) {
       setUniversidad(await post("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
+
   /* function handleFavorito() {} */
   return (
     <Popup>
-      <button
-        value={id_universidad}
-        type="button"
-        onClick={({ target }) => setIdUniToShowInfo(target.value)}
-      >
-        guardar
-      </button>
+      <BotonFavorito id_universidad={id_universidad} />
       <strong>{universidad.nombre_universidad}</strong>
       <br />
       <a href={universidad.maps_universidad} target="_blank" rel="noreferrer">
@@ -29,11 +25,7 @@ function PopUp({ id_universidad }) {
         , {universidad.zona_universidad}
       </a>
       <br />
-      <button
-        value={id_universidad}
-        type="button"
-        onClick={({ target }) => setIdUniToShowInfo(target.value)}
-      >
+      <button type="button" onClick={() => setIdUniToShowInfo(id_universidad)}>
         Ver Más...
       </button>
     </Popup>

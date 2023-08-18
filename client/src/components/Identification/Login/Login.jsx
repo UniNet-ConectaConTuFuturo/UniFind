@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../form.css";
 import { post } from "../../../api/api";
 import PropTypes from "prop-types";
-import { useIdentification } from "../../../context/Identification/useIdentification";
+import { useIdentification } from "../../../hooks/useIdentification";
 
 function Login({ className }) {
   const { checkboxRef, handleCheckboxChange } = useIdentification();

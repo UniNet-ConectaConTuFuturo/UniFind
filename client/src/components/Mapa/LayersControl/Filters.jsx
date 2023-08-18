@@ -1,6 +1,6 @@
 // Back
 import { useEffect, useRef, useState } from "react";
-import { useMarkers } from "../../../context/Markers/useMarkers";
+import { useMarkers } from "../../../hooks/useMarkers";
 
 // Components
 import Carrera from "./Filters/Carrera";

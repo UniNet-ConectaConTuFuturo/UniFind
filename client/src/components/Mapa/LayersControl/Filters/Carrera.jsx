@@ -1,4 +1,4 @@
-import { useMarkers } from "../../../../context/Markers/useMarkers";
+import { useMarkers } from "../../../../hooks/useMarkers";
 import { post } from "../../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";

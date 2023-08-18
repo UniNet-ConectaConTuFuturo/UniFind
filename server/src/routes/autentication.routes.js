@@ -1,10 +1,10 @@
 import { Router } from "express";
 
 //Import Controllers
-import * as entrant from "../controllers/registerEntrant.js";
-import * as rector from "../controllers/registerRector.js";
-import * as login from "../controllers/login.js";
-import * as validate from "../controllers/validaciones.js";
+import * as entrant from "../controllers/accounts/registerEntrant.js";
+import * as rector from "../controllers/accounts/registerRector.js";
+import * as login from "../controllers/accounts/login.js";
+import * as validate from "../controllers/accounts/validaciones.js";
 import { whoIs } from "../middlewares/authentication.js";
 import end from "../controllers/end.js";
 

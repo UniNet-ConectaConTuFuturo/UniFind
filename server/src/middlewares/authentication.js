@@ -7,14 +7,11 @@ export const whoIs = async (req, res) => {
     //const token = req.headers.authorization.split(" ")[1];
     const { token } = req.body;
 
-    const decoded = jwt.verify(token, jwtConfig.SECRET);
+    const { id } = jwt.verify(token, jwtConfig.SECRET);
 
     //Consultar por decodedToken.id en la Tabla de Ingresantes
-    const user_data = await consult.selectFromUsuarios(
-      "*",
-      "id_usuario",
-      decoded.id[0].id_usuario
-    );
+    const user_data = await consult.selectFromUsuarios("*", "id_usuario", id);
+
     if (user_data.length === 0) {
       res.statusMessage = "La cuenta fue borrada de la base de datos";
       return res.json({ user: "noAuthenticated" }).end();

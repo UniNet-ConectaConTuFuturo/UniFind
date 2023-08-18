@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMarkers } from "../../context/Markers/useMarkers";
+import { useMarkers } from "../../hooks/useMarkers";
 import { post } from "../../api/api";
 import { useState } from "react";
 function Info() {

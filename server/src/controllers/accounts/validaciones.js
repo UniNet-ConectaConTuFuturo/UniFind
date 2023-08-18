@@ -1,9 +1,9 @@
 import {
   simpleDataValidation,
   mailValidation,
-} from "../libs/SimpleDataValidation.js";
-import * as consult from "../database/consults.js";
-import { codeValidation } from "../libs/CodeFunctions.js";
+} from "../../libs/SimpleDataValidation.js";
+import * as consult from "../../database/consults.js";
+import { codeValidation } from "../../libs/CodeFunctions.js";
 export async function User(req, res, next) {
   try {
     const data = req.body;

@@ -1,9 +1,9 @@
-import * as consult from "../database/consults.js";
-import sendMail from "../libs/sendMail.js";
-import * as math from "../libs/math_functions.js";
+import * as consult from "../../database/consults.js";
+import sendMail from "../../libs/sendMail.js";
+import * as math from "../../libs/math_functions.js";
 import jwt from "jsonwebtoken";
-import { jwtConfig } from "../config.js";
-import { InsertOrUpdateCode } from "../libs/CodeFunctions.js";
+import { jwtConfig } from "../../config.js";
+import { InsertOrUpdateCode } from "../../libs/CodeFunctions.js";
 
 export async function RectorFirstStep(req, res) {
   try {
@@ -54,10 +54,12 @@ export async function RectorSecondStep(req, res) {
 
     //crear registro del Rector y devolver el id;
     await consult.setRector(data);
-    const user_id = await consult.selectFromUsuarios(
-      "id_usuario",
-      "mail_user" + " = " + "'" + data.mail_user + "'"
-    );
+    const { user_id } = (
+      await consult.selectFromUsuarios(
+        "id_usuario",
+        "mail_user" + " = " + "'" + data.mail_user + "'"
+      )
+    )[0];
 
     //Guardar id en Token
     const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);

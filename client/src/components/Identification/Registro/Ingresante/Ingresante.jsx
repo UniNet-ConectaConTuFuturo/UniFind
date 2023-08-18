@@ -1,13 +1,13 @@
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import EntrantForm from "./EntrantForm";
 import EntrantCode from "./EntrantCode";
 import PropTypes from "prop-types";
-import { useRegistro } from "../../../../context/Registro/useRegistro";
+import { useRegistro } from "../../../../hooks/useRegistro";
 import "../registro.css";
 
 function Registro({ className }) {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const { step } = useRegistro();
   const [formVisible, setFormVisible] = useState(true);
   const [codeVisible, setCodeVisible] = useState(false);
@@ -29,6 +29,8 @@ function Registro({ className }) {
         setCodeVisible(true);
         setTimeout(() => setClassCode(""), "100");
       }, "700");
+    } else if (step === 3) {
+      navigate("/");
     }
   }, [step]);
   return (

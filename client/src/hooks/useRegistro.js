@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RegistroContext } from "./RegistroContext";
+import { RegistroContext } from "../context/Registro/RegistroContext";
 export function useRegistro() {
   const context = useContext(RegistroContext);
   if (!context)

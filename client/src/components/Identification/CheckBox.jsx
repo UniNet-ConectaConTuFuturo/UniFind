@@ -1,5 +1,5 @@
 import "./checkboxLogInUp.css";
-import { useIdentification } from "../../context/Identification/useIdentification";
+import { useIdentification } from "../../hooks/useIdentification";
 function CheckBox() {
   const { checkboxRef, handleCheckboxChange } = useIdentification();
   return (

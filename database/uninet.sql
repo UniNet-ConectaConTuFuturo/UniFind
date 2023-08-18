@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2023 a las 03:21:32
+-- Tiempo de generación: 18-08-2023 a las 05:49:23
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -3355,7 +3355,9 @@ INSERT INTO `car_uni` (`id_carrera`, `id_universidad`) VALUES
 (388, 67),
 (1396, 67),
 (266, 67),
-(267, 67);
+(267, 67),
+(756, 63),
+(7, 63);
 
 -- --------------------------------------------------------
 
@@ -3364,7 +3366,6 @@ INSERT INTO `car_uni` (`id_carrera`, `id_universidad`) VALUES
 --
 
 CREATE TABLE `favoritas` (
-  `id_favorita` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_universidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -3529,7 +3530,6 @@ ALTER TABLE `car_uni`
 -- Indices de la tabla `favoritas`
 --
 ALTER TABLE `favoritas`
-  ADD PRIMARY KEY (`id_favorita`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_universidad` (`id_universidad`);
 
@@ -3565,12 +3565,6 @@ ALTER TABLE `carreras`
   MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2048;
 
 --
--- AUTO_INCREMENT de la tabla `favoritas`
---
-ALTER TABLE `favoritas`
-  MODIFY `id_favorita` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
@@ -3586,7 +3580,7 @@ ALTER TABLE `universidades`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
