@@ -9,11 +9,9 @@ function Info() {
   useEffect(() => {
     (async () => {
       if (idUniToShowInfo === 0) return;
-      console.log(idUniToShowInfo);
       setUniversidad(
         await post("/get/uni", { id_universidad: idUniToShowInfo })
       );
-      console.log(idUniToShowInfo);
       setCarreras(
         await post("/get/carreras", {
           id_universidad: idUniToShowInfo,

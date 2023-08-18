@@ -113,7 +113,7 @@ export async function getUniPoints(req, res) {
     console.log(where);
 
     const data = await consult.selectFromUniversidades(
-      "id_universidad, ST_GeomFromText(ASTEXT(point)) as Point, nombre_universidad, maps_universidad, direccion_universidad, localidad_universidad, zona_universidad",
+      "id_universidad, ST_GeomFromText(ASTEXT(point)) as Point",
       where === "" ? 1 : where
     );
     return res.json(data).end();
