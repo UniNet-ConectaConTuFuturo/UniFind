@@ -33,7 +33,6 @@ function EntrantForm({ className }) {
       e.preventDefault();
       const data = await post("/entrant/first-step", form);
       if (data.success) {
-        console.log("Etapa 2");
         setStep(2);
       } else {
         setSpan({ ...spanVacio, ...data });
