@@ -11,7 +11,7 @@ export async function post(url, param) {
       body: JSON.stringify(param),
     };
     const response = await fetch("/api" + url, params);
-    const json = response.json();
+    const json = await response.json();
     return json;
   } catch (error) {
     console.log(error);

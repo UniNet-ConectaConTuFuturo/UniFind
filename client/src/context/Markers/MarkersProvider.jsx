@@ -1,14 +1,19 @@
 import { MarkersContext } from "./MarkersContext";
-import { useState, useRef } from "react";
+import { useReducer, useState } from "react";
 import PropTypes from "prop-types";
 
 function MarkersProvider({ children }) {
   /* Mark Options */
-  const distanciaMarcadores = useRef(6.5);
+  const [distanciaMarcadores, setDistanciaMarcadores] = useState(6.5);
   const [displayMarkers, setDisplayMarkers] = useState(true);
   const [markers, setMarkers] = useState([]);
 
   /* Mark filters */
+  const [actualizarBusqueda, dispatchBusqueda] = useReducer(
+    (state) => state + 1,
+    0
+  );
+  const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
   const [carreras, setCarreras] = useState([]);
   const [names, setNames] = useState([]);
   const [gestion, setGestion] = useState(null);
@@ -20,10 +25,15 @@ function MarkersProvider({ children }) {
     <MarkersContext.Provider
       value={{
         distanciaMarcadores,
+        setDistanciaMarcadores,
         displayMarkers,
         markers,
         setMarkers,
         setDisplayMarkers,
+        actualizarBusqueda,
+        dispatchBusqueda,
+        filtrarFavoritas,
+        setFiltrarFavoritas,
         carreras,
         setCarreras,
         names,

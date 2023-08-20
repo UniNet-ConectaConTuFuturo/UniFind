@@ -1,42 +1,60 @@
-import { LayerGroup, Marker, useMapEvent } from "react-leaflet";
+import { LayerGroup, Marker, useMap, useMapEvent } from "react-leaflet";
 import { useMarkers } from "../../hooks/useMarkers";
 import { useEffect } from "react";
 
 import * as api from "../../api/api";
 import PopUp from "./PopUps/PopUp";
+import { useGlobal } from "../../hooks/useGlobal";
 
 function DisplayMarkers() {
+  const { token } = useGlobal();
   const {
     distanciaMarcadores,
     displayMarkers,
     setDisplayMarkers,
     markers,
     setMarkers,
+    actualizarBusqueda,
+    filtrarFavoritas,
     carreras,
     names,
     gestion,
   } = useMarkers();
   useMapEvent("zoom", ({ target }) => {
-    if (target._zoom >= distanciaMarcadores.current) {
+    if (target._zoom >= distanciaMarcadores) {
       setDisplayMarkers(true);
     } else {
       setDisplayMarkers(false);
     }
   });
+  const map = useMap();
+  useEffect(() => {
+    if (map.getZoom() >= distanciaMarcadores) setDisplayMarkers(true);
+    else setDisplayMarkers(false);
+  }, [distanciaMarcadores, setDisplayMarkers, map]);
   useEffect(() => {
     (async () => {
       try {
         const points = await api.post("/filter", {
-          names: names,
+          token: filtrarFavoritas ? token : null,
+          names,
           gestion,
-          carreras: carreras,
+          carreras,
         });
         setMarkers(points);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [setMarkers, carreras, names, gestion]);
+  }, [
+    setMarkers,
+    actualizarBusqueda,
+    filtrarFavoritas,
+    token,
+    carreras,
+    names,
+    gestion,
+  ]);
 
   return (
     <LayerGroup>

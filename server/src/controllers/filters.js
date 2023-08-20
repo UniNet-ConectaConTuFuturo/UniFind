@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import * as consult from "../database/consults.js";
 
 export async function getNames(req, res) {
@@ -46,7 +47,14 @@ export async function getCarreras(req, res) {
   }
 }
 
-const whereNames = (names) => {
+const whereFavoritas = (id) => {
+  return (
+    "id_universidad IN (SELECT id_universidad FROM favoritas where id_usuario = " +
+    id +
+    ")"
+  );
+};
+const whereNames = (names, where) => {
   const ids = [],
     creates = [];
   names.forEach((id) =>
@@ -66,13 +74,13 @@ const whereNames = (names) => {
         );
   return whereId === "" && whereNombre === ""
     ? ""
-    : "(" + whereId + whereNombre + ")";
+    : (where.length === 0 ? "" : " AND ") + "(" + whereId + whereNombre + ")";
 };
-const whereGestion = (gestion, where = "") => {
+const whereGestion = (gestion, where) => {
   const whereG = "gestion_universidad = '" + gestion + "'";
   return gestion === null ? "" : (where.length === 0 ? "" : " AND ") + whereG;
 };
-const whereCarrera = (carreras, where = "") => {
+const whereCarrera = (carreras, where) => {
   const ids = [],
     creates = [];
   carreras.forEach((id) =>
@@ -100,23 +108,37 @@ const whereCarrera = (carreras, where = "") => {
     ? ""
     : (where.length === 0 ? "" : " AND ") + "(" + whereId + whereNombre + ")";
 };
+async function WheresAndConsult(where, names, gestion, carreras) {
+  where += whereNames(names, where);
+  where += whereGestion(gestion, where);
+  where += whereCarrera(carreras, where);
+  console.log(where);
+
+  const data = await consult.selectFromUniversidades(
+    "id_universidad, ST_GeomFromText(ASTEXT(point)) as Point",
+    where === "" ? 1 : where
+  );
+  return data;
+}
 export async function getUniPoints(req, res) {
   try {
-    const { names, gestion, carreras } = req.body;
-
-    console.log(names, carreras, gestion);
+    const { token, names, gestion, carreras } = req.body;
     let where = "";
+    if (token) {
+      jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+        if (err) throw err;
+        const { id } = decoded;
+        await consult.selectFromUsuarios("id_usuario", "id_usuario = " + id);
+        where += whereFavoritas(id);
+        const data = await WheresAndConsult(where, names, gestion, carreras);
 
-    where += whereNames(names);
-    where += whereGestion(gestion, where);
-    where += whereCarrera(carreras, where);
-    console.log(where);
-
-    const data = await consult.selectFromUniversidades(
-      "id_universidad, ST_GeomFromText(ASTEXT(point)) as Point",
-      where === "" ? 1 : where
-    );
-    return res.json(data).end();
+        return res.json(data).end();
+      });
+    } else {
+      const data = await WheresAndConsult(where, names, gestion, carreras);
+      console.log(data);
+      return res.json(data).end();
+    }
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";

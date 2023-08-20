@@ -10,7 +10,7 @@ import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 
 function Filters() {
   /* Back */
-  const { displayInfo } = useMarkers();
+  const { idUniToShowInfo } = useMarkers();
   /* Front */
   const control = useRef(null);
   const [open, setOpen] = useState(false);
@@ -20,10 +20,10 @@ function Filters() {
   }
   const [rightLeftStyle, setRightLeftStyle] = useState("left-48 right-48");
   useEffect(() => {
-    displayInfo
+    idUniToShowInfo !== 0
       ? setRightLeftStyle("left-36 right-1/3")
       : setRightLeftStyle("left-48 right-48");
-  }, [displayInfo]);
+  }, [idUniToShowInfo]);
   return (
     <div className={"leaflet-top right- " + rightLeftStyle}>
       <div

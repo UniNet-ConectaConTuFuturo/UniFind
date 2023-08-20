@@ -9,7 +9,4 @@ export const sess = {
 };
 export const jwtConfig = {
   SECRET: "jwtVolter123",
-  params: {
-    expiresIn: 60 * 60 * 24 * 365, //1 año
-  },
 };

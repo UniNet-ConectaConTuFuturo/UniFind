@@ -43,7 +43,7 @@ export async function EntrantSecondStep(req, res) {
 
     //crear registro del Entrante y devolver el id;
     await consult.setEntrant(data);
-    const { user_id } = (
+    const { id_usuario } = (
       await consult.selectFromUsuarios(
         "id_usuario",
         "mail_user" + " = " + "'" + data.mail_user + "'"
@@ -51,7 +51,11 @@ export async function EntrantSecondStep(req, res) {
     )[0];
 
     //Guardar id en Token
-    const token = jwt.sign({ id: user_id }, jwtConfig.SECRET, jwtConfig.params);
+    const token = jwt.sign(
+      { id: id_usuario },
+      process.env.SECRET,
+      JSON.parse(process.env.JWTPARAMS)
+    );
 
     //Responder Token
     return res.json({ token }).end();

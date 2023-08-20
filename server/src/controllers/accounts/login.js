@@ -6,24 +6,29 @@ import { mailValidation } from "../../libs/SimpleDataValidation.js";
 export async function SignIn(req, res) {
   try {
     const data = req.body;
-    const userData = await consult.selectFromUsuarios(
-      "*",
-      "mail_user",
-      data.mail_user
-    );
+    //Validar formato mail
     const wrongmail = mailValidation(data);
     if (wrongmail) return res.json(wrongmail).end();
+    //Verificar si existe y recibir id_usuario y password_user
+    const userData = await consult.selectFromUsuarios(
+      "id_usuario, password_user",
+      "mail_user = '" + data.mail_user + "'"
+    );
+    console.log(userData);
     if (!userData.length)
       return res
         .json({ spanEmail: "Este usuario no se encuentra registrado" })
         .end();
 
-    if (userData[0].password_user === data.password_user) {
+    const { id_usuario, password_user } = userData[0];
+
+    if (password_user === data.password_user) {
       //Guardar id en Token
+      console.log(process.env.SECRET, process.env.JWTPARAMS);
       const token = jwt.sign(
-        { id: userData.user_id },
-        jwtConfig.SECRET,
-        jwtConfig.params
+        { id: id_usuario },
+        process.env.SECRET,
+        JSON.parse(process.env.JWTPARAMS)
       );
       //Responder Token
       return res.json({ token }).end();

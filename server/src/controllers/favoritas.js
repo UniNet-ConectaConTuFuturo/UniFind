@@ -5,22 +5,24 @@ import { jwtConfig } from "../config.js";
 export async function isFavorite(req, res) {
   try {
     const { token, id_universidad } = req.body;
-    console.log(req.body);
-    const { id } = jwt.verify(token, jwtConfig.SECRET);
-    console.log(id);
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      console.log(id);
 
-    if (
-      typeof (
-        await consult.selectFromFavoritas(
-          "*",
-          "id_usuario = " + id + " AND id_universidad = " + id_universidad
-        )
-      )[0] !== "undefined"
-    ) {
-      return res.send(true).end();
-    } else {
-      return res.send(false).end();
-    }
+      if (
+        typeof (
+          await consult.selectFromFavoritas(
+            "id_usuario",
+            "id_usuario = " + id + " AND id_universidad = " + id_universidad
+          )
+        )[0] !== "undefined"
+      ) {
+        return res.json({ value: true }).end();
+      } else {
+        return res.json({ value: false }).end();
+      }
+    });
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
@@ -30,12 +32,13 @@ export async function isFavorite(req, res) {
 export async function setFavorite(req, res) {
   try {
     const { token, id_universidad } = req.body;
-    console.log(req.body);
-    const { id } = jwt.verify(token, jwtConfig.SECRET);
-    console.log(id);
-
-    await consult.insertFavorita({ id_usuario: id, id_universidad });
-    return res.status(204).end();
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      console.log(id);
+      await consult.insertFavorita({ id_usuario: id, id_universidad });
+      return res.json({ value: true }).end();
+    });
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
@@ -45,12 +48,14 @@ export async function setFavorite(req, res) {
 export async function deleteFavorite(req, res) {
   try {
     const { token, id_universidad } = req.body;
-    console.log(req.body);
-    const { id } = jwt.verify(token, jwtConfig.SECRET);
-    console.log(id);
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      console.log(id);
 
-    await consult.DeleteFavorita({ id_usuario: id, id_universidad });
-    return res.status(204).end();
+      await consult.DeleteFavorita({ id_usuario: id, id_universidad });
+      return res.json({ value: true }).end();
+    });
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";

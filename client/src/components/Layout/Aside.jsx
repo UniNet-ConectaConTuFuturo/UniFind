@@ -1,6 +1,4 @@
-import { FaHome } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
-import { FaCog } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaCog } from "react-icons/fa";
 import PropTypes from "prop-types";
 import "./aside.css";
 import React from "react";

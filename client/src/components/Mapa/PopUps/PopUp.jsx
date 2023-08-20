@@ -13,21 +13,32 @@ function PopUp({ id_universidad }) {
       setUniversidad(await post("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
-
-  /* function handleFavorito() {} */
   return (
-    <Popup>
-      <BotonFavorito id_universidad={id_universidad} />
-      <strong>{universidad.nombre_universidad}</strong>
-      <br />
-      <a href={universidad.maps_universidad} target="_blank" rel="noreferrer">
-        {universidad.direccion_universidad}, {universidad.localidad_universidad}
-        , {universidad.zona_universidad}
-      </a>
-      <br />
-      <button type="button" onClick={() => setIdUniToShowInfo(id_universidad)}>
-        Ver Más...
-      </button>
+    <Popup closeButton={false}>
+      <div className="flex justify-between gap-x-4">
+        <div
+          role="Content"
+          className="flex flex-col justify-between text-left  break-words"
+        >
+          <strong>{universidad.nombre_universidad}</strong>
+          <a
+            href={universidad.maps_universidad}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {universidad.direccion_universidad},{" "}
+            {universidad.localidad_universidad}, {universidad.zona_universidad}
+          </a>
+          <button
+            type="button"
+            onClick={() => setIdUniToShowInfo(id_universidad)}
+            className="text-left"
+          >
+            Ver Más...
+          </button>
+        </div>
+        <BotonFavorito id_universidad={id_universidad} />
+      </div>
     </Popup>
   );
 }

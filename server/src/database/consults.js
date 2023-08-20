@@ -164,10 +164,13 @@ export function selectFromCarUni(select, where = 1) {
 //Favoritas
 export function selectFromFavoritas(select, where = 1) {
   return new Promise((resolve, reject) => {
-    pool.query(`SELECT ${select} FROM carreras WHERE ${where}`, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    pool.query(
+      `SELECT ${select} FROM favoritas WHERE ${where}`,
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
   });
 }
 export function insertFavorita({ id_usuario, id_universidad }) {

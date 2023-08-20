@@ -12,6 +12,7 @@ function Mapa() {
   return (
     <MarkersProvider>
       <Filters />
+      <Options />
       <Info />
       <MapContainer
         className="h-screen w-screen z-0"
@@ -24,7 +25,6 @@ function Mapa() {
         doubleClickZoom={false}
       >
         <ControlZoom />
-        <Options />
         <Tiles />
         <DisplayGeoJSON />
         <DisplayMarkers />
