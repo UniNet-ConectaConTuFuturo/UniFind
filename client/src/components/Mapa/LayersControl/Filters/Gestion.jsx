@@ -1,4 +1,4 @@
-import { useMarkers } from "../../../../hooks/useMarkers";
+import { useMapa } from "../../../../hooks/useMapa";
 import Select from "react-select";
 
 const gestionOptions = [
@@ -6,7 +6,7 @@ const gestionOptions = [
   { value: "Privada", label: "Privada" },
 ];
 function Gestion() {
-  const { setGestion } = useMarkers();
+  const { setGestion } = useMapa();
   return (
     <section className="relative w-1/3 mt-1 mx-4">
       <h3>Filtrar por Gestion</h3>

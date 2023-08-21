@@ -1,6 +1,6 @@
 // Back
 import { useEffect, useRef, useState } from "react";
-import { useMarkers } from "../../../hooks/useMarkers";
+import { useMapa } from "../../../hooks/useMapa";
 
 // Components
 import Carrera from "./Filters/Carrera";
@@ -10,7 +10,7 @@ import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 
 function Filters() {
   /* Back */
-  const { idUniToShowInfo } = useMarkers();
+  const { idUniToShowInfo } = useMapa();
   /* Front */
   const control = useRef(null);
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ function Filters() {
       : setRightLeftStyle("left-48 right-48");
   }, [idUniToShowInfo]);
   return (
-    <div className={"leaflet-top right- " + rightLeftStyle}>
+    <div className={"leaflet-top " + rightLeftStyle}>
       <div
         className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"

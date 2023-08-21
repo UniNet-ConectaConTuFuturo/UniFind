@@ -1,5 +1,5 @@
 import { FeatureGroup, Marker, useMap, useMapEvent } from "react-leaflet";
-import { useMarkers } from "../../hooks/useMarkers";
+import { useMapa } from "../../hooks/useMapa";
 import { useEffect, useRef } from "react";
 
 import * as api from "../../api/api";
@@ -19,7 +19,7 @@ function DisplayMarkers() {
     carreras,
     names,
     gestion,
-  } = useMarkers();
+  } = useMapa();
   useMapEvent("zoom", ({ target }) => {
     if (target._zoom >= distanciaMarcadores) {
       setDisplayMarkers(true);

@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { useMarkers } from "../../../hooks/useMarkers";
+import { useMapa } from "../../../hooks/useMapa";
 
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 function Options() {
-  const { setDistanciaMarcadores, setFiltrarFavoritas } = useMarkers();
+  const { setDistanciaMarcadores, setFiltrarFavoritas } = useMapa();
   /* Front */
   const control = useRef(null);
   const control2 = useRef(null);

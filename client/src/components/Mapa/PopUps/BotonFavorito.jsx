@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import { FaIndent, FaRegStar, FaStar } from "react-icons/fa";
 import { BsXLg } from "react-icons/bs";
 import { useMap } from "react-leaflet";
-import { useMarkers } from "../../../hooks/useMarkers";
+import { useMapa } from "../../../hooks/useMapa";
 function BotonFavorito({ id_universidad }) {
   const map = useMap();
   const { token } = useGlobal();
-  const { dispatchBusqueda } = useMarkers();
+  const { dispatchBusqueda } = useMapa();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (typeof token === "string") {

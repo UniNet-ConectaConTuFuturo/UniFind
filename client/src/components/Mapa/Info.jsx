@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useMarkers } from "../../hooks/useMarkers";
+import { useMapa } from "../../hooks/useMapa";
 import { post } from "../../api/api";
 import { useState } from "react";
 function Info() {
-  const { idUniToShowInfo, setIdUniToShowInfo } = useMarkers();
+  const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();
   const [universidad, setUniversidad] = useState({});
   const [carreras, setCarreras] = useState([]);
   useEffect(() => {

@@ -1,8 +1,8 @@
-import { MarkersContext } from "./MarkersContext";
-import { useReducer, useState } from "react";
+import { MapaContext } from "./MapaContext";
+import { useReducer, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-function MarkersProvider({ children }) {
+function MapaProvider({ children }) {
   /* Mark Options */
   const [distanciaMarcadores, setDistanciaMarcadores] = useState(6.5);
   const [displayMarkers, setDisplayMarkers] = useState(true);
@@ -21,8 +21,12 @@ function MarkersProvider({ children }) {
   /* Mark Info */
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
 
+  /* Geo Info */
+  const departamentInfoEl = useRef(null);
+  const provInfoEl = useRef(null);
+
   return (
-    <MarkersContext.Provider
+    <MapaContext.Provider
       value={{
         distanciaMarcadores,
         setDistanciaMarcadores,
@@ -42,13 +46,15 @@ function MarkersProvider({ children }) {
         setGestion,
         idUniToShowInfo,
         setIdUniToShowInfo,
+        departamentInfoEl,
+        provInfoEl,
       }}
     >
       {children}
-    </MarkersContext.Provider>
+    </MapaContext.Provider>
   );
 }
-MarkersProvider.propTypes = {
+MapaProvider.propTypes = {
   children: PropTypes.any,
 };
-export default MarkersProvider;
+export default MapaProvider;

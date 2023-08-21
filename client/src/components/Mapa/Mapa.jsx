@@ -7,12 +7,14 @@ import Filters from "./LayersControl/Filters";
 import Options from "./LayersControl/Options";
 import ControlZoom from "./ControlZoom";
 import Info from "./Info";
-import MarkersProvider from "../../context/Markers/MarkersProvider";
+import MapaProvider from "../../context/Mapa/MapaProvider";
+import GeoInfo from "./geoJSON/GeoInfo";
 function Mapa() {
   return (
-    <MarkersProvider>
+    <MapaProvider>
       <Filters />
       <Options />
+      <GeoInfo />
       <Info />
       <MapContainer
         className="h-screen w-screen z-0"
@@ -29,7 +31,7 @@ function Mapa() {
         <DisplayGeoJSON />
         <DisplayMarkers />
       </MapContainer>
-    </MarkersProvider>
+    </MapaProvider>
   );
 }
 

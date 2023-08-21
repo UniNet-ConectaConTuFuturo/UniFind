@@ -1,12 +1,12 @@
 import { Popup } from "react-leaflet";
-import { useMarkers } from "../../../hooks/useMarkers";
+import { useMapa } from "../../../hooks/useMapa";
 import { post } from "../../../api/api";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import BotonFavorito from "./BotonFavorito";
 
 function PopUp({ id_universidad }) {
-  const { setIdUniToShowInfo } = useMarkers();
+  const { setIdUniToShowInfo } = useMapa();
   const [universidad, setUniversidad] = useState({});
   useEffect(() => {
     (async () => {

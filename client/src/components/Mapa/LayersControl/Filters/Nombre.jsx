@@ -1,10 +1,10 @@
-import { useMarkers } from "../../../../hooks/useMarkers";
+import { useMapa } from "../../../../hooks/useMapa";
 import { post } from "../../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 
 function Nombre() {
-  const { setNames } = useMarkers();
+  const { setNames } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
   return (
     <section className="relative w-1/3 mt-1 mx-4">

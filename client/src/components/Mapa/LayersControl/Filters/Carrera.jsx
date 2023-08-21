@@ -1,10 +1,10 @@
-import { useMarkers } from "../../../../hooks/useMarkers";
+import { useMapa } from "../../../../hooks/useMapa";
 import { post } from "../../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 
 function Carrera() {
-  const { setCarreras } = useMarkers();
+  const { setCarreras } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
 
   return (
