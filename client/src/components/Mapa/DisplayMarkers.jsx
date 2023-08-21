@@ -1,6 +1,6 @@
-import { LayerGroup, Marker, useMap, useMapEvent } from "react-leaflet";
+import { FeatureGroup, Marker, useMap, useMapEvent } from "react-leaflet";
 import { useMarkers } from "../../hooks/useMarkers";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import * as api from "../../api/api";
 import PopUp from "./PopUps/PopUp";
@@ -55,9 +55,14 @@ function DisplayMarkers() {
     names,
     gestion,
   ]);
+  const featureGroupRef = useRef(null);
+  useEffect(() => {
+    const bounds = featureGroupRef.current.getBounds();
+    if (Object.keys(bounds).length) map.flyToBounds(bounds);
+  }, [featureGroupRef, markers, map]);
 
   return (
-    <LayerGroup>
+    <FeatureGroup ref={featureGroupRef}>
       {displayMarkers &&
         markers.map((u) => {
           return (
@@ -66,7 +71,7 @@ function DisplayMarkers() {
             </Marker>
           );
         })}
-    </LayerGroup>
+    </FeatureGroup>
   );
 }
 export default DisplayMarkers;

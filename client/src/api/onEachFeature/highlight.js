@@ -19,18 +19,18 @@ function highlightFeature(e) {
     color: "#666",
     dashArray: "",
     fillOpacity: 0.7,
-    });
-    colorizar(currentLayer.feature, currentLayer)
+  });
+  colorizar(currentLayer.feature, currentLayer);
   currentLayer.bringToFront();
 }
 function resetHighlight(e, className) {
   e.target.setStyle(className);
 }
 function zoomToFeature(e, map) {
-  map.fitBounds(e.target.getBounds());
+  map.flyToBounds(e.target.getBounds());
 }
-function colorizar(feature, layer){
-  if(feature.properties && feature.properties.color){
+function colorizar(feature, layer) {
+  if (feature.properties && feature.properties.color) {
     layer.setStyle({
       weight: 5,
       color: feature.properties.color,
