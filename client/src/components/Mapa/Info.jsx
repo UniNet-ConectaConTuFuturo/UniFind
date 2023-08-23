@@ -22,26 +22,28 @@ function Info() {
   return (
     <>
       {idUniToShowInfo !== 0 && (
-        <div className="text-black flex flex-col fixed z-10 top-0 right-2 w-4/12 -mr-4 content-end h-screen m-0 bg-shape bg-no-repeat zIndex-1000">
-          <button
-            className=""
-            type="button"
-            onClick={() => setIdUniToShowInfo(0)}
-          >
-            Cerrar
-          </button>
-          <p>{universidad.nombre_universidad}</p>
-          <p>{universidad.direccion_universidad}</p>
-          <p>{universidad.maps_universidad}</p>
-          <p>{universidad.localidad_universidad}</p>
-          <p>{universidad.web_universidad}</p>
-          <p>{universidad.gestion_universidad}</p>
-          <p>{universidad.zona_universidad}</p>
-          <p>{universidad.correo_universidad}</p>
-          <h2>Grados y Pregrados</h2>
-          {carreras.map((carrera, i) => {
-            return <p key={i}>{carrera.nombre_carrera}</p>;
-          })}
+        <div className="fixed top-0 bottom-0 -right-4 w-1/3 bg-slate-950 bg-opacity-70">
+          <div className="text-white flex flex-col z-10  -mr-4 content-end m-0   ">
+            <button
+              className=""
+              type="button"
+              onClick={() => setIdUniToShowInfo(0)}
+              >
+              Cerrar
+            </button>
+            <p>{universidad.nombre_universidad}</p>
+            <p>{universidad.direccion_universidad}</p>
+            <p>{universidad.maps_universidad}</p>
+            <p>{universidad.localidad_universidad}</p>
+            <p>{universidad.web_universidad}</p>
+            <p>{universidad.gestion_universidad}</p>
+            <p>{universidad.zona_universidad}</p>
+            <p>{universidad.correo_universidad}</p>
+            <h2>Grados y Pregrados</h2>
+            {carreras.map((carrera, i) => {
+              return <p key={i}>{carrera.nombre_carrera}</p>;
+            })}
+          </div>
         </div>
       )}
     </>

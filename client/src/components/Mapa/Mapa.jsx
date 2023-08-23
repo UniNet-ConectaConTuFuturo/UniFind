@@ -12,10 +12,6 @@ import GeoInfo from "./geoJSON/GeoInfo";
 function Mapa() {
   return (
     <MapaProvider>
-      <Filters />
-      <Options />
-      <GeoInfo />
-      <Info />
       <MapContainer
         className="h-screen w-screen z-0"
         center={[-34.66, -58.5]}
@@ -31,6 +27,10 @@ function Mapa() {
         <DisplayGeoJSON />
         <DisplayMarkers />
       </MapContainer>
+<Filters />
+<Options />
+<GeoInfo />
+<Info />
     </MapaProvider>
   );
 }
