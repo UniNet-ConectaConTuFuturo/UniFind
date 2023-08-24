@@ -10,7 +10,7 @@ class SideBarIcon extends React.Component {
       <div
         className="sidebar-icon relative flex items-center justify-center 
       w-16 h-16 mt-6 mb-2 mx-auto 
-      shadow-lg bg-in_bg rounded-xl  hover:rounded-3xl transition-all duration-300 align-middle"
+      shadow-lg bg-in_bg rounded-xl  hover:rounded-3xl transition-all duration-300 align-middle z-5"
       >
         {this.props.icon}
         {/* <button type="button" onClick={() => location.href="/mapa"}></button> */}
@@ -29,19 +29,19 @@ const SideBar = () => {
       <Link to="/">
         <SideBarIcon icon={<FaHome size="40" />} />
       </Link>
-      <p className="text flex text-white pt-3">HOME</p>
+      <p className="aside-p flex text-white pt-3">HOME</p>
       </div>
       <div className="flex items-center pl-8">
       <Link to="/identificacion/ingresante">
         <SideBarIcon icon={<FaUserAlt size="40" />} />
       </Link>
-      <p className="text flex text-white pt-3">LOGIN</p>
+      <p className="aside-p flex text-white pt-3">LOGIN</p>
       </div>
       <div className="flex items-center pl-8">
       <Link to="/configuracion">
         <SideBarIcon icon={<FaCog size="40" />} />
       </Link>
-      <p className="text flex text-white pt-3">CONFIGURACIÓN</p>
+      <p className="aside-p flex text-white pt-3">CONFIGURACIÓN</p>
       </div>
       <div className="flex items-center pl-8">
       <Link to="/listainteres">
