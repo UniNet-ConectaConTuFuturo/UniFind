@@ -1,4 +1,4 @@
-import { FaHome, FaUserAlt, FaCog } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaCog, FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 import "./aside.css";
 import React from "react";
@@ -42,6 +42,12 @@ const SideBar = () => {
         <SideBarIcon icon={<FaCog size="40" />} />
       </Link>
       <p className="aside-p flex text-white pt-3">CONFIGURACIÓN</p>
+      </div>
+      <div className="flex items-center pl-8">
+      <Link to="/listainteres">
+        <SideBarIcon icon={<FaStar size="40" />} />
+      </Link>
+      <p className="text flex text-white pt-3">FAVORITOS</p>
       </div>
     </div>
   );
