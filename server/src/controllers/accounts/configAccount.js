@@ -1,16 +1,22 @@
 import { updateUser } from "../../database/consults.js";
 
-function handleFormSubmit(event) {
-  event.preventDefault();
+async function handleFormSubmit(req, res) {
+try {
+  const {firstName, lastName, email, phoneNumber, address, city, country, zip, token } = req.body;
 
-  const firstName = document.getElementById("first_name").value;
-  const lastName = document.getElementById("last_name").value;
-  const email = document.getElementById("email").value;
-  const phoneNumber = document.getElementById("phone_number").value;
-  const address = document.getElementById("address").value;
-  const city = document.getElementById("city").value;
-  const country = document.getElementById("country").value;
-  const zip = document.getElementById("zip").value;
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const data = {}
+      if (firstName.trim()) data.name_user = firstName
+      if (lastName.trim()) data.name_user = lastName
+      if (email.trim()) data.email = email
+      if (phoneNumber.trim()) data.phoneNumber = phoneNumber
+      if (address.trim()) data.address = address
+      if (city.trim()) data.city = city
+      if (country.trim()) data.country = country
+      if (zip.trim()) data.zip = zip
+
+      const { id } = decoded;
 
   const updateObj = {
     name_user: firstName,
@@ -23,11 +29,14 @@ function handleFormSubmit(event) {
     zip,
   };
 
-  updateUser("usuarios", updateObj, email)
-    .then(() => {
-      alert("Actualización exitosa!");
-    })
-    .catch((error) => {
-      console.error("Error al actualizar:", error);
-    });
+  await updateUser("usuarios", data, id)
+
+  console.log("Actualización exitosa!");
+  return res.status(200).json({ success: true }).end();
+
+})
+  } catch (error) {
+    console.error(error);
+    res.status(404).end();
+  }
 }
