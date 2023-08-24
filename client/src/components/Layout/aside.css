@@ -34,12 +34,17 @@ svg{
   left: -200px;
   transition-duration: 2s;
   transition-delay: 0.2s; */
-  user-select: none;
+  text-decoration: none;
   width: auto;
   max-width: 0%;
   white-space: nowrap;
   overflow: hidden;
   transition: max-width 1s linear;
+}
+
+.sidebar-icon{
+  width: 64px;
+  transition-duration: 1s;
 }
 
 .sidebar:hover{
@@ -52,4 +57,14 @@ svg{
   /*left: 100px;
   transition-duration: 1.5s; */
   max-width: 100%;
+}
+
+.sidebar:hover .sidebar-icon{
+  width: 250px;
+  transition-duration: 1s;
+  transition-delay: 0.1s;
+}
+
+.aside-link:hover{
+  
 }

@@ -2,10 +2,23 @@ import { useMapa } from "../../../../hooks/useMapa";
 import { post } from "../../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
+import "./filters.css";
 
 function Carrera() {
   const { setCarreras } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
+
+  /* const customStyles = {
+    menuPortal: base => ({
+      ...base,
+      fontSize: '13px'
+  }),
+    control: (base) => ({
+      ...base,
+      fontSize: '13px',
+      paddingTop: '3px',
+    }),
+  }; */
 
   return (
     <section className="relative w-1/3 mt-1 mx-4">
