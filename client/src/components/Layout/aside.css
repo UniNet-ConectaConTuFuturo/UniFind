@@ -22,3 +22,34 @@ svg{
     filter: invert(0);
     transition: 0.5s;
 }
+
+p{
+  display: flex;
+  position: absolute;
+  left: -200px;
+}
+
+.sidebar:hover{
+  width: 300px;
+  transition-duration: 1s;
+  transition-delay: 0.25s;
+  animation-name: reverse;
+}
+
+.sidebar:hover .text{
+  left: 100px;
+  transition-duration: 1s;
+}
+
+@keyframes reverse {
+  from {
+    width: 300px;
+    transition-duration: 1s;
+    transition-delay: 0.25s;
+  }
+  to {
+      width: 128px;
+      transition-duration: 1s;
+      transition-delay: 0.25s;
+  }
+}

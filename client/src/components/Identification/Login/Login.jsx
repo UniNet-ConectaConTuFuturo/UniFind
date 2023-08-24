@@ -51,6 +51,11 @@ function Login({ className }) {
   };
   return (
     <>
+    <section
+        className={
+          className + " " + "caja relative flex justify-end pr-4 items-center"
+        }
+      >
       <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
       <div className={className + " " + "box"}>
         <form onSubmit={handleSubmit}>
@@ -86,7 +91,7 @@ function Login({ className }) {
             <label htmlFor="password_user">Contraseña</label>
           </div>
           <input
-            className="boton ml-32 hover:bg-white"
+            className="boton ml-32"
             type="submit"
             name="boton"
             id="boton"
@@ -100,11 +105,12 @@ function Login({ className }) {
                 handleCheckboxChange();
               }}
             >
-              Ya tengo una cuenta
+              ¿No estás registrado? Hazlo ahora!
             </a>
           </p>
         </form>
       </div>
+      </section>
     </>
   );
 }
