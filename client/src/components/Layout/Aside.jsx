@@ -1,4 +1,4 @@
-import { FaHome, FaUserAlt, FaCog } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaCog, FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 import "./aside.css";
 import React from "react";
@@ -33,6 +33,9 @@ const SideBar = () => {
       </Link>
       <Link to="/configuracion">
         <SideBarIcon icon={<FaCog size="40" />} />
+      </Link>
+      <Link to="/listainteres">
+        <SideBarIcon icon={<FaStar size="40" />} />
       </Link>
     </div>
   );
