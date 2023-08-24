@@ -8,7 +8,7 @@ class SideBarIcon extends React.Component {
   render() {
     return (
       <div
-        className="sidebar-icon relative flex items-center justify-center 
+        className="sidebar-icon relative flex  
       w-16 h-16 mt-6 mb-2 mx-auto 
       shadow-lg bg-in_bg rounded-xl  hover:rounded-3xl transition-all duration-300 align-middle z-5"
       >
@@ -25,30 +25,30 @@ SideBarIcon.propTypes = {
 const SideBar = () => {
   return (
     <div className="sidebar flex flex-col float-right fixed z-10 top-0 left-0 content-end h-screen w-32 m-0 bg-bg-sb_bg opacity-90">
+      <Link to="/" className="aside-link">
       <div className="flex items-center pl-8">
-      <Link to="/">
-        <SideBarIcon icon={<FaHome size="40" />} />
-      </Link>
-      <p className="aside-p flex text-white pt-3 pl-3">HOME</p>
+        <SideBarIcon icon={<FaHome size="40" className="ml-3 mt-2.5" />} />
+      <p className="aside-p flex absolute ml-16 text-white pt-3 pl-3">HOME</p>
       </div>
-      <div className="flex items-center pl-8">
-      <Link to="/identificacion/ingresante">
-        <SideBarIcon icon={<FaUserAlt size="40" />} />
       </Link>
-      <p className="aside-p flex text-white pt-3 pl-3">LOGIN</p>
-      </div>
+      <Link to="/identificacion/ingresante" className="aside-link">
       <div className="flex items-center pl-8">
+        <SideBarIcon icon={<FaUserAlt size="40" className="ml-3 mt-2.5" />} />
+      <p className="aside-p flex absolute ml-16 text-white pt-3 pl-3">LOGIN</p>
+      </div>
+      </Link>
       <Link to="/listainteres">
-        <SideBarIcon icon={<FaStar size="40" />} />
-      </Link>
-      <p className="aside-p flex text-white pt-3 pl-3">FAVORITOS</p>
-      </div>
       <div className="flex items-center pl-8">
-      <Link to="/configuracion">
-        <SideBarIcon icon={<FaCog size="40" />} />
-      </Link>
-      <p className="aside-p flex text-white pt-3 pl-3">CONFIGURACIÓN</p>
+        <SideBarIcon icon={<FaStar size="40" className="ml-3 mt-2.5" />} />
+      <p className="aside-p flex absolute ml-16 text-white pt-3 pl-3">FAVORITOS</p>
       </div>
+      </Link>
+      <Link to="/configuracion">
+      <div className="flex items-center pl-8">
+        <SideBarIcon icon={<FaCog size="40" className="ml-3 mt-2.5" />} />
+      <p className="aside-p flex absolute ml-16 text-white pt-3 pl-3">CONFIGURACIÓN</p>
+      </div>
+      </Link>
     </div>
   );
 };
