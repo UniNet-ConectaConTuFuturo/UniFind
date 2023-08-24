@@ -4,7 +4,6 @@ import * as consult from "../database/consults.js";
 export async function getNames(req, res) {
   try {
     const { inputValue } = req.body;
-    console.log(inputValue);
     const data = await consult.selectFromUniversidades(
       "id_universidad, nombre_universidad",
       "nombre_universidad LIKE '%" + inputValue + "%'"
@@ -26,7 +25,6 @@ export async function getNames(req, res) {
 export async function getCarreras(req, res) {
   try {
     const { inputValue } = req.body;
-    console.log(inputValue);
     const data = await consult.selectFromCarreras(
       "id_carrera, nombre_carrera",
       "nombre_carrera LIKE '%" + inputValue + "%'"
@@ -136,7 +134,6 @@ export async function getUniPoints(req, res) {
       });
     } else {
       const data = await WheresAndConsult(where, names, gestion, carreras);
-      console.log(data);
       return res.json(data).end();
     }
   } catch (error) {
