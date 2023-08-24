@@ -23,33 +23,33 @@ svg{
     transition: 0.5s;
 }
 
-p{
-  display: flex;
+.sidebar{
+  width: 128px;
+  transition-duration: 1.5s;
+}
+
+.aside-p{
+  /* display: flex;
   position: absolute;
   left: -200px;
+  transition-duration: 2s;
+  transition-delay: 0.2s; */
+  user-select: none;
+  width: auto;
+  max-width: 0%;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: max-width 1s linear;
 }
 
 .sidebar:hover{
   width: 300px;
   transition-duration: 1s;
   transition-delay: 0.25s;
-  animation-name: reverse;
 }
 
-.sidebar:hover .text{
-  left: 100px;
-  transition-duration: 1s;
-}
-
-@keyframes reverse {
-  from {
-    width: 300px;
-    transition-duration: 1s;
-    transition-delay: 0.25s;
-  }
-  to {
-      width: 128px;
-      transition-duration: 1s;
-      transition-delay: 0.25s;
-  }
+.sidebar:hover .aside-p{
+  /*left: 100px;
+  transition-duration: 1.5s; */
+  max-width: 100%;
 }
