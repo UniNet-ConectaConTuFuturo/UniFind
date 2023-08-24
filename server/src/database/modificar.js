@@ -26,9 +26,28 @@ router.get("/agregar/carreras", async (req, res) => {
   try {
     const id_universidad = 63;
     const nombresDeCarreras = [
-      "Arquitectura",
-      "Ingenieria Mecanica",
-      "Ingenieria en Informatica",
+      "LICENCIATURA EN COMUNICACIoN SOCIAL",
+      "LICENCIATURA EN TRABAJO SOCIAL",
+      "LICENCIATURA EN RELACIONES LABORALES",
+      "LICENCIATURA EN EDUCACIoN FiSICA",
+      "LICENCIATURA EN RELACIONES PUBLICAS",
+      "TECNICATURA EN CEREMONIAL Y PROTOCOLO",
+      "TECNICATURA EN DISEÑO DE APLICACIONES MOVILES",
+      "INGENIERIA INDUSTRIAL",
+      "INGENIERIA CIVIL",
+      "TECNICATURA EN DESARROLLO WEB",
+      "LICENCIATURA EN ADMINISTRACION",
+      "CONTADOR PUBLICO",
+      "LICENCIATURA EN COMERCIO INTERNACIONAL",
+      "LICENCIATURA EN ECONOMIA",
+      "ABOGACIA",
+      "LICENCIATURA EN CIENCIA POLITICA",
+      "PROCURADOR",
+      "LICENCIATURA EN ENFERMERIA",
+      "LICENCIATURA EN NUTRICION",
+      "LICENCIATURA EN KINESIOLOGIA Y FISIATRIA",
+      "MEDICINA",
+      "TECNICATURA EN ANATOMIA PATOLOGICA",
     ];
     await nombresDeCarreras.forEach(async (nombre_carrera) => {
       let id_carrera = await consult.selectFromCarreras(
