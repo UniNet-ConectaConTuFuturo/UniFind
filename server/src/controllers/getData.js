@@ -30,3 +30,4 @@ export async function carreras(req, res) {
     res.status(404).end();
   }
 }
+
