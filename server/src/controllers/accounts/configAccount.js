@@ -5,6 +5,7 @@ try {
   const {firstName, lastName, email, phoneNumber, address, city, country, zip, token } = req.body;
 
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+
       if (err) throw err;
       const data = {}
       if (firstName.trim()) data.name_user = firstName
@@ -18,16 +19,6 @@ try {
 
       const { id } = decoded;
 
-  const updateObj = {
-    name_user: firstName,
-    last_name: lastName,
-    email,
-    tel_user: phoneNumber,
-    direction_user: address,
-    city,
-    country,
-    zip,
-  };
 
   await updateUser("usuarios", data, id)
 
@@ -40,3 +31,4 @@ try {
     res.status(404).end();
   }
 }
+

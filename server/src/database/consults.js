@@ -133,7 +133,7 @@ export function DeleteVerCode(mail_user) {
 export function updateUser(table_name, update, mail_user) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE ${table_name} SET ${update} WHERE mail_user = ?`,
+      `UPDATE ${table_name} SET ${update} WHERE id_usuario = ?`,
       [mail_user],
       (err, data) => {
         if (err) reject(err);
