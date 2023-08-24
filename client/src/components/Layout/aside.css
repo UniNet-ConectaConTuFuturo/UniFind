@@ -29,12 +29,17 @@ svg{
 }
 
 .aside-p{
-  display: flex;
+  /* display: flex;
   position: absolute;
   left: -200px;
   transition-duration: 2s;
-  transition-delay: 0.2s;
+  transition-delay: 0.2s; */
   user-select: none;
+  width: auto;
+  max-width: 0%;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: max-width 1s linear;
 }
 
 .sidebar:hover{
@@ -44,6 +49,7 @@ svg{
 }
 
 .sidebar:hover .aside-p{
-  left: 100px;
-  transition-duration: 1.5s;
+  /*left: 100px;
+  transition-duration: 1.5s; */
+  max-width: 100%;
 }

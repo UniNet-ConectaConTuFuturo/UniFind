@@ -29,25 +29,25 @@ const SideBar = () => {
       <Link to="/">
         <SideBarIcon icon={<FaHome size="40" />} />
       </Link>
-      <p className="aside-p flex text-white pt-3">HOME</p>
+      <p className="aside-p flex text-white pt-3 pl-3">HOME</p>
       </div>
       <div className="flex items-center pl-8">
       <Link to="/identificacion/ingresante">
         <SideBarIcon icon={<FaUserAlt size="40" />} />
       </Link>
-      <p className="aside-p flex text-white pt-3">LOGIN</p>
-      </div>
-      <div className="flex items-center pl-8">
-      <Link to="/configuracion">
-        <SideBarIcon icon={<FaCog size="40" />} />
-      </Link>
-      <p className="aside-p flex text-white pt-3">CONFIGURACIÓN</p>
+      <p className="aside-p flex text-white pt-3 pl-3">LOGIN</p>
       </div>
       <div className="flex items-center pl-8">
       <Link to="/listainteres">
         <SideBarIcon icon={<FaStar size="40" />} />
       </Link>
-      <p className="text flex text-white pt-3">FAVORITOS</p>
+      <p className="aside-p flex text-white pt-3 pl-3">FAVORITOS</p>
+      </div>
+      <div className="flex items-center pl-8">
+      <Link to="/configuracion">
+        <SideBarIcon icon={<FaCog size="40" />} />
+      </Link>
+      <p className="aside-p flex text-white pt-3 pl-3">CONFIGURACIÓN</p>
       </div>
     </div>
   );
