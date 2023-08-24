@@ -7,6 +7,7 @@ import IdentificationProvider from "./context/Identification/IdentificationProvi
 import Rector from "./pages/singUp-singIn/Rector";
 import Mapa from "./components/Mapa/Mapa";
 import AccountSettings from "./pages/AccountSettings";
+import HighlightList from "./pages/HighlightList";
 import GlobalProvider from "./context/Global/GlobalProvider";
 
 const router = createBrowserRouter([
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       },
       { path: "/configuracion", Component: AccountSettings },
       { path: "/mapa", Component: Mapa },
+      { path: "/listainteres", Component: HighlightList },
     ],
   },
 ]);

@@ -21,7 +21,7 @@ export async function carreras(req, res) {
       "nombre_carrera",
       "id_carrera IN (SELECT id_carrera from car_uni where id_universidad = " +
         id_universidad +
-        ")"
+        ") ORDER BY nombre_carrera ASC"
     );
     return res.json(data).end();
   } catch (error) {
