@@ -1,70 +1,75 @@
-
 /* @layer components{
   .sidebar-icon{
     @apply flex relative items-center justify-content w-12 h-12;
   }
 } */
 
-:root{
+:root {
   --hover: 0;
 }
 
-svg{
+svg {
   filter: invert(1);
 }
 
-.sidebar-icon:hover{
+.sidebar-icon:hover {
   background-color: white;
 }
 
-
-.sidebar-icon:hover svg{
-    filter: invert(0);
-    transition: 0.5s;
+.sidebar-icon:hover svg {
+  filter: invert(0);
+  transition: 0.5s;
 }
 
-.sidebar{
+.sidebar {
   width: 128px;
-  transition-duration: 1.5s;
+  transition-duration: 1s;
+  transition-delay: 0.5s;
 }
 
-.aside-p{
-  /* display: flex;
+.aside-p {
+  display: flex;
+  pointer-events: none;
   position: absolute;
-  left: -200px;
+  margin-left: 4rem;
+  padding-top: 0.75rem;
+  padding-left: 0.75rem;
+  color: white;
   transition-duration: 2s;
-  transition-delay: 0.2s; */
+  transition-delay: 0.2s;
   text-decoration: none;
   width: auto;
   max-width: 0%;
   white-space: nowrap;
   overflow: hidden;
   transition: max-width 1s linear;
-}
-
-.sidebar-icon{
-  width: 64px;
-  transition-duration: 1s;
-}
-
-.sidebar:hover{
-  width: 300px;
-  transition-duration: 1s;
   transition-delay: 0.25s;
 }
 
-.sidebar:hover .aside-p{
-  /*left: 100px;
-  transition-duration: 1.5s; */
-  max-width: 100%;
-}
-
-.sidebar:hover .sidebar-icon{
-  width: 250px;
+.sidebar-icon {
+  width: 64px;
   transition-duration: 1s;
   transition-delay: 0.1s;
 }
 
-.aside-link:hover{
-  
+.sidebar:hover {
+  width: 300px;
+  transition-delay: 0.1s;
+}
+
+.sidebar:hover .aside-p {
+  /*left: 100px;
+  transition-duration: 1.5s; */
+  max-width: 100%;
+}
+.sidebar-icon:hover ~ .aside-p {
+  font-weight: 700;
+  color: black;
+}
+
+.sidebar:hover .sidebar-icon {
+  width: 250px;
+}
+
+.aside-link:hover {
 }
