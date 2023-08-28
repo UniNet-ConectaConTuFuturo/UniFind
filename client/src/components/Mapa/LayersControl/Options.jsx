@@ -18,7 +18,7 @@ function Options() {
     setDistanciaMarcadores(e.target.value);
   }
   return (
-    <div className="leaflet-bottom left-48 flex justify-between">
+    <div className="leaflet-bottom left-48 flex justify-between z-10">
       <div
         className="leaflet-control-layers  leaflet-control flex justify-between items-center"
         aria-haspopup="true"

@@ -21,11 +21,11 @@ function Filters() {
   const [rightLeftStyle, setRightLeftStyle] = useState("left-48 right-48");
   useEffect(() => {
     idUniToShowInfo !== 0
-      ? setRightLeftStyle("left-36 right-1/3")
-      : setRightLeftStyle("left-48 right-48");
+      ? setRightLeftStyle("left-32 right-1/3")
+      : setRightLeftStyle("left-32 right-48");
   }, [idUniToShowInfo]);
   return (
-    <div className={"leaflet-top " + rightLeftStyle}>
+    <div className={"leaflet-top z-10 " + rightLeftStyle}>
       <div
         className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"

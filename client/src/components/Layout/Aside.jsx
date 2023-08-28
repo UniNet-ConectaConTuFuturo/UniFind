@@ -24,7 +24,7 @@ SideBarIcon.propTypes = {
 
 const SideBar = () => {
   return (
-    <div className="sidebar flex flex-col pl-4  fixed z-10 top-0 left-0  h-screen w-24 m-0 bg-bg-sb_bg opacity-90">
+    <div className="sidebar flex flex-col pl-4  fixed z-50 top-0 left-0  h-screen w-24 m-0 bg-bg-sb_bg opacity-90">
       <Link to="/" className="aside-link">
         <div className="flex items-center">
           <SideBarIcon icon={<FaHome size="40" className="ml-3 mt-2.5" />} />

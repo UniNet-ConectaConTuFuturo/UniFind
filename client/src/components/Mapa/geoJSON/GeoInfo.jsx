@@ -13,7 +13,8 @@ function GeoInfo() {
   return (
     <div
       className={
-        "leaflet-top right-8 w-32 " + (idUniToShowInfo === 0 ? "" : "hidden")
+        "leaflet-top right-8 w-32 z-10 " +
+        (idUniToShowInfo === 0 ? "" : "hidden")
       }
     >
       <div

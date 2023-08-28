@@ -22,10 +22,11 @@ function Carrera() {
 
   return (
     <section className="relative w-1/3 mt-1 mx-4">
-      <h3>Filtrar por Carrera</h3>
+      {/* <h3>Filtrar por Carrera</h3> */}
       <label>
         <span>
           <AsyncCreatableSelect
+            placeholder="Filtrar por Carrera"
             createOptionPosition="first"
             formatCreateLabel={(inputValue) => `${inputValue}...`}
             isValidNewOption={() => true}
