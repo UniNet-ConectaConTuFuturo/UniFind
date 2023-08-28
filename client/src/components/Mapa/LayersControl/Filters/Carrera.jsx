@@ -27,6 +27,8 @@ function Carrera() {
         <span>
           <AsyncCreatableSelect
             createOptionPosition="first"
+            formatCreateLabel={(inputValue) => `${inputValue}...`}
+            isValidNewOption={() => true}
             cacheOptions
             defaultOptions
             isMulti

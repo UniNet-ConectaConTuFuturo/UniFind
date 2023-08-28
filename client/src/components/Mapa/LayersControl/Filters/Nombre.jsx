@@ -13,6 +13,7 @@ function Nombre() {
         <span>
           <AsyncCreatableSelect
             createOptionPosition="first"
+            formatCreateLabel={(inputValue) => `${inputValue}...`}
             cacheOptions
             defaultOptions
             isMulti

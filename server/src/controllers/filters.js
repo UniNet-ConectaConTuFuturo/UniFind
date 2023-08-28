@@ -5,14 +5,18 @@ export async function getNames(req, res) {
   try {
     const { inputValue } = req.body;
     const data = await consult.selectFromUniversidades(
-      "id_universidad, nombre_universidad",
-      "nombre_universidad LIKE '%" + inputValue + "%'"
+      "id_universidad, nombre_universidad, acronimo",
+      "nombre_universidad LIKE '%" +
+        inputValue +
+        "%' OR acronimo LIKE '%" +
+        inputValue +
+        "%'"
     );
     return res
       .send(
         data.map((d) => ({
           value: d.id_universidad,
-          label: d.nombre_universidad,
+          label: d.nombre_universidad + " (" + d.acronimo + ")",
         }))
       )
       .end();
@@ -63,13 +67,15 @@ const whereNames = (names, where) => {
     creates.length === 0
       ? ""
       : (ids.length === 0 ? "" : " OR ") +
-        creates.map(
-          (nombre, i) =>
-            (i === 0 ? "" : " OR ") +
-            "nombre_universidad LIKE '%" +
-            nombre +
-            "%'"
-        );
+        creates
+          .map(
+            (nombre, i) =>
+              (i === 0 ? "" : " OR ") +
+              "nombre_universidad LIKE '%" +
+              nombre +
+              "%'"
+          )
+          .join("");
   return whereId === "" && whereNombre === ""
     ? ""
     : (where.length === 0 ? "" : " AND ") + "(" + whereId + whereNombre + ")";
@@ -97,10 +103,12 @@ const whereCarrera = (carreras, where) => {
         "id_universidad IN " +
         "(SELECT id_universidad from car_uni WHERE id_carrera IN " +
         "(SELECT id_carrera FROM carreras WHERE " +
-        creates.map(
-          (nombre, i) =>
-            (i === 0 ? "" : " OR ") + "nombre_carrera LIKE '%" + nombre + "%'"
-        ) +
+        creates
+          .map(
+            (nombre, i) =>
+              (i === 0 ? "" : " OR ") + "nombre_carrera LIKE '%" + nombre + "%'"
+          )
+          .join("") +
         "))";
   return whereId === "" && whereNombre === ""
     ? ""
