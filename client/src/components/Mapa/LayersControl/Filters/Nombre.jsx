@@ -8,23 +8,15 @@ import { components } from "react-select";
 function Nombre() {
   const { setNames } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
-  const MultiValueContainer = (props) => {
-    const regExInParenthesis = /\(.+?\)/;
-    const { label, title } = props.data;
-    const parentesis = label.match(regExInParenthesis);
-    const acronimo = parentesis ? parentesis[0].slice(1, -1) : label;
-    const nombreCompleto = parentesis
-      ? label.slice(0, label.indexOf(parentesis[0]))
-      : title || label;
-    props.data.label = acronimo;
-    props.data.title = nombreCompleto;
+  const MultiValueLabel = (props) => {
     return (
-      <span title={nombreCompleto}>
-        <components.MultiValueContainer {...props} />
-      </span>
+      <components.MultiValueLabel {...props}>
+        <span title={props.data.title}>
+          {props.data.selectedOption || props.data.label}
+        </span>
+      </components.MultiValueLabel>
     );
   };
-
   return (
     <section className="relative w-1/3 mt-1 mx-4">
       {/* <h3>Filtrar por Nombre</h3> */}
@@ -37,7 +29,7 @@ function Nombre() {
             cacheOptions
             defaultOptions
             isMulti
-            components={{ MultiValueContainer }}
+            components={{ MultiValueLabel }}
             closeMenuOnSelect={false}
             onChange={(options) => setNames(options.map((o) => o.value))}
             isLoading={isLoading}

@@ -29,7 +29,9 @@ function Carrera() {
             placeholder="Filtrar por Carrera"
             createOptionPosition="first"
             formatCreateLabel={(inputValue) => `${inputValue}...`}
-            isValidNewOption={() => true}
+            isValidNewOption={(inputValue) =>
+              inputValue.trim() ? true : false
+            }
             cacheOptions
             defaultOptions
             isMulti
