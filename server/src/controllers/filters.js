@@ -12,12 +12,65 @@ export async function getNames(req, res) {
         inputValue +
         "%'"
     );
+    const resp = data.map((d) => {
+      const acronimo = d.acronimo ? " (" + d.acronimo + ")" : "";
+      return {
+        value: d.id_universidad,
+        label:
+          d.nombre_universidad.indexOf("-") === -1
+            ? d.nombre_universidad + acronimo
+            : d.nombre_universidad.replace("-", acronimo + " -"),
+        selectedOption: d.acronimo || "",
+        title: d.nombre_universidad,
+      };
+    });
+    if (
+      "Universidad de Buenos Aires (UBA)"
+        .toLowerCase()
+        .includes(inputValue.trim().toLowerCase())
+    )
+      resp.push({
+        value: "UBA",
+        label: "Universidad de Buenos Aires (UBA)",
+        selectedOption: "UBA",
+        title: "Universidad de Buenos Aires",
+      });
+    if (
+      "Universidad Tecnologica Nacional (UTN)"
+        .toLowerCase()
+        .includes(inputValue.trim().toLowerCase())
+    )
+      resp.push({
+        value: "UTN",
+        label: "Universidad Tecnologica Nacional (UTN)",
+        selectedOption: "UTN",
+        title: "Universidad Tecnologica Nacional",
+      });
+
     return res
       .send(
-        data.map((d) => ({
-          value: d.id_universidad,
-          label: d.nombre_universidad + " (" + d.acronimo + ")",
-        }))
+        resp.sort(function (a, b) {
+          if (inputValue)
+            switch (inputValue.toLowerCase()) {
+              case a.label.toLowerCase():
+              case a.selectedOption.toLowerCase():
+              case a.title.toLowerCase():
+                return -1;
+              default:
+                break;
+            }
+          if (a.label > b.label) {
+            return 1;
+          }
+          if (
+            a.label < b.label &&
+            (!inputValue || inputValue.toLowerCase() === b.label.toLowerCase())
+          ) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        })
       )
       .end();
   } catch (error) {
@@ -33,13 +86,28 @@ export async function getCarreras(req, res) {
       "id_carrera, nombre_carrera",
       "nombre_carrera LIKE '%" + inputValue + "%'"
     );
-
+    const resp = data.map((d) => ({
+      value: d.id_carrera,
+      label: d.nombre_carrera,
+    }));
     return res
       .send(
-        data.map((d) => ({
-          value: d.id_carrera,
-          label: d.nombre_carrera,
-        }))
+        resp.sort(function (a, b) {
+          if (inputValue.toLowerCase() === a.label.toLowerCase()) {
+            return -1;
+          }
+          if (a.label > b.label) {
+            return 1;
+          }
+          if (
+            a.label < b.label &&
+            (!inputValue || inputValue.toLowerCase() === b.label.toLowerCase())
+          ) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        })
       )
       .end();
   } catch (error) {
@@ -73,7 +141,9 @@ const whereNames = (names, where) => {
               (i === 0 ? "" : " OR ") +
               "nombre_universidad LIKE '%" +
               nombre +
-              "%'"
+              "%' OR acronimo = '" +
+              nombre +
+              "'"
           )
           .join("");
   return whereId === "" && whereNombre === ""
