@@ -35,20 +35,22 @@ function Registro({ className }) {
   }, [step]);
   return (
     <>
+    
       <section
         className={
           className + " " + "caja relative flex justify-end pr-4 items-center"
         }
       >
-        <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
+        <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div>
+        <div className="h-screen w-screen absolute bg-no-repeat translate-x-3/4 bg-shape"></div>
         {formVisible && (
           <EntrantForm
-            className={classForm + " " + "transition-all duration-700"}
+            className={classForm + " " + "transition-all duration-700 translate-x-2/4"}
           />
         )}
         {codeVisible && (
           <EntrantCode
-            className={classCode + " " + "transition-all duration-700"}
+            className={classCode + " " + "transition-all duration-700 translate-x-2/4"}
           />
         )}
       </section>

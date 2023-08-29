@@ -13,7 +13,7 @@ export default {
 
     extend: {
       backgroundImage: {
-        shape: "url('/images/shape.svg')",
+        shape: "url('/images/formbg-2.png')",
         home1: "url('/images/hero-section-centroinformacion.png')",
         gorro: "url('/images/graduation.png')",
         "footer-texture": "url('/img/footer-texture.png')",

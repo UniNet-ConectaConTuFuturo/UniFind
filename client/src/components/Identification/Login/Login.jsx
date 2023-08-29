@@ -56,8 +56,8 @@ function Login({ className }) {
           className + " " + "caja relative flex justify-end pr-4 items-center"
         }
       >
-      <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
-      <div className={className + " " + "box"}>
+      <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div>
+      <div className={className + " " + "box translate-x-1/4"}>
         <form onSubmit={handleSubmit}>
           <div className="ml-96 mb-10">
             <h2>INGRESAR</h2>

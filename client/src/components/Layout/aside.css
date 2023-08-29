@@ -18,13 +18,16 @@ svg {
 
 .sidebar-icon:hover svg {
   filter: invert(0);
-  transition: 0.5s;
+  transition: 0.25s;
+}
+.sidebar-icon:hover ~ .aside-p {
+  font-weight: 700;
+  color: black;
 }
 
 .sidebar {
   width: 128px;
-  transition-duration: 1s;
-  transition-delay: 0.5s;
+  transition-duration: 0.5s;
 }
 
 .aside-p {
@@ -42,34 +45,27 @@ svg {
   max-width: 0%;
   white-space: nowrap;
   overflow: hidden;
-  transition: max-width 1s linear;
-  transition-delay: 0.25s;
+  transition: max-width 0.5s linear;
 }
 
 .sidebar-icon {
   width: 64px;
-  transition-duration: 1s;
-  transition-delay: 0.1s;
 }
 
 .sidebar:hover {
   width: 300px;
-  transition-delay: 0.1s;
+  transition-delay: 0.05s;
 }
 
 .sidebar:hover .aside-p {
   /*left: 100px;
   transition-duration: 1.5s; */
   max-width: 100%;
-}
-.sidebar-icon:hover ~ .aside-p {
-  font-weight: 700;
-  color: black;
+  transition: max-width 1s linear;
 }
 
 .sidebar:hover .sidebar-icon {
   width: 250px;
-}
-
-.aside-link:hover {
+  transition-duration: 0.5s;
+  transition-delay: 0.05s;
 }
