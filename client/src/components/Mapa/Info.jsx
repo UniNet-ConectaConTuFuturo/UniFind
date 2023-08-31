@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useMapa } from "../../hooks/useMapa";
 import { post } from "../../api/api";
 import { useState } from "react";
-import "./info.css"
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import "./info.css";
 
 function Info() {
   const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();
@@ -24,8 +26,8 @@ function Info() {
   return (
     <>
       {idUniToShowInfo !== 0 && (
-        <div className="fixed top-0 h-screen -right-8 w-1/3 bg-slate-950 bg-opacity-70">
-          <div className="text-white flex flex-col content-end">
+        <div className="fixed top-0 h-screen -right-8 w-1/3 bg-slate-950 bg-white pr-2">
+          <div className="text-black flex flex-col content-end">
             <button
               className=""
               type="button"
@@ -35,10 +37,12 @@ function Info() {
             </button>
             <p className="text-xl my-3">{universidad.nombre_universidad}</p>
             <p>{universidad.direccion_universidad}</p>
-            <p>{universidad.maps_universidad}</p>
+            <Link to={universidad.maps_universidad}>
+              <FaMapMarkerAlt size="20" color="red"/>
+            </Link>
             <p>{universidad.localidad_universidad}</p>
             <p>{universidad.web_universidad}</p>
-            <p>{universidad.gestion_universidad}</p>
+            <p>Gestión: {universidad.gestion_universidad}</p>
             <p>{universidad.zona_universidad}</p>
             <p>{universidad.correo_universidad}</p>
             <h2>Grados y Pregrados</h2>
