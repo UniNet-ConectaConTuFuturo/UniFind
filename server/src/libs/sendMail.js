@@ -1,6 +1,6 @@
 import emailjs from "@emailjs/nodejs";
 export default async function (params) {
-  const serviceID = "service_9kwudo7";
+  const serviceID = "service_y9h2zr8";
   const templateID = "template_al6t6fo";
   const publicID = "bjwh7bDmJh42c7qUc";
   const privateID = "7qVfqsWk9Qulp17Kk0BZz";
