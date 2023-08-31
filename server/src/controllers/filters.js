@@ -12,14 +12,23 @@ export async function getNames(req, res) {
         inputValue +
         "%'"
     );
+    const regComaWithoutY = /,.+?!y/;
     const resp = data.map((d) => {
       const acronimo = d.acronimo ? " (" + d.acronimo + ")" : "";
+      const insertAcronimo = (nombre_universidad) => {
+        if (nombre_universidad.includes("-")) {
+          return nombre_universidad.replace(" -", acronimo + " -");
+        } else {
+          if (regComaWithoutY.test(nombre_universidad)) {
+            console.log(nombre_universidad);
+            return nombre_universidad.replace(",", " " + acronimo + ",");
+          }
+          return d.nombre_universidad + acronimo;
+        }
+      };
       return {
         value: d.id_universidad,
-        label:
-          d.nombre_universidad.indexOf("-") === -1
-            ? d.nombre_universidad + acronimo
-            : d.nombre_universidad.replace("-", acronimo + " -"),
+        label: insertAcronimo(d.nombre_universidad),
         selectedOption: d.acronimo || "",
         title: d.nombre_universidad,
       };
