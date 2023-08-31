@@ -37,17 +37,6 @@ function Options() {
               step={1}
               onChange={distanciaOnChange}
             />
-            {/* <select
-            name="distancia"
-            id="distancia"
-            defaultValue="10"
-            onChange={distanciaOnChange}
-          >
-            <option value={13}>Muy cercano</option>
-            <option value={10}>Cercano</option>
-            <option value={6.5}>Intermedio</option>
-            <option value={0}>Lejano</option>
-          </select> */}
           </section>
         </div>
       </div>

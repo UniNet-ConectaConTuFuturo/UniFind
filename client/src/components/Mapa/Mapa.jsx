@@ -27,10 +27,10 @@ function Mapa() {
         <DisplayGeoJSON />
         <DisplayMarkers />
       </MapContainer>
-<Filters />
-<Options />
-<GeoInfo />
-<Info />
+      <Filters />
+      <Options />
+      <GeoInfo />
+      <Info />
     </MapaProvider>
   );
 }

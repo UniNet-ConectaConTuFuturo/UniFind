@@ -32,13 +32,11 @@ function Filters() {
         ref={control}
       >
         <div className="leaflet-control-layers-list">
-          <div className="w-full flex justify-between items-start ">
-            <section className="w-full flex justify-between items-start flex-row text-center">
+          <nav className="w-full flex justify-between flex-row items-start text-center">
               <Carrera />
               <Nombre />
               <Gestion />
-            </section>
-          </div>
+          </nav>
         </div>
         <a
           className="w-full flex justify-center"
