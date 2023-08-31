@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { post } from "../api/api";
-import Card from "../components/UI/Card";
-import { useGlobal } from "../hooks/useGlobal";
+import { post } from "../../api/api";
+import Card from "../UI/Card";
+import { useGlobal } from "../../hooks/useGlobal";
 import "./HighlightList.css";
 function HighlightList() {
   const { token } = useGlobal();

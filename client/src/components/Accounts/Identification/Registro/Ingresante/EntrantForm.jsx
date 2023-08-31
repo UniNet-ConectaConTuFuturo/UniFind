@@ -1,9 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../../../api/api";
+import { post } from "../../../../../api/api";
 import "../../form.css";
-import { useRegistro } from "../../../../hooks/useRegistro";
-import { useIdentification } from "../../../../hooks/useIdentification";
+import { useRegistro } from "../../../../../hooks/useRegistro";
+import { useIdentification } from "../../../../../hooks/useIdentification";
 
 function EntrantForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -41,7 +41,7 @@ function EntrantForm({ className }) {
       console.log(error);
     }
   };
-  const { checkboxRef, handleCheckboxChange } = useIdentification();
+  const { handleCheckboxChange } = useIdentification();
   return (
     <div className={className + " " + "box"}>
       <form onSubmit={handleSubmit}>
@@ -166,10 +166,7 @@ function EntrantForm({ className }) {
         <p className="-ml-20 max-w-xs">
           <a
             href="#"
-            onClick={() => {
-              checkboxRef.current.checked = !checkboxRef.current.checked;
-              handleCheckboxChange();
-            }}
+            onClick={() => handleCheckboxChange(false)}
           >
             Ya tengo una cuenta
           </a>

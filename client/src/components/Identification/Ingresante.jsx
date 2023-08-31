@@ -1,9 +1,9 @@
-import Login from "../../components/Identification/Login/Login";
-import Registro from "../../components/Identification/Registro/Rector/Registro";
+import Login from "./Login/Login";
+import Registro from "./Registro/Ingresante/Ingresante";
 import RegistroProvider from "../../context/Registro/RegistroProvider";
-import CheckBox from "../../components/Identification/CheckBox";
+import CheckBox from "./CheckBox";
 import { useIdentification } from "../../hooks/useIdentification";
-function Rector() {
+function Ingresante() {
   const { bgColor, loginVisible, registroVisible, classLogin, classRegistro } =
     useIdentification();
   return (
@@ -14,7 +14,6 @@ function Rector() {
     >
       <CheckBox />
       <section
-        role="Formularios"
         className={
           " h-screen flex relative left-1/2 right-0 items-center overflow-x-visible"
         }
@@ -34,4 +33,4 @@ function Rector() {
   );
 }
 
-export default Rector;
+export default Ingresante;

@@ -1,9 +1,9 @@
 import "../../form.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { post } from "../../../../api/api";
-import { useRegistro } from "../../../../hooks/useRegistro";
-import { useGlobal } from "../../../../hooks/useGlobal";
+import { post } from "../../../../../api/api";
+import { useRegistro } from "../../../../../hooks/useRegistro";
+import { useGlobal } from "../../../../../hooks/useGlobal";
 
 function RectorCode({ className }) {
   const { form, setStep } = useRegistro();

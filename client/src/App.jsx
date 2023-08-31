@@ -1,14 +1,17 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+/* Authentication */
 import getAuth from "./api/authentication";
 import { NotAuthenticated } from "./middlewares/authentication";
-import Home from "./pages/Home";
-import Ingresante from "./pages/singUp-singIn/Ingresante";
-import IdentificationProvider from "./context/Identification/IdentificationProvider";
-import Rector from "./pages/singUp-singIn/Rector";
-import Mapa from "./components/Mapa/Mapa";
-import AccountSettings from "./pages/AccountSettings";
-import HighlightList from "./pages/HighlightList";
+/* ContectProvider */
 import GlobalProvider from "./context/Global/GlobalProvider";
+import IdentificationProvider from "./context/Identification/IdentificationProvider";
+/* Componentes */
+import Home from "./components/Home/Home";
+import Ingresante from "./components/Accounts/Identification/Ingresante";
+import Rector from "./components/Accounts/Identification/Ingresante";
+import AccountSettings from "./components/Accounts/AccountSettings";
+import HighlightList from "./components/ListaDeInteres/HighlightList";
+import Mapa from "./components/Mapa/Mapa";
 
 const router = createBrowserRouter([
   {

@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import EntrantForm from "./EntrantForm";
-import EntrantCode from "./EntrantCode";
+import EntrantForm from "./Ingresante/EntrantForm";
+import EntrantCode from "./Ingresante/EntrantCode";
 import PropTypes from "prop-types";
 import { useRegistro } from "../../../../hooks/useRegistro";
-import "../registro.css";
+import "./registro.css";
 
 function Registro({ className }) {
   const navigate = useNavigate();

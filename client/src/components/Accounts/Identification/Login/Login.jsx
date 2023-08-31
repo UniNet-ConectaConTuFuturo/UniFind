@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "../form.css";
-import { post } from "../../../api/api";
+import { post } from "../../../../api/api";
 import PropTypes from "prop-types";
-import { useIdentification } from "../../../hooks/useIdentification";
-import { useGlobal } from "../../../hooks/useGlobal";
+import { useIdentification } from "../../../../hooks/useIdentification";
+import { useGlobal } from "../../../../hooks/useGlobal";
 import { useNavigate } from "react-router-dom";
 
 function Login({ className }) {
@@ -100,10 +100,7 @@ function Login({ className }) {
           <p className="ml-36 max-w-xs">
             <a
               href="#"
-              onClick={() => {
-                checkboxRef.current.checked = !checkboxRef.current.checked;
-                handleCheckboxChange();
-              }}
+              onClick={() => handleCheckboxChange(true)}
             >
               ¿No estás registrado? Hazlo ahora!
             </a>

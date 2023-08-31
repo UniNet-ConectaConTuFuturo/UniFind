@@ -1,9 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { post } from "../../../../api/api";
+import { post } from "../../../../../api/api";
 import "../../form.css";
-import { useRegistro } from "../../../../hooks/useRegistro";
-import { useIdentification } from "../../../../hooks/useIdentification";
+import { useRegistro } from "../../../../../hooks/useRegistro";
+import { useIdentification } from "../../../../../hooks/useIdentification";
 import AsyncSelect from "react-select/async";
 
 function RectorForm({ className }) {
@@ -43,7 +43,7 @@ function RectorForm({ className }) {
       console.log(error);
     }
   };
-  const { checkboxRef, handleCheckboxChange } = useIdentification();
+  const { handleCheckboxChange } = useIdentification();
   const [isLoading, setIsLoading] = useState(false);
   const asyncLoadOptions = async (inputValue) => {
     try {
@@ -203,10 +203,7 @@ function RectorForm({ className }) {
         <p className="-ml-20 max-w-xs">
           <a
             href="#"
-            onClick={() => {
-              checkboxRef.current.checked = !checkboxRef.current.checked;
-              handleCheckboxChange();
-            }}
+            onClick={() => handleCheckboxChange(false)}
           >
             Ya tengo una cuenta
           </a>
