@@ -42,10 +42,10 @@ function Registro({ className }) {
         }
       >
         <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div>
-        <div className="h-screen w-screen absolute bg-no-repeat translate-x-3/4 bg-shape"></div>
+        <div className="h-screen w-screen absolute bg-no-repeat translate-x-2/3 translate-y-28 bg-shape scale-125"></div>
         {formVisible && (
           <EntrantForm
-            className={classForm + " " + "transition-all duration-700 translate-x-2/4"}
+            className={classForm + " " + "transition-all duration-700 translate-x-1/4"}
           />
         )}
         {codeVisible && (

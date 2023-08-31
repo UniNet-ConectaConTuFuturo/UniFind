@@ -4,6 +4,7 @@ import { post } from "../../../api/api";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import BotonFavorito from "./BotonFavorito";
+import { FaMapMarkedAlt } from "react-icons/fa";
 
 function PopUp({ id_universidad }) {
   const { setIdUniToShowInfo } = useMapa();
@@ -21,7 +22,9 @@ function PopUp({ id_universidad }) {
           className="flex flex-col justify-between text-left  break-words"
         >
           <strong>{universidad.nombre_universidad}</strong>
+          
           <a
+            icon={ < FaMapMarkedAlt size="20" /> }
             href={universidad.maps_universidad}
             target="_blank"
             rel="noreferrer"
