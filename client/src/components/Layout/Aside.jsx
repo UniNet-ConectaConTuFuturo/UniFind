@@ -2,7 +2,8 @@ import { FaHome, FaUserAlt, FaCog, FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 import "./aside.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link /*, useLocation */ } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
 
 class SideBarIcon extends React.Component {
   render() {
@@ -23,6 +24,9 @@ SideBarIcon.propTypes = {
 };
 
 const SideBar = () => {
+  const { token } = useGlobal();
+  /* let location = useLocation();
+  location.pathname nos da la direccion url */
   return (
     <aside className="sidebar flex flex-col pl-4  fixed z-50 top-0 left-0  h-screen w-24 m-0 bg-bg-sb_bg opacity-90">
       <Link to="/" className="aside-link">
@@ -31,22 +35,28 @@ const SideBar = () => {
           <p className="aside-p">HOME</p>
         </div>
       </Link>
-      <Link to="/identificacion/ingresante" className="aside-link">
-        <div className="flex items-center">
-          <SideBarIcon icon={<FaUserAlt size="40" className="ml-3 mt-2.5" />} />
-          <p className="aside-p">LOGIN</p>
-        </div>
-      </Link>
+      {!token && (
+        <Link to="/identificacion/ingresante" className="aside-link">
+          <div className="flex items-center">
+            <SideBarIcon
+              icon={<FaUserAlt size="40" className="ml-3 mt-2.5" />}
+            />
+            <p className="aside-p">LOGIN</p>
+          </div>
+        </Link>
+      )}
+      {token && (
+        <Link to="/configuracion">
+          <div className="flex items-center">
+            <SideBarIcon icon={<FaCog size="40" className="ml-3 mt-2.5" />} />
+            <p className="aside-p">CONFIGURACIÓN</p>
+          </div>
+        </Link>
+      )}
       <Link to="/listainteres">
         <div className="flex items-center">
           <SideBarIcon icon={<FaStar size="40" className="ml-3 mt-2.5" />} />
           <p className="aside-p">FAVORITOS</p>
-        </div>
-      </Link>
-      <Link to="/configuracion">
-        <div className="flex items-center">
-          <SideBarIcon icon={<FaCog size="40" className="ml-3 mt-2.5" />} />
-          <p className="aside-p">CONFIGURACIÓN</p>
         </div>
       </Link>
     </aside>
