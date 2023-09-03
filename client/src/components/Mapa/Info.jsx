@@ -62,7 +62,7 @@ function Info() {
               </div>
             </div>
             <div className="content-box">
-              <div className="content">
+              <div className="content active">
                 <p className="my-1"><FaMapMarkerAlt size="30" color="#FF6700" className="inline-block pb-1 -pl-1 my-3"/> {universidad.direccion_universidad}, {universidad.localidad_universidad}, {universidad.zona_universidad}</p>
                 <p className="my-1"><Link to={universidad.web_universidad}> <FaGlobeAmericas size="30" color="#FF6700" className="inline-block pb-1 my-3"/> {universidad.web_universidad} </Link></p>
                 <p className="my-1"><FaHandHoldingUsd size="30" color="#FF6700" className="inline-block pb-1 my-3"/> Gestión: {universidad.gestion_universidad}</p>
