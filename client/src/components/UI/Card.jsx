@@ -8,22 +8,23 @@ import Axios from "axios";
 
 function Card({ id_universidad }) {
   //const { token } = useGlobal();
-  const [file, setFile] = useState(null); 
   const upload = async (e)=>{
         e.preventDefault();
-        let formData = new FormData();
-        formData.append("file",file);
+        const file = e.target.files[0]
+        const data = new FormData();
+        data.append("fileName", file.name);
+        data.append("dataFile", file)
+        post("/enviarsolicitud", data, {"Content-Type": "multipart/form-data"} )
+        /* let formData = new FormData();
+        await formData.append("file",file);
         console.log(formData);
-        Axios({
-            url:"http://localhost:4000/enviarsolicitud",
+        await post("/enviarsolicitud", formData, { "Content-Type": "multipart/form-data", }) */
+        /* await Axios({
+            url:"/api/enviarsolicitud",
             method: "POST",
             headers: { "Content-Type": "multipart/form-data", },
             data: formData 
-        })
-        /*Axios.post("localhost:4000/enviarsolicitud", formData, {
-            headers: { "Content-Type": "multipart/form-data", },
-    })*/
-
+        }) */
   }
   const [universidad, setUniversidad] = useState({});
   useEffect(() => {
@@ -56,10 +57,9 @@ function Card({ id_universidad }) {
           type="file"
           name="file"
           id="file"
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={upload}
 
         />
-        <button onClick={(e)=>upload(e)}>Submit</button>
       </div>
     </div>
   );

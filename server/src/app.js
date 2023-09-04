@@ -5,10 +5,12 @@ import morgan from "morgan";
 import cors from "cors";
 import path from "path";
 import fileupload from "express-fileupload";
+
 //To use __dirname
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 //Import Routes
 import autenticationRoutes from "./routes/autentication.routes.js";
@@ -56,6 +58,7 @@ app.use(filterRoutes);
 app.use(favoritasRoutes);
 app.use(bddRoutes);
 app.use(solicitudRoutes);
+
 //app.use(express.static(path.join(__dirname, "public")));
 
 export default app;

@@ -2,11 +2,12 @@ import path from 'path';
 import jwt from "jsonwebtoken";
 import { jwtConfig } from "../config.js";
 import * as consult from "../database/consults.js";
-import fileupload from "express-fileupload";
 
 export async function uploadCarta(req,res) {
     //const {token, id_universidad} = req.body;
-    const file = req.file.file;
+    console.log(req.body);
+    //console.log(req.files);
+    const file = req.files.archivo; 
     try{
         /*jwt.verify(token, process.env.SECRET, async (err, decoded) => {
             if (err) throw err;

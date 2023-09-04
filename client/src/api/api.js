@@ -1,12 +1,12 @@
 const ContentType = {
   "Content-type": "application/json; charset=utf-8",
 };
-export async function post(url, param) {
+export async function post(url, param, content = null) {
   try {
     const params = {
       method: "POST",
       headers: {
-        ...ContentType,
+        ... (content ? content : ContentType),
       },
       body: JSON.stringify(param),
     };
