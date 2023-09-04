@@ -5,6 +5,8 @@ export const whoIs = (req, res) => {
     //const token = req.headers["x-access-token"];
     //const token = req.headers.authorization.split(" ")[1];
     const { token } = req.body;
+    if (typeof token !== "string")
+      return res.json({ user: "noAuthenticated" }).end();
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
@@ -28,7 +30,7 @@ export const whoIs = (req, res) => {
 
       return res.json({ user: "noAuthenticated" }).end();
     });
-  } catch {
+  } catch (err) {
     return res.json({ user: "noAuthenticated" }).end();
   }
 };

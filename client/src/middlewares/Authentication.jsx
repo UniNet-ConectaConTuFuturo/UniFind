@@ -12,6 +12,7 @@ export function Authenticated() {
 }
 export function NotAuthenticated() {
   const token = useLoaderData();
+  console.log(token);
   if (token === user.noAuthenticated) return <Outlet />;
   else return <Navigate to="/" replace={true} />;
 }

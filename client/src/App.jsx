@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* Authentication */
 import getAuth from "./api/authentication";
-import { NotAuthenticated } from "./middlewares/authentication";
+import { Authenticated, NotAuthenticated } from "./middlewares/authentication";
 /* ContectProvider */
 import GlobalProvider from "./context/Global/GlobalProvider";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
@@ -36,7 +36,12 @@ const router = createBrowserRouter([
           },
         ],
       },
-      { path: "/configuracion", Component: AccountSettings },
+      {
+        path: "/configuracion",
+        loader: async () => await getAuth(),
+        Component: Authenticated,
+        children: [{ index: true, Component: AccountSettings }],
+      },
       { path: "/mapa", Component: Mapa },
       { path: "/listainteres", Component: HighlightList },
     ],

@@ -26,7 +26,6 @@ svg {
 }
 
 .sidebar {
-  width: 128px;
   transition-duration: 0.5s;
 }
 
@@ -35,8 +34,6 @@ svg {
   pointer-events: none;
   position: absolute;
   margin-left: 4rem;
-  padding-top: 0.75rem;
-  padding-left: 0.75rem;
   color: white;
   transition-duration: 2s;
   transition-delay: 0.2s;
@@ -46,10 +43,6 @@ svg {
   white-space: nowrap;
   overflow: hidden;
   transition: max-width 0.5s linear;
-}
-
-.sidebar-icon {
-  width: 64px;
 }
 
 .sidebar:hover {
