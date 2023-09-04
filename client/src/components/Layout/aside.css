@@ -20,7 +20,7 @@ svg {
   filter: invert(0);
   transition: 0.25s;
 }
-.sidebar-icon:hover ~ .aside-p {
+.sidebar-icon:hover > .aside-p {
   font-weight: 700;
   color: black;
 }
