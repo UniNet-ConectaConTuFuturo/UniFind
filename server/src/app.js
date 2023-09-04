@@ -4,6 +4,7 @@ import session from "express-session";
 import morgan from "morgan";
 import cors from "cors";
 import path from "path";
+import fileupload from "express-fileupload";
 //To use __dirname
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -15,6 +16,7 @@ import filterRoutes from "./routes/filter.routes.js";
 import getRoutes from "./routes/getdata.routes.js";
 import favoritasRoutes from "./routes/favoritas.routes.js";
 import bddRoutes from "./database/modificar.js";
+import solicitudRoutes from "./routes/solicitud.routes.js"
 
 const app = express();
 // get config vars
@@ -46,13 +48,14 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(fileupload());
 //Routes
 app.use(autenticationRoutes);
 app.use(getRoutes);
 app.use(filterRoutes);
 app.use(favoritasRoutes);
 app.use(bddRoutes);
+app.use(solicitudRoutes);
 //app.use(express.static(path.join(__dirname, "public")));
 
 export default app;

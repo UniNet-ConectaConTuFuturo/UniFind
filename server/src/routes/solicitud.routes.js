@@ -6,7 +6,7 @@ import * as solicitud from "../controllers/solicitudes.js";
 const router = Router();
 
 //Subir Carta
-router.post("/api/solicitud/enviarsolicitud",solicitud.uploadCarta);
+router.post("/api/enviarsolicitud",solicitud.uploadCarta);
 
 //Ver Solicitudes
 
