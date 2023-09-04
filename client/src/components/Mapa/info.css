@@ -1,4 +1,74 @@
 .ver-mas{
-    height: 725px;
+    height: 600px;
     width: 625px;
+}
+
+.info-all{
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+}
+
+.info-img{
+    width: 24px;
+}
+
+.info-but{
+    font-size: 10px;
+}
+
+.container{
+    background: none;
+    padding: 30px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .15);
+}
+
+.tab{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid rgba(229, 229, 229);
+    position: relative;
+}
+
+
+
+.tab .info-btn{
+    font-size: 18px;
+    font-weight: 600;
+    color: #919191;
+    background: none;
+    border: none;
+    list-style-type: none;
+    margin-right: 5%;
+}
+
+
+.tab .info-btn.active{
+    color: #0098ff;
+}
+
+.line{
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    width: 116px;
+    height: 5px;
+    background-color: #0098ff;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+}
+
+.content-box .content{
+    display: none;
+    animation: moving .5s ease;
+}
+
+@keyframes moving {
+    from{transform: translateX(50px); opacity: 0;}
+    to{transform: translateX(0px);opacity: 1;}
+}
+
+.content-box .content.active{
+    display: block;
 }
