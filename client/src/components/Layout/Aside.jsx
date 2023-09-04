@@ -45,12 +45,13 @@ const SideBar = () => {
           </div>
         </Link>
       )}
-      <Link to="/listainteres">
+      {user === userOptions.entrant && 
+      (<Link to="/listainteres">
         <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
           <FaStar size="40" className="mx-2.5" />
           <p className="aside-p">FAVORITOS</p>
         </div>
-      </Link>
+      </Link>)}
       {user !== userOptions.noAuthenticated && 
        (<Link to="/listainteres">
         <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
