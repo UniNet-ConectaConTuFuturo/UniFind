@@ -5,6 +5,7 @@ import { post } from "../../api/api";
 import PropTypes from "prop-types";
 import FormData from "form-data";
 import Axios from "axios"; 
+import PopUp from "./PopUp";
 
 function Card({ id_universidad }) {
   //const { token } = useGlobal();
@@ -31,6 +32,8 @@ function Card({ id_universidad }) {
       setUniversidad(await post("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
+
+  const [buttonPopUp, setButtonPopUp] = useState(false);
   return (
     <div className="card w-full h-full">
       <div className="card-body">
@@ -52,14 +55,30 @@ function Card({ id_universidad }) {
         <a href="#" className="card-link">
           Ver en el mapa
         </a>
-        <input
+        <br/>
+        <button onClick={()=> setButtonPopUp(true)}>Enviar Carta</button>
+
+        <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
+          <h2 className="">Seleccione el formato de Carta</h2>
+          <h3>Adjuntar carta:</h3>
+          <input
+          type="file"
+          name="file"
+          id="file"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <br /><br />
+        <h3>Generar carta:</h3>
+        <button className="w-20 h-4 bg-black"></button>
+        </PopUp>
+        {/*<input
           type="file"
           name="file"
           id="file"
           onChange={(e) => setFile(e.target.files[0])}
 
         />
-        <button onClick={(e)=>upload(e)}>Submit</button>
+        <button onClick={(e)=>upload(e)}>Submit</button>*/}
       </div>
     </div>
   );

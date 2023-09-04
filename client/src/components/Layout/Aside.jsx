@@ -1,5 +1,7 @@
 import "./aside.css";
-import { FaHome, FaUserAlt, FaCog, FaStar } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaCog, FaStar, FaBookmark, FaMapMarkedAlt } from "react-icons/fa";
+import { HiOutlineLogout } from "react-icons/hi";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import { Link /*, useLocation */ } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
@@ -37,6 +39,27 @@ const SideBar = () => {
           </div>
         </Link>
       )}
+      <Link to="/mapa" className="aside-link">
+        <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
+          <FaMapMarkedAlt size="40" className="mx-2.5" />
+          <p className="aside-p">MAPA</p>
+        </div>
+      </Link>
+      {user === userOptions.entrant && 
+      (<Link to="/listainteres">
+        <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
+          <FaStar size="40" className="mx-2.5" />
+          <p className="aside-p">FAVORITOS</p>
+        </div>
+      </Link>)}
+      {user !== userOptions.noAuthenticated && (
+        <Link to="/">
+          <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
+            <HiChatBubbleLeftRight size="40" className="mx-2.5" />
+            <p className="aside-p">CHAT</p>
+          </div>
+        </Link>
+      )}
       {user !== userOptions.noAuthenticated && (
         <Link to="/configuracion">
           <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
@@ -45,18 +68,11 @@ const SideBar = () => {
           </div>
         </Link>
       )}
-      {user === userOptions.entrant && 
-      (<Link to="/listainteres">
-        <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
-          <FaStar size="40" className="mx-2.5" />
-          <p className="aside-p">FAVORITOS</p>
-        </div>
-      </Link>)}
       {user !== userOptions.noAuthenticated && 
-       (<Link to="/listainteres">
+       (<Link to="/">
         <div className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300">
-          <FaStar size="40" className="mx-2.5" />
-          <p className="aside-p">FAVORITOS</p>
+          <HiOutlineLogout size="40" className="mx-2.5" />
+          <p className="aside-p">CERRAR SESIÓN</p>
         </div>
       </Link>)}
     </aside>
