@@ -44,7 +44,7 @@ function Info() {
   return (
     <>
       {idUniToShowInfo !== 0 && (
-        <div className="info-all fixed top-0 -right-8 w-1/4 bg-slate-950 bg-white bg-no-repeat pr-2 pl-1">
+        <div className="info-all fixed top-0 right-0 w-1/4 bg-white bg-no-repeat  ">
           <div className="text-black flex flex-col content-end">
             <button
               className=""
@@ -53,39 +53,39 @@ function Info() {
             >
               Cerrar
             </button>
-            <p className="text-2xl my-4">{universidad.nombre_universidad}</p>
-            <div className="container -ml-1 flex">
+            <p className="text-2xl my-4 pl-1">{universidad.nombre_universidad}</p>
+            <div className="container flex">
               <div className="tab">
-                <button className="info-btn flex-fill ml-10">Info</button>
+                <button className="info-btn active flex-fill ml-10">Info</button>
                 <button className="info-btn flex-fill">Grados y Pregrados</button>
                 <div className="line"></div>
               </div>
             </div>
             <div className="content-box">
-              <div className="content active">
+              <div className="content">
                 <p className="my-1"><FaMapMarkerAlt size="30" color="#FF6700" className="inline-block pb-1 -pl-1 my-3"/> {universidad.direccion_universidad}, {universidad.localidad_universidad}, {universidad.zona_universidad}</p>
                 <p className="my-1"><Link to={universidad.web_universidad}> <FaGlobeAmericas size="30" color="#FF6700" className="inline-block pb-1 my-3"/> {universidad.web_universidad} </Link></p>
-                <p className="my-1"><FaHandHoldingUsd size="30" color="#FF6700" className="inline-block pb-1 my-3"/> Gestión: {universidad.gestion_universidad}</p>
-                <p className="my-1"><FaEnvelope size="30" color="#FF6700" className="inline-block pb-1 my-3"/> {universidad.correo_universidad}</p>
+                <p className="my-1"><FaHandHoldingUsd size="30" color="#FF6700" className="inline-block pb-1 my-3 pl-1"/> Gestión: {universidad.gestion_universidad}</p>
+                <p className="my-1"><FaEnvelope size="30" color="#FF6700" className="inline-block pb-1 my-3 pl-1"/> {universidad.correo_universidad}</p>
               </div>
               <div className="content">
-                <div className="ver-mas overflow-y-scroll pr-40 mt-4 mb-4">
+                <div className="carreras overflow-y-scroll mt-4 mb-4 pl-1">
                   {carreras.map((carrera, i) => {
                     return <p key={i}>{carrera.nombre_carrera}</p>;
                   })}
                 </div>
               </div>
             </div>
-            <div className="info-botones h-36 flex justify-center gap-x-10 -pl-1">
+            <div className="info-botones h-36 flex justify-center gap-x-10">
             <Link to={universidad.maps_universidad} target="_blank">  
               <button className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
                 <img className="info-img" src="/images/GoogleMapsIcon.png" alt="MapsIcon"/>
-                Localizar en Google Maps
+                <b>Localizar en Google Maps</b>
               </button>
             </Link>
               <button className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
                 <FaBookmark size="30" color="#FF6700"/>
-                Guardar Universidad
+                <b>Guardar Universidad</b>
               </button>
             </div>
           </div>
