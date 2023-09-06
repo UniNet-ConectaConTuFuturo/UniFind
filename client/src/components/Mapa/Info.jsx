@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMapa } from "../../hooks/useMapa";
 import { post } from "../../api/api";
 import { useState } from "react";
-import { FaMapMarkerAlt, FaGlobeAmericas, FaHandHoldingUsd, FaEnvelope, FaBookmark } from "react-icons/fa";
+import { FaMapMarkerAlt, FaGlobeAmericas, FaHandHoldingUsd, FaEnvelope, FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./info.css";
 
@@ -84,7 +84,7 @@ function Info() {
               </button>
             </Link>
               <button className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
-                <FaBookmark size="30" color="#FF6700"/>
+                <FaRegBookmark size="30" color="#FF6700"/>
                 <b>Guardar Universidad</b>
               </button>
             </div>

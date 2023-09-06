@@ -11,6 +11,7 @@ import Ingresante from "./components/Accounts/Identification/Ingresante";
 import Rector from "./components/Accounts/Identification/Ingresante";
 import AccountSettings from "./components/Accounts/AccountSettings";
 import HighlightList from "./components/ListaDeInteres/HighlightList";
+import Chat from "./components/Chat/Chat";
 import Mapa from "./components/Mapa/Mapa";
 
 const router = createBrowserRouter([
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       },
       { path: "/mapa", Component: Mapa },
       { path: "/listainteres", Component: HighlightList },
+      { path: "/chat", Component: Chat }
     ],
   },
 ]);

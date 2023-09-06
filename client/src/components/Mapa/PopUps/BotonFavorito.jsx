@@ -38,24 +38,28 @@ function BotonFavorito({ id_universidad }) {
       >
         <BsXLg />
       </button>
+      {typeof token === "string" && (
+        <>
       <button type="button" disabled={true} title="Ir a lista de favoritos">
         <FaIndent />
       </button>
       {isFavorite ? (
         <>
           <button type="button" title="Sacar de favoritos" onClick={sacar}>
-            <FaStar />
+            <FaStar color="#0028ff"/>
           </button>
         </>
       ) : (
         <button
-          type="button"
-          title="Agregar a favoritos"
-          onClick={guardar}
-          disabled={typeof token !== "string"}
+        type="button"
+        title="Agregar a favoritos"
+        onClick={guardar}
+        disabled={typeof token !== "string"}
         >
-          <FaRegStar />
+          <FaRegStar color="#0028ff" />
         </button>
+      )}
+      </>
       )}
     </div>
   );

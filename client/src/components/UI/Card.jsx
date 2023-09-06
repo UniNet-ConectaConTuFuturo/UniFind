@@ -60,7 +60,7 @@ function Card({ id_universidad }) {
         <button onClick={()=> setButtonPopUp(true)}>Enviar Carta</button>
 
         <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
-          <h2 className="">Seleccione el formato de Carta</h2>
+          <h2 className=""><b>Seleccione el formato de Carta</b></h2>
           <h3>Adjuntar carta:</h3>
           <input
           type="file"
@@ -70,7 +70,7 @@ function Card({ id_universidad }) {
         />
         <br /><br />
         <h3>Generar carta:</h3>
-        <button className="w-20 h-4 bg-black"></button>
+        <button className="w-40 h-7 bg-black text-white">BOTÓN</button>
         </PopUp>
         {/*<input
           type="file"

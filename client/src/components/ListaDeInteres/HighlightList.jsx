@@ -20,9 +20,7 @@ function HighlightList() {
       <h1 className="display-1 mb-5 text-center"><a className="fancy-link">Lista de Interés</a></h1>
       <div className="flex flex-wrap gap-8 justify-start ml-40 mr-12 pb-10">
         {favoritas.map((u)=>(
-            <div key={u.id_universidad} className="w-72 h-48">
-              <Card id_universidad={u.id_universidad}/>
-            </div>
+              <Card key={u.id_universidad} id_universidad={u.id_universidad}/>
         ))}
       </div>
     </>
