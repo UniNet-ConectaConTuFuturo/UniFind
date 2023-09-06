@@ -51,6 +51,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(fileupload());
+app.use(express.static("files"));
 //Routes
 app.use(autenticationRoutes);
 app.use(getRoutes);
