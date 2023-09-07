@@ -11,12 +11,14 @@ const __dirname = path.dirname(__filename);
 export async function uploadCarta(req,res) {
     //const {token, id_universidad} = req.body;
     console.log(req.body);
+    console.log(req.body.idUniversidad);
+
     //console.log(req.files);
     const file = req.files.file; 
     try{
-        /*jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+        jwt.verify(token, process.env.SECRET, async (err, decoded) => {
             if (err) throw err;
-            const { id } = decoded;*/
+            const { id } = decoded;
             const fileName = `hola.txt`;
             //const fileName = `${id_universidad}${id}.txt`;
             const filePath = path.join(__dirname, '..', '..', "cartas", fileName);
@@ -28,7 +30,7 @@ export async function uploadCarta(req,res) {
             res.status(200).send({ message: "File Uploaded", code: 200 });
         });
         //await consult.insertSolicitud(id,fileName,id_universidad);
-        //})
+        })
     }
     catch(error){
         console.error('Error verifying token:', error);
