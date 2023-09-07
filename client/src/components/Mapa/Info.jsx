@@ -47,11 +47,10 @@ function Info() {
         <div className="info-all fixed top-0 right-0 w-1/4 bg-white bg-no-repeat  ">
           <div className="text-black flex flex-col content-end">
             <button
-              className=""
+              className="flex self-end  justify-center bg-black w-5 text-white rounded-full"
               type="button"
               onClick={() => setIdUniToShowInfo(0)}
-            >
-              Cerrar
+            >X
             </button>
             <p className="text-2xl my-4 pl-1">{universidad.nombre_universidad}</p>
             <div className="container flex">

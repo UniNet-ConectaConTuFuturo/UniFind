@@ -171,6 +171,15 @@ function EntrantForm({ className }) {
             Ya tengo una cuenta
           </a>
         </p>
+        <br />
+        <p className="-ml-20 max-w-xs">
+          <a
+            href="#"
+            onClick={() => handleCheckboxChange(false)}
+          >
+            Soy rector
+          </a>
+        </p>
       </form>
     </div>
   );

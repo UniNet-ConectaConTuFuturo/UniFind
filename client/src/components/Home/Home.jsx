@@ -2,7 +2,7 @@ import "./home.css";
 
 function Home() {
   return (
-    <div className="h-screen w-full aspect-video bg-home1"></div>
+    <div className="w-full aspect-video bg-home1 bg-cover bg-left-bottom bg-no-repeat"></div>
   );
 }
 
