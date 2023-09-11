@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useMapa } from "../../hooks/useMapa";
 import { post } from "../../api/api";
 import { useState } from "react";
@@ -18,22 +18,6 @@ function Info() {
   const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();
   const [universidad, setUniversidad] = useState({});
   const [carreras, setCarreras] = useState([]);
-  /* Diseño */
-  const btnRef = useRef(null);
-  const lineRef = useRef(null);
-  const infoContentRef = useRef(null);
-  const carrerasContentRef = useRef(null);
-
-  function handleClick(e) {
-    if (btnRef.current) btnRef.current.classList.toggle("active");
-    btnRef.current = e.target;
-    btnRef.current.classList.toggle("active");
-    infoContentRef.current.classList.toggle("active");
-    carrerasContentRef.current.classList.toggle("active");
-    lineRef.current.style.width = btnRef.current.offsetWidth + "px";
-    lineRef.current.style.left = btnRef.current.offsetLeft + "px";
-  }
-
   useEffect(() => {
     (async () => {
       if (idUniToShowInfo === 0) return;
@@ -46,6 +30,30 @@ function Info() {
         })
       );
     })();
+  }, [idUniToShowInfo]);
+  /* Diseño */
+  const infoBtnRef = useRef(null);
+  const carrerasBtnRef = useRef(null);
+  const lineRef = useRef(null);
+  const infoContentRef = useRef(null);
+  const carrerasContentRef = useRef(null);
+  const [btnActive, setBtnActive] = useState(true);
+
+  function handleClick(e) {
+    infoBtnRef.current.classList.toggle("active");
+    carrerasBtnRef.current.classList.toggle("active");
+    infoContentRef.current.classList.toggle("active");
+    carrerasContentRef.current.classList.toggle("active");
+    lineRef.current.style.width = e.target.offsetWidth + "px";
+    lineRef.current.style.left = e.target.offsetLeft + "px";
+
+    setBtnActive(infoBtnRef.current.classList.contains("active"));
+  }
+  useLayoutEffect(() => {
+    if (idUniToShowInfo !== 0) {
+      lineRef.current.style.width = infoBtnRef.current.offsetWidth + "px";
+      lineRef.current.style.left = infoBtnRef.current.offsetLeft + "px";
+    }
   }, [idUniToShowInfo]);
 
   return (
@@ -66,12 +74,19 @@ function Info() {
             <section className="container flex">
               <div className="tab">
                 <button
+                  disabled={btnActive}
+                  ref={infoBtnRef}
                   className="info-btn flex-fill pl-10 active"
                   onClick={handleClick}
                 >
                   Info
                 </button>
-                <button className="info-btn flex-fill" onClick={handleClick}>
+                <button
+                  disabled={!btnActive}
+                  ref={carrerasBtnRef}
+                  className="info-btn flex-fill"
+                  onClick={handleClick}
+                >
                   Grados y Pregrados
                 </button>
                 <div ref={lineRef} className="line"></div>
