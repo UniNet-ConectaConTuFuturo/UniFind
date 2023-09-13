@@ -1,5 +1,4 @@
 import * as consult from "../../database/consults.js";
-import { jwtConfig } from "../../config.js";
 import jwt from "jsonwebtoken";
 import { mailValidation } from "../../libs/SimpleDataValidation.js";
 

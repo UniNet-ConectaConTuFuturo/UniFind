@@ -29,9 +29,8 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-app.set("appName", "UniNet");
+app.set("appName", process.env.NAME);
 app.set("port", process.env.PORT | 4000);
-app.set("views", path.join(__dirname, "views"));
 
 //Middlewares
 app.use(cors()); //corsOptions
