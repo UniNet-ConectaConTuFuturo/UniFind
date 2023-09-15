@@ -70,9 +70,9 @@ export async function getFavorites(req, res) {
       console.log(id);
 
       const data =
-          await consult.selectFromUniversidades(
+          await consult.selectFromFavoritas(
             "id_universidad",
-            "id_universidad IN (SELECT id_universidad FROM favoritas WHERE id_usuario = " + id + ")"
+            "id_usuario = " + id
           )
       console.log(data);
       return res.json(data).end();

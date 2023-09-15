@@ -212,6 +212,15 @@ export function insertSolicitud(userID, fileName, uniID) {
   });
 }
 
+
+
+
+
+
+
+
+
+
 //modificar manuelmente la bbd
 export function updateCarUni(set, where) {
   return new Promise((resolve, reject) => {
