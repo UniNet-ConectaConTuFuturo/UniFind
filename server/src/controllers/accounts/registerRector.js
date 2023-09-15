@@ -2,7 +2,6 @@ import * as consult from "../../database/consults.js";
 import sendMail from "../../libs/sendMail.js";
 import * as math from "../../libs/math_functions.js";
 import jwt from "jsonwebtoken";
-import { jwtConfig } from "../../config.js";
 import { InsertOrUpdateCode } from "../../libs/CodeFunctions.js";
 
 export async function RectorFirstStep(req, res) {

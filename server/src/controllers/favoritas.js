@@ -1,6 +1,5 @@
 import * as consult from "../database/consults.js";
 import jwt from "jsonwebtoken";
-import { jwtConfig } from "../config.js";
 
 export async function isFavorite(req, res) {
   try {

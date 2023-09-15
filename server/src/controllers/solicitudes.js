@@ -1,6 +1,5 @@
 import path from 'path';
 import jwt from "jsonwebtoken";
-import { jwtConfig } from "../config.js";
 import * as consult from "../database/consults.js";
 
 //To use __dirname
