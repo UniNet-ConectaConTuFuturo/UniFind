@@ -1,4 +1,8 @@
-import * as consult from "../../database/consults.js";
+import {
+  setEntrant,
+  selectFromUsuarios,
+} from "../../database/consults/usuariosC.js";
+import { DeleteVerCode } from "../../database/consults/verificationCodeC.js";
 import sendMail from "../../libs/sendMail.js";
 import * as math from "../../libs/math_functions.js";
 import jwt from "jsonwebtoken";
@@ -37,13 +41,13 @@ export async function EntrantSecondStep(req, res) {
     const data = req.body;
 
     //Eliminar Codigo ya usado
-    await consult.DeleteVerCode(data.mail_user);
+    await DeleteVerCode(data.mail_user);
     delete req.session.attempts;
 
     //crear registro del Entrante y devolver el id;
-    await consult.setEntrant(data);
+    await setEntrant(data);
     const { id_usuario } = (
-      await consult.selectFromUsuarios(
+      await selectFromUsuarios(
         "id_usuario",
         "mail_user" + " = " + "'" + data.mail_user + "'"
       )

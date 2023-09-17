@@ -1,4 +1,9 @@
-import * as consult from "../../database/consults.js";
+import { selectFromUniversidades } from "../../database/consults/universidadesC.js";
+import {
+  setRector,
+  selectFromUsuarios,
+} from "../../database/consults/usuariosC.js";
+import { DeleteVerCode } from "../../database/consults/verificationCodeC.js";
 import sendMail from "../../libs/sendMail.js";
 import * as math from "../../libs/math_functions.js";
 import jwt from "jsonwebtoken";
@@ -12,7 +17,7 @@ export async function RectorFirstStep(req, res) {
     let code = math.getRandomIntInclusive(100000, 999999);
     //Consulta a la base de datos para obtener el mail de la universidad
     const { correo_universidad } = (
-      await consult.selectFromUniversidades(
+      await selectFromUniversidades(
         "correo_universidad",
         "id_universidad" + " = " + data.id_universidad
       )
@@ -41,20 +46,20 @@ export async function RectorSecondStep(req, res) {
   try {
     const data = req.body;
     const { correo_universidad } = (
-      await consult.selectFromUniversidades(
+      await selectFromUniversidades(
         "correo_universidad",
         "id_universidad" + " = " + data.id_universidad
       )
     )[0];
 
     //Eliminar Codigo ya usado
-    await consult.DeleteVerCode(correo_universidad);
+    await DeleteVerCode(correo_universidad);
     delete req.session.attempts;
 
     //crear registro del Rector y devolver el id;
-    await consult.setRector(data);
+    await setRector(data);
     const { id_usuario } = (
-      await consult.selectFromUsuarios(
+      await selectFromUsuarios(
         "id_usuario",
         "mail_user" + " = " + "'" + data.mail_user + "'"
       )

@@ -1,12 +1,13 @@
 import { Router } from "express";
 
 //Import Controllers
-import * as filters from "../controllers/filters.js";
+import { getUniPoints } from "../controllers/filters/filters.js";
+import { getCarreras, getNames } from "../controllers/filters/filterByInput.js";
 
 const router = Router();
 
-router.post("/api/filter/uni", filters.getNames);
-router.post("/api/filter/carrera", filters.getCarreras);
-router.post("/api/filter", filters.getUniPoints);
+router.post("/api/filter/uni", getNames);
+router.post("/api/filter/carrera", getCarreras);
+router.post("/api/filter", getUniPoints);
 
 export default router;

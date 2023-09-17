@@ -1,4 +1,8 @@
-import * as consult from "../database/consults.js";
+import {
+  selectFromFavoritas,
+  insertFavorita,
+  DeleteFavorita,
+} from "../database/consults/favoritasC.js";
 import jwt from "jsonwebtoken";
 
 export async function isFavorite(req, res) {
@@ -11,7 +15,7 @@ export async function isFavorite(req, res) {
 
       if (
         typeof (
-          await consult.selectFromFavoritas(
+          await selectFromFavoritas(
             "id_usuario",
             "id_usuario = " + id + " AND id_universidad = " + id_universidad
           )
@@ -35,7 +39,7 @@ export async function setFavorite(req, res) {
       if (err) throw err;
       const { id } = decoded;
       console.log(id);
-      await consult.insertFavorita({ id_usuario: id, id_universidad });
+      await insertFavorita({ id_usuario: id, id_universidad });
       return res.json({ value: true }).end();
     });
   } catch (error) {
@@ -52,7 +56,7 @@ export async function deleteFavorite(req, res) {
       const { id } = decoded;
       console.log(id);
 
-      await consult.DeleteFavorita({ id_usuario: id, id_universidad });
+      await DeleteFavorita({ id_usuario: id, id_universidad });
       return res.json({ value: true }).end();
     });
   } catch (error) {
@@ -69,11 +73,10 @@ export async function getFavorites(req, res) {
       const { id } = decoded;
       console.log(id);
 
-      const data =
-          await consult.selectFromFavoritas(
-            "id_universidad",
-            "id_usuario = " + id
-          )
+      const data = await selectFromFavoritas(
+        "id_universidad",
+        "id_usuario = " + id
+      );
       console.log(data);
       return res.json(data).end();
     });

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import * as consult from "../database/consults.js";
+import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 export const whoIs = (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
@@ -12,7 +12,7 @@ export const whoIs = (req, res) => {
       const { id } = decoded;
 
       //Consultar por decodedToken.id en la Tabla de Ingresantes
-      const user_data = await consult.selectFromUsuarios(
+      const user_data = await selectFromUsuarios(
         "title, id_universidad",
         "id_usuario = " + id
       );

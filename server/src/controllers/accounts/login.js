@@ -1,4 +1,4 @@
-import * as consult from "../../database/consults.js";
+import { selectFromUsuarios } from "../../database/consults/usuariosC.js";
 import jwt from "jsonwebtoken";
 import { mailValidation } from "../../libs/SimpleDataValidation.js";
 
@@ -9,7 +9,7 @@ export async function SignIn(req, res) {
     const wrongmail = mailValidation(data);
     if (wrongmail) return res.json(wrongmail).end();
     //Verificar si existe y recibir id_usuario y password_user
-    const userData = await consult.selectFromUsuarios(
+    const userData = await selectFromUsuarios(
       "id_usuario, password_user",
       "mail_user = '" + data.mail_user + "'"
     );

@@ -2,7 +2,8 @@ import {
   simpleDataValidation,
   mailValidation,
 } from "../../libs/SimpleDataValidation.js";
-import * as consult from "../../database/consults.js";
+import { selectFromUsuarios } from "../../database/consults/usuariosC.js";
+import { selectFromUniversidades } from "../../database/consults/universidadesC.js";
 import { codeValidation } from "../../libs/CodeFunctions.js";
 export async function User(req, res, next) {
   try {
@@ -11,7 +12,7 @@ export async function User(req, res, next) {
     const wrongmail = mailValidation(data);
     if (wrongmail) return res.json(wrongmail).end();
     /* Comprobar que no Exista */
-    const user_data = await consult.selectFromUsuarios(
+    const user_data = await selectFromUsuarios(
       "id_usuario",
       "mail_user" + " = " + "'" + data.mail_user + "'"
     );
@@ -66,7 +67,7 @@ export async function RectorCode(req, res, next) {
   try {
     const { id_universidad, code } = req.body;
     const { correo_universidad } = (
-      await consult.selectFromUniversidades(
+      await selectFromUniversidades(
         "correo_universidad",
         "id_universidad" + " = " + "'" + id_universidad + "'"
       )
