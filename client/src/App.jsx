@@ -10,7 +10,7 @@ import Home from "./components/Home/Home";
 import Ingresante from "./components/Accounts/Identification/Ingresante";
 import Rector from "./components/Accounts/Identification/Ingresante";
 import AccountSettings from "./components/Accounts/AccountSettings";
-import HighlightList from "./components/ListaDeInteres/HighlightList";
+import ListaInteres from "./components/ListaInteres/ListaInteres";
 import Chat from "./components/Chat/Chat";
 import Mapa from "./components/Mapa/Mapa";
 
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
         children: [{ index: true, Component: AccountSettings }],
       },
       { path: "/mapa", Component: Mapa },
-      { path: "/listainteres", Component: HighlightList },
-      { path: "/chat", Component: Chat }
+      { path: "/listainteres", Component: ListaInteres },
+      { path: "/chat", Component: Chat },
     ],
   },
 ]);

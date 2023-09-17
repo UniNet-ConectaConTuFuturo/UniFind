@@ -20,9 +20,31 @@ svg {
   filter: invert(0);
   transition: 0.25s;
 }
+.sidebar-icon.disabled:hover svg {
+  filter: none;
+}
 .sidebar-icon:hover > .aside-p {
   font-weight: 700;
   color: black;
+}
+.sidebar-icon.disabled > .aside-p {
+  opacity: 0.25;
+}
+.sidebar-icon.disabled {
+  pointer-events: none;
+}
+.sidebar-icon.disabled:hover > .aside-p {
+  font-weight: normal;
+  color: white;
+}
+.sidebar-icon > div > svg:first-child {
+  display: none;
+}
+.sidebar-icon.disabled > div > svg:first-child {
+  display: initial;
+}
+.sidebar-icon.disabled > div > svg:last-child {
+  opacity: 0.25;
 }
 
 .sidebar {

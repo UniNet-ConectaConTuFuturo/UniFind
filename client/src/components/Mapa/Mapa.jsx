@@ -6,7 +6,7 @@ import DisplayMarkers from "./DisplayMarkers";
 import Filters from "./LayersControl/Filters";
 import Options from "./LayersControl/Options";
 import ControlZoom from "./ControlZoom";
-import Info from "./Info";
+import AsideInfo from "./AsideInfo";
 import MapaProvider from "../../context/Mapa/MapaProvider";
 import GeoInfo from "./geoJSON/GeoInfo";
 function Mapa() {
@@ -30,7 +30,7 @@ function Mapa() {
       <Filters />
       <Options />
       <GeoInfo />
-      <Info />
+      <AsideInfo />
     </MapaProvider>
   );
 }
