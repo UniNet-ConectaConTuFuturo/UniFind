@@ -14,7 +14,7 @@ function ListaInteres() {
   const [favoritas, setFavoritas] = useState([]);
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
-  const [idUniToShowInfo, setIdUniToShowInfo] = useState(false);
+  const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
   useEffect(() => {
     if (typeof token === "string") {
       (async () => setFavoritas(await post("/getfavorites", { token })))();

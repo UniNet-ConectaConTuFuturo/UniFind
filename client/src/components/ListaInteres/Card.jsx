@@ -59,6 +59,7 @@ function Card({
           >
             Enviar Carta
           </button>
+          <h2 className="right-0 inline pl-40">Estado: </h2>
         </div>
       </div>
     </>

@@ -8,11 +8,14 @@ import IdentificationProvider from "./context/Identification/IdentificationProvi
 /* Componentes */
 import Home from "./components/Home/Home";
 import Ingresante from "./components/Accounts/Identification/Ingresante";
-import Rector from "./components/Accounts/Identification/Ingresante";
+import Rector from "./components/Accounts/Identification/Rector";
 import AccountSettings from "./components/Accounts/AccountSettings";
 import ListaInteres from "./components/ListaInteres/ListaInteres";
 import Chat from "./components/Chat/Chat";
 import Mapa from "./components/Mapa/Mapa";
+import ChatIngresante from "./components/Chat/ChatIngresante";
+import ChatRector from "./components/Chat/ChatRector";
+import Admision from "./components/Admision/Admision";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +48,9 @@ const router = createBrowserRouter([
       },
       { path: "/mapa", Component: Mapa },
       { path: "/listainteres", Component: ListaInteres },
-      { path: "/chat", Component: Chat },
+      { path: "/admision", Component: Admision },
+      { path: "/chat/ingresante", Component: ChatIngresante },
+      { path: "/chat/rector", Component: ChatRector }
     ],
   },
 ]);

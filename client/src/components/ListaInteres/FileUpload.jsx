@@ -36,11 +36,11 @@ function FileUpload({ id_universidad }) {
   };
   return (
     <>
-      <h2 className="">
+      <h2 className="text-black">
         <b>Seleccione el formato de Carta</b>
       </h2>
-      <h3>Adjuntar carta:</h3>
-      <div className="app">
+      <h3 className="text-black">Adjuntar carta:</h3>
+      <div className="app text-black">
         <div className="App">
           <input type="file" onChange={saveFile} />
           <br />
@@ -49,7 +49,7 @@ function FileUpload({ id_universidad }) {
       </div>
       <br />
       <br />
-      <h3>Generar carta:</h3>
+      <h3 className="text-black">Generar carta:</h3>
       <button className="w-40 h-7 bg-black text-white">BOTÓN</button>
     </>
   );

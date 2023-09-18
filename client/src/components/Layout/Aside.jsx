@@ -1,4 +1,6 @@
 import "./aside.css";
+
+// Iconos
 import {
   FaHome,
   FaUserAlt,
@@ -7,9 +9,11 @@ import {
   FaBookmark,
   FaMapMarkedAlt,
   FaLock,
+  FaAddressCard
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
+
 import { useEffect, useState } from "react";
 import { Link /* , useMatch */ } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
@@ -33,7 +37,7 @@ const SideBar = () => {
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed z-50 top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90">
       <Link
         to="/"
-        className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+        className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
       >
         <FaHome size="40" className="mx-2.5" />
         <p className="aside-p">HOME</p>
@@ -41,7 +45,7 @@ const SideBar = () => {
       {user === userOptions.noAuthenticated && (
         <Link
           to="/identificacion/ingresante"
-          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
         >
           <FaUserAlt size="40" className="mx-2.5" />
           <p className="aside-p">LOGIN</p>
@@ -49,7 +53,7 @@ const SideBar = () => {
       )}
       <Link
         to="/mapa"
-        className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+        className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
       >
         <FaMapMarkedAlt size="40" className="mx-2.5" />
         <p className="aside-p">MAPA</p>
@@ -59,29 +63,42 @@ const SideBar = () => {
           to="/listainteres"
           className={
             (user === userOptions.noAuthenticated ? "disabled" : "") +
-            " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+            " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
           }
         >
           <div className="mx-2.5 relative">
             <FaLock size="20" className="absolute bottom-0 right-0" />
-            <FaStar size="40" className="" />
+            <FaStar size="40" />
           </div>
           <p className="aside-p">FAVORITOS</p>
         </Link>
       )}
-      {user !== userOptions.noAuthenticated && (
+      {user === userOptions.rector && (
         <Link
-          to="/chat"
-          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+          to="/admision"
+          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
         >
-          <HiChatBubbleLeftRight size="40" className="mx-2.5" />
-          <p className="aside-p">CHAT</p>
+          <FaAddressCard size="40" className="mx-2.5" />
+          <p className="aside-p">ADMISIÓN</p>
         </Link>
       )}
+        <Link
+          to="/chat/ingresante"
+          className={
+            (user === userOptions.noAuthenticated ? "disabled" : "") +
+          " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
+          }
+        >
+          <div className="mx-2.5 relative">
+            <FaLock size="20" className="absolute bottom-0 right-0" />
+            <HiChatBubbleLeftRight size="40" />
+          </div>
+          <p className="aside-p">CHAT</p>
+        </Link>
       {user !== userOptions.noAuthenticated && (
         <Link
           to="/configuracion"
-          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
         >
           <FaCog size="40" className="mx-2.5" />
           <p className="aside-p">CONFIGURACIÓN</p>
@@ -90,7 +107,7 @@ const SideBar = () => {
       {user !== userOptions.noAuthenticated && (
         <Link
           to="/"
-          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300"
+          className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
         >
           <HiOutlineLogout size="40" className="mx-2.5" />
           <p className="aside-p">CERRAR SESIÓN</p>
