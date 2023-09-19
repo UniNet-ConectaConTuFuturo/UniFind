@@ -1,4 +1,51 @@
 import jwt from "jsonwebtoken";
+import { filtrarUniversidades } from "../../database/consults/universidadesC.js";
+
+const idsOrCreates = (lista) => {
+  const ids = [],
+    creates = [];
+  lista.forEach((x) => (typeof x === "number" ? ids.push(x) : creates.push(x)));
+  return [ids, creates];
+};
+export async function getUniPoints(req, res) {
+  try {
+    const { token, names, gestion, carreras } = req.body;
+    const [ids_universidad, creates_universidades] = idsOrCreates(names);
+    const [ids_carreras, creates_carreras] = idsOrCreates(carreras);
+    if (token) {
+      jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+        if (err) throw err;
+
+        const data = await filtrarUniversidades({
+          ids_universidad,
+          creates_universidades,
+          ids_carreras,
+          creates_carreras,
+          gestion,
+          id_usuario: decoded.id,
+        });
+        return res.json(data).end();
+      });
+    } else {
+      const data = await filtrarUniversidades({
+        ids_universidad,
+        creates_universidades,
+        ids_carreras,
+        creates_carreras,
+        gestion,
+        id_usuario: null,
+      });
+      console.log(data);
+      return res.json(data).end();
+    }
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+
+/* 
 import { selectFromUniversidades } from "../../database/consults/universidadesC.js";
 import { selectFromUsuarios } from "../../database/consults/usuariosC.js";
 
@@ -81,7 +128,7 @@ async function WheresAndConsult(where, names, gestion, carreras) {
   );
   return data;
 }
-export async function getUniPoints(req, res) {
+export async function getUniPoints01(req, res) {
   try {
     const { token, names, gestion, carreras } = req.body;
     let where = "";
@@ -104,4 +151,5 @@ export async function getUniPoints(req, res) {
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();
   }
-}
+} 
+*/
