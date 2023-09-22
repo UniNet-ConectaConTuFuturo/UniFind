@@ -61,6 +61,9 @@ const SideBar = () => {
       {user !== userOptions.rector && (
         <Link
           to="/listainteres"
+          title={
+            user === userOptions.noAuthenticated ? "Debe iniciar sesión" : ""
+          }
           className={
             (user === userOptions.noAuthenticated ? "disabled" : "") +
             " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
@@ -84,6 +87,9 @@ const SideBar = () => {
       )}
       <Link
         to="/chat/ingresante"
+        title={
+          user === userOptions.noAuthenticated ? "Debe iniciar sesión" : ""
+        }
         className={
           (user === userOptions.noAuthenticated ? "disabled" : "") +
           " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
