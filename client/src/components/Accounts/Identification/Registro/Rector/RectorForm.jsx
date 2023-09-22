@@ -208,6 +208,12 @@ function RectorForm({ className }) {
             Ya tengo una cuenta
           </a>
         </p>
+        <br />
+        <Link
+            to="/identificacion/rector"
+          >
+            Soy ingresante
+          </Link>
       </form>
     </div>
   );

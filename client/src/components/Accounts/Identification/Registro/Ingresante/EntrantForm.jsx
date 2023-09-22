@@ -4,6 +4,7 @@ import { post } from "../../../../../api/api";
 import "../../form.css";
 import { useRegistro } from "../../../../../hooks/useRegistro";
 import { useIdentification } from "../../../../../hooks/useIdentification";
+import { Link } from "react-router-dom";
 
 function EntrantForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
@@ -173,12 +174,11 @@ function EntrantForm({ className }) {
         </p>
         <br />
         <p className="-ml-20 max-w-xs">
-          <a
-            href="#"
-            onClick={() => handleCheckboxChange(false)}
+          <Link
+            to="/identificacion/rector"
           >
             Soy rector
-          </a>
+          </Link>
         </p>
       </form>
     </div>
