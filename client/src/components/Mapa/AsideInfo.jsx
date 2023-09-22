@@ -3,7 +3,7 @@ import Informacion from "../UI/Informacion";
 
 function AsideInfo() {
   /* Datos */
-  const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();
+  const { idUniToShowInfo, setIdUniToShowInfo, dispatchBusqueda } = useMapa();
   return (
     <>
       {idUniToShowInfo !== 0 && (
@@ -15,7 +15,10 @@ function AsideInfo() {
           >
             X
           </button>
-          <Informacion idUniToShowInfo={idUniToShowInfo} />
+          <Informacion
+            idUniToShowInfo={idUniToShowInfo}
+            dispatch={dispatchBusqueda}
+          />
         </div>
       )}
     </>

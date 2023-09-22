@@ -1,10 +1,11 @@
-import { FeatureGroup, Marker, useMap, useMapEvent } from "react-leaflet";
-import { useMapa } from "../../hooks/useMapa";
+import { FeatureGroup, useMap, useMapEvent } from "react-leaflet";
+import { useMapa } from "../../../hooks/useMapa";
 import { useEffect, useRef } from "react";
 
-import * as api from "../../api/api";
-import PopUp from "./PopUps/PopUp";
-import { useGlobal } from "../../hooks/useGlobal";
+import * as api from "../../../api/api";
+import { useGlobal } from "../../../hooks/useGlobal";
+
+import MyMarker from "./MyMarker";
 
 function DisplayMarkers() {
   const { token } = useGlobal();
@@ -57,20 +58,17 @@ function DisplayMarkers() {
   ]);
   const featureGroupRef = useRef(null);
   useEffect(() => {
+    if (!featureGroupRef) return;
     const bounds = featureGroupRef.current.getBounds();
-    if (Object.keys(bounds).length) map.flyToBounds(bounds);
+    if (Object.keys(bounds).length) {
+      const newbounds = bounds.pad(0.1);
+      map.flyToBounds(newbounds);
+    }
   }, [featureGroupRef, markers, map]);
-
   return (
     <FeatureGroup ref={featureGroupRef}>
       {displayMarkers &&
-        markers.map((u) => {
-          return (
-            <Marker key={u.id_universidad} position={[u.Point.x, u.Point.y]}>
-              <PopUp id_universidad={u.id_universidad} />
-            </Marker>
-          );
-        })}
+        markers.map((u) => <MyMarker key={u.id_universidad} u={u} />)}
     </FeatureGroup>
   );
 }

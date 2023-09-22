@@ -1,5 +1,5 @@
 import { post } from "../../api/api";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { useState } from "react";
 import { useGlobal } from "../../hooks/useGlobal";
 /* css */
@@ -11,15 +11,14 @@ import Modal from "../UI/Modal";
 import Informacion from "../UI/Informacion";
 function ListaInteres() {
   const { token } = useGlobal();
+  const [cambio, dispatch] = useReducer((state, action) => action, 0);
   const [favoritas, setFavoritas] = useState([]);
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
   useEffect(() => {
-    if (typeof token === "string") {
-      (async () => setFavoritas(await post("/getfavorites", { token })))();
-    }
-  }, [token]);
+    (async () => setFavoritas(await post("/getfavorites", { token })))();
+  }, [token, cambio]);
   return (
     <>
       <h1 className="display-1 mb-5 text-center">
@@ -37,7 +36,7 @@ function ListaInteres() {
         ))}
       </div>
       <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
-        <Informacion idUniToShowInfo={idUniToShowInfo} />
+        <Informacion idUniToShowInfo={idUniToShowInfo} dispatch={dispatch} />
       </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>

@@ -11,3 +11,7 @@ html {
 .w-225vw {
   width: 21.5vw;
 }
+/* img[src="http://localhost:8080/images/marker-icon-2x-selected.png"]
+{
+  transform: scale(2, 2);
+} */

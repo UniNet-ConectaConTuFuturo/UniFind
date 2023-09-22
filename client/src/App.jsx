@@ -11,7 +11,6 @@ import Ingresante from "./components/Accounts/Identification/Ingresante";
 import Rector from "./components/Accounts/Identification/Rector";
 import AccountSettings from "./components/Accounts/AccountSettings";
 import ListaInteres from "./components/ListaInteres/ListaInteres";
-import Chat from "./components/Chat/Chat";
 import Mapa from "./components/Mapa/Mapa";
 import ChatIngresante from "./components/Chat/ChatIngresante";
 import ChatRector from "./components/Chat/ChatRector";
@@ -50,7 +49,7 @@ const router = createBrowserRouter([
       { path: "/listainteres", Component: ListaInteres },
       { path: "/admision", Component: Admision },
       { path: "/chat/ingresante", Component: ChatIngresante },
-      { path: "/chat/rector", Component: ChatRector }
+      { path: "/chat/rector", Component: ChatRector },
     ],
   },
 ]);

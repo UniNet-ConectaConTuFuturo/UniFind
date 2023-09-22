@@ -2,7 +2,7 @@ import { MapContainer } from "react-leaflet";
 import "./leaflet.css";
 import Tiles from "./Tiles";
 import DisplayGeoJSON from "./DisplayGeoJSON";
-import DisplayMarkers from "./DisplayMarkers";
+import DisplayMarkers from "./Markers/DisplayMarkers";
 import Filters from "./LayersControl/Filters";
 import Options from "./LayersControl/Options";
 import ControlZoom from "./ControlZoom";

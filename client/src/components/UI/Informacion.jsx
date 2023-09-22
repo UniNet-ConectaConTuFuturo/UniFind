@@ -7,19 +7,41 @@ import {
   FaHandHoldingUsd,
   FaEnvelope,
   FaRegBookmark,
-  /* FaBookmark, */
+  FaBookmark,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./info.css";
 import PropTypes from "prop-types";
+import { useGlobal } from "../../hooks/useGlobal";
 
-function Informacion({ idUniToShowInfo }) {
-  /* Datos */
+function Informacion({ idUniToShowInfo, dispatch }) {
+  /* Backend favoritos */
+  const { token } = useGlobal();
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    if (typeof token === "string" && idUniToShowInfo) {
+      (async () =>
+        setIsFavorite(
+          (
+            await post("/isfavorite", {
+              id_universidad: idUniToShowInfo,
+              token,
+            })
+          ).value
+        ))();
+    }
+  }, [token, idUniToShowInfo]);
+  async function handleClickStar(fetch, isfavorite) {
+    await post(fetch, { id_universidad: idUniToShowInfo, token });
+    setIsFavorite(isfavorite);
+    dispatch({ id_universidad: idUniToShowInfo });
+  }
+  /* Datos universidad */
   const [universidad, setUniversidad] = useState({});
   const [carreras, setCarreras] = useState([]);
   useEffect(() => {
     (async () => {
-      if (idUniToShowInfo === 0) return;
+      if (!idUniToShowInfo) return;
       setUniversidad(
         await post("/get/uni", { id_universidad: idUniToShowInfo })
       );
@@ -139,10 +161,27 @@ function Informacion({ idUniToShowInfo }) {
               <b>Localizar en Google Maps</b>
             </button>
           </Link>
-          <button className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
-            <FaRegBookmark size="30" color="#FF6700" />
-            <b>Guardar Universidad</b>
-          </button>
+          {typeof token === "string" && (
+            <>
+              {isFavorite ? (
+                <button
+                  onClick={() => handleClickStar("/deletefavorite", false)}
+                  className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
+                >
+                  <FaBookmark size="30" color="#FF6700" />
+                  <b>Quitar de favoritos</b>
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleClickStar("/setfavorite", true)}
+                  className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
+                >
+                  <FaRegBookmark size="30" color="#FF6700" />
+                  <b>Guardar en favoritos</b>
+                </button>
+              )}
+            </>
+          )}
         </section>
       </div>
     </>
@@ -150,5 +189,6 @@ function Informacion({ idUniToShowInfo }) {
 }
 Informacion.propTypes = {
   idUniToShowInfo: PropTypes.number,
+  dispatch: PropTypes.func,
 };
 export default Informacion;

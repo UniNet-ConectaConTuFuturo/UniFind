@@ -6,10 +6,10 @@ import {
   FaUserAlt,
   FaCog,
   FaStar,
-  FaBookmark,
+  /* FaBookmark, */
   FaMapMarkedAlt,
   FaLock,
-  FaAddressCard
+  FaAddressCard,
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
@@ -82,19 +82,19 @@ const SideBar = () => {
           <p className="aside-p">ADMISIÓN</p>
         </Link>
       )}
-        <Link
-          to="/chat/ingresante"
-          className={
-            (user === userOptions.noAuthenticated ? "disabled" : "") +
+      <Link
+        to="/chat/ingresante"
+        className={
+          (user === userOptions.noAuthenticated ? "disabled" : "") +
           " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
-          }
-        >
-          <div className="mx-2.5 relative">
-            <FaLock size="20" className="absolute bottom-0 right-0" />
-            <HiChatBubbleLeftRight size="40" />
-          </div>
-          <p className="aside-p">CHAT</p>
-        </Link>
+        }
+      >
+        <div className="mx-2.5 relative">
+          <FaLock size="20" className="absolute bottom-0 right-0" />
+          <HiChatBubbleLeftRight size="40" />
+        </div>
+        <p className="aside-p">CHAT</p>
+      </Link>
       {user !== userOptions.noAuthenticated && (
         <Link
           to="/configuracion"
