@@ -16,8 +16,8 @@ import { HiChatBubbleLeftRight } from "react-icons/hi2";
 
 import { useEffect, useState } from "react";
 import { Link /* , useMatch */ } from "react-router-dom";
-import { useGlobal } from "../../hooks/useGlobal";
-import { post } from "../../api/api";
+import { useGlobal } from "../../../hooks/useGlobal";
+import { post } from "../../../api/api";
 
 const SideBar = () => {
   const userOptions = {
@@ -34,7 +34,7 @@ const SideBar = () => {
     })();
   }, [token]);
   return (
-    <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed z-50 top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90">
+    <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">
       <Link
         to="/"
         className="sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"

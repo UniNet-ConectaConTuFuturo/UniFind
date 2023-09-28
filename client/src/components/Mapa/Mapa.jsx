@@ -1,14 +1,18 @@
-import { MapContainer } from "react-leaflet";
-import "./leaflet.css";
-import Tiles from "./Tiles";
-import DisplayGeoJSON from "./DisplayGeoJSON";
-import DisplayMarkers from "./Markers/DisplayMarkers";
-import Filters from "./LayersControl/Filters";
-import Options from "./LayersControl/Options";
-import ControlZoom from "./ControlZoom";
-import AsideInfo from "./AsideInfo";
+import "leaflet/dist/leaflet.css";
+import { Suspense, lazy } from "react";
+
 import MapaProvider from "../../context/Mapa/MapaProvider";
-import GeoInfo from "./geoJSON/GeoInfo";
+import { MapContainer } from "react-leaflet";
+
+const ControlZoom = lazy(() => import("./ControlZoom"));
+import Tiles from "./Tiles";
+const DisplayGeoJSON = lazy(() => import("./DisplayGeoJSON"));
+const DisplayMarkers = lazy(() => import("./Markers/DisplayMarkers"));
+
+const Filters = lazy(() => import("./LayersControl/Filters"));
+const Options = lazy(() => import("./LayersControl/Options"));
+const GeoInfo = lazy(() => import("./geoJSON/GeoInfo"));
+const AsideInfo = lazy(() => import("./AsideInfo"));
 function Mapa() {
   return (
     <MapaProvider>
@@ -22,15 +26,23 @@ function Mapa() {
         zoomSnap={0.5}
         doubleClickZoom={false}
       >
-        <ControlZoom />
+        <Suspense>
+          <ControlZoom />
+        </Suspense>
         <Tiles />
-        <DisplayGeoJSON />
-        <DisplayMarkers />
+        <Suspense>
+          <DisplayGeoJSON />
+        </Suspense>
+        <Suspense>
+          <DisplayMarkers />
+        </Suspense>
       </MapContainer>
-      <Filters />
-      <Options />
-      <GeoInfo />
-      <AsideInfo />
+      <Suspense>
+        <Filters />
+        <Options />
+        <GeoInfo />
+        <AsideInfo />
+      </Suspense>
     </MapaProvider>
   );
 }

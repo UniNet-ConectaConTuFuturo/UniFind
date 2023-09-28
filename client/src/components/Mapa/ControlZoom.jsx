@@ -10,7 +10,7 @@ function ControlZoom() {
   }
   return (
     <div className="leaflet-control-container">
-      <div className="leaflet-bottom left-36">
+      <div className="leaflet-bottom left-32">
         <div className="leaflet-control-zoom leaflet-bar leaflet-control">
           <a
             className="leaflet-control-zoom-in"

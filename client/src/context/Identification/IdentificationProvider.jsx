@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { IdentificationContext } from "./IdentificationContext";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 function IdentificationProvider() {
   const [bgColor, setBgColor] = useState("bg-sky-600");

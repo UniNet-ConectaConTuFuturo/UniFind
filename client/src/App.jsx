@@ -6,15 +6,24 @@ import { Authenticated, NotAuthenticated } from "./middlewares/authentication";
 import GlobalProvider from "./context/Global/GlobalProvider";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
 /* Componentes */
-import Home from "./components/Home/Home";
-import Ingresante from "./components/Accounts/Identification/Ingresante";
-import Rector from "./components/Accounts/Identification/Rector";
-import AccountSettings from "./components/Accounts/AccountSettings";
-import ListaInteres from "./components/ListaInteres/ListaInteres";
-import Mapa from "./components/Mapa/Mapa";
-import ChatIngresante from "./components/Chat/ChatIngresante";
-import ChatRector from "./components/Chat/ChatRector";
-import Admision from "./components/Admision/Admision";
+import { lazy } from "react";
+const Home = lazy(() => import("./components/Home/Home"));
+const Ingresante = lazy(() =>
+  import("./components/Accounts/Identification/Ingresante")
+);
+const Rector = lazy(() =>
+  import("./components/Accounts/Identification/Rector")
+);
+const AccountSettings = lazy(() =>
+  import("./components/Accounts/AccountSettings")
+);
+const ListaInteres = lazy(() =>
+  import("./components/ListaInteres/ListaInteres")
+);
+const Mapa = lazy(() => import("./components/Mapa/Mapa"));
+const ChatIngresante = lazy(() => import("./components/Chat/ChatIngresante"));
+const ChatRector = lazy(() => import("./components/Chat/ChatRector"));
+const Admision = lazy(() => import("./components/Admision/Admision"));
 
 const router = createBrowserRouter([
   {

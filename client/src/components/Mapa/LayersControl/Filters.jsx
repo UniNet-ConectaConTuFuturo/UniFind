@@ -25,7 +25,7 @@ function Filters() {
       : setRightLeftStyle("left-32 right-48");
   }, [idUniToShowInfo]);
   return (
-    <div className={"leaflet-top z-10 " + rightLeftStyle}>
+    <div className={"leaflet-top " + rightLeftStyle}>
       <div
         className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"
@@ -33,9 +33,9 @@ function Filters() {
       >
         <div className="leaflet-control-layers-list">
           <nav className="w-full flex justify-between flex-row items-start text-center">
-              <Carrera />
-              <Nombre />
-              <Gestion />
+            <Carrera />
+            <Nombre />
+            <Gestion />
           </nav>
         </div>
         <a
