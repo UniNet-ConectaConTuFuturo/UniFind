@@ -1,13 +1,18 @@
 import PropTypes from "prop-types";
-import { Marker } from "react-leaflet";
+import { Marker, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import { myIconPrototype, mySelectedIconPrototype } from "./MyIcon";
 import { useMapa } from "../../../hooks/useMapa";
-import { lazy } from "react";
+import { lazy, useCallback } from "react";
 const PopUp = lazy(() => import("./PopUps/PopUp"));
 
 function MyMarker({ u }) {
-  const { idUniToShowInfo } = useMapa();
+  const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();
+  const map = useMap();
+  const handleVerMas = useCallback(() => {
+    map.closePopup();
+    setIdUniToShowInfo(u.id_universidad);
+  }, [map, setIdUniToShowInfo, u.id_universidad]);
   return (
     <Marker
       icon={
@@ -19,7 +24,7 @@ function MyMarker({ u }) {
       }
       position={[u.Point.x, u.Point.y]}
     >
-      <PopUp id_universidad={u.id_universidad} />
+      <PopUp id_universidad={u.id_universidad} handleVerMas={handleVerMas} />
     </Marker>
   );
 }

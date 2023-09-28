@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { useMapa } from "../../../hooks/useMapa";
 
 // Components
-import Carrera from "./Filters/Carrera";
-import Nombre from "./Filters/Nombre";
-import Gestion from "./Filters/Gestion";
+import Carrera from "./Carrera";
+import Nombre from "./Nombre";
+import Gestion from "./Gestion";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 
 function Filters() {

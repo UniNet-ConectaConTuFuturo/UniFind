@@ -1,4 +1,4 @@
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../hooks/useMapa";
 import Select from "react-select";
 
 const gestionOptions = [

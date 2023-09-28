@@ -1,47 +1,42 @@
-import { useMapa } from "../../../../hooks/useMapa";
-import { post } from "../../../../api/api";
+/* eslint-disable react/prop-types */
+import { useMapa } from "../../../hooks/useMapa";
+import { post } from "../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
-import "./filters.css";
+import { components } from "react-select";
 
-function Carrera() {
-  const { setCarreras } = useMapa();
+function Nombre() {
+  const { setNames } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
-
-  /* const customStyles = {
-    menuPortal: base => ({
-      ...base,
-      fontSize: '13px'
-  }),
-    control: (base) => ({
-      ...base,
-      fontSize: '13px',
-      paddingTop: '3px',
-    }),
-  }; */
-
+  const MultiValueLabel = (props) => {
+    return (
+      <components.MultiValueLabel {...props}>
+        <span title={props.data.title}>
+          {props.data.selectedOption || props.data.label}
+        </span>
+      </components.MultiValueLabel>
+    );
+  };
   return (
     <section className="relative w-1/3 mt-1 mx-4">
-      {/* <h3>Filtrar por Carrera</h3> */}
+      {/* <h3>Filtrar por Nombre</h3> */}
       <label>
         <span>
           <AsyncCreatableSelect
-            placeholder="Filtrar por Carrera"
+            placeholder="Filtrar por Nombre"
             createOptionPosition="first"
             formatCreateLabel={(inputValue) => `${inputValue}...`}
-            isValidNewOption={(inputValue) =>
-              inputValue.trim() ? true : false
-            }
             cacheOptions
             defaultOptions
             isMulti
+            components={{ MultiValueLabel }}
             closeMenuOnSelect={false}
-            onChange={(options) => setCarreras(options.map((o) => o.value))}
+            onChange={(options) => setNames(options.map((o) => o.value))}
             isLoading={isLoading}
             loadOptions={async (inputValue) => {
               try {
                 setIsLoading(true);
-                const res = await post("/filter/carrera", {
+                const res = await post("/filter/uni", {
                   inputValue,
                 });
                 setIsLoading(false);
@@ -56,4 +51,4 @@ function Carrera() {
     </section>
   );
 }
-export default Carrera;
+export default Nombre;

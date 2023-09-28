@@ -1,24 +1,19 @@
-import { Popup, useMap } from "react-leaflet";
-import { useMapa } from "../../../../hooks/useMapa";
+import { Popup } from "react-leaflet";
 import { post } from "../../../../api/api";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import BotonFavorito from "./BotonFavorito";
 import { FaMapMarkedAlt } from "react-icons/fa";
 
-function PopUp({ id_universidad }) {
-  const map = useMap();
-  const { setIdUniToShowInfo } = useMapa();
+const PopUp = memo(function PopUp({ id_universidad, handleVerMas }) {
   const [universidad, setUniversidad] = useState({});
+  console.log("popup");
   useEffect(() => {
     (async () => {
       setUniversidad(await post("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
-  function handleVerMas() {
-    map.closePopup();
-    setIdUniToShowInfo(id_universidad);
-  }
+
   return (
     <Popup closeButton={false}>
       <div className="flex justify-between gap-x-4">
@@ -45,8 +40,9 @@ function PopUp({ id_universidad }) {
       </div>
     </Popup>
   );
-}
+});
 PopUp.propTypes = {
   id_universidad: PropTypes.number,
+  handleVerMas: PropTypes.func,
 };
 export default PopUp;

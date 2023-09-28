@@ -9,8 +9,8 @@ import Tiles from "./Tiles";
 const DisplayGeoJSON = lazy(() => import("./DisplayGeoJSON"));
 const DisplayMarkers = lazy(() => import("./Markers/DisplayMarkers"));
 
-const Filters = lazy(() => import("./LayersControl/Filters"));
-const Options = lazy(() => import("./LayersControl/Options"));
+const Filters = lazy(() => import("./Filters/Filters"));
+const Options = lazy(() => import("./Options/Options"));
 const GeoInfo = lazy(() => import("./geoJSON/GeoInfo"));
 const AsideInfo = lazy(() => import("./AsideInfo"));
 function Mapa() {

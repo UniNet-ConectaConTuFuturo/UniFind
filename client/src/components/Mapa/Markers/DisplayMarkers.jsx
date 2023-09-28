@@ -7,6 +7,7 @@ import { useGlobal } from "../../../hooks/useGlobal";
 import MyMarker from "./MyMarker";
 
 function DisplayMarkers() {
+  console.log("DisplayMarkers");
   const { token } = useGlobal();
   const {
     distanciaMarcadores,
@@ -20,6 +21,7 @@ function DisplayMarkers() {
     names,
     gestion,
   } = useMapa();
+  const featureGroupRef = useRef(null);
   useMapEvent("zoom", ({ target }) => {
     if (target._zoom >= distanciaMarcadores) {
       setDisplayMarkers(true);
@@ -55,7 +57,6 @@ function DisplayMarkers() {
     names,
     gestion,
   ]);
-  const featureGroupRef = useRef(null);
   useEffect(() => {
     if (!featureGroupRef) return;
     const bounds = featureGroupRef.current.getBounds();
