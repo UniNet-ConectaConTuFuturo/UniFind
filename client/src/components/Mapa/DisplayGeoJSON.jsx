@@ -1,8 +1,8 @@
+import { Suspense, lazy, useState } from "react";
 import { Pane, useMap, useMapEvent } from "react-leaflet";
-import DisplayDepartaments from "./geoJSON/DisplayDepartaments";
-import DisplayProvincias from "./geoJSON/DisplayProvincias";
-import { useState } from "react";
-import DisplayPais from "./geoJSON/DisplayPais";
+const DisplayDepartaments = lazy(() => import("./geoJSON/DisplayDepartaments"));
+const DisplayProvincias = lazy(() => import("./geoJSON/DisplayProvincias"));
+const DisplayPais = lazy(() => import("./geoJSON/DisplayPais"));
 import { lookFeature } from "../../api/onEachFeature/highlight";
 
 function DisplayGeoJSON() {
@@ -26,13 +26,25 @@ function DisplayGeoJSON() {
 
   return (
     <Pane name="geoJSON" style={{ zIndex: 225 }}>
-      <DisplayPais>
-        {provincias && (
-          <DisplayProvincias>
-            {departaments && <DisplayDepartaments />}
-          </DisplayProvincias>
-        )}
-      </DisplayPais>
+      <Suspense>
+        <Pane name="pais" style={{ zIndex: 226 }}>
+          <DisplayPais />
+        </Pane>
+      </Suspense>
+      {provincias && (
+        <Suspense>
+          <Pane name="provincias" style={{ zIndex: 227 }}>
+            <DisplayProvincias />
+          </Pane>
+        </Suspense>
+      )}
+      {departaments && (
+        <Suspense>
+          <Pane name="departamentos" style={{ zIndex: 228 }}>
+            <DisplayDepartaments />
+          </Pane>
+        </Suspense>
+      )}
     </Pane>
   );
 }

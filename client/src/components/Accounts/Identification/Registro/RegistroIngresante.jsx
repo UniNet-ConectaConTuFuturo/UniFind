@@ -32,10 +32,9 @@ function Registro({ className }) {
     } else if (step === 3) {
       navigate("/");
     }
-  }, [step]);
+  }, [step, navigate]);
   return (
     <>
-    
       <section
         className={
           className + " " + "caja relative flex justify-end pr-4 items-center"
@@ -45,12 +44,16 @@ function Registro({ className }) {
         <div className="h-screen w-screen absolute bg-no-repeat translate-x-2/3 translate-y-28 bg-shape scale-125"></div>
         {formVisible && (
           <EntrantForm
-            className={classForm + " " + "transition-all duration-700 translate-x-1/4"}
+            className={
+              classForm + " " + "transition-all duration-700 translate-x-1/4"
+            }
           />
         )}
         {codeVisible && (
           <EntrantCode
-            className={classCode + " " + "transition-all duration-700 translate-x-2/4"}
+            className={
+              classCode + " " + "transition-all duration-700 translate-x-2/4"
+            }
           />
         )}
       </section>

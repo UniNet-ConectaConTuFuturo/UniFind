@@ -1,10 +1,9 @@
 import provincias from "../../../geoJSON/provincia.json";
-import { GeoJSON, Pane, useMap } from "react-leaflet";
+import { GeoJSON, useMap } from "react-leaflet";
 import onEachFeature from "../../../api/onEachFeature/highlight";
 import { useMapa } from "../../../hooks/useMapa";
-import PropTypes from "prop-types";
 import capitalizeFirst from "../../../api/capitalizeFirst";
-function DisplayProvincias({ children }) {
+function DisplayProvincias() {
   const { departamentInfoEl, provInfoEl } = useMapa();
   const className = {
       fillOpacity: 0,
@@ -31,12 +30,7 @@ function DisplayProvincias({ children }) {
       }}
       onEachFeature={(f, l) => onEachFeature(f, l, className, map)}
       data={provincias["features"]}
-    >
-      <Pane name="departamentos">{children}</Pane>
-    </GeoJSON>
+    />
   );
 }
-DisplayProvincias.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.bool, PropTypes.element]),
-};
 export default DisplayProvincias;

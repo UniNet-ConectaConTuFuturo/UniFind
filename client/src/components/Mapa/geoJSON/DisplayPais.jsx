@@ -1,7 +1,6 @@
-import { GeoJSON, Pane } from "react-leaflet";
+import { GeoJSON } from "react-leaflet";
 import pais from "../../../geoJSON/pais.json";
-import PropTypes from "prop-types";
-function DisplayPais({ children }) {
+function DisplayPais() {
   const className = {
     fillOpacity: 0,
     color: "#fff",
@@ -9,13 +8,6 @@ function DisplayPais({ children }) {
     weight: 3,
     lineJoin: "round",
   };
-  return (
-    <GeoJSON style={className} data={pais["features"]}>
-      <Pane name="provincias">{children}</Pane>
-    </GeoJSON>
-  );
+  return <GeoJSON style={className} data={pais["features"]} />;
 }
-DisplayPais.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.bool, PropTypes.element]),
-};
 export default DisplayPais;

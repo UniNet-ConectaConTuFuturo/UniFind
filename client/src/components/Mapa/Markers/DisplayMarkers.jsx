@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 
 import * as api from "../../../api/api";
 import { useGlobal } from "../../../hooks/useGlobal";
-
 import MyMarker from "./MyMarker";
 
 function DisplayMarkers() {

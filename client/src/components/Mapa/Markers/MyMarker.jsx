@@ -1,9 +1,10 @@
-import { Marker } from "react-leaflet";
-import PopUp from "./PopUps/PopUp";
-import { myIconPrototype, mySelectedIconPrototype } from "./MyIcon";
 import PropTypes from "prop-types";
+import { Marker } from "react-leaflet";
 import { Icon } from "leaflet";
+import { myIconPrototype, mySelectedIconPrototype } from "./MyIcon";
 import { useMapa } from "../../../hooks/useMapa";
+import { lazy } from "react";
+const PopUp = lazy(() => import("./PopUps/PopUp"));
 
 function MyMarker({ u }) {
   const { idUniToShowInfo } = useMapa();

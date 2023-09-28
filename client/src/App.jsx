@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* Authentication */
 import getAuth from "./api/authentication";
-import { Authenticated, NotAuthenticated } from "./middlewares/authentication";
+import { Authenticated, NotAuthenticated } from "./middlewares/Authentication";
 /* ContectProvider */
 import GlobalProvider from "./context/Global/GlobalProvider";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
