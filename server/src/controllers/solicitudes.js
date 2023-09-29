@@ -11,13 +11,14 @@ export async function uploadCarta(req, res) {
   //const {token, id_universidad} = req.body;
   console.log(req.body);
   console.log(req.body.idUniversidad);
-
+  const token = req.headers.authorization.split(' ')[1];
   //console.log(req.files);
   const file = req.files.file;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
+      console.log(id);
       const fileName = `hola.txt`;
       //const fileName = `${id_universidad}${id}.txt`;
       const filePath = path.join(__dirname, "..", "..", "cartas", fileName);

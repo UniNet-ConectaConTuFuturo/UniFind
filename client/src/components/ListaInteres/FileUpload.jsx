@@ -4,10 +4,9 @@ import { useGlobal } from "../../hooks/useGlobal";
 import PropTypes from "prop-types";
 
 function FileUpload({ id_universidad }) {
-  const token = useGlobal();
+  const { token } = useGlobal();
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("");
-  //console.log(universidad);
 
   const saveFile = (e) => {
     setFile(e.target.files[0]);
