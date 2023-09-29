@@ -1,9 +1,10 @@
 import provincias from "../../../geoJSON/provincia.json";
 import { GeoJSON, useMap } from "react-leaflet";
-import onEachFeature from "../../../api/onEachFeature/highlight";
 import { useMapa } from "../../../hooks/useMapa";
 import capitalizeFirst from "../../../api/capitalizeFirst";
+import useGeoJson from "../../../hooks/useGeoJson"
 function DisplayProvincias() {
+  const {onEachFeature} = useGeoJson()
   const { departamentInfoEl, provInfoEl } = useMapa();
   const className = {
       fillOpacity: 0,
@@ -28,7 +29,7 @@ function DisplayProvincias() {
           provInfoEl.current.textContent = "";
         },
       }}
-      onEachFeature={(f, l) => onEachFeature(f, l, className, map)}
+      onEachFeature={(feature, layer)=>onEachFeature(feature, layer, className)}
       data={provincias["features"]}
     />
   );

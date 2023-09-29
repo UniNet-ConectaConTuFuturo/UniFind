@@ -1,9 +1,10 @@
 import departamentos from "../../../geoJSON/departamentos-argentina.json";
 import { GeoJSON, useMap } from "react-leaflet";
-import onEachFeature from "../../../api/onEachFeature/highlight";
 import { useMapa } from "../../../hooks/useMapa";
 import capitalizeFirst from "../../../api/capitalizeFirst";
+import useGeoJson from "../../../hooks/useGeoJson";
 function DisplayDepartaments() {
+  const {onEachFeature} = useGeoJson()
   const { departamentInfoEl, provInfoEl } = useMapa();
   const className = {
       fillOpacity: 0,
@@ -32,7 +33,7 @@ function DisplayDepartaments() {
         },
       }}
       style={className}
-      onEachFeature={(f, l) => onEachFeature(f, l, className, map)}
+      onEachFeature={(feature, layer) => onEachFeature(feature, layer, className)}
       data={departamentos["features"]}
     />
   );

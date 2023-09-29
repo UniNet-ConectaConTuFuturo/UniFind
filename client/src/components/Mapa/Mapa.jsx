@@ -6,7 +6,7 @@ import { MapContainer } from "react-leaflet";
 
 const ControlZoom = lazy(() => import("./ControlZoom"));
 import Tiles from "./Tiles";
-const DisplayGeoJSON = lazy(() => import("./DisplayGeoJSON"));
+const DisplayGeoJSON = lazy(() => import("./geoJSON/DisplayGeoJSON"));
 const DisplayMarkers = lazy(() => import("./Markers/DisplayMarkers"));
 
 const Filters = lazy(() => import("./Filters/Filters"));

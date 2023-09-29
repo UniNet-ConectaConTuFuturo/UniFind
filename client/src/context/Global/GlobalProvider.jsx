@@ -5,6 +5,7 @@ import { useState } from "react";
 function GlobalProvider() {
   const [token, setToken_] = useState(localStorage.getItem("TokenUniNet"));
   function setToken(value) {
+    
     localStorage.setItem("TokenUniNet", value);
     setToken_(value);
   }
