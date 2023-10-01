@@ -3397,10 +3397,9 @@ CREATE TABLE `favoritas` (
 --
 
 CREATE TABLE `solicitudes` (
-  `id_solicitud` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_universidad` int(11) NOT NULL,
-  `solicitud` text NOT NULL,
+  `solicitud` varchar(255) NOT NULL,
   `estado` enum('aceptada','rechazada','pendiente','senguda instancia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -3555,7 +3554,6 @@ ALTER TABLE `favoritas`
 -- Indices de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  ADD PRIMARY KEY (`id_solicitud`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_universidad` (`id_universidad`);
 
@@ -3581,12 +3579,6 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `carreras`
   MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2048;
-
---
--- AUTO_INCREMENT de la tabla `solicitudes`
---
-ALTER TABLE `solicitudes`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `universidades`

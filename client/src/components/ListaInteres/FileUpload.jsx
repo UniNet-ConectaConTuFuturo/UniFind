@@ -18,6 +18,22 @@ function FileUpload({ id_universidad }) {
     formData.append("file", file);
     formData.append("fileName", fileName);
     formData.append("idUniversidad", id_universidad);
+    if(!file){
+      try {
+        const res = await axios.post(
+          "http://localhost:4000/api/generate",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res);
+      } catch (ex) {
+        console.log(ex);
+      }
+    }else{
     try {
       const res = await axios.post(
         "http://localhost:4000/api/upload",
@@ -32,6 +48,7 @@ function FileUpload({ id_universidad }) {
     } catch (ex) {
       console.log(ex);
     }
+  }
   };
   return (
     <>
@@ -49,11 +66,12 @@ function FileUpload({ id_universidad }) {
       <br />
       <br />
       <h3 className="text-black">Generar carta:</h3>
-      <button className="w-40 h-7 bg-black text-white">BOTÓN</button>
+      <button onClick={uploadFile}>BOTÓN</button>
     </>
   );
 }
 FileUpload.propTypes = {
   id_universidad: PropTypes.number,
 };
+
 export default FileUpload;

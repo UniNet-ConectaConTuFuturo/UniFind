@@ -1,6 +1,0 @@
-solicitudes
-enum bla bla bla
-id_solicitud pk
-id_universidad fk 
-id_user fk
-name = iduni,iduser.txt
