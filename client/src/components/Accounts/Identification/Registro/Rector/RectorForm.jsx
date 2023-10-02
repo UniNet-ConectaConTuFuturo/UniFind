@@ -5,6 +5,7 @@ import "../../form.css";
 import { useRegistro } from "../../../../../hooks/useRegistro";
 import { useIdentification } from "../../../../../hooks/useIdentification";
 import AsyncSelect from "react-select/async";
+import { Link } from "react-router-dom";
 
 function RectorForm({ className }) {
   const { handleChange, form, setStep } = useRegistro();
