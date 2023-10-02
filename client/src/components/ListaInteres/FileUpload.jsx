@@ -66,7 +66,7 @@ function FileUpload({ id_universidad }) {
       <br />
       <br />
       <h3 className="text-black">Generar carta:</h3>
-      <button onClick={uploadFile}>BOTÓN</button>
+      <button className="text-black" onClick={uploadFile}>BOTÓN</button>
     </>
   );
 }
