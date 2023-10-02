@@ -13,3 +13,8 @@ export function insertSolicitud(userID, fileName, uniID) {
     );
   });
 }
+
+/*SELECT U.name_user, U.mail_user 
+FROM solicitudes S
+LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
+WHERE S.id_universidad = 63 */

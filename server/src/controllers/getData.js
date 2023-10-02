@@ -26,3 +26,19 @@ export async function carreras(req, res) {
     res.status(404).end();
   }
 }
+
+export function solicitudes(userID) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `SELECT U.name_user, U.mail_user, S.solicitud
+      FROM solicitudes S
+      LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
+      WHERE S.id_universidad = ?`,
+      [userID],
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
+  });
+}

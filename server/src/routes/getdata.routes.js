@@ -7,5 +7,6 @@ const router = Router();
 
 router.post("/api/get/uni", get.uni);
 router.post("/api/get/carreras", get.carreras);
+router.post("/api/get/soli", get.solicitudes);
 
 export default router;
