@@ -16,7 +16,10 @@ function Options() {
     setOpen(!open);
   }
   return (
-    <div className="leaflet-bottom left-48 flex justify-between">
+    <section
+      role="Extra Options"
+      className="leaflet-bottom left-44 flex justify-between"
+    >
       <Option ref={control}>
         <MarkersDistance />
       </Option>
@@ -42,7 +45,7 @@ function Options() {
           )}
         </a>
       </div>
-    </div>
+    </section>
   );
 }
 export default Options;

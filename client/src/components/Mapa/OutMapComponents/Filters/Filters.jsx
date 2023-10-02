@@ -1,6 +1,6 @@
 // Back
 import { useEffect, useRef, useState } from "react";
-import { useMapa } from "../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useMapa";
 
 // Components
 import Carrera from "./Carrera";
@@ -25,14 +25,14 @@ function Filters() {
       : setRightLeftStyle("left-32 right-48");
   }, [idUniToShowInfo]);
   return (
-    <div className={"leaflet-top " + rightLeftStyle}>
+    <section role="Filters" className={"leaflet-top " + rightLeftStyle}>
       <div
         className="leaflet-control-layers  leaflet-control w-full"
         aria-haspopup="true"
         ref={control}
       >
         <div className="leaflet-control-layers-list">
-          <nav className="w-full flex justify-between flex-row items-start text-center">
+          <nav className="w-full grid grid-flow-col gap-4 text-center mb-1.5">
             <Carrera />
             <Nombre />
             <Gestion />
@@ -52,7 +52,7 @@ function Filters() {
           )}
         </a>
       </div>
-    </div>
+    </section>
   );
 }
 export default Filters;

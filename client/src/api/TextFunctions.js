@@ -1,5 +1,5 @@
-export default function (text) {
-  const lowerText = text.toLowerCase();
+export function capitalizeFirst(str) {
+  const lowerText = str.toLowerCase();
   const arr = lowerText.split(" ");
 
   //loop through each element of the array and capitalize the first letter.
@@ -11,4 +11,7 @@ export default function (text) {
   //using a blankspace as a separator
   const str2 = arr2.join(" ");
   return str2;
+}
+export function removeAccents(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }

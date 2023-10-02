@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { Marker, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import { myIconPrototype, mySelectedIconPrototype } from "./MyIcon";
-import { useMapa } from "../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useMapa";
 import { lazy, useCallback } from "react";
-const PopUp = lazy(() => import("./PopUps/PopUp"));
+const PopUp = lazy(() => import("../PopUps/PopUp"));
 
 function MyMarker({ u }) {
   const { idUniToShowInfo, setIdUniToShowInfo } = useMapa();

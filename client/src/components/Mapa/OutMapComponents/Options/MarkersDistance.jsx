@@ -1,4 +1,4 @@
-import { useMapa } from "../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useMapa";
 
 function MarkersDistance() {
   const { setDistanciaMarcadores } = useMapa();

@@ -22,8 +22,8 @@ function MapaProvider({ children }) {
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
 
   /* Geo Info */
-  const departamentInfoEl = useRef(null);
-  const provInfoEl = useRef(null);
+  const departamentInfo = useRef("");
+  const provInfo = useRef("");
 
   return (
     <MapaContext.Provider
@@ -46,8 +46,8 @@ function MapaProvider({ children }) {
         setGestion,
         idUniToShowInfo,
         setIdUniToShowInfo,
-        departamentInfoEl,
-        provInfoEl,
+        departamentInfo,
+        provInfo,
       }}
     >
       {children}

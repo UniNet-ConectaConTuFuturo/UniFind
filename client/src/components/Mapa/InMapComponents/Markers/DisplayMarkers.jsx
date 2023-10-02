@@ -1,9 +1,9 @@
 import { FeatureGroup, useMap, useMapEvent } from "react-leaflet";
-import { useMapa } from "../../../hooks/useMapa";
 import { useEffect, useRef } from "react";
+import { useMapa } from "../../../../hooks/useMapa";
+import { useGlobal } from "../../../../hooks/useGlobal";
+import { post } from "../../../../api/api";
 
-import * as api from "../../../api/api";
-import { useGlobal } from "../../../hooks/useGlobal";
 import MyMarker from "./MyMarker";
 
 function DisplayMarkers() {
@@ -37,7 +37,7 @@ function DisplayMarkers() {
   useEffect(() => {
     (async () => {
       try {
-        const points = await api.post("/filter", {
+        const points = await post("/filter", {
           token: filtrarFavoritas ? token : null,
           names,
           gestion,

@@ -1,13 +1,11 @@
 import { Suspense, lazy, useState } from "react";
-import { Pane, useMap, useMapEvent } from "react-leaflet";
+import { LayerGroup, Pane, useMapEvent } from "react-leaflet";
 const DisplayDepartaments = lazy(() => import("./DisplayDepartaments"));
 const DisplayProvincias = lazy(() => import("./DisplayProvincias"));
 const DisplayPais = lazy(() => import("./DisplayPais"));
-import { lookFeature } from "../../../api/onEachFeature/highlight";
-import GeoJsonProvider from "../../../context/Mapa/GeoJSON/GeoJsonProvider";
+import GeoJsonProvider from "../../../../context/Mapa/GeoJSON/GeoJsonProvider";
 
 function DisplayGeoJSON() {
-  const map = useMap();
   const [provincias, setProvincias] = useState(true);
   const [departaments, setDepartaments] = useState(true);
   useMapEvent("zoom", ({ target }) => {
@@ -22,12 +20,11 @@ function DisplayGeoJSON() {
     } else {
       setProvincias(false);
     }
-    lookFeature(map);
   });
 
   return (
     <GeoJsonProvider>
-      <Pane name="geoJSON" style={{ zIndex: 225 }}>
+      <LayerGroup>
         <Suspense>
           <Pane name="pais" style={{ zIndex: 226 }}>
             <DisplayPais />
@@ -47,7 +44,7 @@ function DisplayGeoJSON() {
             </Pane>
           </Suspense>
         )}
-      </Pane>
+      </LayerGroup>
     </GeoJsonProvider>
   );
 }

@@ -4,27 +4,31 @@ import { Suspense, lazy } from "react";
 import MapaProvider from "../../context/Mapa/MapaProvider";
 import { MapContainer } from "react-leaflet";
 
-const ControlZoom = lazy(() => import("./ControlZoom"));
-import Tiles from "./Tiles";
-const DisplayGeoJSON = lazy(() => import("./geoJSON/DisplayGeoJSON"));
-const DisplayMarkers = lazy(() => import("./Markers/DisplayMarkers"));
+const ControlZoom = lazy(() => import("./OutMapComponents/ControlZoom"));
+import Tiles from "./InMapComponents/Tiles";
+const DisplayGeoJSON = lazy(() =>
+  import("./InMapComponents/geoJSON/DisplayGeoJSON")
+);
+const DisplayMarkers = lazy(() =>
+  import("./InMapComponents/Markers/DisplayMarkers")
+);
 
-const Filters = lazy(() => import("./Filters/Filters"));
-const Options = lazy(() => import("./Options/Options"));
-const GeoInfo = lazy(() => import("./geoJSON/GeoInfo"));
-const AsideInfo = lazy(() => import("./AsideInfo"));
+const Filters = lazy(() => import("./OutMapComponents/Filters/Filters"));
+const Options = lazy(() => import("./OutMapComponents/Options/Options"));
+const GeoInfo = lazy(() => import("./OutMapComponents/GeoInfo"));
+const AsideInfo = lazy(() => import("./OutMapComponents/AsideInfo"));
 function Mapa() {
   return (
     <MapaProvider>
       <MapContainer
         className="h-screen w-screen z-0"
-        center={[-34.66, -58.5]}
-        zoom={11}
-        scrollWheelZoom={true}
-        zoomControl={false}
         attributionControl={false}
-        zoomSnap={0.5}
+        center={[-34.66, -58.5]}
+        zoomControl={false}
         doubleClickZoom={false}
+        zoom={11}
+        zoomDelta={0.25}
+        zoomSnap={0}
       >
         <Suspense>
           <ControlZoom />

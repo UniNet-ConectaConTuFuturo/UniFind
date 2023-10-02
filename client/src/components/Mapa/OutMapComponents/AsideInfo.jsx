@@ -1,13 +1,16 @@
-import { useMapa } from "../../hooks/useMapa";
-import Informacion from "../UI/Informacion";
-
+import { lazy } from "react";
+import { useMapa } from "../../../hooks/useMapa";
+const Informacion = lazy(() => import("../../UI/Informacion"));
 function AsideInfo() {
   /* Datos */
   const { idUniToShowInfo, setIdUniToShowInfo, dispatchBusqueda } = useMapa();
   return (
     <>
       {idUniToShowInfo !== 0 && (
-        <div className="info-all fixed top-0 right-0 w-1/4 bg-white bg-no-repeat  ">
+        <section
+          role="University Info"
+          className="info-all fixed top-0 right-0 w-1/4 bg-white bg-no-repeat  "
+        >
           <button
             className="flex self-end  justify-center bg-black w-5 text-white rounded-full"
             type="button"
@@ -19,7 +22,7 @@ function AsideInfo() {
             idUniToShowInfo={idUniToShowInfo}
             dispatch={dispatchBusqueda}
           />
-        </div>
+        </section>
       )}
     </>
   );

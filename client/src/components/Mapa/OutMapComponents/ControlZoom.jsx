@@ -9,7 +9,7 @@ function ControlZoom() {
     map.setZoom(map.getZoom() - map.options.zoomSnap);
   }
   return (
-    <div className="leaflet-control-container">
+    <section role="Zoom Control" className="leaflet-control-container">
       <div className="leaflet-bottom left-32">
         <div className="leaflet-control-zoom leaflet-bar leaflet-control">
           <a
@@ -36,7 +36,7 @@ function ControlZoom() {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

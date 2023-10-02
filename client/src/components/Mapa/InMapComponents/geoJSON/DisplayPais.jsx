@@ -1,5 +1,5 @@
 import { GeoJSON } from "react-leaflet";
-import pais from "../../../geoJSON/pais.json";
+import pais from "../../../../geoJSON/pais.json";
 function DisplayPais() {
   const className = {
     fillOpacity: 0,
