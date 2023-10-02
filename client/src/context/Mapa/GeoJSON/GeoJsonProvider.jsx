@@ -1,4 +1,4 @@
-import { useMap } from "react-leaflet";
+import { useMap, useMapEvent } from "react-leaflet";
 import GeoJsonContext from "./GeoJsonContext";
 import PropTypes from "prop-types";
 import { useMapa } from "../../../hooks/useMapa";
@@ -9,6 +9,7 @@ function GeoJsonProvider({ children }) {
   const map = useMap();
   const depRef = useRef(null);
   const { depInfo, provInfo } = useMapa();
+  const interactive = useRef(true);
   /* const getLatDistance = ({ _northEast, _southWest }) =>
     Math.abs(_northEast.lat - _southWest.lat);
   const getLngDistance = ({ _northEast, _southWest }) =>
@@ -32,6 +33,14 @@ function GeoJsonProvider({ children }) {
       geoRef.current.interactive = false
     }
   } */
+  useMapEvent("zoomend", (e)=>{
+    if(e.target._zoom > 13){
+      depRef.current.resetStyle();
+      interactive.current = false
+    } else {
+      interactive.current = true
+    }
+  })
   function highlightFeature(feature, layer) {
     layer.setStyle({
       weight: 5,
@@ -72,15 +81,15 @@ function GeoJsonProvider({ children }) {
   function onEachFeature(feature, layer, geoRef) {
     layer.on({
       mouseover: (e) => {
-        /* if (interactive) */ highlightFeature(e.target.feature, e.target);
         setGeoInfo(e.target.feature);
+        if (interactive.current) highlightFeature(e.target.feature, e.target);
       },
       mouseout: (e) => {
-        /* if (interactive) */ resetHighlight(e.target, geoRef);
         clearGeoInfo();
+        if (interactive.current) resetHighlight(e.target, geoRef);
       },
       click: (e) => {
-        /* if (interactive) */ zoomToFeature(e.target);
+        if (interactive.current) zoomToFeature(e.target);
       },
     });
   }

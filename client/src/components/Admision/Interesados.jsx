@@ -4,16 +4,17 @@ import { post } from "../../api/api";
 import { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useGlobal } from '../../hooks/useGlobal';
 
 
 function Interesados() {
   const [solicitud, setSolicitud] = useState({});
-
+  const {token} = useGlobal()
   useEffect(() => {
     (async () => {
-      setSolicitud(await post("/get/soli", { id_universidad }));
+      setSolicitud(await post("/get/soli", { token }));
     })();
-  }, [id_usuario]);
+  }, [token]);
   console.log(solicitud);
   return (
     <div className="card w-full h-full mt-4 border-black border-2">
