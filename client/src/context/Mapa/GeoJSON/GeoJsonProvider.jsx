@@ -34,7 +34,7 @@ function GeoJsonProvider({ children }) {
     }
   } */
   useMapEvent("zoomend", (e)=>{
-    if(e.target._zoom > 13){
+    if(e.target._zoom > 14){
       depRef.current.resetStyle();
       interactive.current = false
     } else {
