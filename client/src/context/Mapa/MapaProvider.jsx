@@ -22,7 +22,7 @@ function MapaProvider({ children }) {
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
 
   /* Geo Info */
-  const departamentInfo = useRef("");
+  const depInfo = useRef("");
   const provInfo = useRef("");
 
   return (
@@ -46,7 +46,7 @@ function MapaProvider({ children }) {
         setGestion,
         idUniToShowInfo,
         setIdUniToShowInfo,
-        departamentInfo,
+        depInfo,
         provInfo,
       }}
     >

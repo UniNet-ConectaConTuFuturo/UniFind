@@ -7,8 +7,8 @@ import { useRef } from "react";
 
 function GeoJsonProvider({ children }) {
   const map = useMap();
-  const departamentsRef = useRef(null);
-  const { departamentInfo, provInfo } = useMapa();
+  const depRef = useRef(null);
+  const { depInfo, provInfo } = useMapa();
   /* const getLatDistance = ({ _northEast, _southWest }) =>
     Math.abs(_northEast.lat - _southWest.lat);
   const getLngDistance = ({ _northEast, _southWest }) =>
@@ -24,10 +24,12 @@ function GeoJsonProvider({ children }) {
   }
   function lookFeature(layer, geoRef) {
     if (borderView(layer)) {
+      geoRef.current.interactive = true
       //interactive = true;
     } else {
       //interactive = false;
       resetHighlight(layer, geoRef);
+      geoRef.current.interactive = false
     }
   } */
   function highlightFeature(feature, layer) {
@@ -58,19 +60,18 @@ function GeoJsonProvider({ children }) {
     provInfo.current.textContent = capitalizeFirst(
       feature.properties.nam || feature.properties.provincia
     );
-    departamentInfo.current.textContent = capitalizeFirst(
+    depInfo.current.textContent = capitalizeFirst(
       feature.properties.departamento || ""
     );
   }
 
   function clearGeoInfo() {
-    departamentInfo.current.textContent = capitalizeFirst("");
+    depInfo.current.textContent = capitalizeFirst("");
     provInfo.current.textContent = capitalizeFirst("");
   }
   function onEachFeature(feature, layer, geoRef) {
     layer.on({
       mouseover: (e) => {
-        /* lookFeature(e.target, geoRef); */
         /* if (interactive) */ highlightFeature(e.target.feature, e.target);
         setGeoInfo(e.target.feature);
       },
@@ -85,7 +86,7 @@ function GeoJsonProvider({ children }) {
   }
   return (
     <GeoJsonContext.Provider
-      value={{ departamentsRef, onEachFeature /* , lookFeature, borderView */ }}
+      value={{ depRef, onEachFeature /* , lookFeature, borderView */ }}
     >
       {children}
     </GeoJsonContext.Provider>

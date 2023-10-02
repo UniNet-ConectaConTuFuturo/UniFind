@@ -2,12 +2,6 @@ import { useMap } from "react-leaflet";
 
 function ControlZoom() {
   const map = useMap();
-  function zoomIn() {
-    map.setZoom(map.getZoom() + map.options.zoomSnap);
-  }
-  function zoomOut() {
-    map.setZoom(map.getZoom() - map.options.zoomSnap);
-  }
   return (
     <section role="Zoom Control" className="leaflet-control-container">
       <div className="leaflet-bottom left-32">
@@ -19,7 +13,7 @@ function ControlZoom() {
             role="button"
             aria-label="Zoom in"
             aria-disabled="false"
-            onClick={zoomIn}
+            onClick={()=>map.zoomIn()}
           >
             <span aria-hidden="true">+</span>
           </a>
@@ -30,7 +24,7 @@ function ControlZoom() {
             role="button"
             aria-label="Zoom out"
             aria-disabled="false"
-            onClick={zoomOut}
+            onClick={()=>map.zoomOut()}
           >
             <span aria-hidden="true">−</span>
           </a>

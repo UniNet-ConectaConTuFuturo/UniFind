@@ -4,7 +4,7 @@ import useGeoJson from "../../../../hooks/useGeoJson";
 import provincias from "../../../../geoJSON/provincia.json";
 import departamentos from "../../../../geoJSON/departamentos.json";
 function DisplayProvincias() {
-  const { onEachFeature, departamentsRef } = useGeoJson();
+  const { onEachFeature, depRef } = useGeoJson();
   const className = {
     fillOpacity: 0,
     color: "#aaa",
@@ -20,9 +20,9 @@ function DisplayProvincias() {
       style={className}
       eventHandlers={{
         mouseover: () => {
-          if (departamentsRef.current) {
-            departamentsRef.current.clearLayers();
-            departamentsRef.current.addData(departamentos);
+          if (depRef.current) {
+            depRef.current.clearLayers();
+            depRef.current.addData(departamentos);
           }
         },
       }}

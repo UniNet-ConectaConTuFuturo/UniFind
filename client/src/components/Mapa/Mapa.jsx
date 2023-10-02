@@ -26,9 +26,11 @@ function Mapa() {
         center={[-34.66, -58.5]}
         zoomControl={false}
         doubleClickZoom={false}
+        wheelDebounceTime={100}
         zoom={11}
-        zoomDelta={0.25}
+        zoomDelta={0.5}
         zoomSnap={0}
+        
       >
         <Suspense>
           <ControlZoom />

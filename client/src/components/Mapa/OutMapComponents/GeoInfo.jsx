@@ -1,6 +1,6 @@
 import { useMapa } from "../../../hooks/useMapa";
 function GeoInfo() {
-  const { provInfo, departamentInfo, idUniToShowInfo } = useMapa();
+  const { provInfo, depInfo, idUniToShowInfo } = useMapa();
   return (
     <section
       role="Geolocation Info"
@@ -15,7 +15,7 @@ function GeoInfo() {
       >
         <div className="leaflet-control-layers-list">
           <p ref={provInfo}></p>
-          <p ref={departamentInfo}></p>
+          <p ref={depInfo}></p>
         </div>
       </div>
     </section>
