@@ -1,6 +1,9 @@
 import { lazy } from "react";
 import { useMapa } from "../../../hooks/useMapa";
 const Informacion = lazy(() => import("../../UI/Informacion"));
+const LeafletControl = lazy(()=> import("./UI/LeafletControl"))
+
+import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 function AsideInfo() {
   /* Datos */
   const { idUniToShowInfo, setIdUniToShowInfo, dispatchBusqueda } = useMapa();
@@ -9,19 +12,14 @@ function AsideInfo() {
       {idUniToShowInfo !== 0 && (
         <section
           role="University Info"
-          className="info-all fixed top-0 right-0 w-1/4 bg-white bg-no-repeat  "
+          className="fixed top-8 bottom-8 right-0 justify-end mr-2.5"
         >
-          <button
-            className="flex self-end  justify-center bg-black w-5 text-white rounded-full"
-            type="button"
-            onClick={() => setIdUniToShowInfo(0)}
-          >
-            X
-          </button>
-          <Informacion
-            idUniToShowInfo={idUniToShowInfo}
-            dispatch={dispatchBusqueda}
-          />
+          <LeafletControl className="flex flex-row-reverse h-full" toggleClassName="h-full flex items-center" IconOpen={BsFillCaretLeftFill} IconClose={BsFillCaretRightFill}>
+            <Informacion
+              idUniToShowInfo={idUniToShowInfo}
+              dispatch={dispatchBusqueda}
+              />
+          </LeafletControl>
         </section>
       )}
     </>

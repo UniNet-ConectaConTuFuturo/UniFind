@@ -3,11 +3,6 @@
   max-width: 625px;
 }
 
-.info-all {
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
-}
 
 .info-img {
   width: 24px;

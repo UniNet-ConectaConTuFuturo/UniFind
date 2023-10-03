@@ -11,7 +11,10 @@ function MyMarker({ u }) {
   const tooltipRef = useRef();
   function handleClick() {
     map.closeTooltip(tooltipRef.current);
-    setIdUniToShowInfo(u.id_universidad);
+    idUniToShowInfo === u.id_universidad
+            ? setIdUniToShowInfo(0)
+            : setIdUniToShowInfo(u.id_universidad);
+    
   }
   return (
     <Marker
