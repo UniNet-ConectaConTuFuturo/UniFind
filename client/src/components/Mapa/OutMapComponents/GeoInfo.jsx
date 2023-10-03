@@ -1,4 +1,5 @@
 import { useMapa } from "../../../hooks/useMapa";
+import LeafletBox from "./UI/LeafletBox";
 function GeoInfo() {
   const { provInfo, depInfo, idUniToShowInfo } = useMapa();
   return (
@@ -9,15 +10,10 @@ function GeoInfo() {
         (idUniToShowInfo === 0 ? "" : "hidden")
       }
     >
-      <div
-        className="leaflet-control-layers  leaflet-control leaflet-control-layers-expanded w-full"
-        aria-haspopup="true"
-      >
-        <div className="leaflet-control-layers-list">
-          <p ref={provInfo}></p>
-          <p ref={depInfo}></p>
-        </div>
-      </div>
+      <LeafletBox containerClassName="w-full" isExpanded={true}>
+        <p ref={provInfo}></p>
+        <p ref={depInfo}></p>
+      </LeafletBox>
     </section>
   );
 }

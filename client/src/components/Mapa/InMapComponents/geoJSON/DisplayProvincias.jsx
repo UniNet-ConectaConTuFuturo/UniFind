@@ -1,8 +1,9 @@
-import { GeoJSON } from "react-leaflet";
+import { GeoJSON, useMapEvent } from "react-leaflet";
 import { useRef } from "react";
 import useGeoJson from "../../../../hooks/useGeoJson";
 import provincias from "../../../../geoJSON/provincia.json";
 import departamentos from "../../../../geoJSON/departamentos.json";
+import zoomLayers from "./zoomLayers";
 function DisplayProvincias() {
   const { onEachFeature, depRef } = useGeoJson();
   const className = {
@@ -12,8 +13,16 @@ function DisplayProvincias() {
     weight: 2,
     lineJoin: "round",
   };
-  console.log("provincias");
+  const interactive = useRef(true);
   const geoRef = useRef();
+  useMapEvent("zoomend", (e) => {
+    if (e.target._zoom >= zoomLayers.departamento) {
+      geoRef.current.resetStyle();
+      interactive.current = false;
+    } else {
+      interactive.current = true;
+    }
+  });
   return (
     <GeoJSON
       ref={geoRef}
@@ -26,7 +35,9 @@ function DisplayProvincias() {
           }
         },
       }}
-      onEachFeature={(feature, layer) => onEachFeature(feature, layer, geoRef)}
+      onEachFeature={(feature, layer) =>
+        onEachFeature(feature, layer, geoRef, interactive)
+      }
       data={provincias["features"]}
     />
   );

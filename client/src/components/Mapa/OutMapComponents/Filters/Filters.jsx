@@ -1,5 +1,5 @@
 // Back
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useMapa } from "../../../../hooks/useMapa";
 
 // Components
@@ -7,51 +7,32 @@ import Carrera from "./Carrera";
 import Nombre from "./Nombre";
 import Gestion from "./Gestion";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
+import LeafletControl from "../UI/LeafletControl";
 
 function Filters() {
   /* Back */
   const { idUniToShowInfo } = useMapa();
   /* Front */
-  const control = useRef(null);
-  const [open, setOpen] = useState(false);
-  function toggle() {
-    control.current.classList.toggle("leaflet-control-layers-expanded");
-    setOpen(!open);
-  }
-  const [rightLeftStyle, setRightLeftStyle] = useState("left-48 right-48");
+  const containerRef = useRef(null);
   useEffect(() => {
-    idUniToShowInfo !== 0
-      ? setRightLeftStyle("left-32 right-1/3")
-      : setRightLeftStyle("left-32 right-48");
+    idUniToShowInfo === 0
+      ? (containerRef.current.classList = "leaflet-top left-32 right-48")
+      : (containerRef.current.classList = "leaflet-top left-32 right-1/3");
   }, [idUniToShowInfo]);
   return (
-    <section role="Filters" className={"leaflet-top " + rightLeftStyle}>
-      <div
-        className="leaflet-control-layers  leaflet-control w-full"
-        aria-haspopup="true"
-        ref={control}
+    <section role="Filters" ref={containerRef}>
+      <LeafletControl
+        className="w-full"
+        toggleClassName="w-full flex justify-center"
+        IconClose={BsFillCaretUpFill}
+        IconOpen={BsFillCaretDownFill}
       >
-        <div className="leaflet-control-layers-list">
-          <nav className="w-full grid grid-flow-col gap-4 text-center mb-1.5">
-            <Carrera />
-            <Nombre />
-            <Gestion />
-          </nav>
-        </div>
-        <a
-          className="w-full flex justify-center"
-          title="Layers"
-          href="#"
-          role="button"
-          onClick={toggle}
-        >
-          {open ? (
-            <BsFillCaretUpFill color="white" />
-          ) : (
-            <BsFillCaretDownFill color="white" />
-          )}
-        </a>
-      </div>
+        <nav className="w-full grid grid-flow-col gap-4 text-center mb-1.5">
+          <Carrera />
+          <Nombre />
+          <Gestion />
+        </nav>
+      </LeafletControl>
     </section>
   );
 }

@@ -1,19 +1,14 @@
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
+import LeafletBox from "../UI/LeafletBox";
 
 const Option = forwardRef(function Option({ children }, ref) {
   return (
-    <div
-      className="leaflet-control-layers  leaflet-control flex justify-between items-center"
-      aria-haspopup="true"
-      ref={ref}
-    >
-      <div className="leaflet-control-layers-list">
-        <section className="flex justify-between gap-2 px-2 text-gray-600">
-          {children}
-        </section>
-      </div>
-    </div>
+    <LeafletBox ref={ref}>
+      <section className="flex justify-between gap-2 px-2 text-gray-600">
+        {children}
+      </section>
+    </LeafletBox>
   );
 });
 Option.propTypes = {

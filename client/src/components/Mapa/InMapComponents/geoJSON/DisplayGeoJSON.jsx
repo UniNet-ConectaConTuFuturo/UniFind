@@ -4,15 +4,16 @@ const DisplayDepartaments = lazy(() => import("./DisplayDepartaments"));
 const DisplayProvincias = lazy(() => import("./DisplayProvincias"));
 const DisplayPais = lazy(() => import("./DisplayPais"));
 import GeoJsonProvider from "../../../../context/Mapa/GeoJSON/GeoJsonProvider";
+import zoomLayers from "./zoomLayers";
 
 function DisplayGeoJSON() {
   const [provincias, setProvincias] = useState(true);
   const [departaments, setDepartaments] = useState(true);
   useMapEvent("zoom", ({ target }) => {
     const zoom = target._zoom;
-    if (zoom >= 3.5) {
+    if (zoom >= zoomLayers.provincia) {
       setProvincias(true);
-      if (zoom >= 6.5) {
+      if (zoom >= zoomLayers.departamento) {
         setDepartaments(true);
       } else {
         setDepartaments(false);

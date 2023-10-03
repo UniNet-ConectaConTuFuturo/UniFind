@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import { Popup } from "react-leaflet";
 import { post } from "../../../../api/api";
 import { memo, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import BotonFavorito from "./BotonFavorito";
 import { FaMapMarkedAlt } from "react-icons/fa";
 

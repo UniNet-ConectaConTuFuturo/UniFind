@@ -23,8 +23,8 @@ export function filtrarUniversidades({
 }) {
   return new Promise(function (resolve, reject) {
     pool.query(
-      "SELECT DISTINCT(U.id_universidad), ST_GeomFromText(ASTEXT(U.point)) as Point " +
-        `FROM (SELECT id_universidad, point FROM universidades) U ` +
+      "SELECT DISTINCT(U.id_universidad), U.nombre_universidad, ST_GeomFromText(ASTEXT(U.point)) as Point " +
+        `FROM (SELECT id_universidad, nombre_universidad, point FROM universidades) U ` +
         (ids_universidad.length
           ? `INNER JOIN (SELECT id_universidad FROM universidades WHERE id_universidad IN (${ids_universidad})) IU ` +
             "ON U.id_universidad = IU.id_universidad "

@@ -30,7 +30,6 @@ function Mapa() {
         zoom={11}
         zoomDelta={0.5}
         zoomSnap={0}
-        
       >
         <Suspense>
           <ControlZoom />
