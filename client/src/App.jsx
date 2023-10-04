@@ -24,6 +24,7 @@ const Mapa = lazy(() => import("./components/Mapa/Mapa"));
 const ChatIngresante = lazy(() => import("./components/Chat/ChatIngresante"));
 const ChatRector = lazy(() => import("./components/Chat/ChatRector"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
+const SegundaInstancia = lazy(() => import("./components/SegundaInstancia/SegundaInstancia"));
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
       { path: "/admision", Component: Admision },
       { path: "/chat/ingresante", Component: ChatIngresante },
       { path: "/chat/rector", Component: ChatRector },
+      { path: "/segundainstancia", Component: SegundaInstancia }, 
     ],
   },
 ]);

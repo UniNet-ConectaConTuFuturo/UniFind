@@ -57,7 +57,11 @@ const SideBar = () => {
         </>
       )}
       {user === userOptions.rector && (
+        <>
         <AsideIcon url="/admision" Icon={FaAddressCard} texto="ADMISIÓN" />
+        <AsideIcon url="/segundainstancia" Icon={FaAddressCard} texto="SEGUNDA INSTANCIA" />
+        
+        </>
       )}
       {user !== userOptions.noAuthenticated && (
         <>
