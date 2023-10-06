@@ -1,12 +1,13 @@
+ 
 function AccountSettings() {
   return (
-    <div className="d-flex flex-column flex-lg-row h-lg-full">
+    <div className="d-flex flex-column flex-lg-row h-lg-full h-100 w-100 ">
       <div className="py-6  bg-dark">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xl-7 mx-auto">
               {/* Profile picture */}
-              <div className="card shadow border-0 mt-4 mb-10">
+              {/*<div className="card shadow border-0 mt-4 mb-10">
                 <div className="card-body">
                   <div className="d-flex align-items-center">
                     <div>
@@ -37,14 +38,14 @@ function AccountSettings() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>*}
               {/* form */}
               <div className="mb-5">
                 <h5 className="mb-0 text-success">Información de Contacto</h5>
               </div>
               <form className="mb-6 text-primary">
                 <div className="row mb-5">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <div className="">
                       <label className="form-label" htmlFor="first_name">
                         Nombre
@@ -56,7 +57,7 @@ function AccountSettings() {
                       />
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  {/*<div className="col-md-6">
                     <div className="">
                       <label className="form-label" htmlFor="last_name">
                         Apellido
@@ -67,7 +68,7 @@ function AccountSettings() {
                         id="last_name"
                       />
                     </div>
-                  </div>
+                  </div>/*/}
                 </div>
                 <div className="row g-5">
                   <div className="col-md-6">
@@ -102,7 +103,7 @@ function AccountSettings() {
                       />
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-6 invisible">
                     <div className="">
                       <label className="form-label" htmlFor="city">
                         Ciudad
@@ -110,7 +111,7 @@ function AccountSettings() {
                       <input type="text" className="form-control" id="city" />
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-4 invisible">
                     <div className="">
                       <label className="form-label" htmlFor="country">
                         Zona
@@ -130,7 +131,7 @@ function AccountSettings() {
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-2">
+                  <div className="col-md-2 invisible">
                     <div className="">
                       <label className="form-label" htmlFor="zip">
                         ZIP
@@ -142,7 +143,7 @@ function AccountSettings() {
                     <div className="form-check"></div>
                   </div>
                 </div>
-                <div className="text-end">
+                <div className="text-end col-12 mx-auto">
                   <button type="button" className="btn btn-sm btn-neutral me-2">
                     Cancelar
                   </button>
