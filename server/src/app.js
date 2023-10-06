@@ -14,6 +14,7 @@ const __dirname = path.dirname(__filename);
 
 //Import Routes
 import autenticationRoutes from "./routes/autentication.routes.js";
+import accountRoutes from "./routes/account.routes.js";
 import filterRoutes from "./routes/filter.routes.js";
 import getRoutes from "./routes/getdata.routes.js";
 import favoritasRoutes from "./routes/favoritas.routes.js";
@@ -53,6 +54,7 @@ app.use(fileupload());
 app.use(express.static("files"));
 //Routes
 app.use(autenticationRoutes);
+app.use(accountRoutes);
 app.use(getRoutes);
 app.use(filterRoutes);
 app.use(favoritasRoutes);

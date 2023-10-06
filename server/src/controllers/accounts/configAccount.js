@@ -1,30 +1,19 @@
 import { updateUser } from "../../database/consults/usuariosC.js";
 
-async function handleFormSubmit(req, res) {
+export async function handleFormSubmit(req, res) {
   try {
     const {
-      firstName,
-      lastName,
-      email,
+      Name,
       phoneNumber,
       address,
-      city,
-      country,
-      zip,
-      token,
     } = req.body;
 
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const data = {};
-      if (firstName.trim()) data.name_user = firstName;
-      if (lastName.trim()) data.name_user = lastName;
-      if (email.trim()) data.email = email;
+      if (Name.trim()) data.name_user = Name;
       if (phoneNumber.trim()) data.phoneNumber = phoneNumber;
       if (address.trim()) data.address = address;
-      if (city.trim()) data.city = city;
-      if (country.trim()) data.country = country;
-      if (zip.trim()) data.zip = zip;
 
       const { id } = decoded;
 
