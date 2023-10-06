@@ -10,11 +10,6 @@
   /* backdrop-filter: blur(10px); */
 }
 
-h2 {
-  display: flex;
-  justify-content: center;
-}
-
 .inputbox {
   position: relative;
   margin: 15px 0;

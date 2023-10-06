@@ -35,13 +35,15 @@ function Registro({ className }) {
   }, [step]);
   return (
     <>
+
       <section
         role="Registro"
         className={
           className + " " + "caja relative flex justify-end pr-4 items-center"
         }
       >
-        <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div>
+        {/* <div className="h-screen w-screen absolute bg-no-repeat opacity-50 bg-[url('/images/graduation.png')]"></div> */}
+        
         {formVisible && (
           <RectorForm
             className={classForm + " " + "transition-all duration-700"}

@@ -195,7 +195,7 @@ function RectorForm({ className }) {
         </div>
 
         <input
-          className="boton hover:bg-white -ml-24"
+          className="boton -ml-24"
           type="submit"
           name="boton"
           id="boton"
@@ -211,7 +211,7 @@ function RectorForm({ className }) {
         </p>
         <br />
         <Link
-            to="/identificacion/rector"
+            to="/identificacion/ingresante"
           >
             Soy ingresante
           </Link>

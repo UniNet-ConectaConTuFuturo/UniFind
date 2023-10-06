@@ -51,16 +51,18 @@ function Login({ className }) {
   };
   return (
     <>
+      
     <section
         className={
-          className + " " + "caja relative flex justify-end pr-4 items-center"
+          className + " " + "caja  items-center"
         }
       >
-      <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div>
+      {/* <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div> */}
+      
       <div className={className + " " + "box translate-x-1/4"}>
         <form onSubmit={handleSubmit}>
           <div className="ml-96 mb-10">
-            <h2>INGRESAR</h2>
+            <h2 className="flex justify-center">INGRESAR</h2>
           </div>
           <div className="inputbox ml-40">
             <input

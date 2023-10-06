@@ -10,11 +10,15 @@ function Rector() {
       className={
         "transition-colors duration-700 overflow-hidden" + " " + bgColor
       }
+      
     >
+
+<div className="home">
+      <video className="w-full h-screen absolute object-cover left-0 opacity-50" autoPlay muted loop src="../../../public/images/unlam.mp4" type="video/mp4" />
       <section
         role="Formularios"
         className={
-          " h-screen flex relative left-1/2 right-0 items-center overflow-x-visible"
+          " h-screen relative right-0 overflow-x-visible"
         }
       >
         {loginVisible && (
@@ -28,6 +32,7 @@ function Rector() {
           </RegistroProvider>
         )}
       </section>
+      </div>
     </div>
   );
 }

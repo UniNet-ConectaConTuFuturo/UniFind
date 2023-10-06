@@ -35,13 +35,13 @@ function Registro({ className }) {
   }, [step, navigate]);
   return (
     <>
+      
       <section
         className={
           className + " " + "caja relative flex justify-end pr-4 items-center"
         }
       >
-        <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div>
-        <div className="h-screen w-screen absolute bg-no-repeat translate-x-2/3 translate-y-28 bg-shape scale-125"></div>
+        {/* <div className="h-screen w-screen absolute bg-no-repeat opacity-50 translate-x-96 bg-[url('/images/graduation.png')]"></div> */}
         {formVisible && (
           <EntrantForm
             className={
