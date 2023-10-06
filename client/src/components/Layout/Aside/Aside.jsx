@@ -1,4 +1,5 @@
 import "./aside.css";
+import PropTypes from "prop-types";
 // Back-End
 import userOptions from "../../../modelos/userOptions";
 import { post } from "../../../api/api";
@@ -20,7 +21,7 @@ import {
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 
-const SideBar = () => {
+function SideBar({ trigger, setTrigger }) {
   const { token } = useGlobal();
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -66,10 +67,14 @@ const SideBar = () => {
       {user !== userOptions.noAuthenticated && (
         <>
           <AsideIcon url="/configuracion" Icon={FaCog} texto="CONFIGURACIÓN" />
-          <AsideIcon url="#" Icon={HiOutlineLogout} texto="CERRAR SESIÓN" />
+          <AsideIcon Icon={HiOutlineLogout} texto="CERRAR SESIÓN" />
         </>
       )}
     </aside>
   );
+};
+SideBar.propTypes = {
+  trigger: PropTypes.bool,
+  setTrigger: PropTypes.func,
 };
 export default SideBar;

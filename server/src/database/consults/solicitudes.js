@@ -14,6 +14,22 @@ export function insertSolicitud(userID, fileName, uniID) {
   });
 }
 
+export function selectSolicitudes(userID) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `SELECT U.name_user, U.mail_user, S.solicitud
+      FROM solicitudes S
+      LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
+      WHERE S.id_universidad = ?`,
+      [userID],
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
+  });
+}
+
 /*SELECT U.name_user, U.mail_user 
 FROM solicitudes S
 LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
