@@ -11,7 +11,7 @@ function Modal({ trigger, setTrigger, children }) {
               className="close absolute top-4 left-4 text-red-600"
               onClick={() => setTrigger(false)}
             >
-              <b>Cerrar</b>
+              <b>Volver</b>
             </button>
             {children}
           </div>

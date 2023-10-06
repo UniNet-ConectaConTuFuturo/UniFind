@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Aside from "./Aside/Aside";
 import Modal from "../UI/Modal"
 import { useState } from "react";
+import LogOut from "./LogOut";
 function Layout() {
   const [trigger, setTrigger] = useState(false);
   return (
@@ -11,7 +12,7 @@ function Layout() {
         <Outlet />
       </main>
       <Modal trigger={trigger} setTrigger={setTrigger}>
-
+        <LogOut setTrigger={setTrigger}/>
       </Modal>
     </>
   );

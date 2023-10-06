@@ -38,7 +38,6 @@ function EntrantCode({ className }) {
       if (data.token) {
         setSpanCode("");
         setToken(data.token);
-        setStep(3);
       } else {
         setSpanCode(data.error);
       }

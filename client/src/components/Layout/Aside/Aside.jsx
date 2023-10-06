@@ -67,7 +67,7 @@ function SideBar({ trigger, setTrigger }) {
       {user !== userOptions.noAuthenticated && (
         <>
           <AsideIcon url="/configuracion" Icon={FaCog} texto="CONFIGURACIÓN" />
-          <AsideIcon Icon={HiOutlineLogout} texto="CERRAR SESIÓN" />
+          <AsideIcon url="#" onClick={()=> setTrigger(true)} Icon={HiOutlineLogout} texto="CERRAR SESIÓN" />
         </>
       )}
     </aside>
