@@ -13,12 +13,12 @@ export function NotAuthenticated() {
   if (token === userOptions.noAuthenticated) return <Outlet />;
   else return <Navigate to="/" replace={true} />;
 }
-export async function IsEntrant() {
+export function IsEntrant() {
   const token = useLoaderData();
   if (token === userOptions.entrant) return <Outlet />;
   else return <Navigate to="/" replace={true} />;
 }
-export async function IsRector() {
+export function IsRector() {
   const token = useLoaderData();
   if (token === userOptions.rector) return <Outlet />;
   else return <Navigate to="/" replace={true} />;

@@ -4,11 +4,9 @@ import { post } from "../../../../api/api";
 import PropTypes from "prop-types";
 import { useIdentification } from "../../../../hooks/useIdentification";
 import { useGlobal } from "../../../../hooks/useGlobal";
-import { useNavigate } from "react-router-dom";
 
 function Login({ className }) {
   const { setToken } = useGlobal();
-  const navigate = useNavigate();
   const { checkboxRef, handleCheckboxChange } = useIdentification();
   const formNuevo = {
     mail_user: "",
@@ -41,7 +39,6 @@ function Login({ className }) {
       if (data.token) {
         setSpan(spanVacio);
         setToken(data.token);
-        navigate("/");
       } else {
         setSpan({ ...spanVacio, ...data });
       }

@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* Authentication */
 import getAuth from "./api/authentication";
-import { Authenticated, NotAuthenticated } from "./middlewares/Authentication";
+import { Authenticated, IsEntrant, IsRector, NotAuthenticated } from "./middlewares/Authentication";
 /* ContectProvider */
 import GlobalProvider from "./context/Global/GlobalProvider";
 import IdentificationProvider from "./context/Identification/IdentificationProvider";
@@ -21,8 +21,6 @@ const ListaInteres = lazy(() =>
   import("./components/ListaInteres/ListaInteres")
 );
 const Mapa = lazy(() => import("./components/Mapa/Mapa"));
-const ChatIngresante = lazy(() => import("./components/Chat/ChatIngresante"));
-const ChatRector = lazy(() => import("./components/Chat/ChatRector"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
 const SegundaInstancia = lazy(() => import("./components/SegundaInstancia/SegundaInstancia"));
 
@@ -56,11 +54,30 @@ const router = createBrowserRouter([
         children: [{ index: true, Component: AccountSettings }],
       },
       { path: "/mapa", Component: Mapa },
-      { path: "/listainteres", Component: ListaInteres },
-      { path: "/admision", Component: Admision },
-      { path: "/chat/ingresante", Component: ChatIngresante },
-      { path: "/chat/rector", Component: ChatRector },
-      { path: "/segundainstancia", Component: SegundaInstancia }, 
+      {
+        path: "/listainteres",
+        loader: async () => await getAuth(),
+        Component: IsEntrant,
+        children: [{ index: true, Component: ListaInteres }],
+      },
+      {
+        path: "/admision",
+        loader: async () => await getAuth(),
+        Component: IsRector,
+        children: [{ index: true, Component: Admision }],
+      },
+      {
+        path: "/admision",
+        loader: async () => await getAuth(),
+        Component: IsRector,
+        children: [{ index: true, Component: Admision }],
+      },
+      {
+        path: "/segundainstancia",
+        loader: async () => await getAuth(),
+        Component: IsRector,
+        children: [{ index: true, Component: SegundaInstancia }],
+      },
     ],
   },
 ]);

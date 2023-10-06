@@ -8,6 +8,7 @@ function GlobalProvider() {
     
     localStorage.setItem("TokenUniNet", value);
     setToken_(value);
+    window.location.reload();
   }
   return (
     <GlobalContext.Provider

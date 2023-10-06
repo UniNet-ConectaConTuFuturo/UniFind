@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import RectorForm from "./Rector/RectorForm";
 import RectorCode from "./Rector/RectorCode";
@@ -7,7 +6,6 @@ import { useRegistro } from "../../../../hooks/useRegistro";
 import "./registro.css";
 
 function Registro({ className }) {
-  const navigate = useNavigate();
   const { step } = useRegistro();
   const [formVisible, setFormVisible] = useState(true);
   const [codeVisible, setCodeVisible] = useState(false);
@@ -29,9 +27,7 @@ function Registro({ className }) {
         setCodeVisible(true);
         setTimeout(() => setClassCode(""), "100");
       }, "700");
-    } else if (step === 3) {
-      navigate("/");
-    }
+    } 
   }, [step]);
   return (
     <>
