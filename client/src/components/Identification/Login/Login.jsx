@@ -55,7 +55,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
           span={span.spanPassword}
           handleChange={handleChange}
         />
-        <input className="boton ml-32" type="submit" name="boton" id="boton" />
+        <input className="boton ml-32" type="submit" name="boton" />
       </form>
       <br />
       <p className="ml-36 max-w-xs">

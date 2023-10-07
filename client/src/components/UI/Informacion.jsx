@@ -19,7 +19,7 @@ function Informacion({ idUniToShowInfo, dispatch }) {
   const { token } = useGlobal();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
-    if (typeof token === "string" && idUniToShowInfo) {
+    if (token && idUniToShowInfo) {
       (async () =>
         setIsFavorite(
           (
