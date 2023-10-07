@@ -9,7 +9,7 @@ import { useGlobal } from '../../hooks/useGlobal';
 
 function Interesados() {
   const [solicitud, setSolicitud] = useState({});
-  const {token} = useGlobal()
+  const { token } = useGlobal()
   useEffect(() => {
     (async () => {
       setSolicitud(await post("/get/soli", { token }));

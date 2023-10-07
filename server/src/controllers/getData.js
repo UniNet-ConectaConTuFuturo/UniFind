@@ -1,6 +1,5 @@
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 import { selectNombreFromCarrerasByUniversidad } from "../database/consults/carrerasC.js";
-//import { selectSolicitudes } from "../database/consults/solicitudes.js";
 
 export async function uni(req, res) {
   try {
@@ -28,18 +27,4 @@ export async function carreras(req, res) {
   }
 }
 
-/*export function solicitudes(userID) {
-  return new Promise((resolve, reject) => {
-    pool.query(
-      `SELECT U.name_user, U.mail_user, S.solicitud
-      FROM solicitudes S
-      LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
-      WHERE S.id_universidad = ?`,
-      [userID],
-      (err, data) => {
-        if (err) reject(err);
-        resolve(data);
-      }
-    );
-  });
-}*/
+

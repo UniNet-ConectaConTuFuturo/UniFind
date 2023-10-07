@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import fs from "fs";
 
 //querys
-import { insertSolicitud } from "../database/consults/solicitudes.js";
+import { insertSolicitud, selectSolicitudes } from "../database/consults/solicitudesC.js";
 import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 
@@ -42,7 +42,7 @@ export async function uploadCarta(req, res) {
   
 }
 
-export async function generateCarta(req, res){
+export async function generateCarta(req, res) {
   const token = req.headers.authorization.split(' ')[1];
   const id_universidad = req.body.idUniversidad;
   try {
@@ -81,4 +81,23 @@ export async function generateCarta(req, res){
     console.error("Error verifying token:", error);
     res.status(401).json({ message: "Invalid token" });
   }
-}           
+}         
+
+export async function getSolicitudes(req, res) {
+  const {token} = req.body
+  try{
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      const where = `id_usuario = ${id}`;
+      const select = "id_universidad";
+      const user = await selectFromUsuarios(select, where); 
+      const data = await selectSolicitudes(user[0].id_universidad);
+      return res.json(data).end();
+  })
+  }catch(error){
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}

@@ -30,7 +30,7 @@ router.post("/api/entrant/second-step", [
 
 //Rutas registro rector
 
-router.post("/api/recttor/validate-registro", [
+router.post("/api/rector/validate-registro", [
   validate.User,
   validate.IdUniversidad,
   end,
