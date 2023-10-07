@@ -11,7 +11,7 @@ import end from "../controllers/end.js";
 const router = Router();
 
 //Rutas registro ingresante
-router.post("/api/validate-registro-ingresante", [
+router.post("/api/entrant/validate-registro", [
   validate.User,
   validate.Title,
   end,
@@ -30,7 +30,7 @@ router.post("/api/entrant/second-step", [
 
 //Rutas registro rector
 
-router.post("/api/validate-registro-rector", [
+router.post("/api/recttor/validate-registro", [
   validate.User,
   validate.IdUniversidad,
   end,

@@ -1,14 +1,14 @@
-import "./aside.css";
+import "./Aside/aside.css";
 import PropTypes from "prop-types";
 // Back-End
-import userOptions from "../../../modelos/userOptions";
-import { post } from "../../../api/api";
+import userOptions from "../../modelos/userOptions";
+import { post } from "../../api/api";
 import { useEffect, useState } from "react";
-import { useGlobal } from "../../../hooks/useGlobal";
+import { useGlobal } from "../../hooks/useGlobal";
 /* import { useMatch  } from "react-router-dom"; */
 // Components
-import AsideIcon from "./AsideIcon";
-import AsideIconLock from "./AsideIconLock";
+import AsideIcon from "./Aside/AsideIcon";
+import AsideIconLock from "./Aside/AsideIconLock";
 // Iconos
 import {
   FaHome,
@@ -21,7 +21,7 @@ import {
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 
-function SideBar({ trigger, setTrigger }) {
+function SideBar({ setTrigger }) {
   const { token } = useGlobal();
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -34,11 +34,7 @@ function SideBar({ trigger, setTrigger }) {
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">
       <AsideIcon url="/" Icon={FaHome} texto="HOME" />
       {user === userOptions.noAuthenticated && (
-        <AsideIcon
-          url="/identificacion/ingresante"
-          Icon={FaUserAlt}
-          texto="LOGIN"
-        />
+        <AsideIcon url="/identificacion" Icon={FaUserAlt} texto="LOGIN" />
       )}
       <AsideIcon url="/mapa" Icon={FaMapMarkedAlt} texto="MAPA" />
       {user !== userOptions.rector && (
@@ -59,22 +55,29 @@ function SideBar({ trigger, setTrigger }) {
       )}
       {user === userOptions.rector && (
         <>
-        <AsideIcon url="/admision" Icon={FaAddressCard} texto="ADMISIÓN" />
-        <AsideIcon url="/segundainstancia" Icon={FaAddressCard} texto="SEGUNDA INSTANCIA" />
-        
+          <AsideIcon url="/admision" Icon={FaAddressCard} texto="ADMISIÓN" />
+          <AsideIcon
+            url="/segundainstancia"
+            Icon={FaAddressCard}
+            texto="SEGUNDA INSTANCIA"
+          />
         </>
       )}
       {user !== userOptions.noAuthenticated && (
         <>
           <AsideIcon url="/configuracion" Icon={FaCog} texto="CONFIGURACIÓN" />
-          <AsideIcon url="#" onClick={()=> setTrigger(true)} Icon={HiOutlineLogout} texto="CERRAR SESIÓN" />
+          <AsideIcon
+            url="#"
+            onClick={() => setTrigger(true)}
+            Icon={HiOutlineLogout}
+            texto="CERRAR SESIÓN"
+          />
         </>
       )}
     </aside>
   );
-};
+}
 SideBar.propTypes = {
-  trigger: PropTypes.bool,
   setTrigger: PropTypes.func,
 };
 export default SideBar;

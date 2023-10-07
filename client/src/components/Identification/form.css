@@ -1,11 +1,8 @@
 .box {
-  position: relative;
+  position: absolute;
   /* margin: auto; */
   width: 600px;
   height: 650px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: transparent;
   /* backdrop-filter: blur(10px); */
 }
@@ -45,10 +42,6 @@ label.force-input-focus {
   font-size: 12px;
 }
 
-.uni {
-  margin-top: 10px;
-}
-
 .inputbox span {
   position: absolute;
   top: 0;
@@ -67,12 +60,6 @@ span.force-input-focus {
   font-size: 12px;
 }
 
-.box a {
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-
 .boton {
   display: flex;
   position: relative;
@@ -80,8 +67,4 @@ span.force-input-focus {
   justify-content: center;
   width: 300px;
   height: 40px;
-}
-
-.nacimiento {
-  color-scheme: dark;
 }

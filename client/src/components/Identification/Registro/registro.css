@@ -1,4 +1,7 @@
-select{
+.active-form {
+}
+
+/* select{
     background: none;
     max-width: 100%;
 }
@@ -21,4 +24,4 @@ option{
     form{
         margin-right: 400px;
     }
-}
+} */

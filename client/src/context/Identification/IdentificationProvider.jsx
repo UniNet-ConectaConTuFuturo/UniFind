@@ -10,7 +10,7 @@ function IdentificationProvider() {
   const [classRegistro, setClassRegistro] = useState(
     "translate-x-1/2 opacity-0"
   );
-  const handleCheckboxChange = (booleano) => {
+  function handleCheckboxChange(booleano) {
     if (booleano) {
       setBgColor("");
       setClassLogin("-translate-x-1/2 opacity-0 ");
@@ -28,7 +28,7 @@ function IdentificationProvider() {
         setTimeout(() => setClassLogin(""), "100");
       }, "700");
     }
-  };
+  }
   return (
     <IdentificationContext.Provider
       value={{

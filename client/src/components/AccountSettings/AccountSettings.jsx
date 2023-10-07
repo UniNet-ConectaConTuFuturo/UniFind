@@ -1,6 +1,5 @@
- 
 import { useState } from "react";
-import {post} from "../../api/api"
+/* import {post} from "../../api/api" */
 function AccountSettings() {
   const formNuevo = {
     Name: "",
@@ -13,8 +12,8 @@ function AccountSettings() {
     const { name, value } = target;
     setForm({ ...form, [name]: value });
   };
-  function handleSubmit(e){
-    e.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault();
     console.log(e.target);
     /* const res = post("/config-account", {form: e.target}) */
   }

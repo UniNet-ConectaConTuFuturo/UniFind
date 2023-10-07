@@ -1,28 +1,31 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* Authentication */
 import getAuth from "./api/authentication";
-import { Authenticated, IsEntrant, IsRector, NotAuthenticated } from "./middlewares/Authentication";
+import {
+  Authenticated,
+  IsEntrant,
+  IsRector,
+  NotAuthenticated,
+} from "./middlewares/Authentication";
 /* ContectProvider */
 import GlobalProvider from "./context/Global/GlobalProvider";
-import IdentificationProvider from "./context/Identification/IdentificationProvider";
 /* Componentes */
 import { lazy } from "react";
 const Home = lazy(() => import("./components/Home/Home"));
-const Ingresante = lazy(() =>
-  import("./components/Accounts/Identification/Ingresante")
-);
-const Rector = lazy(() =>
-  import("./components/Accounts/Identification/Rector")
+const Identification = lazy(() =>
+  import("./components/Identification/Identification")
 );
 const AccountSettings = lazy(() =>
-  import("./components/Accounts/AccountSettings")
+  import("./components/AccountSettings/AccountSettings")
 );
 const ListaInteres = lazy(() =>
   import("./components/ListaInteres/ListaInteres")
 );
 const Mapa = lazy(() => import("./components/Mapa/Mapa"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
-const SegundaInstancia = lazy(() => import("./components/SegundaInstancia/SegundaInstancia"));
+const SegundaInstancia = lazy(() =>
+  import("./components/SegundaInstancia/SegundaInstancia")
+);
 
 const router = createBrowserRouter([
   {
@@ -31,21 +34,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       {
-        path: "/identificacion/",
+        path: "/identificacion",
         loader: async () => await getAuth(),
         Component: NotAuthenticated,
-        children: [
-          {
-            path: "ingresante",
-            Component: IdentificationProvider,
-            children: [{ index: true, Component: Ingresante }],
-          },
-          {
-            path: "rector",
-            Component: IdentificationProvider,
-            children: [{ index: true, Component: Rector }],
-          },
-        ],
+        children: [{ index: true, Component: Identification }],
       },
       {
         path: "/configuracion",
