@@ -1,23 +1,22 @@
 import "./form.css";
 import "./Registro/registro.css";
 
-import { useRef } from "react";
+import { useRef, useState, useTransition } from "react";
 import Login from "./Login/Login";
 import Registro from "./Registro/Registro";
 function Identification() {
+  const [, startTransition] = useTransition();
   const mainRef = useRef(null);
   const loginRef = useRef(null);
-  const entrantRef = useRef(null);
-  const rectorRef = useRef(null);
-  const registroRef = useRef(entrantRef);
+  const registroRef = useRef(null);
+  const [isEntrant, setIsEntrant] = useState(true);
   function change() {
     console.log("cambiando");
   }
-  function changeRegistro(prev) {
-    prev === entrantRef
-      ? (registroRef.current = rectorRef.current)
-      : (registroRef.current = entrantRef.current);
-    console.log(registroRef.current);
+  function changeRegistro() {
+    startTransition(() => {
+      setIsEntrant(!isEntrant);
+    });
   }
   return (
     <main
@@ -34,18 +33,11 @@ function Identification() {
       />
       <Login ref={loginRef} changeToRegistro={change} />
       <Registro
-        ref={entrantRef}
+        ref={registroRef}
         changeToLogin={change}
         changeRegistro={changeRegistro}
-        otroRegistroText="Soy RECTOR"
-        isEntrant={true}
-      />
-      <Registro
-        ref={rectorRef}
-        changeToLogin={change}
-        changeRegistro={changeRegistro}
-        otroRegistroText="Soy INGRESANTE"
-        isEntrant={false}
+        otroRegistroText={isEntrant ? "Soy RECTOR" : "Soy INGRESANTE"}
+        isEntrant={isEntrant}
       />
     </main>
   );

@@ -25,6 +25,7 @@ const Registro = forwardRef(function Registro(
   }
   return (
     <section
+      role="Registro"
       ref={ref}
       className="relative flex justify-end pr-4 items-center transition-all duration-700"
     >

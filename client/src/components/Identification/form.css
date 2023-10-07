@@ -1,5 +1,5 @@
 .box {
-  position: absolute;
+  position: relative;
   /* margin: auto; */
   width: 600px;
   height: 650px;

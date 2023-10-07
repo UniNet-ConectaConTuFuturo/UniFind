@@ -145,7 +145,7 @@ const DataForm = forwardRef(function DataForm(
         </a>
       </p>
       <br />
-      <button onClick={() => changeRegistro(ref)}>{otroRegistroText}</button>
+      <button onClick={changeRegistro}>{otroRegistroText}</button>
     </div>
   );
 });
