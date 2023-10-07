@@ -11,7 +11,8 @@ function Identification() {
   const registroRef = useRef(null);
   const [isEntrant, setIsEntrant] = useState(true);
   function change() {
-    console.log("cambiando");
+    loginRef.current.classList.toggle("nearby-left");
+    registroRef.current.classList.toggle("nearby-right");
   }
   function changeRegistro() {
     startTransition(() => {
@@ -21,7 +22,9 @@ function Identification() {
   return (
     <main
       ref={mainRef}
-      className={"transition-colors duration-700 overflow-hidden h-screen"}
+      className={
+        "transition-colors duration-700 overflow-hidden h-screen w-screen"
+      }
     >
       <video
         className="w-full h-screen absolute object-cover left-0 opacity-50"

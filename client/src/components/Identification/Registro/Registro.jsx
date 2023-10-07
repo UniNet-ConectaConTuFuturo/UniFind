@@ -27,7 +27,7 @@ const Registro = forwardRef(function Registro(
     <section
       role="Registro"
       ref={ref}
-      className="relative flex justify-end pr-4 items-center transition-all duration-700"
+      className="center transition-position-y-transform duration-700 nearby-right"
     >
       <DataForm
         ref={dataFormRef}

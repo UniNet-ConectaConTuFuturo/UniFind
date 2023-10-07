@@ -57,22 +57,24 @@ const DataForm = forwardRef(function DataForm(
   };
 
   return (
-    <div ref={ref} className="box" role="DataForm">
+    <div ref={ref} className="center" role="DataForm">
       <h2 className="ml-48">Registrarse</h2>
       <form onSubmit={handleSubmit}>
         <Input
           handleChange={handleChange}
           handleBlur={handleBlur}
-          name="mail_user"
+          Name="mail_user"
           value={form.mail_user}
           span={span.spanEmail}
+          label="Correo Electrónico"
         />
         <Input
           handleChange={handleChange}
           handleBlur={handleBlur}
-          name="name_user"
+          Name="name_user"
           value={form.name_user}
           span={span.spanName}
+          label="Nombre y Apellido"
         />
         <Input
           handleChange={handleChange}
@@ -81,14 +83,16 @@ const DataForm = forwardRef(function DataForm(
           name="password_user"
           value={form.password_user}
           span={span.spanPassword}
+          label="Contraseña"
         />
         <Input
           handleChange={handleChange}
           handleBlur={handleBlur}
           type="password"
-          name="password2_user"
+          Name="password2_user"
           value={form.password2_user}
           span={span.spanPassword2}
+          label="Repetir Contraseña"
         />
         <Input
           handleChange={handleChange}
@@ -97,28 +101,24 @@ const DataForm = forwardRef(function DataForm(
           name="date_user"
           value={form.date_user}
           span={span.spanDate}
+          label="Fecha de Nacimiento"
         />
         <Input
           handleChange={handleChange}
           handleBlur={handleBlur}
-          name="direction_user"
+          Name="direction_user"
           value={form.direction_user}
           span={span.spanDirection}
-        />
-        <Input
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          name="direction_user"
-          value={form.direction_user}
-          span={span.spanDirection}
+          label="Dirección"
         />
         <Input
           handleChange={handleChange}
           handleBlur={handleBlur}
           type="tel"
-          name="tel_user"
+          Name="tel_user"
           value={form.tel_user}
           span={span.spanTel}
+          label="Teléfono"
         />
         {isEntrant ? (
           <Input
@@ -127,6 +127,7 @@ const DataForm = forwardRef(function DataForm(
             name="title"
             value={form.title}
             span={span.spanUniversity}
+            label="Título Secundario"
           />
         ) : (
           <SelectUniversidad
@@ -137,14 +138,11 @@ const DataForm = forwardRef(function DataForm(
           />
         )}
 
-        <input className="boton -ml-24" type="submit" name="boton" id="boton" />
+        <input type="submit" />
       </form>
-      <p className="-ml-20 max-w-xs">
-        <a href="#" onClick={changeToLogin}>
-          Ya tengo una cuenta
-        </a>
-      </p>
-      <br />
+      <a href="#" onClick={changeToLogin}>
+        Ya tengo una cuenta
+      </a>
       <button onClick={changeRegistro}>{otroRegistroText}</button>
     </div>
   );

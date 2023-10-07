@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useId } from "react";
-function Input({ handleChange, handleBlur, type, Name, value, span }) {
+function Input({ handleChange, handleBlur, type, Name, value, span, label }) {
   const id = useId();
   return (
     <div className="inputbox -ml-16">
@@ -15,7 +15,7 @@ function Input({ handleChange, handleBlur, type, Name, value, span }) {
         onBlur={handleBlur}
       />
       <span>{span}</span>
-      <label htmlFor={id}>Título Secundario</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 }
@@ -26,5 +26,6 @@ Input.propTypes = {
   Name: PropTypes.string,
   value: PropTypes.string,
   span: PropTypes.string,
+  label: PropTypes.string,
 };
 export default Input;

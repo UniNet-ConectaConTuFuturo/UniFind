@@ -37,32 +37,31 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
   return (
     <section
       role="LogIn"
-      className="items-center box transition-all duration-700"
+      className="center transition-position-y-transform duration-700"
       ref={ref}
     >
       <h2 className="text-center mb-10">INGRESAR</h2>
       <form onSubmit={handleSubmit}>
         <Input
-          name="mail_user"
+          Name="mail_user"
           value={form.mail_user}
           span={span.spanEmail}
           handleChange={handleChange}
+          label="Correo Electrónico"
         />
         <Input
           type="password"
-          name="password_user"
+          Name="password_user"
           value={form.password_user}
           span={span.spanPassword}
           handleChange={handleChange}
+          label="Contraseña"
         />
-        <input className="boton ml-32" type="submit" name="boton" />
+        <input type="submit" />
       </form>
-      <br />
-      <p className="ml-36 max-w-xs">
-        <a href="#" onClick={changeToRegistro}>
-          ¿No estás registrado? Hazlo ahora!
-        </a>
-      </p>
+      <a href="#" onClick={changeToRegistro}>
+        ¿No estás registrado? Hazlo ahora!
+      </a>
     </section>
   );
 });

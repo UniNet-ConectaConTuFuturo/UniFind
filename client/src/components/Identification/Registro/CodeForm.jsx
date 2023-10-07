@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { forwardRef, useState } from "react";
 import { post } from "../../../api/api";
 import { useGlobal } from "../../../hooks/useGlobal";
+import Input from "../UI/Input";
 
 const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
   const { setToken } = useGlobal();
@@ -22,9 +23,6 @@ const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
       console.log(error);
     }
   };
-
-  const handleChange = (e) => setCode(e.target.value);
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -43,7 +41,7 @@ const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
     }
   };
   return (
-    <div ref={ref} className="box" role="CodeForm">
+    <div ref={ref} className="center" role="CodeForm">
       <button
         className="absolute top-8 left-8"
         type="button"
@@ -52,25 +50,19 @@ const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
       >
         VOLVER
       </button>
+      <a onClick={sendMail} id="repeat" href="">
+        Solicitar nuevo código
+      </a>
       <form onSubmit={handleSubmit}>
-        <p>
-          <a onClick={sendMail} id="repeat" href="">
-            Solicitar nuevo código
-          </a>
-        </p>
-        <div className="inputbox">
-          <input
-            className="typebox"
-            type="number"
-            name="code"
-            id="code"
-            value={code}
-            onChange={handleChange}
-          />
-          <span>{spanCode}</span>
-          <label htmlFor="code">Ingresar Código</label>
-        </div>
-        <input className="boton" id="submit" type="submit" name="boton" />
+        <Input
+          handleChange={(e) => setCode(e.target.value)}
+          type="number"
+          Name="code"
+          value={code}
+          span={spanCode}
+          label="Ingresar Código"
+        />
+        <input type="submit" />
       </form>
     </div>
   );
