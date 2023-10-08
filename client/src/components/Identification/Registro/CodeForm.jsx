@@ -4,7 +4,10 @@ import { post } from "../../../api/api";
 import { useGlobal } from "../../../hooks/useGlobal";
 import Input from "../UI/Input";
 
-const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
+const CodeForm = forwardRef(function CodeForm(
+  { isEntrant, form, changeStep },
+  ref
+) {
   const { setToken } = useGlobal();
   const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
@@ -41,12 +44,16 @@ const CodeForm = forwardRef(function CodeForm({ isEntrant, form, next }, ref) {
     }
   };
   return (
-    <div ref={ref} className="center" role="CodeForm">
+    <div
+      ref={ref}
+      className="center transition-position-y-transform duration-700 nearby-right"
+      role="CodeForm"
+    >
       <button
         className="absolute top-8 left-8"
         type="button"
         id="volver"
-        onClick={() => next(false)}
+        onClick={changeStep}
       >
         VOLVER
       </button>
@@ -80,6 +87,6 @@ CodeForm.propTypes = {
     title: PropTypes.string,
     id_universidad: PropTypes.number,
   }),
-  next: PropTypes.func,
+  changeStep: PropTypes.func,
 };
 export default CodeForm;

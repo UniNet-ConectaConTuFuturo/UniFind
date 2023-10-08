@@ -11,7 +11,7 @@ const DataForm = forwardRef(function DataForm(
     isEntrant,
     form,
     setForm,
-    next,
+    changeStep,
     changeToLogin,
     changeRegistro,
     otroRegistroText,
@@ -45,19 +45,24 @@ const DataForm = forwardRef(function DataForm(
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post(`/${who}/first-step`, form);
+      changeStep();
+      /* const data = await post(`/${who}/first-step`, form);
       if (data.success) {
-        next(true);
+        changeStep();
       } else {
         setSpan({ ...spanVacio, ...data });
-      }
+      } */
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div ref={ref} className="center" role="DataForm">
+    <div
+      ref={ref}
+      className="center transition-position-y-transform duration-700"
+      role="DataForm"
+    >
       <h2 className="ml-48">Registrarse</h2>
       <form onSubmit={handleSubmit}>
         <Input
@@ -161,7 +166,7 @@ DataForm.propTypes = {
     id_universidad: PropTypes.number,
   }),
   setForm: PropTypes.func,
-  next: PropTypes.func,
+  changeStep: PropTypes.func,
   changeToLogin: PropTypes.func,
   changeRegistro: PropTypes.func,
   otroRegistroText: PropTypes.any,

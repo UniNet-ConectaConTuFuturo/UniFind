@@ -20,8 +20,9 @@ const Registro = forwardRef(function Registro(
     [isEntrant ? "title" : "id_universidad"]: isEntrant ? "" : 0,
   };
   const [form, setForm] = useState(formNuevo);
-  function next(boolean) {
-    console.log(boolean);
+  function changeStep() {
+    dataFormRef.current.classList.toggle("nearby-left");
+    codeFormRef.current.classList.toggle("nearby-right");
   }
   return (
     <section
@@ -29,22 +30,24 @@ const Registro = forwardRef(function Registro(
       ref={ref}
       className="center transition-position-y-transform duration-700 nearby-right"
     >
-      <DataForm
-        ref={dataFormRef}
-        form={form}
-        setForm={setForm}
-        isEntrant={isEntrant}
-        next={next}
-        changeToLogin={changeToLogin}
-        changeRegistro={changeRegistro}
-        otroRegistroText={otroRegistroText}
-      />
-      <CodeForm
-        ref={codeFormRef}
-        form={form}
-        isEntrant={isEntrant}
-        next={next}
-      />
+      <div className="w-screen h-screen">
+        <DataForm
+          ref={dataFormRef}
+          form={form}
+          setForm={setForm}
+          isEntrant={isEntrant}
+          changeStep={changeStep}
+          changeToLogin={changeToLogin}
+          changeRegistro={changeRegistro}
+          otroRegistroText={otroRegistroText}
+        />
+        <CodeForm
+          ref={codeFormRef}
+          form={form}
+          isEntrant={isEntrant}
+          changeStep={changeStep}
+        />
+      </div>
     </section>
   );
 });
