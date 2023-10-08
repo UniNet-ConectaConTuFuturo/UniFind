@@ -14,3 +14,7 @@
     background-size: 100% 3px;
     color: inherit;
   }
+
+  body{
+    background-color: darkgray;
+  }

@@ -1,22 +1,5 @@
-.carreras {
-  max-height: 625px;
-  max-width: 625px;
-}
-
-
-.info-img {
-  width: 24px;
-}
-
-.info-but {
-  font-size: 10px;
-}
-
-.container {
-  background: none;
-  padding: 30px;
+.info-nav-container {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-  padding-top: 0;
 }
 
 .tab {

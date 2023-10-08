@@ -81,7 +81,7 @@ function Informacion({ idUniToShowInfo, dispatch }) {
     <>
       <div className="text-black flex flex-col content-end">
         <p className="text-2xl my-4 pl-1">{universidad.nombre_universidad}</p>
-        <section className="container flex">
+        <section className="info-nav-container bg-none p-7 pt-0 flex">
           <div className="tab">
             <button
               disabled={btnActive}
@@ -143,18 +143,18 @@ function Informacion({ idUniToShowInfo, dispatch }) {
             </p>
           </article>
           <article ref={carrerasContentRef} className="content">
-            <div className="carreras overflow-y-scroll mt-4 mb-4 pl-1">
+            <div className="carreras overflow-y-scroll mt-4 mb-4 pl-1 max-h-72">
               {carreras.map((carrera, i) => {
                 return <p key={i}>{carrera.nombre_carrera}</p>;
               })}
             </div>
           </article>
         </section>
-        <section className="info-botones h-36 flex justify-center gap-x-10">
-          <Link to={universidad.maps_universidad} target="_blank">
-            <button className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
+        <section className="info-botones h-20 flex justify-center gap-x-10">
+          <Link to={universidad.maps_universidad} target="_blank" className="h-20">
+            <button className="info-but text-[10px] flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center">
               <img
-                className="info-img"
+                className="info-img w-6"
                 src="/images/GoogleMapsIcon.png"
                 alt="MapsIcon"
               />
@@ -166,7 +166,7 @@ function Informacion({ idUniToShowInfo, dispatch }) {
               {isFavorite ? (
                 <button
                   onClick={() => handleClickStar("/deletefavorite", false)}
-                  className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
+                  className="info-but text-[10px] flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
                 >
                   <FaBookmark size="30" color="#FF6700" />
                   <b>Quitar de favoritos</b>
@@ -174,7 +174,7 @@ function Informacion({ idUniToShowInfo, dispatch }) {
               ) : (
                 <button
                   onClick={() => handleClickStar("/setfavorite", true)}
-                  className="info-but flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
+                  className="info-but text-[10px] flex flex-col w-20 h-20 rounded border-2 border-solid justify-center items-center"
                 >
                   <FaRegBookmark size="30" color="#FF6700" />
                   <b>Guardar en favoritos</b>

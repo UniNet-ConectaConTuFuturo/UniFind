@@ -18,7 +18,7 @@ function AccountSettings() {
     /* const res = post("/config-account", {form: e.target}) */
   }
   return (
-    <div className="d-flex flex-column flex-lg-row h-lg-full h-1000 w-1000 ">
+    <div className="flex flex-col h-screen w-full ">
       <div className="py-6  bg-dark">
         <div className="container-fluid">
           <div className="row">
