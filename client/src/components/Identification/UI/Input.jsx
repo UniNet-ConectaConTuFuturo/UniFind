@@ -3,9 +3,9 @@ import { useId } from "react";
 function Input({ handleChange, handleBlur, type, Name, value, span, label }) {
   const id = useId();
   return (
-    <div className="inputbox -ml-16">
+    <div className="inputbox">
       <input
-        className="typebox"
+        className="typebox px-2"
         type={type || "text"}
         name={Name}
         id={id}

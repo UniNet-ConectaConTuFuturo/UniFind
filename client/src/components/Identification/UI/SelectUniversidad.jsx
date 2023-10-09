@@ -3,8 +3,6 @@ import { useRef, useState } from "react";
 import AsyncSelect from "react-select/async";
 
 import { post } from "../../../api/api";
-import Control from "./SelectComponents/Control";
-import DropdownIndicator from "./SelectComponents/DropdownIndicator";
 function SelectUniversidad({
   handleChange,
   handleBlur,
@@ -27,9 +25,25 @@ function SelectUniversidad({
   const spanRef = useRef(null);
   const labelRef = useRef(null);
   return (
-    <div className="inputbox -ml-16">
+    <div className="inputbox">
       <AsyncSelect
-        classNamePrefix="border-0  text-white"
+        styles={{
+          control: () => ({
+            border: "none",
+            backgroundColor: "transparent",
+            outline: "none",
+            color: "white",
+          }),
+          input: (base) => ({
+            ...base,
+            color: "white",
+          }),
+          singleValue: (base) => ({
+            ...base,
+            color: "white",
+          }),
+        }}
+        components={{ DropdownIndicator: null, IndicatorSeparator: null }}
         name="id_universidad"
         placeholder=""
         defaultOptions
@@ -54,10 +68,6 @@ function SelectUniversidad({
         }}
         loadOptions={asyncLoadOptions}
         isLoading={isLoading}
-        components={{
-          DropdownIndicator,
-          Control,
-        }}
       />
       <span ref={spanRef}>{spanUniversity}</span>
       <label

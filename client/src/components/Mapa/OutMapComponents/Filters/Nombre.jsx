@@ -3,20 +3,12 @@ import { useMapa } from "../../../../hooks/useMapa";
 import { post } from "../../../../api/api";
 import { useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
-import { components } from "react-select";
+import MultiValueLabel from "./Custom/MultiValueLabel";
 
 function Nombre() {
   const { setNames } = useMapa();
   const [isLoading, setIsLoading] = useState(false);
-  const MultiValueLabel = (props) => {
-    return (
-      <components.MultiValueLabel {...props}>
-        <span title={props.data.title}>
-          {props.data.selectedOption || props.data.label}
-        </span>
-      </components.MultiValueLabel>
-    );
-  };
+
   return (
     <AsyncCreatableSelect
       placeholder="Filtrar por Nombre"
