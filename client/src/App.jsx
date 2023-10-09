@@ -26,6 +26,7 @@ const Admision = lazy(() => import("./components/Admision/Admision"));
 const SegundaInstancia = lazy(() =>
   import("./components/SegundaInstancia/SegundaInstancia")
 );
+const Chat = lazy(() => import("./components/Chat/Chat"))
 
 const router = createBrowserRouter([
   {
