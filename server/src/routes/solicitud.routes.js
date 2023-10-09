@@ -12,4 +12,6 @@ router.post("/api/generate",solicitud.generateCarta);
 //Ver Solicitudes Rector
 router.post("/api/get/soli", solicitud.getSolicitudes);
 
+
+
 export default router;

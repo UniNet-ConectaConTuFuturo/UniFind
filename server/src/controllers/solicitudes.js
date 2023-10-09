@@ -89,12 +89,26 @@ export async function getSolicitudes(req, res) {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
+      console.log("check", id)
       const where = `id_usuario = ${id}`;
       const select = "id_universidad";
       const user = await selectFromUsuarios(select, where); 
       const data = await selectSolicitudes(user[0].id_universidad);
       return res.json(data).end();
   })
+  }catch(error){
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+
+export async function getUser(req, res) {
+  const { id_usuario } = req.body;
+  try{
+    const where = `id_usuario = ${id_usuario}`;
+    const data = await selectFromUsuarios("*",where);
+    return res.json(data).end();
   }catch(error){
     console.error(error);
     res.statusMessage = "Ocurrio un error";

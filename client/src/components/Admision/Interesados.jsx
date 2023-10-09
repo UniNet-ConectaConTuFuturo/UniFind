@@ -1,21 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { post } from "../../api/api";
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
-import PropTypes from "prop-types";
-import { useGlobal } from '../../hooks/useGlobal';
 
 
 function Interesados() {
-  const [solicitud, setSolicitud] = useState({});
-  const { token } = useGlobal()
-  useEffect(() => {
-    (async () => {
-      setSolicitud(await post("/get/soli", { token }));
-    })();
-  }, [token]);
-  console.log(solicitud);
+  const [usuario, setUsuario] = useState({});
+   
   return (
     <div className="card w-full h-full mt-4 border-black border-2">
       <div className="card-body">
