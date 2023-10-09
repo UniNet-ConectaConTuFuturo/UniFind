@@ -1,6 +1,6 @@
 import path from "path";
 import jwt from "jsonwebtoken";
-import fs from "fs";
+import fs from "fs/promises";
 
 //querys
 import { insertSolicitud, selectSolicitudes } from "../database/consults/solicitudesC.js";
@@ -70,7 +70,7 @@ export async function generateCarta(req, res) {
       ${user[0].name_user}`;
       const fileName = `idUn${id_universidad}idU${id}.txt`;
       const filePath = path.join(__dirname, "..", "..", "cartas", fileName);
-      fs.writeFile(filePath, data, (err)=>{
+      await fs.writeFile(filePath, data, (err)=>{
         if(err){
           console.log(err);
         }
@@ -107,8 +107,19 @@ export async function getUser(req, res) {
   const { id_usuario } = req.body;
   try{
     const where = `id_usuario = ${id_usuario}`;
-    const data = await selectFromUsuarios("*",where);
+    const data = (await selectFromUsuarios("*",where))[0];
     return res.json(data).end();
+  }catch(error){
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+
+export async function readCarta(req, res) {
+  const {cartaName} = req.body;
+  try{
+    const data = await fs.readFile(path.join(__dirname, "..", "..", "cartas", cartaName))
   }catch(error){
     console.error(error);
     res.statusMessage = "Ocurrio un error";

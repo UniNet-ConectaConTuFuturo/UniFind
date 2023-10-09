@@ -3512,10 +3512,17 @@ CREATE TABLE `usuarios` (
   `direction_user` varchar(255) NOT NULL,
   `tel_user` int(20) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `verificado` int(11) DEFAULT NULL,
   `id_universidad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `id_universidad`) 
+  VALUES ("rector@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "63");
+INSERT INTO `usuarios` (`mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`) 
+  VALUES ("ingresante@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "Informatico");
 -- --------------------------------------------------------
 
 --

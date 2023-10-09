@@ -17,10 +17,10 @@ export function insertSolicitud(userID, fileName, uniID) {
 export function selectSolicitudes(uniID) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `SELECT U.id_usuario, U.name_user, U.mail_user, S.solicitud
-      FROM solicitudes S
-      LEFT JOIN usuarios U ON U.id_usuario = S.id_usuario
-      WHERE S.id_universidad = ?`,
+      `SELECT U.id_usuario, S.solicitud
+      FROM (SELECT id_universidad FROM usuarios WHERE id_usuario = ${id}) U
+      LEFT JOIN solicitudes S U 
+      ON U.id_universidad = S.id_universidad`,
       [uniID],
       (err, data) => {
         if (err) reject(err);
