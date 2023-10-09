@@ -17,15 +17,15 @@ const InlineDialog = styled(TooltipPrimitive)`
 const AsideIconLock = ({ url, Icon, texto, condition }) => (
   <Tooltip component={InlineDialog} content="Debe iniciar sesión">
     <Link
-      to={url}
+      to={condition ? "" : url}
       className={
         (condition ? "disabled" : "") +
         " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
       }
     >
       <div className="mx-2.5 relative">
-        <FaLock size="20" className="absolute bottom-0 right-0" />
-        <Icon size="40" />
+        <FaLock size="20" color="white" className="absolute bottom-0 right-0" />
+        <Icon size="40" color="white" />
       </div>
       <p className="aside-p">{texto}</p>
     </Link>

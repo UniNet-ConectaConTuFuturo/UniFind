@@ -4,26 +4,18 @@
   }
 } */
 
-:root {
-  --hover: 0;
+.sidebar-icon:hover:not(.disabled) {
+  background-color: #ffffff;
 }
 
-svg {
+.sidebar-icon:hover:not(.disabled) svg {
   filter: invert(1);
-}
-
-.sidebar-icon:hover {
-  background-color: white;
-}
-
-.sidebar-icon:hover svg {
-  filter: invert(0);
   transition: 0.25s;
 }
 .sidebar-icon.disabled:hover svg {
   filter: none;
 }
-.sidebar-icon:hover > .aside-p {
+.sidebar-icon:hover:not(.disabled) > .aside-p {
   font-weight: 700;
   color: black;
 }
@@ -31,7 +23,7 @@ svg {
   opacity: 0.25;
 }
 .sidebar-icon.disabled {
-  pointer-events: none;
+  cursor: default;
 }
 .sidebar-icon.disabled:hover > .aside-p {
   font-weight: normal;
