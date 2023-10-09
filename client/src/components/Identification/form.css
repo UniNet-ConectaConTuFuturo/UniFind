@@ -1,22 +1,3 @@
-.center {
-  position: absolute;
-  width: fit-content;
-  height: fit-content;
-  left: 50%;
-  top: 50%;
-  transform: translateY(-50%) translateX(-50%);
-}
-.transition-position-y-transform {
-  transition-property: left, top, right, bottom, transform;
-}
-.nearby-right {
-  left: 100%;
-  transform: translateY(-50%) translateX(0);
-}
-.nearby-left {
-  left: 0;
-  transform: translateY(-50%) translateX(-100%);
-}
 .inputbox {
   position: relative;
   margin: 15px 0;
@@ -45,7 +26,7 @@
 }
 .inputbox input:focus ~ label,
 .inputbox input:not(:placeholder-shown) ~ label,
-label.force-input-focus {
+label.input-focusing {
   top: -20px;
   right: 0;
   color: rgb(202, 202, 202);
@@ -63,7 +44,7 @@ label.force-input-focus {
 }
 .inputbox input:focus ~ span,
 .inputbox input:not(:placeholder-shown) ~ span,
-span.force-input-focus {
+span.input-focusing {
   top: -20px;
   left: 0;
   color: rgb(202, 202, 202);

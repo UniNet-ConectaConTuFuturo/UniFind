@@ -1,0 +1,19 @@
+.center {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.transition-position-y-transform {
+  transition-property: left, top, right, bottom, transform;
+}
+.nearby-right {
+  left: 100%;
+  transform: translateY(-50%) translateX(0);
+}
+.nearby-left {
+  left: 0;
+  transform: translateY(-50%) translateX(-100%);
+}

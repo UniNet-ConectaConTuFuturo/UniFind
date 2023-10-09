@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AsyncSelect from "react-select/async";
+
 import { post } from "../../../api/api";
+import Control from "./SelectComponents/Control";
+import DropdownIndicator from "./SelectComponents/DropdownIndicator";
 function SelectUniversidad({
   handleChange,
   handleBlur,
@@ -21,33 +24,46 @@ function SelectUniversidad({
       console.error(error);
     }
   };
-  const [labelSelectClass, setLabelSelectClass] = useState("");
+  const spanRef = useRef(null);
+  const labelRef = useRef(null);
   return (
     <div className="inputbox -ml-16">
       <AsyncSelect
-        classNamePrefix="border-0 bg-transparent text-white"
+        classNamePrefix="border-0  text-white"
         name="id_universidad"
-        inputId="id_universidad"
         placeholder=""
-        cacheOptions
         defaultOptions
         onChange={(option) => {
-          const target = {
-            name: "id_universidad",
-            value: option ? option.value : "",
-          };
-          handleChange({ target });
-          handleBlur({ target });
+          handleChange({
+            target: {
+              name: "id_universidad",
+              value: option.value,
+            },
+          });
         }}
-        onFocus={() => setLabelSelectClass("force-input-focus")}
-        onBlur={() => {
-          if (id_universidad === "") setLabelSelectClass("");
+        onFocus={() => {
+          spanRef.current.classList.add("input-focusing");
+          labelRef.current.classList.add("input-focusing");
+        }}
+        onBlur={(e) => {
+          if (!id_universidad) {
+            spanRef.current.classList.remove("input-focusing");
+            labelRef.current.classList.remove("input-focusing");
+          }
+          handleBlur(e);
         }}
         loadOptions={asyncLoadOptions}
         isLoading={isLoading}
+        components={{
+          DropdownIndicator,
+          Control,
+        }}
       />
-      <span className={labelSelectClass}>{spanUniversity}</span>
-      <label htmlFor="id_universidad" className={labelSelectClass}>
+      <span ref={spanRef}>{spanUniversity}</span>
+      <label
+        ref={labelRef}
+        htmlFor="id_universidad" /* className={labelSelectClass} */
+      >
         Universidad
       </label>
     </div>

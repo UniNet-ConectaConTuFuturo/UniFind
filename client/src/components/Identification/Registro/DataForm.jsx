@@ -45,13 +45,12 @@ const DataForm = forwardRef(function DataForm(
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      changeStep();
-      /* const data = await post(`/${who}/first-step`, form);
+      const data = await post(`/${who}/first-step`, form);
       if (data.success) {
         changeStep();
       } else {
         setSpan({ ...spanVacio, ...data });
-      } */
+      }
     } catch (error) {
       console.log(error);
     }

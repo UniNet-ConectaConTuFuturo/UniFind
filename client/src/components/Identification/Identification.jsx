@@ -1,5 +1,5 @@
 import "./form.css";
-import "./Registro/registro.css";
+import "./transition.css";
 
 import { useRef, useState, useTransition } from "react";
 import Login from "./Login/Login";
