@@ -15,7 +15,7 @@ function AsideInfo() {
           className="fixed top-2.5 bottom-2.5 right-0 justify-end mr-2.5"
         >
           <LeafletControl
-            className="flex flex-row-reverse h-full"
+            className="flex flex-row-reverse h-full leaflet-control-layers-expanded"
             toggleClassName="h-full flex items-center"
             IconOpen={BsFillCaretLeftFill}
             IconClose={BsFillCaretRightFill}

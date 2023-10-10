@@ -1,7 +1,3 @@
-// Back
-import { useEffect, useRef } from "react";
-import { useMapa } from "../../../../hooks/useMapa";
-
 // Components
 import Carrera from "./Carrera";
 import Nombre from "./Nombre";
@@ -10,21 +6,11 @@ import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import LeafletControl from "../UI/LeafletControl";
 
 function Filters() {
-  /* Back */
-  const { idUniToShowInfo } = useMapa();
-  /* Front */
-  const containerRef = useRef(null);
-  /* useEffect(() => {
-    idUniToShowInfo === 0
-      ? (containerRef.current.classList = "leaflet-top left-32 w-48")
-      : (containerRef.current.classList = "leaflet-top left-32 w-3/5");
-  }, [idUniToShowInfo]); */
   return (
     <section
       role="Filters"
       className="leaflet-top left-32 pr-12"
       style={{ right: "20vw" }}
-      ref={containerRef}
     >
       <LeafletControl
         className="w-full"

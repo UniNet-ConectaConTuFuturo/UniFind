@@ -4,7 +4,6 @@ import { Rnd } from "react-rnd";
 import { BiMove } from "react-icons/bi";
 function GeoInfo() {
   const { provInfo, depInfo } = useMapa();
-  console.log(window);
   return (
     <Rnd
       default={{
