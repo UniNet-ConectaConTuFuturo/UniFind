@@ -3519,10 +3519,11 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `id_universidad`) 
-  VALUES ("rector@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "63");
-INSERT INTO `usuarios` (`mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`) 
-  VALUES ("ingresante@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "Informatico");
+INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `id_universidad`) 
+  VALUES (1, "rector@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, 63);
+INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`) 
+  VALUES (2, "ingresante@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "Informatico");
+
 -- --------------------------------------------------------
 
 --
