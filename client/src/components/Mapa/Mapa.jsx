@@ -6,6 +6,7 @@ import { MapContainer } from "react-leaflet";
 
 const ControlZoom = lazy(() => import("./OutMapComponents/ControlZoom"));
 import Tiles from "./InMapComponents/Tiles";
+import PositionController from "./InMapComponents/PositionController";
 const DisplayGeoJSON = lazy(() =>
   import("./InMapComponents/geoJSON/DisplayGeoJSON")
 );
@@ -17,6 +18,7 @@ const Filters = lazy(() => import("./OutMapComponents/Filters/Filters"));
 const Options = lazy(() => import("./OutMapComponents/Options/Options"));
 const GeoInfo = lazy(() => import("./OutMapComponents/GeoInfo"));
 const AsideInfo = lazy(() => import("./OutMapComponents/AsideInfo"));
+
 function Mapa() {
   return (
     <MapaProvider>
@@ -30,7 +32,9 @@ function Mapa() {
         zoom={11}
         zoomDelta={0.5}
         zoomSnap={0}
+
       >
+        <PositionController/>
         <Suspense>
           <ControlZoom />
         </Suspense>

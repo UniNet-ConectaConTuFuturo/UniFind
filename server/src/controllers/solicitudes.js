@@ -89,11 +89,7 @@ export async function getSolicitudes(req, res) {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
-      console.log("check", id)
-      const where = `id_usuario = ${id}`;
-      const select = "id_universidad";
-      const user = await selectFromUsuarios(select, where); 
-      const data = await selectSolicitudes(user[0].id_universidad);
+      const data = await selectSolicitudes(id);
       return res.json(data).end();
   })
   }catch(error){

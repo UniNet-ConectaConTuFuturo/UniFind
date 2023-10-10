@@ -16,7 +16,7 @@ function MapaProvider({ children }) {
     0
   );
   const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
   const [carreras, setCarreras] = useState(searchParams.carreras || []);
   const [names, setNames] = useState(searchParams.names || []);
   const [gestion, setGestion] = useState(searchParams.gestion || null);
@@ -27,9 +27,20 @@ function MapaProvider({ children }) {
   /* Geo Info */
   const depInfo = useRef("");
   const provInfo = useRef("");
-  /* useEffect(()=>{
-    setSearchParams(new URLSearchParams(Object.assign(carreras, names, gestion)))
-  },[carreras, setCarreras, setNames]) */
+
+  /* POSITION */
+  const position = useRef(searchParams.position || [-34.66, -58.5]);
+  useEffect(() => {
+    setSearchParams(
+      new URLSearchParams(
+        Object.assign(
+          { position: position.current },(carreras.length ? { carreras } : {}),
+          names.length ? { names } : {},
+          gestion ? { gestion } : {}
+        )
+      )
+    );
+  }, [carreras, names, gestion]);
 
   return (
     <MapaContext.Provider
@@ -54,6 +65,7 @@ function MapaProvider({ children }) {
         setIdUniToShowInfo,
         depInfo,
         provInfo,
+        position,
       }}
     >
       {children}
