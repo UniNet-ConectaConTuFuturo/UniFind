@@ -1,20 +1,31 @@
 import { useMapa } from "../../../hooks/useMapa";
 import LeafletBox from "./UI/LeafletBox";
+import { Rnd } from "react-rnd";
+import { BiMove } from "react-icons/bi";
 function GeoInfo() {
-  const { provInfo, depInfo, idUniToShowInfo } = useMapa();
+  const { provInfo, depInfo } = useMapa();
+  console.log(window);
   return (
-    <section
-      role="Geolocation Info"
-      className={
-        "leaflet-top right-4 w-40 text-center" +
-        (idUniToShowInfo === 0 ? "" : "hidden")
-      }
+    <Rnd
+      default={{
+        x: window.innerWidth * 0.775,
+        y: 11,
+      }}
+      enableResizing={false}
     >
-      <LeafletBox containerClassName="w-full" isExpanded={true}>
-        <p ref={provInfo}></p>
-        <p ref={depInfo}></p>
+      <LeafletBox
+        containerClassName="absolute w-72 draggable"
+        isExpanded={true}
+      >
+        <article className="flex justify-between cursor-move">
+          <section>
+            <p ref={provInfo}></p>
+            <p ref={depInfo}></p>
+          </section>
+          <BiMove size={10} />
+        </article>
       </LeafletBox>
-    </section>
+    </Rnd>
   );
 }
 

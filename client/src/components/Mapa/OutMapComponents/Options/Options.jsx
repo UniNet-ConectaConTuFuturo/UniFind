@@ -38,11 +38,7 @@ function Options() {
           role="button"
           onClick={toggle}
         >
-          {open ? (
-            <BsFillCaretLeftFill color="white" />
-          ) : (
-            <BsFillCaretRightFill color="white" />
-          )}
+          {open ? <BsFillCaretLeftFill /> : <BsFillCaretRightFill />}
         </a>
       </div>
     </section>

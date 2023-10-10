@@ -28,7 +28,7 @@ function LeafletControl({
         role="button"
         onClick={toggle}
       >
-        {open ? <IconClose color="white" /> : <IconOpen color="white" />}
+        {open ? <IconClose /> : <IconOpen />}
       </a>
     </div>
   );

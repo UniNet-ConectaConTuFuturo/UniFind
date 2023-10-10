@@ -14,13 +14,18 @@ function Filters() {
   const { idUniToShowInfo } = useMapa();
   /* Front */
   const containerRef = useRef(null);
-  useEffect(() => {
+  /* useEffect(() => {
     idUniToShowInfo === 0
-      ? (containerRef.current.classList = "leaflet-top left-32 right-48")
-      : (containerRef.current.classList = "leaflet-top left-32 right-1/3");
-  }, [idUniToShowInfo]);
+      ? (containerRef.current.classList = "leaflet-top left-32 w-48")
+      : (containerRef.current.classList = "leaflet-top left-32 w-3/5");
+  }, [idUniToShowInfo]); */
   return (
-    <section role="Filters" ref={containerRef}>
+    <section
+      role="Filters"
+      className="leaflet-top left-32 pr-12"
+      style={{ right: "20vw" }}
+      ref={containerRef}
+    >
       <LeafletControl
         className="w-full"
         toggleClassName="w-full flex justify-center"
