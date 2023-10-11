@@ -1,50 +1,59 @@
-import { useMapa } from "../../../../hooks/useMapa";
 import { post } from "../../../../api/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 import "./filters.css";
+import { useGlobal } from "../../../../hooks/useGlobal";
+import { useSearchParams } from "react-router-dom";
 
 function Carrera() {
-  const { setCarreras } = useMapa();
+  const { setSearchParams } = useGlobal();
+  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-
-  /* const customStyles = {
-    menuPortal: base => ({
-      ...base,
-      fontSize: '13px'
-  }),
-    control: (base) => ({
-      ...base,
-      fontSize: '13px',
-      paddingTop: '3px',
-    }),
-  }; */
-
+  const [defaultValue, setDefaultValue] = useState(null);
+  const carreras = searchParams.get("carreras");
+  useEffect(() => {
+    (async () =>
+      setDefaultValue(
+        await post("/filter/default/carrera", {
+          carreras,
+        })
+      ))();
+  }, [carreras]);
   return (
-    <AsyncCreatableSelect
-      placeholder="Filtrar por Carrera"
-      createOptionPosition="first"
-      formatCreateLabel={(inputValue) => `${inputValue}...`}
-      isValidNewOption={(inputValue) => (inputValue.trim() ? true : false)}
-      cacheOptions
-      defaultOptions
-      isMulti
-      closeMenuOnSelect={false}
-      onChange={(options) => setCarreras(options.map((o) => o.value))}
-      isLoading={isLoading}
-      loadOptions={async (inputValue) => {
-        try {
-          setIsLoading(true);
-          const res = await post("/filter/carrera", {
-            inputValue,
-          });
-          setIsLoading(false);
-          return res;
-        } catch (error) {
-          console.error(error);
-        }
-      }}
-    />
+    <>
+      {defaultValue && (
+        <AsyncCreatableSelect
+          placeholder="Filtrar por Carrera"
+          createOptionPosition="first"
+          formatCreateLabel={(inputValue) => `${inputValue}...`}
+          isValidNewOption={(inputValue) => (inputValue.trim() ? true : false)}
+          cacheOptions
+          defaultOptions
+          defaultValue={defaultValue}
+          isMulti
+          closeMenuOnSelect={false}
+          onChange={(options) =>
+            setSearchParams(
+              "carreras",
+              options.map((o) => o.value)
+            )
+          }
+          isLoading={isLoading}
+          loadOptions={async (inputValue) => {
+            try {
+              setIsLoading(true);
+              const res = await post("/filter/carrera", {
+                inputValue,
+              });
+              setIsLoading(false);
+              return res;
+            } catch (error) {
+              console.error(error);
+            }
+          }}
+        />
+      )}
+    </>
   );
 }
 export default Carrera;

@@ -1,12 +1,52 @@
 import jwt from "jsonwebtoken";
-import { filtrarUniversidades } from "../../database/consults/universidadesC.js";
+import {
+  filtrarUniversidades,
+  filtrarUniversidadesByNames,
+  filtrarUniversidadesByCarreras,
+} from "../../database/consults/universidadesC.js";
+import { formatCarrerasOptions, formatNamesOptions } from "./Format.js";
 
 const idsOrCreates = (lista) => {
   const ids = [],
     creates = [];
-  lista.forEach((x) => (typeof x === "number" ? ids.push(x) : creates.push(x)));
+  if (lista)
+    lista
+      .split(",")
+      .forEach((x) => (Number(x) ? ids.push(parseInt(x)) : creates.push(x)));
   return [ids, creates];
 };
+export async function getDefaultNames(req, res) {
+  try {
+    const { names } = req.body;
+    if (!names) return res.send([]).end();
+    const [ids_universidad, creates_universidades] = idsOrCreates(names);
+    const data = await filtrarUniversidadesByNames({
+      ids_universidad,
+      creates_universidades,
+    });
+    return res.send(formatNamesOptions(data)).end();
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+export async function getDefaultCarreras(req, res) {
+  try {
+    const { carreras } = req.body;
+    if (!carreras) return res.send([]).end();
+    const [ids_carreras, creates_carreras] = idsOrCreates(carreras);
+    const data = await filtrarUniversidadesByCarreras({
+      ids_carreras,
+      creates_carreras,
+    });
+    return res.send(formatCarrerasOptions(data)).end();
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
 export async function getUniPoints(req, res) {
   try {
     const { token, names, gestion, carreras } = req.body;
@@ -35,7 +75,6 @@ export async function getUniPoints(req, res) {
         gestion,
         id_usuario: null,
       });
-      console.log(data);
       return res.json(data).end();
     }
   } catch (error) {

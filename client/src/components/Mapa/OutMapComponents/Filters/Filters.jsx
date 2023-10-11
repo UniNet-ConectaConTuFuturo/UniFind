@@ -18,7 +18,7 @@ function Filters() {
         IconClose={BsFillCaretUpFill}
         IconOpen={BsFillCaretDownFill}
       >
-        <nav className="w-full grid grid-flow-col gap-4 text-center mb-1.5">
+        <nav className="w-full grid grid-cols-3 gap-4 text-center mb-1.5">
           <Carrera />
           <Nombre />
           <Gestion />

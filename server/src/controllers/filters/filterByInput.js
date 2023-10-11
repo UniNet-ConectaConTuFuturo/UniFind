@@ -1,5 +1,6 @@
 import { selectFromUniversidades } from "../../database/consults/universidadesC.js";
 import { selectFromCarreras } from "../../database/consults/carrerasC.js";
+import { formatCarrerasOptions, formatNamesOptions } from "./Format.js";
 
 export async function getNames(req, res) {
   try {
@@ -12,27 +13,7 @@ export async function getNames(req, res) {
         inputValue +
         "%'"
     );
-    const regComaWithoutY = /,.+?!y/;
-    const resp = data.map((d) => {
-      const acronimo = d.acronimo ? " (" + d.acronimo + ")" : "";
-      const insertAcronimo = (nombre_universidad) => {
-        if (nombre_universidad.includes("-")) {
-          return nombre_universidad.replace(" -", acronimo + " -");
-        } else {
-          if (regComaWithoutY.test(nombre_universidad)) {
-            console.log(nombre_universidad);
-            return nombre_universidad.replace(",", " " + acronimo + ",");
-          }
-          return d.nombre_universidad + acronimo;
-        }
-      };
-      return {
-        value: d.id_universidad,
-        label: insertAcronimo(d.nombre_universidad),
-        selectedOption: d.acronimo || "",
-        title: d.nombre_universidad,
-      };
-    });
+    const resp = formatNamesOptions(data);
     if (
       "Universidad de Buenos Aires (UBA)"
         .toLowerCase()
@@ -95,10 +76,7 @@ export async function getCarreras(req, res) {
       "id_carrera, nombre_carrera",
       "nombre_carrera LIKE '%" + inputValue + "%' ORDER BY nombre_carrera ASC"
     );
-    const resp = data.map((d) => ({
-      value: d.id_carrera,
-      label: d.nombre_carrera,
-    }));
+    const resp = formatCarrerasOptions(data);
     return res
       .send(
         resp.sort(function (a, b) {

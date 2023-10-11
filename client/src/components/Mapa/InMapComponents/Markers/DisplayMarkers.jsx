@@ -5,10 +5,12 @@ import { useGlobal } from "../../../../hooks/useGlobal";
 import { post } from "../../../../api/api";
 
 import MyMarker from "./MyMarker";
+import { useSearchParams } from "react-router-dom";
 
 function DisplayMarkers() {
   console.log("DisplayMarkers");
   const { token } = useGlobal();
+  const [searchParams] = useSearchParams();
   const {
     distanciaMarcadores,
     displayMarkers,
@@ -17,9 +19,6 @@ function DisplayMarkers() {
     setMarkers,
     actualizarBusqueda,
     filtrarFavoritas,
-    carreras,
-    names,
-    gestion,
   } = useMapa();
   const featureGroupRef = useRef(null);
   useMapEvent("zoom", ({ target }) => {
@@ -37,26 +36,24 @@ function DisplayMarkers() {
   useEffect(() => {
     (async () => {
       try {
+        console.log({
+          token: filtrarFavoritas ? token : null,
+          names: searchParams.get("names"),
+          gestion: searchParams.get("gestion"),
+          carreras: searchParams.get("carreras"),
+        });
         const points = await post("/filter", {
           token: filtrarFavoritas ? token : null,
-          names,
-          gestion,
-          carreras,
+          names: searchParams.get("names"),
+          gestion: searchParams.get("gestion"),
+          carreras: searchParams.get("carreras"),
         });
         setMarkers(points);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [
-    setMarkers,
-    actualizarBusqueda,
-    filtrarFavoritas,
-    token,
-    carreras,
-    names,
-    gestion,
-  ]);
+  }, [setMarkers, actualizarBusqueda, filtrarFavoritas, token, searchParams]);
   useEffect(() => {
     if (!featureGroupRef) return;
     const bounds = featureGroupRef.current.getBounds();
