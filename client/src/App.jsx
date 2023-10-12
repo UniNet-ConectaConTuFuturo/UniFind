@@ -30,9 +30,13 @@ const SegundaInstancia = lazy(() =>
 const router = createBrowserRouter([
   {
     path: "/",
+    Component: Home,
+    
+  },
+  {
+    path: "",
     Component: GlobalProvider,
     children: [
-      { index: true, Component: Home },
       {
         path: "/identificacion",
         loader: async () => await getAuth(),
