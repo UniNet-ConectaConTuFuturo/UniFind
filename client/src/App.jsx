@@ -26,6 +26,7 @@ const Admision = lazy(() => import("./components/Admision/Admision"));
 const SegundaInstancia = lazy(() =>
   import("./components/SegundaInstancia/SegundaInstancia")
 );
+const Services = lazy(() => import("./components/Services/Services"));
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         Component: IsRector,
         children: [{ index: true, Component: SegundaInstancia }],
       },
+      {
+      path: "/servicios",
+      children: [{ index: true, Component: Services }],
+      }
     ],
   },
 ]);
