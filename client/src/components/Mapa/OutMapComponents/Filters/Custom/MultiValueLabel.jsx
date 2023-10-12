@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
 import { components } from "react-select";
+import { Tooltip } from "antd";
 
 /* const InlineDialog = styled(TooltipPrimitive)`
   background: white;
@@ -12,15 +12,17 @@ import { components } from "react-select";
   padding: ${token("space.100", "8px")} ${token("space.150", "12px")};
 `; */
 const MultiValueLabel = (props) => {
-  return (
+  console.log(props.data.title);
+  return(
+  <Tooltip
+    title={props.data.title}
+  >
+    <div>
+
     <components.MultiValueLabel {...props}>
-        {props.data.selectedOption || props.data.label}
-      </components.MultiValueLabel>
-  );
-  {/* <Tooltip component={InlineDialog} content={props.data.title}> */}
-  /* </Tooltip> */
-};
-MultiValueLabel.propTypes = {
-  data: PropTypes.object,
-};
+      {props.data.selectedOption || props.data.label}
+    </components.MultiValueLabel>
+    </div>
+  </Tooltip>
+)};
 export default MultiValueLabel;
