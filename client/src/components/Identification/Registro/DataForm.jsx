@@ -5,6 +5,7 @@ import { post } from "../../../api/api";
 /* Components */
 import SelectUniversidad from "../UI/SelectUniversidad";
 import Input from "../UI/Input";
+import InputPhone from "../UI/InputPhone";
 
 const DataForm = forwardRef(function DataForm(
   {
@@ -115,10 +116,9 @@ const DataForm = forwardRef(function DataForm(
           span={span.spanDirection}
           label="Dirección"
         />
-        <Input
+        <InputPhone
           handleChange={handleChange}
           handleBlur={handleBlur}
-          type="tel"
           Name="tel_user"
           value={form.tel_user}
           span={span.spanTel}
@@ -128,7 +128,7 @@ const DataForm = forwardRef(function DataForm(
           <Input
             handleChange={handleChange}
             handleBlur={handleBlur}
-            name="title"
+            Name="title"
             value={form.title}
             span={span.spanUniversity}
             label="Título Secundario"
