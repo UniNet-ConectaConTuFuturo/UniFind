@@ -37,6 +37,7 @@ function AccountSettings() {
                         type="text"
                         className="form-control"
                         id="first_name"
+                        name="Name"
                         value={form.Name}
                         onChange={handleChange}
                       />
@@ -53,6 +54,7 @@ function AccountSettings() {
                         type="tel"
                         className="form-control"
                         id="phone_number"
+                        name="phoneNumber"
                         value={form.phoneNumber}
                         onChange={handleChange}
                       />
@@ -67,6 +69,7 @@ function AccountSettings() {
                         type="text"
                         className="form-control"
                         id="address"
+                        name="address"
                         value={form.address}
                         onChange={handleChange}
                       />
