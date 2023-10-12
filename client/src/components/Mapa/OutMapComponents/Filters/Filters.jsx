@@ -2,27 +2,27 @@
 import Carrera from "./Carrera";
 import Nombre from "./Nombre";
 import Gestion from "./Gestion";
-import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
+import { BsFillCaretDownFill } from "react-icons/bs";
 import LeafletControl from "../UI/LeafletControl";
 
 function Filters() {
   return (
     <section
       role="Filters"
-      className="leaflet-top left-32 pr-12"
+      className="absolute top-2.5 left-32 pr-12"
       style={{ right: "20vw" }}
     >
       <LeafletControl
-        className="w-full"
-        toggleClassName="w-full flex justify-center"
-        IconClose={BsFillCaretUpFill}
+        measure="height"
+        classNameContainer="w-full"
+        classNameToggle="w-full flex justify-center"
         IconOpen={BsFillCaretDownFill}
       >
-        <nav className="w-full grid grid-cols-3 gap-4 text-center mb-1.5">
+        <div className="grid grid-cols-3 gap-[1vw] text-center p-1 pb-0">
           <Carrera />
           <Nombre />
           <Gestion />
-        </nav>
+        </div>
       </LeafletControl>
     </section>
   );

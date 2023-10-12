@@ -4,16 +4,15 @@ import PropTypes from "prop-types";
 
 function MapaProvider({ children }) {
   /* Mark Options */
-  const [distanciaMarcadores, setDistanciaMarcadores] = useState(6.5);
-  const [displayMarkers, setDisplayMarkers] = useState(true);
-  const [markers, setMarkers] = useState([]);
-
-  /* Mark filters */
   const [actualizarBusqueda, dispatchBusqueda] = useReducer(
     (state) => state + 1,
     0
   );
+  const [displayMarkers, setDisplayMarkers] = useState(true);
+
+  /* Opciones */
   const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
+  const autoZoom = useRef(false);
 
   /* Mark Info */
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
@@ -25,16 +24,13 @@ function MapaProvider({ children }) {
   return (
     <MapaContext.Provider
       value={{
-        distanciaMarcadores,
-        setDistanciaMarcadores,
         displayMarkers,
-        markers,
-        setMarkers,
         setDisplayMarkers,
         actualizarBusqueda,
         dispatchBusqueda,
         filtrarFavoritas,
         setFiltrarFavoritas,
+        autoZoom,
         idUniToShowInfo,
         setIdUniToShowInfo,
         depInfo,

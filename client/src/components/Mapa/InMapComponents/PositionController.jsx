@@ -1,10 +1,17 @@
-import { useMapEvent } from "react-leaflet";
-import { useMapa } from "../../../hooks/useMapa";
+import { useMap, useMapEvents } from "react-leaflet";
+const replaceUrl = (url) => window.history.replaceState(null, "", url);
 
 function PositionController() {
-  /* useMapEvent("move",(e)=>{
-        console.log(e);
-    }) */
+  const map = useMap();
+  function setParams() {
+    const { lat, lng } = map.getCenter();
+    const lvl = map.getZoom();
+    replaceUrl(`/mapa/@${lat},${lng},${parseInt(lvl)}z`);
+  }
+  useMapEvents({
+    zoomend: setParams,
+    moveend: setParams,
+  });
   return null;
 }
 

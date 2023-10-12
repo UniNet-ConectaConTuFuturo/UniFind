@@ -9,11 +9,12 @@ const gestionOptions = [
 function Gestion() {
   const { setSearchParams } = useGlobal();
   const [searchParams] = useSearchParams();
-  const gestion = searchParams.get("gestion");
   return (
     <Select
       placeholder="Filtrar por Gestion"
-      defaultValue={gestionOptions.find((option) => option.value === gestion)}
+      defaultValue={gestionOptions.find(
+        (option) => option.value === searchParams.get("gestion")
+      )}
       onChange={(option) =>
         setSearchParams("gestion", option ? option.value : null)
       }

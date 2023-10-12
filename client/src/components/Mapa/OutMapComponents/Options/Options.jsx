@@ -1,46 +1,42 @@
 import { useRef, useState } from "react";
 
 import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
-import MarkersDistance from "./MarkersDistance";
 import FavFilter from "./FavFilter";
 import Option from "./Option";
+import AutoZoom from "./AutoZoom";
 function Options() {
+  console.log("options");
   /* Front */
-  const control = useRef(null);
-  const control2 = useRef(null);
-  const [open, setOpen] = useState(false);
+  const refToggle = useRef(null);
+  const refContainer = useRef(null);
   function toggle() {
-    control.current.classList.toggle("leaflet-control-layers-expanded");
-    control2.current.classList.toggle("leaflet-control-layers-expanded");
-    control2.current.classList.toggle("ml-4");
-    setOpen(!open);
+    refToggle.current.classList.toggle("inverted");
+    refContainer.current.classList.toggle("expanded");
   }
   return (
     <section
       role="Extra Options"
-      className="leaflet-bottom left-44 flex justify-between"
+      className="absolute bottom-2.5 left-44 flex justify-between gap-2 zIndex-1000"
     >
-      <Option ref={control}>
-        <MarkersDistance />
-      </Option>
-      <Option ref={control2}>
-        <FavFilter />
-      </Option>
       <div
-        className={
-          "leaflet-control-layers  leaflet-control " + (open ? "ml-4" : "")
-        }
+        ref={refContainer}
+        className="flex justify-between gap-2 container-transition width height"
       >
-        <a
-          className="h-full min-h-[2.5rem] flex items-center"
-          title="Layers"
-          href="#"
-          role="button"
-          onClick={toggle}
-        >
-          {open ? <BsFillCaretLeftFill /> : <BsFillCaretRightFill />}
-        </a>
+        <Option>
+          <AutoZoom />
+        </Option>
+        <Option>
+          <FavFilter />
+        </Option>
       </div>
+      <a
+        ref={refToggle}
+        className="leaflet-box h-full min-h-[2.5rem] flex items-center width"
+        role="button"
+        onClick={toggle}
+      >
+        <BsFillCaretRightFill />
+      </a>
     </section>
   );
 }

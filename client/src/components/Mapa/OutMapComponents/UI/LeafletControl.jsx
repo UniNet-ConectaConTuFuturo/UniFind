@@ -1,42 +1,55 @@
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 function LeafletControl({
   children,
-  className,
-  toggleClassName,
-  IconClose,
+  startOpen,
+  measure,
+  classNameContainer,
+  classNameContent,
+  classNameToggle,
   IconOpen,
 }) {
-  const control = useRef(null);
-  const [open, setOpen] = useState(false);
+  const refContent = useRef(null);
+  const refToggle = useRef(null);
+  useEffect(() => {
+    if (startOpen && refContent.current && refToggle.current) {
+      refContent.current.classList.add("expanded");
+      refToggle.current.classList.add("inverted");
+    }
+  }, [startOpen]);
   function toggle() {
-    control.current.classList.toggle("leaflet-control-layers-expanded");
-    setOpen((open) => !open);
+    refToggle.current.classList.toggle("inverted");
+    refContent.current.classList.toggle("expanded");
   }
   return (
     <div
-      className={twMerge("leaflet-control-layers  leaflet-control", className)}
-      aria-haspopup="true"
-      ref={control}
+      className={twMerge("leaflet-box zIndex-1000 w-fit", classNameContainer)}
     >
-      <div className="leaflet-control-layers-list">{children}</div>
+      <div
+        ref={refContent}
+        className={twMerge(measure, classNameContent, "container-transition")}
+      >
+        {children}
+      </div>
       <a
-        className={toggleClassName}
-        title="Layers"
-        href="#"
+        ref={refToggle}
+        className={twMerge(classNameToggle, measure)}
         role="button"
         onClick={toggle}
       >
-        {open ? <IconClose /> : <IconOpen />}
+        <IconOpen />
       </a>
     </div>
   );
 }
 LeafletControl.propTypes = {
   children: PropTypes.any,
-  className: PropTypes.string,
-  toggleClassName: PropTypes.string,
+  startOpen: PropTypes.bool,
+  measure: PropTypes.string,
+  classNameContainer: PropTypes.string,
+  classNameContent: PropTypes.string,
+  classNameToggle: PropTypes.string,
   IconClose: PropTypes.func,
   IconOpen: PropTypes.func,
 };

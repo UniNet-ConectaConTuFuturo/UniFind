@@ -26,7 +26,6 @@ const Admision = lazy(() => import("./components/Admision/Admision"));
 const SegundaInstancia = lazy(() =>
   import("./components/SegundaInstancia/SegundaInstancia")
 );
-const Chat = lazy(() => import("./components/Chat/Chat"))
 
 const router = createBrowserRouter([
   {
@@ -46,18 +45,12 @@ const router = createBrowserRouter([
         Component: Authenticated,
         children: [{ index: true, Component: AccountSettings }],
       },
-      { path: "/mapa", Component: Mapa },
+      { path: "/mapa/:xyz?", Component: Mapa },
       {
         path: "/listainteres",
         loader: async () => await getAuth(),
         Component: IsEntrant,
         children: [{ index: true, Component: ListaInteres }],
-      },
-      {
-        path: "/admision",
-        loader: async () => await getAuth(),
-        Component: IsRector,
-        children: [{ index: true, Component: Admision }],
       },
       {
         path: "/admision",

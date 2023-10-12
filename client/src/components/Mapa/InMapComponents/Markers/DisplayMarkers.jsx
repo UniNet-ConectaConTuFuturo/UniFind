@@ -1,5 +1,5 @@
-import { FeatureGroup, useMap, useMapEvent } from "react-leaflet";
-import { useEffect, useRef } from "react";
+import { FeatureGroup, useMap } from "react-leaflet";
+import { useEffect, useRef, useState } from "react";
 import { useMapa } from "../../../../hooks/useMapa";
 import { useGlobal } from "../../../../hooks/useGlobal";
 import { post } from "../../../../api/api";
@@ -8,60 +8,34 @@ import MyMarker from "./MyMarker";
 import { useSearchParams } from "react-router-dom";
 
 function DisplayMarkers() {
-  console.log("DisplayMarkers");
   const { token } = useGlobal();
   const [searchParams] = useSearchParams();
-  const {
-    distanciaMarcadores,
-    displayMarkers,
-    setDisplayMarkers,
-    markers,
-    setMarkers,
-    actualizarBusqueda,
-    filtrarFavoritas,
-  } = useMapa();
+  const { displayMarkers, actualizarBusqueda, filtrarFavoritas, autoZoom } =
+    useMapa();
+  const [markers, setMarkers] = useState([]);
   const featureGroupRef = useRef(null);
-  useMapEvent("zoom", ({ target }) => {
-    if (target._zoom >= distanciaMarcadores) {
-      setDisplayMarkers(true);
-    } else {
-      setDisplayMarkers(false);
-    }
-  });
   const map = useMap();
+
   useEffect(() => {
-    if (map.getZoom() >= distanciaMarcadores) setDisplayMarkers(true);
-    else setDisplayMarkers(false);
-  }, [distanciaMarcadores, setDisplayMarkers, map]);
-  useEffect(() => {
-    (async () => {
-      try {
-        console.log({
-          token: filtrarFavoritas ? token : null,
-          names: searchParams.get("names"),
-          gestion: searchParams.get("gestion"),
-          carreras: searchParams.get("carreras"),
-        });
-        const points = await post("/filter", {
-          token: filtrarFavoritas ? token : null,
-          names: searchParams.get("names"),
-          gestion: searchParams.get("gestion"),
-          carreras: searchParams.get("carreras"),
-        });
-        setMarkers(points);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [setMarkers, actualizarBusqueda, filtrarFavoritas, token, searchParams]);
-  useEffect(() => {
-    if (!featureGroupRef) return;
+    if (!featureGroupRef || !autoZoom.current) return;
     const bounds = featureGroupRef.current.getBounds();
     if (Object.keys(bounds).length) {
       const newbounds = bounds.pad(0.1);
       map.flyToBounds(newbounds);
     }
-  }, [featureGroupRef, markers, map]);
+  }, [featureGroupRef, markers, map, autoZoom]);
+  useEffect(() => {
+    (async () =>
+      setMarkers(
+        await post("/filter", {
+          token: filtrarFavoritas ? token : null,
+          names: searchParams.get("names"),
+          gestion: searchParams.get("gestion"),
+          carreras: searchParams.get("carreras"),
+        })
+      ))();
+  }, [actualizarBusqueda, filtrarFavoritas, token, searchParams, setMarkers]);
+
   return (
     <FeatureGroup ref={featureGroupRef}>
       {displayMarkers &&
