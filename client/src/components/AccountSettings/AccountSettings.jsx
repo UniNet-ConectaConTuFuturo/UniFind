@@ -1,8 +1,10 @@
 import { useState } from "react";
-/* import {post} from "../../api/api" */
+import {post} from "../../api/api"
+import {useGlobal} from "../../hooks/useGlobal"
 function AccountSettings() {
+  const {token} = useGlobal();
   const formNuevo = {
-    Name: "",
+    name_user: "",
     phoneNumber: "",
     address: "",
   };
@@ -12,10 +14,10 @@ function AccountSettings() {
     const { name, value } = target;
     setForm({ ...form, [name]: value });
   };
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(e.target);
-    /* const res = post("/config-account", {form: e.target}) */
+    const res = await post("/config-account", {form, token})
   }
   return (
     <div className="flex flex-col h-screen w-full ">
@@ -37,8 +39,8 @@ function AccountSettings() {
                         type="text"
                         className="form-control"
                         id="first_name"
-                        name="Name"
-                        value={form.Name}
+                        name="name_user"
+                        value={form.name_user}
                         onChange={handleChange}
                       />
                     </div>

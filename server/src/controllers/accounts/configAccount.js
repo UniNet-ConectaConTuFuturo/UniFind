@@ -1,23 +1,21 @@
 import { updateUser } from "../../database/consults/usuariosC.js";
-
+import jwt from "jsonwebtoken";
 export async function handleFormSubmit(req, res) {
   try {
     const {
-      Name,
-      phoneNumber,
-      address,
+      form,
+      token
     } = req.body;
 
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const data = {};
-      if (Name.trim()) data.name_user = Name;
-      if (phoneNumber.trim()) data.phoneNumber = phoneNumber;
-      if (address.trim()) data.address = address;
+      if (!form.name_user.trim()) delete form.Name;
+      if (!form.phoneNumber.trim()) delete form.phoneNumber;
+      if (!form.address.trim()) delete form.address;
 
       const { id } = decoded;
 
-      await updateUser(data, id);
+      await updateUser(form, id);
 
       console.log("Actualización exitosa!");
       return res.status(200).json({ success: true }).end();

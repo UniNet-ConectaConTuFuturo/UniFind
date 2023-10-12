@@ -10,11 +10,11 @@ export function selectFromUsuarios(select, where = 1) {
   });
 }
 //Configurar cuenta
-export function updateUser(update, mail_user) {
+export function updateUser(data, id_usuario) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE usuarios SET ${update} WHERE id_usuario = ?`,
-      [mail_user],
+      `UPDATE usuarios SET ? WHERE id_usuario = ?`,
+      [data, id_usuario],
       (err, data) => {
         if (err) reject(err);
         resolve(data);
