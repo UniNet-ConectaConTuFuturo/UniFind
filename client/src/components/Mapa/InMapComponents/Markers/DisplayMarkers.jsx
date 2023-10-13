@@ -2,7 +2,7 @@ import { FeatureGroup, useMap } from "react-leaflet";
 import { useEffect, useRef, useState } from "react";
 import { useMapa } from "../../../../hooks/useMapa";
 import { useGlobal } from "../../../../hooks/useGlobal";
-import { post } from "../../../../api/api";
+import { get } from "../../../../api/api";
 
 import MyMarker from "./MyMarker";
 import { useSearchParams } from "react-router-dom";
@@ -27,7 +27,7 @@ function DisplayMarkers() {
   useEffect(() => {
     (async () =>
       setMarkers(
-        await post("/filter", {
+        await get("/filter", {
           token: filtrarFavoritas ? token : null,
           names: searchParams.get("names"),
           gestion: searchParams.get("gestion"),

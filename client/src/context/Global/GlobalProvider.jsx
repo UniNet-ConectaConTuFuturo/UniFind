@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "./GlobalContext";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function GlobalProvider() {
+function GlobalProvider({ children }) {
   const [token, setToken_] = useState(localStorage.getItem("TokenUniNet"));
   function setToken(value) {
     localStorage.setItem("TokenUniNet", value);
@@ -26,8 +26,11 @@ function GlobalProvider() {
         setSearchParams,
       }}
     >
-      <Layout />
+      {children}
     </GlobalContext.Provider>
   );
 }
+GlobalProvider.propTypes = {
+  children: PropTypes.any,
+};
 export default GlobalProvider;

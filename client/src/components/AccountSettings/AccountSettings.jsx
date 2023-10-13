@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {post} from "../../api/api"
-import {useGlobal} from "../../hooks/useGlobal"
+import { post } from "../../api/api";
+import { useGlobal } from "../../hooks/useGlobal";
 function AccountSettings() {
-  const {token} = useGlobal();
+  const { token } = useGlobal();
   const formNuevo = {
     name_user: "",
     phoneNumber: "",
@@ -17,7 +17,7 @@ function AccountSettings() {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(e.target);
-    const res = await post("/config-account", {form, token})
+    await post("/config-account", { form, token });
   }
   return (
     <div className="flex flex-col h-screen w-full ">

@@ -58,12 +58,14 @@ function GeoJsonProvider({ children }) {
     }
   }
   function setGeoInfo(feature) {
-    provInfo.current.textContent = capitalizeFirst(
-      feature.properties.nam || feature.properties.provincia
-    );
-    depInfo.current.textContent = capitalizeFirst(
-      feature.properties.departamento || ""
-    );
+    if (provInfo.current && depInfo.current) {
+      provInfo.current.textContent = capitalizeFirst(
+        feature.properties.nam || feature.properties.provincia
+      );
+      depInfo.current.textContent = capitalizeFirst(
+        feature.properties.departamento || ""
+      );
+    }
   }
 
   function clearGeoInfo() {

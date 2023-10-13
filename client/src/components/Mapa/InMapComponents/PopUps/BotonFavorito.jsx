@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useGlobal } from "../../../../hooks/useGlobal";
-import { post } from "../../../../api/api";
+import { get, post } from "../../../../api/api";
 import { useMap } from "react-leaflet";
 import { useMapa } from "../../../../hooks/useMapa";
 
@@ -18,13 +18,13 @@ function BotonFavorito({ id_universidad }) {
     if (typeof token === "string") {
       (async () =>
         setIsFavorite(
-          (await post("/isfavorite", { id_universidad, token })).value
+          (await get("/isfavorite", { id_universidad, token })).value
         ))();
     }
   }, [token, id_universidad]);
 
-  async function handleClickStar(fetch, isfavorite) {
-    await post(fetch, { id_universidad, token });
+  function handleClickStar(fetch, isfavorite) {
+    post(fetch, { id_universidad, token });
     setIsFavorite(isfavorite);
     dispatchBusqueda();
   }

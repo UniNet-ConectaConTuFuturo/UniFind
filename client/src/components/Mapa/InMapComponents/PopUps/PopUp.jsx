@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Popup } from "react-leaflet";
-import { post } from "../../../../api/api";
+import { get } from "../../../../api/api";
 import { memo, useEffect, useState } from "react";
 import BotonFavorito from "./BotonFavorito";
 import { FaMapMarkedAlt } from "react-icons/fa";
@@ -10,7 +10,7 @@ const PopUp = memo(function PopUp({ id_universidad, handleVerMas }) {
   console.log("popup");
   useEffect(() => {
     (async () => {
-      setUniversidad(await post("/get/uni", { id_universidad }));
+      setUniversidad(await get("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
 

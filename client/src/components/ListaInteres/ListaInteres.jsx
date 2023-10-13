@@ -1,4 +1,4 @@
-import { post } from "../../api/api";
+import { get } from "../../api/api";
 import { useEffect, useReducer } from "react";
 import { useState } from "react";
 import { useGlobal } from "../../hooks/useGlobal";
@@ -17,7 +17,7 @@ function ListaInteres() {
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
   useEffect(() => {
-    (async () => setFavoritas(await post("/getfavorites", { token })))();
+    (async () => setFavoritas(await get("/getfavorites", { token })))();
   }, [token, cambio]);
   return (
     <>

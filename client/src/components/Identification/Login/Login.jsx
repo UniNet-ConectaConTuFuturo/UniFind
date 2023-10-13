@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { forwardRef, useState } from "react";
-import { post } from "../../../api/api";
+import { get } from "../../../api/api";
 import { useGlobal } from "../../../hooks/useGlobal";
 import Input from "../UI/Input";
 
@@ -23,7 +23,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post("/login/user", form);
+      const data = await get("/login/user", form);
       if (data.token) {
         setSpan(spanVacio);
         setToken(data.token);

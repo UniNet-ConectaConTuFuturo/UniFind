@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { post } from "../../../../api/api";
+import { get } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 import MultiValueLabel from "./Custom/MultiValueLabel";
@@ -15,7 +15,7 @@ function Nombre() {
   useEffect(() => {
     (async () =>
       setDefaultValue(
-        await post("/filter/default/uni", {
+        await get("/filter/default/uni", {
           names,
         })
       ))();
@@ -43,7 +43,7 @@ function Nombre() {
           loadOptions={async (inputValue) => {
             try {
               setIsLoading(true);
-              const res = await post("/filter/uni", {
+              const res = await get("/filter/uni", {
                 inputValue,
               });
               setIsLoading(false);

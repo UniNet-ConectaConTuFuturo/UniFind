@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import AsyncSelect from "react-select/async";
 
-import { post } from "../../../api/api";
+import { get } from "../../../api/api";
 function SelectUniversidad({
   handleChange,
   handleBlur,
@@ -13,7 +13,7 @@ function SelectUniversidad({
   const asyncLoadOptions = async (inputValue) => {
     try {
       setIsLoading(true);
-      const res = await post("/filter/uni", {
+      const res = await get("/filter/uni", {
         inputValue,
       });
       setIsLoading(false);

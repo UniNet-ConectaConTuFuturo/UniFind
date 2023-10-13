@@ -1,4 +1,4 @@
-import { post } from "../../../../api/api";
+import { get } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 import "./filters.css";
@@ -14,7 +14,7 @@ function Carrera() {
   useEffect(() => {
     (async () =>
       setDefaultValue(
-        await post("/filter/default/carrera", {
+        await get("/filter/default/carrera", {
           carreras,
         })
       ))();
@@ -42,7 +42,7 @@ function Carrera() {
           loadOptions={async (inputValue) => {
             try {
               setIsLoading(true);
-              const res = await post("/filter/carrera", {
+              const res = await get("/filter/carrera", {
                 inputValue,
               });
               setIsLoading(false);

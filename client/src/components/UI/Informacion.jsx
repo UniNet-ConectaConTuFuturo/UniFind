@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { post } from "../../api/api";
+import { get, post } from "../../api/api";
 import { useState } from "react";
 import {
   FaMapMarkerAlt,
@@ -24,7 +24,7 @@ function Informacion({ idUniToShowInfo, dispatch, className }) {
       (async () =>
         setIsFavorite(
           (
-            await post("/isfavorite", {
+            await get("/isfavorite", {
               id_universidad: idUniToShowInfo,
               token,
             })
@@ -33,7 +33,7 @@ function Informacion({ idUniToShowInfo, dispatch, className }) {
     }
   }, [token, idUniToShowInfo]);
   async function handleClickStar(fetch, isfavorite) {
-    await post(fetch, { id_universidad: idUniToShowInfo, token });
+    post(fetch, { id_universidad: idUniToShowInfo, token });
     setIsFavorite(isfavorite);
     dispatch({ id_universidad: idUniToShowInfo });
   }
@@ -41,13 +41,13 @@ function Informacion({ idUniToShowInfo, dispatch, className }) {
   const [universidad, setUniversidad] = useState({});
   const [carreras, setCarreras] = useState([]);
   useEffect(() => {
+    if (!idUniToShowInfo) return;
     (async () => {
-      if (!idUniToShowInfo) return;
       setUniversidad(
-        await post("/get/uni", { id_universidad: idUniToShowInfo })
+        await get("/get/uni", { id_universidad: idUniToShowInfo })
       );
       setCarreras(
-        await post("/get/carreras", {
+        await get("/get/carreras", {
           id_universidad: idUniToShowInfo,
         })
       );

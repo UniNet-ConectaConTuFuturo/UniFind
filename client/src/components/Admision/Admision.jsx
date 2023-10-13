@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useEffect } from "react";
-import { post } from "../../api/api";
+import { get } from "../../api/api";
 //Components
-import Interesado from "./Interesado";
-import Examen from "./Examen";
-import Modal from "../UI/Modal";
+const Interesado = lazy(() => import("./Interesado"));
+const Examen = lazy(() => import("./Examen"));
+const Modal = lazy(() => import("../UI/Modal"));
 //CSS
 import "../ListaInteres/ListaInteres.css";
 
@@ -15,9 +15,8 @@ function Admision() {
   const [solicitud, setSolicitud] = useState([]);
   const [cartaName, setCartaName] = useState("");
   useEffect(() => {
-    (async () => setSolicitud(await post("/get/soli", { token })))();
+    (async () => setSolicitud(await get("/get/soli", { token })))();
   }, [token]);
-  console.log(solicitud);
   return (
     <>
       <h1 className="display-1 mb-5 text-center">
@@ -35,20 +34,24 @@ function Admision() {
         </button>
         <details>
           <summary>PENDIENTES</summary>
-          {solicitud.map((u) => 
-            <Interesado 
-            key={u.id_usuario}
-            nombreSoli={solicitud.solicitud}  
-            id_usuario={u.id_usuario} 
-            setCartaName={setCartaName}
-            setButtonPopUpExamen={setButtonPopUpExamen}
-            />
-          )}
+          <Suspense>
+            {solicitud.map((u) => (
+              <Interesado
+                key={u.id_usuario}
+                nombreSoli={solicitud.solicitud}
+                id_usuario={u.id_usuario}
+                setCartaName={setCartaName}
+                setButtonPopUpExamen={setButtonPopUpExamen}
+              />
+            ))}
+          </Suspense>
         </details>
       </div>
-      <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
-        <Examen cartaName={cartaName}/>
-      </Modal>
+      <Suspense>
+        <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
+          <Examen cartaName={cartaName} />
+        </Modal>
+      </Suspense>
     </>
   );
 }

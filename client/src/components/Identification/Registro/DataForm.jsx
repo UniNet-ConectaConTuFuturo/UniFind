@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 /* funcionality */
 import { forwardRef, useState } from "react";
-import { post } from "../../../api/api";
+import { get } from "../../../api/api";
 /* Components */
 import SelectUniversidad from "../UI/SelectUniversidad";
 import Input from "../UI/Input";
@@ -37,7 +37,7 @@ const DataForm = forwardRef(function DataForm(
   };
   const handleBlur = async () => {
     try {
-      const data = await post(`/${who}/validate-registro`, form);
+      const data = await get(`/${who}/validate-registro`, form);
       setSpan({ ...spanVacio, ...data });
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ const DataForm = forwardRef(function DataForm(
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post(`/${who}/first-step`, form);
+      const data = await get(`/${who}/first-step`, form);
       if (data.success) {
         changeStep();
       } else {

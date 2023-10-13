@@ -2,10 +2,6 @@ import "./Aside/aside.css";
 import PropTypes from "prop-types";
 // Back-End
 import userOptions from "../../modelos/userOptions";
-import { post } from "../../api/api";
-import { useEffect, useState } from "react";
-import { useGlobal } from "../../hooks/useGlobal";
-/* import { useMatch  } from "react-router-dom"; */
 // Components
 import AsideIcon from "./Aside/AsideIcon";
 import AsideIconLock from "./Aside/AsideIconLock";
@@ -20,16 +16,10 @@ import {
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
+import { useLoaderData } from "react-router-dom";
 
 function SideBar({ setTrigger }) {
-  const { token } = useGlobal();
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    (async () => {
-      const res = await post("/auth", { token });
-      setUser(res.user);
-    })();
-  }, [token]);
+  const { user } = useLoaderData();
   return (
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">
       <AsideIcon url="/" Icon={FaHome} texto="HOME" />

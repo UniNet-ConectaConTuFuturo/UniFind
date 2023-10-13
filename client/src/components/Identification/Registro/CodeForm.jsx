@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { forwardRef, useState } from "react";
-import { post } from "../../../api/api";
+import { get } from "../../../api/api";
 import { useGlobal } from "../../../hooks/useGlobal";
 import Input from "../UI/Input";
 
@@ -15,7 +15,7 @@ const CodeForm = forwardRef(function CodeForm(
   const sendMail = async (e) => {
     try {
       e.preventDefault();
-      const data = await post(`/${who}/first-step`, form);
+      const data = await get(`/${who}/first-step`, form);
       if (data.success) {
         setCode("");
         setSpanCode("");
@@ -29,7 +29,7 @@ const CodeForm = forwardRef(function CodeForm(
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await post(`/${who}/second-step`, {
+      const data = await get(`/${who}/second-step`, {
         ...form,
         code: code,
       });
