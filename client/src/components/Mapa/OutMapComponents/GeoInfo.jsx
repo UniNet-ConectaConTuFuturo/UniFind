@@ -7,13 +7,13 @@ function GeoInfo() {
   return (
     <Rnd
       default={{
-        x: window.innerWidth * 0.775,
+        x: window.innerWidth * 0.78,
         y: 11,
       }}
       enableResizing={false}
     >
       <LeafletBox
-        containerClassName="absolute w-72 draggable"
+        containerClassName="absolute w-60 draggable"
         isExpanded={true}
       >
         <article className="flex justify-between cursor-move">
