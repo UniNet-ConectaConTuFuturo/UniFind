@@ -17,21 +17,21 @@ function Interesado({
   }, [id_usuario]);
 
   return (
-    <div className="card w-full h-full mt-4 border-black border-2">
-      <div className="card-body">
-        <h5 className="mb-1">Nombre Completo</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{usuario.name_user}</h6>
+    <article className="mb-4 border-y border-slate-800">
+      <h6>{usuario.name_user}</h6>
+      <h6>mail: {usuario.mail_user}</h6>
+      <h6>telefono: {usuario.tel_user}</h6>
+      <h6>titulo: {usuario.titulo}</h6>
 
-        <h5 className="mt-4 mb-1">datos usuario</h5>
-
-        <button
-          onClick={() => {
-            setCartaName(nombreSoli);
-            setButtonPopUpExamen(true);
-          }}
-        ></button>
-      </div>
-    </div>
+      <button
+        onClick={() => {
+          setCartaName(nombreSoli);
+          setButtonPopUpExamen(true);
+        }}
+      >
+        Ver Solicitud
+      </button>
+    </article>
   );
 }
 //nombre, titulo, mail, telefono, btn rechazar, btn aceptar, btn/input ver carta / descarga

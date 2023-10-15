@@ -3,7 +3,10 @@ import jwt from "jsonwebtoken";
 import fs from "fs/promises";
 
 //querys
-import { insertSolicitud, selectSolicitudes } from "../database/consults/solicitudesC.js";
+import {
+  insertSolicitud,
+  selectSolicitudes,
+} from "../database/consults/solicitudesC.js";
 import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 
@@ -16,7 +19,7 @@ export async function uploadCarta(req, res) {
   //const {token, id_universidad} = req.body;
   console.log(req.body);
   console.log(req.body.idUniversidad);
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization.split(" ")[1];
   const file = req.files.file;
   const id_universidad = req.body.idUniversidad;
   try {
@@ -24,7 +27,7 @@ export async function uploadCarta(req, res) {
       if (err) throw err;
       const { id } = decoded;
       console.log(id);
-      const fileName = `idUn${id_universidad}idU${id}.txt`;    
+      const fileName = `idUn${id_universidad}idU${id}.txt`;
       const filePath = path.join(__dirname, "..", "..", "cartas", fileName);
       file.mv(filePath, (err) => {
         console.log(err);
@@ -33,17 +36,16 @@ export async function uploadCarta(req, res) {
         }
         res.status(200).send({ message: "File Uploaded", code: 200 });
       });
-      await insertSolicitud(id,fileName,id_universidad);
-    });   
+      await insertSolicitud(id, fileName, id_universidad);
+    });
   } catch (error) {
     console.error("Error verifying token:", error);
     res.status(401).json({ message: "Invalid token" });
   }
-  
 }
 
 export async function generateCarta(req, res) {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization.split(" ")[1];
   const id_universidad = req.body.idUniversidad;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
@@ -53,9 +55,9 @@ export async function generateCarta(req, res) {
       let where = `id_usuario = ${id}`;
       const select = "name_user,mail_user,title";
       const user = await selectFromUsuarios(select, where);
-      where = `id_universidad = ${id_universidad}`; 
-      const uni = await selectFromUniversidades("nombre_universidad",where);
-      const data= `${user[0].name_user}
+      where = `id_universidad = ${id_universidad}`;
+      const uni = await selectFromUniversidades("nombre_universidad", where);
+      const data = `${user[0].name_user}
       ${user[0].mail_user}
       
       Estimado señor rector de la ${uni[0].nombre_universidad},
@@ -70,29 +72,30 @@ export async function generateCarta(req, res) {
       ${user[0].name_user}`;
       const fileName = `idUn${id_universidad}idU${id}.txt`;
       const filePath = path.join(__dirname, "..", "..", "cartas", fileName);
-      await fs.writeFile(filePath, data, (err)=>{
-        if(err){
+      await fs.writeFile(filePath, data, (err) => {
+        if (err) {
           console.log(err);
         }
       });
-      await insertSolicitud(id,fileName,id_universidad);
+      await insertSolicitud(id, fileName, id_universidad);
     });
   } catch (error) {
     console.error("Error verifying token:", error);
     res.status(401).json({ message: "Invalid token" });
   }
-}         
+}
 
 export async function getSolicitudes(req, res) {
-  const {token} = req.body
-  try{
+  const { token } = req.body;
+  try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
       const data = await selectSolicitudes(id);
+      console.log(data);
       return res.json(data).end();
-  })
-  }catch(error){
+    });
+  } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();
@@ -101,11 +104,11 @@ export async function getSolicitudes(req, res) {
 
 export async function getUser(req, res) {
   const { id_usuario } = req.body;
-  try{
+  try {
     const where = `id_usuario = ${id_usuario}`;
-    const data = (await selectFromUsuarios("*",where))[0];
+    const data = (await selectFromUsuarios("*", where))[0];
     return res.json(data).end();
-  }catch(error){
+  } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();
@@ -113,10 +116,12 @@ export async function getUser(req, res) {
 }
 
 export async function readCarta(req, res) {
-  const {cartaName} = req.body;
-  try{
-    const data = await fs.readFile(path.join(__dirname, "..", "..", "cartas", cartaName))
-  }catch(error){
+  const { cartaName } = req.body;
+  try {
+    const data = await fs.readFile(
+      path.join(__dirname, "..", "..", "cartas", cartaName)
+    );
+  } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();
