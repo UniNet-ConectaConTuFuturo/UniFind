@@ -11,8 +11,9 @@ function MapaProvider({ children }) {
   const [displayMarkers, setDisplayMarkers] = useState(true);
 
   /* Opciones */
-  const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
+  const [markerSize, setMarkerSize] = useState(0.75);
   const autoZoom = useRef(false);
+  const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
 
   /* Mark Info */
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
@@ -28,6 +29,8 @@ function MapaProvider({ children }) {
         setDisplayMarkers,
         actualizarBusqueda,
         dispatchBusqueda,
+        markerSize,
+        setMarkerSize,
         filtrarFavoritas,
         setFiltrarFavoritas,
         autoZoom,

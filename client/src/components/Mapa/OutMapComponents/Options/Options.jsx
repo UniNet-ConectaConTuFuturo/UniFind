@@ -1,23 +1,24 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
-import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
-import FavFilter from "./FavFilter";
+import { BsFillCaretRightFill } from "react-icons/bs";
 import Option from "./Option";
-import AutoZoom from "./AutoZoom";
 import MarkerSize from "./MarkerSize";
+import CustomCheckBox from "./CustomCheckBox";
+import { useMapa } from "../../../../hooks/useMapa";
 function Options() {
-  console.log("options");
   /* Front */
   const refToggle = useRef(null);
   const refContainer = useRef(null);
+  const { autoZoom, setFiltrarFavoritas } = useMapa();
   function toggle() {
     refToggle.current.classList.toggle("inverted");
+    refToggle.current.classList.toggle("-ml-2");
     refContainer.current.classList.toggle("expanded");
   }
   return (
     <section
       role="Extra Options"
-      className="absolute bottom-2.5 left-44 flex justify-between gap-2 zIndex-1000 "
+      className="absolute bottom-2.5 left-44 flex justify-between gap-2 h-8 zIndex-1000 "
     >
       <div
         ref={refContainer}
@@ -27,15 +28,21 @@ function Options() {
           <MarkerSize />
         </Option>
         <Option>
-          <AutoZoom />
+          <CustomCheckBox
+            label="Zoom Automático"
+            onChange={(e) => (autoZoom.current = e.target.checked)}
+          />
         </Option>
         <Option>
-          <FavFilter />
+          <CustomCheckBox
+            label="Filtrar Favoritas"
+            onChange={(e) => setFiltrarFavoritas(e.target.checked)}
+          />
         </Option>
       </div>
       <a
         ref={refToggle}
-        className="leaflet-box h-full min-h-[2.5rem] flex items-center width"
+        className="leaflet-box h-full flex items-center width -ml-2"
         role="button"
         onClick={toggle}
       >
