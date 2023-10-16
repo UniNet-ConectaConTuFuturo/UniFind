@@ -4,6 +4,7 @@ import { BsFillCaretRightFill, BsFillCaretLeftFill } from "react-icons/bs";
 import FavFilter from "./FavFilter";
 import Option from "./Option";
 import AutoZoom from "./AutoZoom";
+import MarkerSize from "./MarkerSize";
 function Options() {
   console.log("options");
   /* Front */
@@ -16,12 +17,15 @@ function Options() {
   return (
     <section
       role="Extra Options"
-      className="absolute bottom-2.5 left-44 flex justify-between gap-2 zIndex-1000"
+      className="absolute bottom-2.5 left-44 flex justify-between gap-2 zIndex-1000 "
     >
       <div
         ref={refContainer}
         className="flex justify-between gap-2 container-transition width height"
       >
+        <Option>
+          <MarkerSize />
+        </Option>
         <Option>
           <AutoZoom />
         </Option>

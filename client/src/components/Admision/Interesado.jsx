@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
 import { get } from "../../api/api";
-
+import { Descriptions, List } from "antd";
 function Interesado({
   id_usuario,
   setCartaName,
@@ -15,23 +15,30 @@ function Interesado({
     if (id_usuario)
       (async () => setUsuario(await get("/get/user", { id_usuario })))();
   }, [id_usuario]);
-
+  const items = [
+    { label: "Correo", children: usuario.mail_user, span: 1 },
+    { label: "Telefono", children: usuario.tel_user, span: 1 },
+  ];
+  if (usuario.titulo)
+    items.push({ label: "Titulo", children: usuario.titulo, span: 1 });
   return (
-    <article className="mb-4 border-y border-slate-800">
-      <h6>{usuario.name_user}</h6>
-      <h6>mail: {usuario.mail_user}</h6>
-      <h6>telefono: {usuario.tel_user}</h6>
-      <h6>titulo: {usuario.titulo}</h6>
-
-      <button
-        onClick={() => {
-          setCartaName(nombreSoli);
-          setButtonPopUpExamen(true);
-        }}
-      >
-        Ver Solicitud
-      </button>
-    </article>
+    <List.Item>
+      <Descriptions
+        size="small"
+        title={usuario.name_user}
+        items={items}
+        extra={
+          <button
+            onClick={() => {
+              setCartaName(nombreSoli);
+              setButtonPopUpExamen(true);
+            }}
+          >
+            Ver Solicitud
+          </button>
+        }
+      />
+    </List.Item>
   );
 }
 //nombre, titulo, mail, telefono, btn rechazar, btn aceptar, btn/input ver carta / descarga

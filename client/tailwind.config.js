@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -30,7 +30,7 @@ export default {
         home1: "url('/images/hero-section-centroinformacion.png')",
         gorro: "url('/images/graduation.png')",
         // "footer-texture": "url('/img/footer-texture.png')",
-        fondo: "url('/images/unlam.mp4')"
+        fondo: "url('/images/unlam.mp4')",
       },
       margin: {
         100: "-70rem",

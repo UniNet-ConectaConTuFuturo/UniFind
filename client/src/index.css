@@ -11,9 +11,6 @@ html {
 .zIndex-1000 {
   z-index: 1000;
 }
-.w-225vw {
-  width: 21.5vw;
-}
 
 .leaflet-box {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
