@@ -14,7 +14,7 @@ function Promocion() {
               alt=""
             />
           </a>
-          <a href="/servicios" className="text-white z-10 p-4">
+          <a href="/home" className="text-white z-10 p-4">
             Servicios
           </a>
           <a href="/contacto" className="text-white z-10 p-4">
@@ -22,7 +22,7 @@ function Promocion() {
           </a>
         </nav>
       </header>
-      <div className="home-cont pl-28 pt-20 opacity-95">
+      <div className="prom-cont pl-10 pt-14 opacity-95">
         <div className="title pl-10 pt-20 ">
           <h2 className="text-xl pl-4 text-gray-300">
             <b>Conecta con tu futuro</b>
@@ -38,7 +38,7 @@ function Promocion() {
             instituciones.
           </p>
           <div className="float-right w-1/2 -mt-32">
-            <img className="" src="/images/Open_book_nae_02.svg" alt="" />
+            <img className="" src="/images/libro.svg" alt="" />
           </div>
         </div>
       </div>

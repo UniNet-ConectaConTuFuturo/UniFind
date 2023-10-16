@@ -1,0 +1,28 @@
+.gradiente{
+    transition: background-color .5s;  
+}
+
+.left{
+    background-size: 0% 100%;
+}
+.right{
+    background-size: 100% 100%;
+}
+
+.gradiente:hover{
+    /* background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%); */
+    opacity: .7;
+    background-image:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.5) 100%);
+    background-repeat:no-repeat;
+    transition: background-size 1s, background-color 1s;
+}
+
+.left:hover{
+    background-size: 100% 100%;
+    background-color: rgb(65, 97, 179);
+}
+.right:hover{
+    background-size: 0% 100%;
+    background-color: rgb(179, 65, 65);
+}
+
