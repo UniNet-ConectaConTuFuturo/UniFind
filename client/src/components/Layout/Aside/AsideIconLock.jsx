@@ -14,10 +14,12 @@ const InlineDialog = styled(TooltipPrimitive)`
   padding: ${token("space.100", "8px")} ${token("space.150", "12px")};
 `; */
 const AsideIconLock = ({ url, Icon, texto, condition }) => (
-  <Tooltip title="Debe iniciar sesión" placement="right">
+  <Tooltip title={condition ? "Debe iniciar sesión" : ""} placement="right">
     <Link
       to={url}
-      onClick={(e) => { if (condition) e.preventDefault(); }}
+      onClick={(e) => {
+        if (condition) e.preventDefault();
+      }}
       className={
         (condition ? "disabled" : "") +
         " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"

@@ -5,11 +5,13 @@ import Option from "./Option";
 import MarkerSize from "./MarkerSize";
 import CustomCheckBox from "./CustomCheckBox";
 import { useMapa } from "../../../../hooks/useMapa";
+import { useGlobal } from "../../../../hooks/useGlobal";
 function Options() {
   /* Front */
   const refToggle = useRef(null);
   const refContainer = useRef(null);
   const { autoZoom, setFiltrarFavoritas } = useMapa();
+  const { token } = useGlobal();
   function toggle() {
     refToggle.current.classList.toggle("inverted");
     refToggle.current.classList.toggle("-ml-2");
@@ -37,6 +39,7 @@ function Options() {
           <CustomCheckBox
             label="Filtrar Favoritas"
             onChange={(e) => setFiltrarFavoritas(e.target.checked)}
+            disabled={!token}
           />
         </Option>
       </div>
