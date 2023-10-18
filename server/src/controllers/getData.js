@@ -5,7 +5,7 @@ export async function uni(req, res) {
   try {
     const { id_universidad } = req.body;
     const data = await selectFromUniversidades(
-      "nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, web_universidad, gestion_universidad, zona_universidad, correo_universidad",
+      "nombre_universidad, direccion_universidad, maps_universidad, localidad_universidad, web_universidad, gestion_universidad, zona_universidad, correo_universidad, ST_GeomFromText(ASTEXT(point)) as Point",
       "id_universidad = " + id_universidad
     );
     return res.json(data[0]).end();

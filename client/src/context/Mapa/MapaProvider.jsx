@@ -8,15 +8,11 @@ function MapaProvider({ children }) {
     (state) => state + 1,
     0
   );
-  const [displayMarkers, setDisplayMarkers] = useState(true);
 
   /* Opciones */
   const [markerSize, setMarkerSize] = useState(0.75);
   const autoZoom = useRef(false);
   const [filtrarFavoritas, setFiltrarFavoritas] = useState(false);
-
-  /* Mark Info */
-  const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
 
   /* Geo Info */
   const depInfo = useRef("");
@@ -25,8 +21,6 @@ function MapaProvider({ children }) {
   return (
     <MapaContext.Provider
       value={{
-        displayMarkers,
-        setDisplayMarkers,
         actualizarBusqueda,
         dispatchBusqueda,
         markerSize,
@@ -34,8 +28,6 @@ function MapaProvider({ children }) {
         filtrarFavoritas,
         setFiltrarFavoritas,
         autoZoom,
-        idUniToShowInfo,
-        setIdUniToShowInfo,
         depInfo,
         provInfo,
       }}
