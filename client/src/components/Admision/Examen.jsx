@@ -35,6 +35,7 @@ function Examen({ cartaName }) {
         <button className="text-black">Generar Exámen</button>
         <button className="text-black" onClick={aceptarCarta}>Aceptar Carta</button>
         <button className="text-black" onClick={rechazarCarta}>Rechazar Carta</button>
+        <button className="text-black" onClick={segundainstanciaCarta}>Rechazar Carta</button>
       </form>
     </div>
   );
