@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 function DisplayMarkers() {
   const { token } = useGlobal();
   const [searchParams] = useSearchParams();
-  const { displayMarkers, actualizarBusqueda, filtrarFavoritas, autoZoom } =
+  const { actualizarBusqueda, filtrarFavoritas, autoZoom } =
     useMapa();
   const [markers, setMarkers] = useState([]);
   const featureGroupRef = useRef(null);
@@ -38,8 +38,7 @@ function DisplayMarkers() {
 
   return (
     <FeatureGroup ref={featureGroupRef}>
-      {displayMarkers &&
-        markers.map((u) => <MyMarker key={u.id_universidad} u={u} />)}
+      { markers.map((u) => <MyMarker key={u.id_universidad} u={u} />)}
     </FeatureGroup>
   );
 }

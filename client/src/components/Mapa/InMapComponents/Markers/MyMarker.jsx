@@ -4,22 +4,25 @@ import { Icon } from "leaflet";
 import { myIconPrototype, mySelectedIconPrototype } from "./myIcon";
 import { useMapa } from "../../../../hooks/useMapa";
 import { useRef } from "react";
-
+import {useGlobal} from "../../../../hooks/useGlobal"
+import {useSearchParams} from "react-router-dom"
 function MyMarker({ u }) {
-  const { idUniToShowInfo, setIdUniToShowInfo, markerSize } = useMapa();
+  const [searchParams] = useSearchParams()
+  const {setSearchParams} = useGlobal()
+  const { markerSize } = useMapa();
   const map = useMap();
   const tooltipRef = useRef();
   function handleClick() {
     map.closeTooltip(tooltipRef.current);
-    idUniToShowInfo === u.id_universidad
-      ? setIdUniToShowInfo(0)
-      : setIdUniToShowInfo(u.id_universidad);
+    searchParams.get("selected") == u.id_universidad
+      ? setSearchParams("selected")
+      : setSearchParams("selected",u.id_universidad);
   }
   return (
     <Marker
       icon={
         new Icon(
-          idUniToShowInfo === u.id_universidad
+          searchParams.get("selected") == u.id_universidad
             ? mySelectedIconPrototype(markerSize)
             : myIconPrototype(markerSize)
         )
