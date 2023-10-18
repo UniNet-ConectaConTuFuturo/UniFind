@@ -13,7 +13,7 @@ import "../ListaInteres/ListaInteres.css";
 function Admision() {
   const { token } = useGlobal();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
-  const [solicitud, setSolicitud] = useState([]);
+  const [solicitud, setSolicitud] = useState({});
   const [cartaName, setCartaName] = useState("");
   useEffect(() => {
     (async () => setSolicitud(await get("/get/soli", { token })))();
@@ -26,18 +26,19 @@ function Admision() {
       image={Empty.PRESENTED_IMAGE_SIMPLE}
     />
   );
+  console.log(solicitud)
   const getItems = (panelStyle) => [
     {
       key: 1,
       label: "PENDIENTES",
       style: panelStyle,
-      children: solicitud.length ? (
+      children: solicitud.pendiente && solicitud.pendiente.length ? (
         <List
-          dataSource={solicitud}
+          dataSource={solicitud.pendiente}
           renderItem={(u) => (
             <Interesado
               key={u.id_usuario}
-              nombreSoli={solicitud.solicitud}
+              nombreSoli={u.solicitud}
               id_usuario={u.id_usuario}
               setCartaName={setCartaName}
               setButtonPopUpExamen={setButtonPopUpExamen}
@@ -52,19 +53,64 @@ function Admision() {
       key: 2,
       label: "ACEPTADOS",
       style: panelStyle,
-      children: empty,
+      children: solicitud.aceptada && solicitud.aceptada.length ? (
+        <List
+          dataSource={solicitud.aceptada}
+          renderItem={(u) => (
+            <Interesado
+              key={u.id_usuario}
+              nombreSoli={u.solicitud}
+              id_usuario={u.id_usuario}
+              setCartaName={setCartaName}
+              setButtonPopUpExamen={setButtonPopUpExamen}
+            />
+          )}
+        />
+      ) : (
+        empty
+      ),
     },
     {
       key: 3,
       label: "RECHAZADOS",
       style: panelStyle,
-      children: empty,
+      children: solicitud.rechazada && solicitud.rechazada.length ? (
+        <List
+          dataSource={solicitud.rechazada}
+          renderItem={(u) => (
+            <Interesado
+              key={u.id_usuario}
+              nombreSoli={u.solicitud}
+              id_usuario={u.id_usuario}
+              setCartaName={setCartaName}
+              setButtonPopUpExamen={setButtonPopUpExamen}
+            />
+          )}
+        />
+      ) : (
+        empty
+      ),
     },
     {
       key: 4,
       label: "SEGUNDA INSTANCIA",
       style: panelStyle,
-      children: empty,
+      children: solicitud.segunda_instacia && solicitud.segunda_instacia.length ? (
+        <List
+          dataSource={solicitud.segunda_instacia}
+          renderItem={(u) => (
+            <Interesado
+              key={u.id_usuario}
+              nombreSoli={u.solicitud}
+              id_usuario={u.id_usuario}
+              setCartaName={setCartaName}
+              setButtonPopUpExamen={setButtonPopUpExamen}
+            />
+          )}
+        />
+      ) : (
+        empty
+      ),
     },
   ];
   const { ["token"]: antd } = theme.useToken();
@@ -94,7 +140,7 @@ function Admision() {
         </Suspense>
         <Suspense>
           <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
-            <Examen cartaName={cartaName} />
+            <Examen cartaName={cartaName}/>
           </Modal>
         </Suspense>
       </div>

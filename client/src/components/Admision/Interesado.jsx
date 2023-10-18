@@ -19,8 +19,8 @@ function Interesado({
     { label: "Correo", children: usuario.mail_user, span: 1 },
     { label: "Telefono", children: usuario.tel_user, span: 1 },
   ];
-  if (usuario.titulo)
-    items.push({ label: "Titulo", children: usuario.titulo, span: 1 });
+  if (usuario.title)
+    items.push({ label: "Titulo", children: usuario.title, span: 1 });
   return (
     <List.Item>
       <Descriptions
@@ -30,7 +30,7 @@ function Interesado({
         extra={
           <button
             onClick={() => {
-              setCartaName(nombreSoli);
+              setCartaName({nombreSoli, id_usuario});
               setButtonPopUpExamen(true);
             }}
           >

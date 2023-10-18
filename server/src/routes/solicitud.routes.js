@@ -14,6 +14,12 @@ router.post("/api/get/soli", solicitud.getSolicitudes);
 router.post("/api/get/user", solicitud.getUser);
 router.post("/api/readfile", solicitud.readCarta);
 
+//Cambio de estado
+router.post("/api/cambio/aceptado", solicitud.acceptCarta);
+router.post("/api/cambio/rechazado", solicitud.acceptCarta);
+router.post("/api/cambio/segundainstancia", solicitud.acceptCarta);
+
+
 
 
 export default router;
