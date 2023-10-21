@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { forwardRef, useState } from "react";
 import { get } from "../../../api/api";
-import { useGlobal } from "../../../hooks/useGlobal";
 import Input from "../UI/Input";
+import { useOutletContext } from "react-router-dom";
 
 const Login = forwardRef(function Login({ changeToRegistro }, ref) {
-  const { setToken } = useGlobal();
+  const { setToken } = useOutletContext();
   const formNuevo = {
       mail_user: "",
       password_user: "",

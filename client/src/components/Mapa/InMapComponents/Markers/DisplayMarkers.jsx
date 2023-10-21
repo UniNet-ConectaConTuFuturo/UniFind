@@ -1,17 +1,15 @@
 import { FeatureGroup, useMap } from "react-leaflet";
 import { useEffect, useRef, useState } from "react";
 import { useMapa } from "../../../../hooks/useMapa";
-import { useGlobal } from "../../../../hooks/useGlobal";
 import { get } from "../../../../api/api";
 
 import MyMarker from "./MyMarker";
-import { useSearchParams } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 
 function DisplayMarkers() {
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   const [searchParams] = useSearchParams();
-  const { actualizarBusqueda, filtrarFavoritas, autoZoom } =
-    useMapa();
+  const { actualizarBusqueda, filtrarFavoritas, autoZoom } = useMapa();
   const [markers, setMarkers] = useState([]);
   const featureGroupRef = useRef(null);
   const map = useMap();
@@ -38,7 +36,9 @@ function DisplayMarkers() {
 
   return (
     <FeatureGroup ref={featureGroupRef}>
-      { markers.map((u) => <MyMarker key={u.id_universidad} u={u} />)}
+      {markers.map((u) => (
+        <MyMarker key={u.id_universidad} u={u} />
+      ))}
     </FeatureGroup>
   );
 }

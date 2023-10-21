@@ -1,17 +1,17 @@
 import { useRef } from "react";
+import { useOutletContext } from "react-router-dom";
 
 import { BsFillCaretRightFill } from "react-icons/bs";
 import Option from "./Option";
 import MarkerSize from "./MarkerSize";
 import CustomCheckBox from "./CustomCheckBox";
 import { useMapa } from "../../../../hooks/useMapa";
-import { useGlobal } from "../../../../hooks/useGlobal";
 function Options() {
   /* Front */
   const refToggle = useRef(null);
   const refContainer = useRef(null);
   const { autoZoom, setFiltrarFavoritas } = useMapa();
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   function toggle() {
     refToggle.current.classList.toggle("inverted");
     refToggle.current.classList.toggle("-ml-2");

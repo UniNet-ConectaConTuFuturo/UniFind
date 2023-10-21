@@ -1,7 +1,6 @@
 import { get } from "../../api/api";
 import { useEffect, useReducer } from "react";
 import { useState } from "react";
-import { useGlobal } from "../../hooks/useGlobal";
 /* css */
 import "./ListaInteres.css";
 /* Components */
@@ -9,9 +8,10 @@ import Card from "./Card";
 import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
 import Informacion from "../UI/Informacion";
-import { Empty, List, theme } from "antd";
+import { Empty, theme } from "antd";
+import { useOutletContext } from "react-router-dom";
 function ListaInteres() {
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   const [cambio, dispatch] = useReducer((state, action) => action, 0);
   const [favoritas, setFavoritas] = useState([]);
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
@@ -30,32 +30,29 @@ function ListaInteres() {
         >
           Lista de Interés
         </h1>
-        <div
-          style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-          className="p-4"
-        >
-          {favoritas.length ? (
-            <List
-              dataSource={favoritas}
-              renderItem={(u) => (
-                <Card
-                  key={u.id_universidad}
-                  setButtonPopUpVerMas={setButtonPopUpVerMas}
-                  setButtonPopUpCarta={setButtonPopUpCarta}
-                  id_universidad={u.id_universidad}
-                  setIdUniToShowInfo={setIdUniToShowInfo}
-                />
-              )}
+        {favoritas.length ? (
+          favoritas.map((u) => (
+            <Card
+              key={u.id_universidad}
+              setButtonPopUpVerMas={setButtonPopUpVerMas}
+              setButtonPopUpCarta={setButtonPopUpCarta}
+              id_universidad={u.id_universidad}
+              setIdUniToShowInfo={setIdUniToShowInfo}
             />
-          ) : (
+          ))
+        ) : (
+          <div
+            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+            className="p-4"
+          >
             <Empty
               imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
               style={{ fontWeight: 700 }}
               description="Lista vacia"
               image={Empty.PRESENTED_IMAGE_SIMPLE}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>

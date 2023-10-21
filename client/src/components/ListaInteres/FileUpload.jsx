@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import { useGlobal } from "../../hooks/useGlobal";
 import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 
 function FileUpload({ id_universidad }) {
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("");
 
@@ -18,7 +18,7 @@ function FileUpload({ id_universidad }) {
     formData.append("file", file);
     formData.append("fileName", fileName);
     formData.append("idUniversidad", id_universidad);
-    if(!file){
+    if (!file) {
       try {
         const res = await axios.post(
           "http://localhost:4000/api/generate",
@@ -33,22 +33,22 @@ function FileUpload({ id_universidad }) {
       } catch (ex) {
         console.log(ex);
       }
-    }else{
-    try {
-      const res = await axios.post(
-        "http://localhost:4000/api/upload",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(res);
-    } catch (ex) {
-      console.log(ex);
+    } else {
+      try {
+        const res = await axios.post(
+          "http://localhost:4000/api/upload",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res);
+      } catch (ex) {
+        console.log(ex);
+      }
     }
-  }
   };
   return (
     <>
@@ -66,7 +66,9 @@ function FileUpload({ id_universidad }) {
       <br />
       <br />
       <h3 className="text-black">Generar carta:</h3>
-      <button className="text-black" onClick={uploadFile}>BOTÓN</button>
+      <button className="text-black" onClick={uploadFile}>
+        BOTÓN
+      </button>
     </>
   );
 }

@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 import { forwardRef, useState } from "react";
 import { get } from "../../../api/api";
-import { useGlobal } from "../../../hooks/useGlobal";
 import Input from "../UI/Input";
+import { useOutletContext } from "react-router-dom";
 
 const CodeForm = forwardRef(function CodeForm(
   { isEntrant, form, changeStep },
   ref
 ) {
-  const { setToken } = useGlobal();
+  const { setToken } = useOutletContext();
   const [code, setCode] = useState("");
   const [spanCode, setSpanCode] = useState("");
   const who = isEntrant ? "entrant" : "rector";

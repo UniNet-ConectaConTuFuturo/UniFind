@@ -1,16 +1,12 @@
-import { redirect } from "react-router-dom";
 import userOptions from "../modelos/userOptions";
 import getAuth from "./getAuth";
 
-const template = async (userOption) =>
-  (await getAuth()) !== userOption ? redirect("/home") : null;
+const auth = async () => (await getAuth()) !== userOptions.noAuthenticated;
 
-const authenticated = () => template(!userOptions.noAuthenticated);
+const notAuth = async () => (await getAuth()) === userOptions.noAuthenticated;
 
-const notAuthenticated = () => template(userOptions.noAuthenticated);
+const entrant = async () => (await getAuth()) === userOptions.entrant;
 
-const entrant = () => template(userOptions.entrant);
+const rector = async () => (await getAuth()) === userOptions.rector;
 
-const rector = () => template(userOptions.rector);
-
-export { authenticated, notAuthenticated, entrant, rector };
+export { auth, notAuth, entrant, rector };

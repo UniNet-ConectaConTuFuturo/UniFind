@@ -4,10 +4,9 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 function GlobalProvider({ children }) {
-  const [token, setToken_] = useState(localStorage.getItem("TokenUniNet"));
+  const [token] = useState(localStorage.getItem("TokenUniNet"));
   function setToken(value) {
     localStorage.setItem("TokenUniNet", value);
-    setToken_(value);
     window.location.reload();
   }
   const [searchParams, _setSearchParams] = useSearchParams();

@@ -88,18 +88,27 @@ export async function generateCarta(req, res) {
 
 export async function getSolicitudes(req, res) {
   const { token } = req.body;
+  console.log(token);
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
       const { id } = decoded;
       const data = await selectSolicitudes(id);
       console.log(data);
-      return res.json({
-        pendiente:data.filter((solicitud)=>solicitud.estado=== "pendiente"),
-        aceptada:data.filter((solicitud)=>solicitud.estado=== "aceptada"),
-        rechazada:data.filter((solicitud)=>solicitud.estado=== "rechazada"),
-        segunda_instancia:data.filter((solicitud)=>solicitud.estado=== "segunda instancia")
-      }).end();
+      return res
+        .json({
+          pendiente: data.filter(
+            (solicitud) => solicitud.estado === "pendiente"
+          ),
+          aceptada: data.filter((solicitud) => solicitud.estado === "aceptada"),
+          rechazada: data.filter(
+            (solicitud) => solicitud.estado === "rechazada"
+          ),
+          segunda_instancia: data.filter(
+            (solicitud) => solicitud.estado === "segunda instancia"
+          ),
+        })
+        .end();
     });
   } catch (error) {
     console.error(error);
@@ -137,10 +146,10 @@ export async function readCarta(req, res) {
 export async function acceptCarta(req, res) {
   const { id_usuario, estado } = req.body;
   console.log("body", req.body);
-  try{
-    await changeEstado(estado,id_usuario);
+  try {
+    await changeEstado(estado, id_usuario);
     return res.status(200).end();
-  }catch (error) {
+  } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();

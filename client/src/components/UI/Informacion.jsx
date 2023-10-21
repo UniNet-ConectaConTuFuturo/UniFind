@@ -9,15 +9,14 @@ import {
   FaRegBookmark,
   FaBookmark,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import "./info.css";
 import PropTypes from "prop-types";
-import { useGlobal } from "../../hooks/useGlobal";
 import { twMerge } from "tailwind-merge";
 
 function Informacion({ idUniToShowInfo, dispatch, className }) {
   /* Backend favoritos */
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
     if (token && idUniToShowInfo) {

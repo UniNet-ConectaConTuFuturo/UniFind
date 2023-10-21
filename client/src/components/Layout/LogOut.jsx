@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
-import { useGlobal } from "../../hooks/useGlobal";
 
-function LogOut({setTrigger}) {
-    const {setToken} = useGlobal();
+function LogOut({ setToken, setTrigger }) {
   return (
     <section className="px-8">
       <h3 className="text-center font-bold p-4">
@@ -26,6 +24,7 @@ function LogOut({setTrigger}) {
   );
 }
 LogOut.propTypes = {
-    setTrigger: PropTypes.func,
-  };
-export default LogOut
+  setToken: PropTypes.func,
+  setTrigger: PropTypes.func,
+};
+export default LogOut;

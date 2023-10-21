@@ -3,11 +3,10 @@ import { get } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 import MultiValueLabel from "./Custom/MultiValueLabel";
-import { useGlobal } from "../../../../hooks/useGlobal";
-import { useSearchParams } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 
 function Nombre() {
-  const { setSearchParams } = useGlobal();
+  const { setSearchParams } = useOutletContext();
   const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [defaultValue, setDefaultValue] = useState(null);
@@ -32,7 +31,7 @@ function Nombre() {
           defaultValue={defaultValue}
           isMulti
           components={{ MultiValueLabel }}
-          closeMenuOnSelect={false}
+          /* closeMenuOnSelect={false} */
           onChange={(options) =>
             setSearchParams(
               "names",

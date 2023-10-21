@@ -22,9 +22,6 @@ const ListaInteres = lazy(() =>
 );
 const Mapa = lazy(() => import("./components/Mapa/Mapa"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
-const SegundaInstancia = lazy(() =>
-  import("./components/SegundaInstancia/SegundaInstancia")
-);
 
 const router = createBrowserRouter([
   {
@@ -46,29 +43,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/identificacion",
-        loader: is.notAuthenticated,
+        loader: async () => ((await is.notAuth()) ? null : redirect("/home")),
         Component: Identification,
       },
       {
         path: "/configuracion",
-        loader: is.authenticated,
+        loader: async () => ((await is.auth()) ? null : redirect("/home")),
         Component: AccountSettings,
       },
       { path: "/mapa/:xyz?", Component: Mapa },
       {
         path: "/listainteres",
-        loader: is.entrant,
+        loader: async () => ((await is.entrant()) ? null : redirect("/home")),
         Component: ListaInteres,
       },
       {
         path: "/admision",
-        loader: is.rector,
+        loader: async () =>
+          (await is.rector())
+            ? get("/get/soli", {
+                token: localStorage.getItem("TokenUniNet"),
+              })
+            : redirect("/home"),
         Component: Admision,
-      },
-      {
-        path: "/segundainstancia",
-        loader: is.rector,
-        Component: SegundaInstancia,
       },
     ],
   },

@@ -2,11 +2,10 @@ import { get } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 import "./filters.css";
-import { useGlobal } from "../../../../hooks/useGlobal";
-import { useSearchParams } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 
 function Carrera() {
-  const { setSearchParams } = useGlobal();
+  const { setSearchParams } = useOutletContext();
   const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [defaultValue, setDefaultValue] = useState(null);
@@ -31,7 +30,7 @@ function Carrera() {
           defaultOptions
           defaultValue={defaultValue}
           isMulti
-          closeMenuOnSelect={false}
+          /* closeMenuOnSelect={false} */
           onChange={(options) =>
             setSearchParams(
               "carreras",

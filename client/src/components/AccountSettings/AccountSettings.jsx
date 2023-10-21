@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { post } from "../../api/api";
-import { useGlobal } from "../../hooks/useGlobal";
+import { useOutletContext } from "react-router-dom";
 function AccountSettings() {
-  const { token } = useGlobal();
+  const { token } = useOutletContext();
   const formNuevo = {
     name_user: "",
     phoneNumber: "",
