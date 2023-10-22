@@ -3,6 +3,7 @@ import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Descriptions } from "antd";
 
 function Card({
   setButtonPopUpVerMas,
@@ -14,20 +15,18 @@ function Card({
 
   useEffect(() => {
     (async () => {
-        setUniversidad(await get("/get/uni", { id_universidad }));
+      setUniversidad(await get("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
 
   return (
     <>
-      {universidad && (
-        <div className="card w-full h-full">
-          <div className="card-body">
-            <h5 className="card-title">{universidad.nombre_universidad}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              Universidad de Interés
-            </h6>
-            <p className="card-text">
+      <Descriptions
+        title={universidad.nombre_universidad}
+        items={[
+          {
+            label: "Dirección",
+            children: (
               <a
                 href={universidad.maps_universidad}
                 target="_blank"
@@ -37,7 +36,14 @@ function Card({
                 {universidad.localidad_universidad},{" "}
                 {universidad.zona_universidad}
               </a>
-            </p>
+            ),
+          },
+        ]}
+      />
+      {universidad && (
+        <div className="card w-full h-full">
+          <div className="card-body">
+            <p className="card-text"></p>
             <br />
             <button
               onClick={() => {

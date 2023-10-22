@@ -1,5 +1,4 @@
 import { useMapa } from "../../../hooks/useMapa";
-import LeafletBox from "./UI/LeafletBox";
 import { Rnd } from "react-rnd";
 import { BiMove } from "react-icons/bi";
 function GeoInfo() {
@@ -12,18 +11,13 @@ function GeoInfo() {
       }}
       enableResizing={false}
     >
-      <LeafletBox
-        containerClassName="absolute w-60 draggable"
-        isExpanded={true}
-      >
-        <article className="flex justify-between cursor-move">
-          <section>
-            <p ref={provInfo}></p>
-            <p ref={depInfo}></p>
-          </section>
-          <BiMove size={10} />
-        </article>
-      </LeafletBox>
+      <article className="leaflet-box p-1 w-60 draggable flex justify-between cursor-move">
+        <section>
+          <p ref={provInfo}></p>
+          <p ref={depInfo}></p>
+        </section>
+        <BiMove size={10} />
+      </article>
     </Rnd>
   );
 }

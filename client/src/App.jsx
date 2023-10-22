@@ -54,7 +54,12 @@ const router = createBrowserRouter([
       { path: "/mapa/:xyz?", Component: Mapa },
       {
         path: "/listainteres",
-        loader: async () => ((await is.entrant()) ? null : redirect("/home")),
+        loader: async () =>
+          (await is.entrant())
+            ? get("/getfavorites", {
+                token: localStorage.getItem("TokenUniNet"),
+              })
+            : redirect("/home"),
         Component: ListaInteres,
       },
       {

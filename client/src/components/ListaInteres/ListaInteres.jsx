@@ -1,5 +1,3 @@
-import { get } from "../../api/api";
-import { useEffect, useReducer } from "react";
 import { useState } from "react";
 /* css */
 import "./ListaInteres.css";
@@ -9,17 +7,12 @@ import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
 import Informacion from "../UI/Informacion";
 import { Empty, theme } from "antd";
-import { useOutletContext } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 function ListaInteres() {
-  const { token } = useOutletContext();
-  const [cambio, dispatch] = useReducer((state, action) => action, 0);
-  const [favoritas, setFavoritas] = useState([]);
+  const { favoritas } = useLoaderData();
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
-  useEffect(() => {
-    (async () => setFavoritas(await get("/getfavorites", { token })))();
-  }, [token, cambio]);
   const { ["token"]: antd } = theme.useToken();
   return (
     <main className="bg-teal-700 h-screen py-8">
@@ -56,7 +49,10 @@ function ListaInteres() {
       </div>
 
       <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
-        <Informacion idUniToShowInfo={idUniToShowInfo} dispatch={dispatch} />
+        <Informacion
+          id_universidad={idUniToShowInfo}
+          dispatch={() => window.location.reload()}
+        />
       </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>

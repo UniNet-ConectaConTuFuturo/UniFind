@@ -11,7 +11,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 //Import Routes
 import autenticationRoutes from "./routes/autentication.routes.js";
 import accountRoutes from "./routes/account.routes.js";
@@ -19,7 +18,7 @@ import filterRoutes from "./routes/filter.routes.js";
 import getRoutes from "./routes/getdata.routes.js";
 import favoritasRoutes from "./routes/favoritas.routes.js";
 import bddRoutes from "./database/modificar.js";
-import solicitudRoutes from "./routes/solicitud.routes.js"
+import solicitudRoutes from "./routes/solicitud.routes.js";
 
 const app = express();
 // get config vars

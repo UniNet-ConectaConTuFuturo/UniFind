@@ -1,7 +1,7 @@
 import { lazy } from "react";
-import { useMapa } from "../../../hooks/useMapa";
-const Informacion = lazy(() => import("../../UI/Informacion"));
-const LeafletControl = lazy(() => import("./UI/LeafletControl"));
+import { useMapa } from "../../../../hooks/useMapa";
+const Informacion = lazy(() => import("./Informacion"));
+const LeafletControl = lazy(() => import("../UI/LeafletControl"));
 
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
@@ -9,10 +9,10 @@ function AsideInfo() {
   /* Datos */
   const [searchParams] = useSearchParams();
   const { dispatchBusqueda } = useMapa();
-  const idUniToShowInfo =parseInt(searchParams.get("selected"))
+  const id_universidad = parseInt(searchParams.get("selected"));
   return (
     <>
-      {idUniToShowInfo ? (
+      {id_universidad ? (
         <section
           role="University Info"
           className="fixed top-2.5 bottom-2.5 right-0 justify-end mr-2.5"
@@ -26,7 +26,7 @@ function AsideInfo() {
           >
             <Informacion
               className="w-[20vw]"
-              idUniToShowInfo={idUniToShowInfo}
+              id_universidad={id_universidad}
               dispatch={dispatchBusqueda}
             />
           </LeafletControl>

@@ -17,7 +17,7 @@ const DisplayMarkers = lazy(() =>
 const Filters = lazy(() => import("./OutMapComponents/Filters/Filters"));
 const Options = lazy(() => import("./OutMapComponents/Options/Options"));
 const GeoInfo = lazy(() => import("./OutMapComponents/GeoInfo"));
-const AsideInfo = lazy(() => import("./OutMapComponents/AsideInfo"));
+const AsideInfo = lazy(() => import("./OutMapComponents/AsideInfo/AsideInfo"));
 
 function Mapa() {
   console.log("mapa");
