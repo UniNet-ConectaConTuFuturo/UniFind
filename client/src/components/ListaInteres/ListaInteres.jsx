@@ -5,7 +5,7 @@ import "./ListaInteres.css";
 import Card from "./Card";
 import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
-import { Empty, theme } from "antd";
+import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 function ListaInteres() {
   const favoritas = useLoaderData();
@@ -24,15 +24,19 @@ function ListaInteres() {
           Lista de Interés
         </h1>
         {favoritas.length ? (
-          favoritas.map((u) => (
-            <Card
-              key={u.id_universidad}
-              setButtonPopUpVerMas={setButtonPopUpVerMas}
-              setButtonPopUpCarta={setButtonPopUpCarta}
-              id_universidad={u.id_universidad}
-              setIdUniToShowInfo={setIdUniToShowInfo}
-            />
-          ))
+          <List
+            pagination={{ align: "center" }}
+            dataSource={favoritas}
+            renderItem={(u) => ( 
+                <Card
+                  key={u.id_universidad}
+                  setButtonPopUpVerMas={setButtonPopUpVerMas}
+                  setButtonPopUpCarta={setButtonPopUpCarta}
+                  id_universidad={u.id_universidad}
+                  setIdUniToShowInfo={setIdUniToShowInfo}
+                  />
+            )}
+          />
         ) : (
           <div
             style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
@@ -48,9 +52,10 @@ function ListaInteres() {
         )}
       </div>
 
-      <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
-        
-      </Modal>
+      <Modal
+        trigger={buttonPopUpVerMas}
+        setTrigger={setButtonPopUpVerMas}
+      ></Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
         <FileUpload id_universidad={idUniToShowInfo} />

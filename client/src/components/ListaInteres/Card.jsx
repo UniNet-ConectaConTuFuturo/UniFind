@@ -3,7 +3,8 @@ import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Descriptions } from "antd";
+import { Descriptions, List } from "antd";
+import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 
 function Card({
   setButtonPopUpVerMas,
@@ -21,61 +22,66 @@ function Card({
 
   return (
     <>
-    {universidad && (
-      <>
-      <Descriptions
-        title={universidad.nombre_universidad}
-        items={[
-          {
-            label: "Dirección",
-            children: (
-              <a
-              href={universidad.maps_universidad}
-              target="_blank"
-              rel="noreferrer"
-              >
-                {universidad.direccion_universidad},{" "}
-                {universidad.localidad_universidad},{" "}
-                {universidad.zona_universidad}
-              </a>
-            ),
-          },
-        ]}
-        />
-        <div className="card w-full h-full">
-          <div className="card-body">
-            <p className="card-text"></p>
-            <br />
-            <button
-              onClick={() => {
-                setIdUniToShowInfo(id_universidad);
-                setButtonPopUpVerMas(true);
-              }}
-              >
-              Ver información completa de la universidad
-            </button>
-            <br />
-            <br />
-            <Link
-              to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
-              className="card-link"
-              >
-              Ver en el mapa
-            </Link>
-            <br />
-            <button
-              onClick={() => {
-                setIdUniToShowInfo(id_universidad);
-                setButtonPopUpCarta(true);
-              }}
-            >
-              Enviar Carta
-            </button>
-            <h2 className="right-0 inline pl-40">Estado: </h2>
-            <p className="inline text-green-500">ACEPTADO</p>
-          </div>
-        </div>
-      </>
+      {universidad && (
+        <>
+          <List.Item
+            extra={
+              <section className="">
+                <button
+                className="w-24 border rounded-md"
+                  onClick={() => {
+                    setIdUniToShowInfo(id_universidad);
+                    setButtonPopUpVerMas(true);
+                  }}
+                >
+                  Ver información completa de la universidad
+                </button>
+                <Link
+                  to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
+                  className="w-24 border rounded-md"
+                >
+                  Ver en el mapa
+                </Link>
+                <button
+                className="w-24 border rounded-md"
+                  onClick={() => {
+                    setIdUniToShowInfo(id_universidad);
+                    setButtonPopUpCarta(true);
+                  }}
+                >
+                  Enviar Carta
+                </button>
+                <div>
+                  <p className="">Estado: ACEPTADO</p>
+                </div>
+              </section>
+            }
+          >
+            <List.Item.Meta
+              title={universidad.nombre_universidad}
+              description={<DatosUni universidad={universidad} />}
+            />
+          </List.Item>
+          <Descriptions
+            title={universidad.nombre_universidad}
+            items={[
+              {
+                label: "Dirección",
+                children: (
+                  <a
+                    href={universidad.maps_universidad}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {universidad.direccion_universidad},{" "}
+                    {universidad.localidad_universidad},{" "}
+                    {universidad.zona_universidad}
+                  </a>
+                ),
+              },
+            ]}
+          />
+        </>
       )}
     </>
   );
