@@ -21,6 +21,8 @@ function Card({
 
   return (
     <>
+    {universidad && (
+      <>
       <Descriptions
         title={universidad.nombre_universidad}
         items={[
@@ -28,9 +30,9 @@ function Card({
             label: "Dirección",
             children: (
               <a
-                href={universidad.maps_universidad}
-                target="_blank"
-                rel="noreferrer"
+              href={universidad.maps_universidad}
+              target="_blank"
+              rel="noreferrer"
               >
                 {universidad.direccion_universidad},{" "}
                 {universidad.localidad_universidad},{" "}
@@ -39,8 +41,7 @@ function Card({
             ),
           },
         ]}
-      />
-      {universidad && (
+        />
         <div className="card w-full h-full">
           <div className="card-body">
             <p className="card-text"></p>
@@ -50,7 +51,7 @@ function Card({
                 setIdUniToShowInfo(id_universidad);
                 setButtonPopUpVerMas(true);
               }}
-            >
+              >
               Ver información completa de la universidad
             </button>
             <br />
@@ -58,7 +59,7 @@ function Card({
             <Link
               to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
               className="card-link"
-            >
+              >
               Ver en el mapa
             </Link>
             <br />
@@ -74,6 +75,7 @@ function Card({
             <p className="inline text-green-500">ACEPTADO</p>
           </div>
         </div>
+      </>
       )}
     </>
   );

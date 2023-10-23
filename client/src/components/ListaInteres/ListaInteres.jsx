@@ -5,15 +5,15 @@ import "./ListaInteres.css";
 import Card from "./Card";
 import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
-import Informacion from "../UI/Informacion";
 import { Empty, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 function ListaInteres() {
-  const { favoritas } = useLoaderData();
+  const favoritas = useLoaderData();
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
   const { ["token"]: antd } = theme.useToken();
+  console.log(favoritas);
   return (
     <main className="bg-teal-700 h-screen py-8">
       <div className="ml-40 mr-4 pr-8 h-full overflow-y-scroll">
@@ -49,10 +49,7 @@ function ListaInteres() {
       </div>
 
       <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
-        <Informacion
-          id_universidad={idUniToShowInfo}
-          dispatch={() => window.location.reload()}
-        />
+        
       </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
