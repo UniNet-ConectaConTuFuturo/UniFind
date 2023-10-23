@@ -1,4 +1,5 @@
 import { post } from "../../api/api";
+import FileDownload from "./FileDownload";
 
 function Examen({ cartaName }) {
   const {id_usuario, nombreSoli} = cartaName
@@ -32,7 +33,8 @@ function Examen({ cartaName }) {
         <textarea defaultValue="Usted ha sido seleccionado para pasar a la etapa de segunda instancia.
           Para demostrar que merece estar en nuestra institución, deberá
           presentarse el X día a las X horas." className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden"/>
-        <button className="text-black">Generar Exámen</button>
+        {/* <button className="text-black">Generar Exámen</button> */}
+        <FileDownload />
         <button className="text-black" onClick={aceptarCarta}>Aceptar Carta</button>
         <button className="text-black" onClick={rechazarCarta}>Rechazar Carta</button>
         <button className="text-black" onClick={segundainstanciaCarta}>Rechazar Carta</button>
