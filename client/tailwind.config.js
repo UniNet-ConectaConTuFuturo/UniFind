@@ -29,6 +29,7 @@ export default {
         shape: "url('/images/formbg-2.png')",
         home1: "url('/images/hero-section-centroinformacion.png')",
         gorro: "url('/images/graduation.png')",
+        wave: "url('/images/wave.png')",
         // "footer-texture": "url('/img/footer-texture.png')",
         fondo: "url('/images/unlam.mp4')",
       },

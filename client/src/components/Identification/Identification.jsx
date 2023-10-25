@@ -26,6 +26,15 @@ function Identification() {
         "transition-colors duration-700 overflow-hidden h-screen w-screen"
       }
     >
+      <div className="structure grid grid-cols-[repeat(2, 50%)] h-screen">
+        <div className="waves bg-wave bg-no-repeat bg-cover bg-center flex justify-start items-center">
+          <img className="ml-56" src="/images/loginPerson.png" alt="" />
+        </div>
+      </div>
+
+      {/* <img
+        className="w-full h-screen absolute object-cover left-0"
+        src="/images/loginPerson.png" alt="" />
       <video
         className="w-full h-screen absolute object-cover left-0 opacity-50"
         autoPlay
@@ -33,7 +42,7 @@ function Identification() {
         loop
         src="/images/unlam.mp4"
         type="video/mp4"
-      />
+      /> */}
       <Login ref={loginRef} changeToRegistro={change} />
       <Registro
         ref={registroRef}

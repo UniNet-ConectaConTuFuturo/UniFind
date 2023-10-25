@@ -40,7 +40,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
       className="center transition-position-y-transform duration-700"
       ref={ref}
     >
-      <h2 className="text-center mb-10">INGRESAR</h2>
+      <h2 className="text-right mb-10">INGRESAR</h2>
       <form onSubmit={handleSubmit}>
         <Input
           Name="mail_user"
