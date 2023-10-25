@@ -19,6 +19,7 @@ import getRoutes from "./routes/getdata.routes.js";
 import favoritasRoutes from "./routes/favoritas.routes.js";
 import bddRoutes from "./database/modificar.js";
 import solicitudRoutes from "./routes/solicitud.routes.js";
+import ticketRoutes from "./routes/ticket.routes.js";
 
 const app = express();
 // get config vars
@@ -59,6 +60,7 @@ app.use(filterRoutes);
 app.use(favoritasRoutes);
 app.use(bddRoutes);
 app.use(solicitudRoutes);
+app.use(ticketRoutes);
 
 //app.use(express.static(path.join(__dirname, "public")));
 
