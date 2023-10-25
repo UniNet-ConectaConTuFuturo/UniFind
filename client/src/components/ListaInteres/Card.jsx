@@ -3,7 +3,7 @@ import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Descriptions, List } from "antd";
+import { List } from "antd";
 import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 
 function Card({
@@ -13,6 +13,7 @@ function Card({
   id_universidad,
 }) {
   const [universidad, setUniversidad] = useState(null);
+  const [estado] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -23,27 +24,27 @@ function Card({
   return (
     <>
       {universidad && (
-        <>
-          <List.Item
-            extra={
-              <section className="">
+        <List.Item
+          extra={
+            <section className="grid gap-8">
+              <button
+                className="w-24 border rounded-md p-2 text-center"
+                onClick={() => {
+                  setIdUniToShowInfo(id_universidad);
+                  setButtonPopUpVerMas(true);
+                }}
+              >
+                Ver Carreras
+              </button>
+              <Link
+                to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
+                className="w-24 border rounded-md p-2 text-center"
+              >
+                Ver En Mapa
+              </Link>
+              {!estado ? (
                 <button
-                className="w-24 border rounded-md"
-                  onClick={() => {
-                    setIdUniToShowInfo(id_universidad);
-                    setButtonPopUpVerMas(true);
-                  }}
-                >
-                  Ver información completa de la universidad
-                </button>
-                <Link
-                  to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
-                  className="w-24 border rounded-md"
-                >
-                  Ver en el mapa
-                </Link>
-                <button
-                className="w-24 border rounded-md"
+                  className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
                     setIdUniToShowInfo(id_universidad);
                     setButtonPopUpCarta(true);
@@ -51,37 +52,17 @@ function Card({
                 >
                   Enviar Carta
                 </button>
-                <div>
-                  <p className="">Estado: ACEPTADO</p>
-                </div>
-              </section>
-            }
-          >
-            <List.Item.Meta
-              title={universidad.nombre_universidad}
-              description={<DatosUni universidad={universidad} />}
-            />
-          </List.Item>
-          <Descriptions
+              ) : (
+                <p className="">Estado: {estado}</p>
+              )}
+            </section>
+          }
+        >
+          <List.Item.Meta
             title={universidad.nombre_universidad}
-            items={[
-              {
-                label: "Dirección",
-                children: (
-                  <a
-                    href={universidad.maps_universidad}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {universidad.direccion_universidad},{" "}
-                    {universidad.localidad_universidad},{" "}
-                    {universidad.zona_universidad}
-                  </a>
-                ),
-              },
-            ]}
+            description={<DatosUni universidad={universidad} />}
           />
-        </>
+        </List.Item>
       )}
     </>
   );

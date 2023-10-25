@@ -25,16 +25,16 @@ function ListaInteres() {
         </h1>
         {favoritas.length ? (
           <List
-            pagination={{ align: "center" }}
+            pagination={{ align: "center", pageSize: 3 }}
             dataSource={favoritas}
-            renderItem={(u) => ( 
-                <Card
-                  key={u.id_universidad}
-                  setButtonPopUpVerMas={setButtonPopUpVerMas}
-                  setButtonPopUpCarta={setButtonPopUpCarta}
-                  id_universidad={u.id_universidad}
-                  setIdUniToShowInfo={setIdUniToShowInfo}
-                  />
+            renderItem={(u) => (
+              <Card
+                key={u.id_universidad}
+                setButtonPopUpVerMas={setButtonPopUpVerMas}
+                setButtonPopUpCarta={setButtonPopUpCarta}
+                id_universidad={u.id_universidad}
+                setIdUniToShowInfo={setIdUniToShowInfo}
+              />
             )}
           />
         ) : (
