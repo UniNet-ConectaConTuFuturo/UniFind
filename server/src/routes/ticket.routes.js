@@ -6,3 +6,7 @@ import * as solicitud from "../controllers/ticket.js";
 const router = Router();
 
 //enviar ticket ingresante
+
+
+
+export default router;
