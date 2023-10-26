@@ -63,7 +63,8 @@ const DataForm = forwardRef(function DataForm(
       className="center transition-position-y-transform duration-700"
       role="DataForm"
     >
-      <h2 className="ml-48">Registrarse</h2>
+      <div className="form-box w-[28rem] h-[38rem] bg-none border-2 rounded-lg flex flex-col justify-center items-center backdrop-blur-sm">
+      <h2 className="text-center text-white text-2xl">REGISTRARSE</h2>
       <form onSubmit={handleSubmit}>
         <Input
           handleChange={handleChange}
@@ -123,6 +124,7 @@ const DataForm = forwardRef(function DataForm(
           value={form.tel_user}
           span={span.spanTel}
           label="Teléfono"
+          placeholder="Teléfono"
         />
         {isEntrant ? (
           <Input
@@ -142,12 +144,13 @@ const DataForm = forwardRef(function DataForm(
           />
         )}
 
-        <input type="submit" />
+        <input className="text-white" type="submit" />
       </form>
-      <a href="#" onClick={changeToLogin}>
+      <a className="text-white inline" href="#" onClick={changeToLogin}>
         Ya tengo una cuenta
       </a>
-      <button onClick={changeRegistro}>{otroRegistroText}</button>
+      <button className="text-white inline" onClick={changeRegistro}>{otroRegistroText}</button>
+      </div>
     </div>
   );
 });

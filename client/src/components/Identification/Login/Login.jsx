@@ -40,7 +40,8 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
       className="center transition-position-y-transform duration-700"
       ref={ref}
     >
-      <h2 className="text-right mb-10">INGRESAR</h2>
+      <div className="form-box w-[26rem] h-[24rem] bg-none border-2 rounded-lg flex flex-col justify-center items-center backdrop-blur-sm gap-4">
+      <h2 className="text-center text-white text-2xl">INGRESAR</h2>
       <form onSubmit={handleSubmit}>
         <Input
           className=""
@@ -51,7 +52,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
           label="Correo Electrónico"
         />
         <Input
-          className=""
+          className="pb-20"
           type="password"
           Name="password_user"
           value={form.password_user}
@@ -59,11 +60,12 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
           handleChange={handleChange}
           label="Contraseña"
         />
-        <input type="submit" />
+        <input className="text-black w-full bg-white h-10 rounded-xl mt-10" type="submit" />
       </form>
-      <a href="#" onClick={changeToRegistro}>
+      <a className="text-white text-end" href="#" onClick={changeToRegistro}>
         ¿No estás registrado? Hazlo ahora!
       </a>
+      </div>
     </section>
   );
 });

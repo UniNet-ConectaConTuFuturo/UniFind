@@ -27,7 +27,8 @@ function Identification() {
         "transition-colors duration-700 overflow-hidden h-screen w-screen"
       }
     >
-      <div className="structure grid grid-cols-[repeat(2, 50%)] h-screen">
+      <div className="structure grid grid-cols-[repeat(2, 50%)] h-screen bg-opacity-10">
+        <img className="absolute object-cover h-screen w-full -z-50 bg-opacity-10 translate-x-52" src="/images/uba.png" alt="" />
         <LoginImage />
       </div>
 
