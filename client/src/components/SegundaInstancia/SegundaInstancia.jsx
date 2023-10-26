@@ -4,7 +4,10 @@ function SegundaInstancia() {
         <form className='w-full full h-48'>
             <textarea className='w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden'
              defaultValue="Usted ha sido seleccionado para pasar a la etapa de segunda instancia. Para demostrar que merece estar en nuestra institución, deberá presentarse el X día a las X horas."/>
-            <button className='text-black'>Generar Exámen</button>
+            <button className='text-black'>Aceptar Comunicación</button>
+            <textarea className='w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden'
+             defaultValue="Usted ha sido seleccionado para pasar a la etapa de segunda instancia. Para demostrar que merece estar en nuestra institución, deberá presentarse el X día a las X horas."/>
+            <button className='text-black'>Rechazar Comunicación</button>
         </form>
     </div>
   )

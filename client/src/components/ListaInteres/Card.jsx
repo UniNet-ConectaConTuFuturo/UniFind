@@ -13,13 +13,18 @@ function Card({
   id_universidad,
 }) {
   const [universidad, setUniversidad] = useState(null);
-  const [estado] = useState(null);
+  const [estadoCarta, setEstadoCarta] = useState(null);
 
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
+  /*useEffect(()=>{
+    (async()=>{
+      setEstadoCarta(await get("/verestado", { id_universidad }))
+    })
+  })*/
 
   return (
     <>
@@ -42,7 +47,7 @@ function Card({
               >
                 Ver En Mapa
               </Link>
-              {!estado ? (
+              {!estadoCarta ? (
                 <button
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
@@ -53,8 +58,17 @@ function Card({
                   Enviar Carta
                 </button>
               ) : (
-                <p className="">Estado: {estado}</p>
+                <p className="">Estado: {estadoCarta}</p>
               )}
+                <button
+                  className="w-24 border rounded-md p-2 text-center"
+                  onClick={() => {
+                    setIdUniToShowInfo(id_universidad);
+                    
+                  }}
+                >
+                  Consultar
+                </button>
             </section>
           }
         >

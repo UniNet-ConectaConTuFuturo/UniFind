@@ -60,6 +60,7 @@ function ListaInteres() {
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
         <FileUpload id_universidad={idUniToShowInfo} />
       </Modal>
+
     </main>
   );
 }
