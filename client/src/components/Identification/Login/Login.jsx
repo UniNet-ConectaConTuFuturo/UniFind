@@ -43,6 +43,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
       <h2 className="text-right mb-10">INGRESAR</h2>
       <form onSubmit={handleSubmit}>
         <Input
+          className=""
           Name="mail_user"
           value={form.mail_user}
           span={span.spanEmail}
@@ -50,6 +51,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
           label="Correo Electrónico"
         />
         <Input
+          className=""
           type="password"
           Name="password_user"
           value={form.password_user}

@@ -3,7 +3,7 @@ import { useId } from "react";
 function Input({ handleChange, handleBlur, type, Name, value, span, label }) {
   const id = useId();
   return (
-    <div className="inputbox">
+    <div className="inputbox relative my-4 border-b-2 border-b-black w-96">
       <input
         className="typebox px-2"
         type={type || "text"}
@@ -15,7 +15,7 @@ function Input({ handleChange, handleBlur, type, Name, value, span, label }) {
         onBlur={handleBlur}
       />
       <span>{span}</span>
-      <label htmlFor={id}>{label}</label>
+      <label className="" htmlFor={id}>{label}</label>
     </div>
   );
 }

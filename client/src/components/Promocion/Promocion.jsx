@@ -6,13 +6,14 @@ function Promocion() {
         src="/images/education.png"
       />
       <header className="absolute pl-28">
-        <nav className="flex items-center gap-4 pl-10">
-          <a href="/" className="text-white z-10 p-4 pointer-events-none">
+        <nav className="flex items-center gap-4">
+          <a href="/" className="text-white z-10 p-4 pointer-events-none text-lg">
             <img
               className="w-20 h-20 inline-block scale-75"
               src="/images/iconoBlanco.png"
               alt=""
             />
+            <b> UniNet </b>
           </a>
           <a href="/home" className="text-white z-10 p-4">
             Servicios
