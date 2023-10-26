@@ -4,6 +4,7 @@ import "./transition.css";
 import { useRef, useState, useTransition } from "react";
 import Login from "./Login/Login";
 import Registro from "./Registro/Registro";
+import LoginImage from "./UI/LoginImage";
 function Identification() {
   const [, startTransition] = useTransition();
   const mainRef = useRef(null);
@@ -27,9 +28,7 @@ function Identification() {
       }
     >
       <div className="structure grid grid-cols-[repeat(2, 50%)] h-screen">
-        <div className="waves bg-wave bg-no-repeat bg-cover bg-center flex justify-start items-center">
-          <img className="ml-56" src="/images/loginPerson.png" alt="" />
-        </div>
+        <LoginImage />
       </div>
 
       {/* <img

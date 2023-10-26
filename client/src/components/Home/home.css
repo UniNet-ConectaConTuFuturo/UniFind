@@ -19,10 +19,10 @@
 
 .left:hover{
     background-size: 100% 100%;
-    background-color: rgb(65, 97, 179);
+    background-color: rgb(50, 151, 96);
 }
 .right:hover{
     background-size: 0% 100%;
-    background-color: rgb(179, 65, 65);
+    background-color: rgb(65, 97, 179);
 }
 
