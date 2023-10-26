@@ -37,7 +37,7 @@ function Examen({ cartaName }) {
         <FileDownload />
         <button className="text-black" onClick={aceptarCarta}>Aceptar Carta</button>
         <button className="text-black" onClick={rechazarCarta}>Rechazar Carta</button>
-        <button className="text-black" onClick={segundainstanciaCarta}>Rechazar Carta</button>
+        <button className="text-black" onClick={segundainstanciaCarta}>Segunda Instancia</button>
       </form>
     </div>
   );

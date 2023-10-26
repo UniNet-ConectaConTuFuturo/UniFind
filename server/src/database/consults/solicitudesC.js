@@ -44,7 +44,11 @@ export function selectEstadoSolicitudes(id_usuario, id_universidad){
       `Select estado FROM solicitudes WHERE id_usuario = ${id_usuario} AND id_universidad = ${id_universidad}`,
       (err, data) => {
         if(err) reject(err);
-        resolve(data);
+        if(data.length > 0){
+        resolve(data[0].estado)
+      }else{
+        resolve(data)
+      };
       }
     )
   })

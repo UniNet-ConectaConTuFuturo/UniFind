@@ -19,7 +19,7 @@ function Admision() {
       description="Lista vacia"
       image={Empty.PRESENTED_IMAGE_SIMPLE}
     />
-  );
+  ); 
   console.log("admision", aceptada, pendiente, rechazada, segunda_instancia);
   const getItems = (panelStyle) => [
     {

@@ -10,6 +10,7 @@ import {
 import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 import { changeEstado } from "../database/consults/solicitudesC.js";
+import { selectEstadoSolicitudes } from "../database/consults/solicitudesC.js";
 
 //To use __dirname
 import { fileURLToPath } from "url";
@@ -150,6 +151,29 @@ export async function acceptCarta(req, res) {
     await changeEstado(estado, id_usuario);
     return res.status(200).end();
   } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+
+export async function verEstado(req, res) {
+  const { id_universidad, token } = req.body;
+  try {
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      const data = await selectEstadoSolicitudes(id, id_universidad);
+      console.log(data)
+      if(data.length > 0){ 
+        console.log("estado: ",data) 
+        return res.json(data).end()
+        
+      }else{
+        return res.status(200).end()
+      }
+    })
+  } catch (err) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
     res.status(404).end();

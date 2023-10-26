@@ -19,6 +19,8 @@ router.post("/api/cambio/aceptado", solicitud.acceptCarta);
 router.post("/api/cambio/rechazado", solicitud.acceptCarta);
 router.post("/api/cambio/segundainstancia", solicitud.acceptCarta);
 
+//Ver estado
+router.post("/api/verestado", solicitud.verEstado);
 
 
 

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { List } from "antd";
 import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
+import { useOutletContext } from "react-router-dom";
 
 function Card({
   setButtonPopUpVerMas,
@@ -14,18 +15,19 @@ function Card({
 }) {
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
+  const { token } = useOutletContext();
 
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
     })();
   }, [id_universidad]);
-  /*useEffect(()=>{
+  useEffect(()=>{
     (async()=>{
-      setEstadoCarta(await get("/verestado", { id_universidad }))
-    })
-  })*/
-
+      setEstadoCarta(await get("/verestado", { id_universidad, token }));
+    })();
+  }, [id_universidad]);
+  console.log(estadoCarta);
   return (
     <>
       {universidad && (
@@ -47,7 +49,9 @@ function Card({
               >
                 Ver En Mapa
               </Link>
-              {!estadoCarta ? (
+              {estadoCarta!=null ? (
+                <p className="">Estado: {estadoCarta}</p>
+              ) : (
                 <button
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
@@ -57,8 +61,6 @@ function Card({
                 >
                   Enviar Carta
                 </button>
-              ) : (
-                <p className="">Estado: {estadoCarta}</p>
               )}
                 <button
                   className="w-24 border rounded-md p-2 text-center"
