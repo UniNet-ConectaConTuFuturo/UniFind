@@ -20,6 +20,9 @@ const AccountSettings = lazy(() =>
 const ListaInteres = lazy(() =>
   import("./components/ListaInteres/ListaInteres")
 );
+const Comunicacion = lazy(() =>
+  import("./components/Comunicacion/Comunicacion")
+);
 const Mapa = lazy(() => import("./components/Mapa/Mapa"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
 
@@ -45,6 +48,11 @@ const router = createBrowserRouter([
         path: "/identificacion",
         loader: async () => ((await is.notAuth()) ? null : redirect("/home")),
         Component: Identification,
+      },
+      {
+        path: "/comunicacion",
+        loader: async () => ((await is.auth()) ? null : redirect("/home")),
+        Component: Comunicacion,
       },
       {
         path: "/configuracion",
