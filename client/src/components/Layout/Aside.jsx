@@ -13,6 +13,7 @@ import {
   FaStar,
   FaMapMarkedAlt,
   FaAddressCard,
+  FaRocketchat,
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
@@ -46,10 +47,15 @@ function SideBar({ setTrigger }) {
       {user === userOptions.rector && (
         <>
           <AsideIcon url="/admision" Icon={FaAddressCard} texto="ADMISIÓN" />
+          
+        </>
+      )}
+      {user === userOptions.rector && (
+        <>
           <AsideIcon
-            url="/segundainstancia"
-            Icon={FaAddressCard}
-            texto="SEGUNDA INSTANCIA"
+            url="/comunicacion"
+            Icon={FaRocketchat}
+            texto="COMUNICACIÓN"
           />
         </>
       )}
