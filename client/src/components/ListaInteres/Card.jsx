@@ -3,7 +3,7 @@ import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { List } from "antd";
+import { List, theme } from "antd";
 import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 import { useOutletContext } from "react-router-dom";
 
@@ -16,6 +16,7 @@ function Card({
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
   const { token } = useOutletContext();
+  const { ["token"]: antd } = theme.useToken();
 
   useEffect(() => {
     (async () => {
@@ -32,6 +33,8 @@ function Card({
     <>
       {universidad && (
         <List.Item
+        className="px-4 my-4"
+        style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           extra={
             <section className="grid gap-8">
               <button
