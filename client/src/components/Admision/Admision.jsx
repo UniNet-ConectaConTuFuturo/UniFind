@@ -7,6 +7,9 @@ const Modal = lazy(() => import("../UI/Modal"));
 //CSS
 import "../ListaInteres/ListaInteres.css";
 import { useLoaderData } from "react-router-dom";
+//Scrollbar
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
 
 function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
@@ -117,7 +120,7 @@ function Admision() {
   };
   return (
     <main className="bg-teal-700 h-screen py-8">
-      <div className="ml-40 mr-4 pr-8 h-full overflow-y-scroll">
+      <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
         <h1
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
