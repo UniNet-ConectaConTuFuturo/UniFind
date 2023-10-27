@@ -1,34 +1,67 @@
 import "./Comunicacion.css";
+import { Suspense, lazy, useState } from "react";
+//Components
+import { Collapse, theme, Empty, List } from "antd";
+import Comunicacion from "./sendTicket";
 
-function Comunicacion() {
-  return (
-    <main className="bg-teal-700 h-screen py-8">
-    <div className="ml-40 mr-4 pr-8 h-full overflow-y-scroll">
-      <h1
-        style={{ background: "#fff2" }}
-        className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
-      >
-        Solicitudes de Comunicación
-      </h1>
-      <br></br>
-      <div class="card silhouette">
-      
-        <div class="card-title"><b><i>Solicitud de Comunicación</i></b></div>
-        <div class="info">
-            <div class="name"><b>Nombre:</b> Pablo Gambacorta</div>
-            <div class="email"><b>Email:</b> email@example.com</div>
-            <div class="tel"><b>Teléfono:</b> +54 11 3345-2312</div>
+  
+  function ListaComunicacion() {
+  const panelStyle = 'tuEstilo';
+  const empty = (
+    <Empty
+      imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
+      style={{ fontWeight: 700 }}
+      description="Lista vacia"
+      image={Empty.PRESENTED_IMAGE_SIMPLE}
+    />
+    );
+    const getItems = (panelStyle) => [
+      {
+        key: 1,
+        label: "PENDIENTES",
+        style: panelStyle,
+        children: pendiente.length ? (
+          <Comunicacion/>
+          ) : (
+            empty
+          ),
+      },
+      {
+        key: 1,
+        label: "ACEPTADOS",
+        style: panelStyle,
+        children: pendiente.length ? (
+          <Comunicacion/>
+          ) : (
+            empty
+          ),
+      },
+      ]; 
+  
+    return (
+      <main className="bg-teal-700 h-screen py-8">
+        <div className="ml-40 mr-4 pr-8 h-full overflow-y-scroll">
+          <h1
+            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+            className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
+          >
+            Interesados
+          </h1>
+          <Suspense>
+            <Collapse
+              className="bg-transparent"
+              bordered={false}
+              items={getItems(panelStyle)}
+            />
+          </Suspense>
         </div>
-        <div class="buttons button-container">
-            <button class="button button-green">Aceptar Comunicación</button>
-            <button class="button button-red">Rechazar Comunicación</button>
-        </div>
-        
-    </div>
-    </div>
-
-    </main>
-  )
-}
+        <Suspense>
+          <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
+            <Examen cartaName={cartaName} />
+          </Modal>
+        </Suspense>
+      </main>
+    );
+  }
 
 export default Comunicacion
