@@ -5,8 +5,8 @@ function Modal({ trigger, setTrigger, children }) {
   return (
     <>
       {trigger && (
-        <div className="popup z-50 fixed top-0 left-0 w-full h-screen flex justify-center items-center">
-          <div className="popup-cont relative p-8 w-full bg-white">
+        <div className="popup z-50 fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-75">
+          <div className="popup-cont relative p-8 w-full max-w-xl bg-white rounded-2xl">
             <button
               className="close absolute top-4 left-4 text-red-600"
               onClick={() => setTrigger(false)}

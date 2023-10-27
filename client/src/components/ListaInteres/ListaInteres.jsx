@@ -7,6 +7,7 @@ import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
 import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
+import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
 function ListaInteres() {
   const favoritas = useLoaderData();
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
@@ -55,7 +56,9 @@ function ListaInteres() {
       <Modal
         trigger={buttonPopUpVerMas}
         setTrigger={setButtonPopUpVerMas}
-      ></Modal>
+      >
+        <CarrerasUni id_universidad={idUniToShowInfo} />
+      </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
         <FileUpload id_universidad={idUniToShowInfo} />

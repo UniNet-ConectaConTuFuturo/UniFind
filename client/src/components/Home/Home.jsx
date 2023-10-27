@@ -1,4 +1,5 @@
 import "./home.css"
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -24,7 +25,7 @@ function Home() {
     <div className="home-cont flex flex-col w-full h-screen relative">
 
 
-    <a href="/mapa" className="h-1/2  ">
+    <Link to="/admision" className="h-1/2">
       <div class="w-full h-full relative">
         <img class="w-full h-full object-cover" src="/images/universidad1.png" />
         <div class="gradiente right w-full h-full left-0 top-0 absolute">
@@ -33,10 +34,10 @@ function Home() {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
 
 
-    <a href="#" className="h-1/2">
+    <Link to="/admision" className="h-1/2">
       <div class="w-full h-full relative">
         <img class="w-full h-full object-cover" src="/images/examen.png" />
         <div class="gradiente left w-full h-full left-0 top-0 absolute">
@@ -45,7 +46,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </a>
+      </Link>
 
     </div>
     </>
