@@ -66,6 +66,7 @@ function SelectUniversidad({
           }
           handleBlur(e);
         }}
+        
         loadOptions={asyncLoadOptions}
         isLoading={isLoading}
       />

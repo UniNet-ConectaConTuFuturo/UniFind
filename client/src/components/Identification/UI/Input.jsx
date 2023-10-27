@@ -15,7 +15,7 @@ function Input({ handleChange, handleBlur, type, Name, value, span, label }) {
         onBlur={handleBlur}
       />
       <span>{span}</span>
-      <label className="" htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 }
