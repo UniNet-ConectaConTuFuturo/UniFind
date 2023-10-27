@@ -1,9 +1,10 @@
 import { Suspense, lazy, useState } from "react";
 //Components
-import { Collapse, theme, Empty, List } from "antd";
+import { Collapse, theme, List } from "antd";
 import Interesado from "./Interesado";
 const Examen = lazy(() => import("./Examen"));
 const Modal = lazy(() => import("../UI/Modal"));
+const CustomEmpty = lazy(()=>import("../UI/CustomEmpty"))
 //CSS
 import "../ListaInteres/ListaInteres.css";
 import { useLoaderData } from "react-router-dom";
@@ -15,15 +16,6 @@ function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
   const [cartaName, setCartaName] = useState("");
-  const empty = (
-    <Empty
-      imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
-      style={{ fontWeight: 700 }}
-      description="Lista vacia"
-      image={Empty.PRESENTED_IMAGE_SIMPLE}
-    />
-  ); 
-  console.log("admision", aceptada, pendiente, rechazada, segunda_instancia);
   const getItems = (panelStyle) => [
     {
       key: 1,
@@ -43,7 +35,7 @@ function Admision() {
           )}
         />
       ) : (
-        empty
+        <CustomEmpty/>
       ),
     },
     {
@@ -64,7 +56,7 @@ function Admision() {
           )}
         />
       ) : (
-        empty
+        <CustomEmpty/>
       ),
     },
     {
@@ -85,7 +77,7 @@ function Admision() {
           )}
         />
       ) : (
-        empty
+        <CustomEmpty/>
       ),
     },
     {
@@ -106,7 +98,7 @@ function Admision() {
           )}
         />
       ) : (
-        empty
+        <CustomEmpty/>
       ),
     },
   ];

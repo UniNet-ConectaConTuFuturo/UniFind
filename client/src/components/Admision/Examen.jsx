@@ -1,5 +1,6 @@
 import { post } from "../../api/api";
 import FileDownload from "./FileDownload";
+import './estilos.css';
 
 function Examen({ cartaName }) {
   const {id_usuario, nombreSoli} = cartaName
@@ -30,14 +31,12 @@ function Examen({ cartaName }) {
   return (
     <div className="w-full">
       <form className="w-full full h-48">
-        <textarea defaultValue="Usted ha sido seleccionado para pasar a la etapa de segunda instancia.
-          Para demostrar que merece estar en nuestra institución, deberá
-          presentarse el X día a las X horas." className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden"/>
+        <p className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden">Bienvenido al centro de mando. Aquí podrá: <br></br><ol><li > * Descargar la carta de la solicitud.<br></br></li><li>* Aceptar al Ingresante<br></br></li><li>* Rechazar al Ingresante<br></br></li><li>* Enviar al Ingresante a Segunda Instancia</li></ol></p>
         {/* <button className="text-black">Generar Exámen</button> */}
         <FileDownload />
-        <button className="text-black" onClick={aceptarCarta}>Aceptar Carta</button>
-        <button className="text-black" onClick={rechazarCarta}>Rechazar Carta</button>
-        <button className="text-black" onClick={segundainstanciaCarta}>Segunda Instancia</button>
+    <button class="boton aceptar" onClick={aceptarCarta}>Aceptar Carta</button>
+    <button class="boton rechazar" onClick={rechazarCarta}>Rechazar Carta</button>
+    <button class="boton segunda-instancia" onClick={segundainstanciaCarta}>Segunda Instancia</button>
       </form>
     </div>
   );
