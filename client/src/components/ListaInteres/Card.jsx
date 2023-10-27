@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { List, theme } from "antd";
 import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 
 function Card({
   setButtonPopUpVerMas,
@@ -15,6 +16,7 @@ function Card({
 }) {
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
+  const [estadoTicket, setEstadoTicket] = useState(null);
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
 
@@ -28,6 +30,32 @@ function Card({
       setEstadoCarta(await get("/verestado", { id_universidad, token }));
     })();
   }, [id_universidad]);
+  useEffect(() => {
+    (async ()=> {
+      setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
+    })();
+  }, [id_universidad]);
+
+  
+
+  const sendTicket = async ()=>{
+    const formData = new FormData()
+    formData.append('idUniversidad',id_universidad);
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/enviarticket",
+        formData,
+        {
+          headers:{
+            Authorization : `Bearer ${token}`
+          },
+        }
+      );
+      console.log(res)
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
   console.log(estadoCarta);
   return (
     <>
@@ -65,15 +93,19 @@ function Card({
                   Enviar Carta
                 </button>
               )}
+              {estadoTicket==="pendiente" ? (
+                <p className="">Estado: {estadoTicket}</p>
+              ) : estadoTicket ==="aceptado" ? (
+                <p className="">Estado: {estadoTicket}</p>
+              ):(
                 <button
                   className="w-24 border rounded-md p-2 text-center"
-                  onClick={() => {
-                    setIdUniToShowInfo(id_universidad);
-                    
-                  }}
+                  onClick={sendTicket}
                 >
                   Consultar
                 </button>
+              )}
+                
             </section>
           }
         >

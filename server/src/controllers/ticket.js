@@ -19,6 +19,29 @@ export async function sendTicket(req, res){
       }
 }
 
+export async function estadoTicket(req, res) {
+  const { id_universidad, token } = req.body;
+  try {
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      const data = await consultas.selectEstadoTicket(id, id_universidad);
+      console.log(data)
+      if(data.length > 0){ 
+        console.log("estado: ",data) 
+        return res.json(data).end()
+        
+      }else{
+        return res.status(200).end()
+      }
+    })
+  } catch (err) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
+
 export async function getTicket(req, res) {
   const token = req.headers.authorization.split(" ")[1];
   const id_universidad = req.body.idUniversidad;
