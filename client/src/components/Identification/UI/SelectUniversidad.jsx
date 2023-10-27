@@ -25,7 +25,7 @@ function SelectUniversidad({
   const spanRef = useRef(null);
   const labelRef = useRef(null);
   return (
-    <div className="inputbox">
+    <div className="inputbox relative my-3 border-b-2 border-b-white w-96">
       <AsyncSelect
         styles={{
           control: () => ({
@@ -47,6 +47,7 @@ function SelectUniversidad({
         name="id_universidad"
         placeholder=""
         defaultOptions
+        menuPlacement="auto"
         onChange={(option) => {
           handleChange({
             target: {
