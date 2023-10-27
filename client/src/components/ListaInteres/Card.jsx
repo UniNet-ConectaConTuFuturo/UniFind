@@ -61,8 +61,8 @@ function Card({
     <>
       {universidad && (
         <List.Item
-        className="px-4 my-4"
-        style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+          className="px-4 my-4"
+          style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           extra={
             <section className="grid gap-8">
               <button
@@ -80,7 +80,7 @@ function Card({
               >
                 Ver En Mapa
               </Link>
-              {estadoCarta!=null ? (
+              {estadoCarta != null ? (
                 <p className="">Estado: {estadoCarta}</p>
               ) : (
                 <button
