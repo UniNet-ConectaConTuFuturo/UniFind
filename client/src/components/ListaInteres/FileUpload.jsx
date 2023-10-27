@@ -52,24 +52,26 @@ function FileUpload({ id_universidad }) {
   };
   return (
     <>
+    <div className="File-cont justify-center">
       <h2 className="text-black">
         <b>Seleccione el formato de Carta</b>
       </h2>
-      <h3 className="text-black">Adjuntar carta:</h3>
-      <div className="app text-black">
-        <div className="App">
-          <input type="file" onChange={saveFile} />
-          <br />
-          <button onClick={uploadFile}>Upload</button>
+
+      <div className="structure grid grid-cols-2">
+        <div className="adjutar">
+          <h3 className="text-black block">Adjuntar carta:</h3>
+              <input className="block" type="file" onChange={saveFile} />
+              <br />
+              <button onClick={uploadFile}>Upload</button>
+        </div>
+        <div className="generar">
+          <h3 className="text-black">Generar carta:</h3>
+          <button className="text-black" onClick={uploadFile}>
+          Generar Carta
+          </button>
         </div>
       </div>
-      <br />
-      <br />
-      <h3 className="text-black">Generar carta:</h3>
-      <button className="text-black" onClick={uploadFile}>
-        Generar Carta
-      </button>
-      
+    </div>
     </>
   );
 }
