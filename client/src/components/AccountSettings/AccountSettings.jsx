@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { post } from "../../api/api";
 import { useOutletContext } from "react-router-dom";
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
 function AccountSettings() {
   const { token } = useOutletContext();
   const formNuevo = {
@@ -20,7 +22,7 @@ function AccountSettings() {
     await post("/config-account", { form, token });
   }
   return (
-    <div className="flex flex-col h-screen w-full ">
+    <div data-simplebar className="flex flex-col h-screen w-full">
       <div className="py-6  bg-dark">
         <div className="container-fluid">
           <div className="row">

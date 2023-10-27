@@ -24,6 +24,8 @@
     "react-rnd": "^10.4.1",
     "react-router-dom": "^6.14.2",
     "react-select": "^5.7.4",
+    "resize-observer-polyfill": "^1.5.1",
+    "simplebar": "^6.2.5",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {

@@ -144,7 +144,7 @@ const DataForm = forwardRef(function DataForm(
           />
         )}
 
-        <input className="text-white" type="submit" />
+      <input className="text-black w-full bg-white h-10 rounded-xl" type="submit" />
       </form>
       <a className="text-white inline" href="#" onClick={changeToLogin}>
         Ya tengo una cuenta

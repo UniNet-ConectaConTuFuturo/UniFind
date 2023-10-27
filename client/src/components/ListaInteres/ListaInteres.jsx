@@ -7,6 +7,11 @@ import FileUpload from "./FileUpload";
 import Modal from "../UI/Modal";
 import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
+import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
+/* Scrollbar */
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
+
 function ListaInteres() {
   const favoritas = useLoaderData();
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
@@ -16,7 +21,7 @@ function ListaInteres() {
   console.log(favoritas);
   return (
     <main className="bg-teal-700 h-screen py-8">
-      <div className="ml-40 mr-4 pr-8 h-full overflow-y-scroll">
+      <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
         <h1
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
@@ -55,7 +60,9 @@ function ListaInteres() {
       <Modal
         trigger={buttonPopUpVerMas}
         setTrigger={setButtonPopUpVerMas}
-      ></Modal>
+      >
+        <CarrerasUni id_universidad={idUniToShowInfo} />
+      </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
         <FileUpload id_universidad={idUniToShowInfo} />
