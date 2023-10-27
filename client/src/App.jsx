@@ -67,7 +67,7 @@ const router = createBrowserRouter([
             ? get("/getfavorites", {
                 token: localStorage.getItem("TokenUniNet"),
               })
-            : redirect("/home"),
+            : redirect("/identificacion"),
         Component: ListaInteres,
       },
       {
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
             ? get("/get/soli", {
                 token: localStorage.getItem("TokenUniNet"),
               })
-            : redirect("/home"),
+            : redirect("/listainteres"),
         Component: Admision,
       },
     ],
