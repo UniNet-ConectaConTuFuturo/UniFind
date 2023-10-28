@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
+import { UploadOutlined } from '@ant-design/icons';
+import { Button, message, Upload, UploadProps } from 'antd';
 
 function FileUpload({ id_universidad }) {
   const { token } = useOutletContext();
@@ -52,7 +54,7 @@ function FileUpload({ id_universidad }) {
   };
   return (
     <>
-    <div className="File-cont justify-center">
+    <div className="File-cont justify-center pt-2 pl-10">
       <h2 className="text-black">
         <b>Seleccione el formato de Carta</b>
       </h2>
