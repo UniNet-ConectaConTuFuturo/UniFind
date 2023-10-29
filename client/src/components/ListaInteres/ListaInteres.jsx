@@ -9,8 +9,8 @@ import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
 /* Scrollbar */
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
+import "simplebar";
+import "simplebar/dist/simplebar.css";
 
 function ListaInteres() {
   const favoritas = useLoaderData();
@@ -57,17 +57,13 @@ function ListaInteres() {
         )}
       </div>
 
-      <Modal
-        trigger={buttonPopUpVerMas}
-        setTrigger={setButtonPopUpVerMas}
-      >
+      <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
         <CarrerasUni id_universidad={idUniToShowInfo} />
       </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
         <FileUpload id_universidad={idUniToShowInfo} />
       </Modal>
-
     </main>
   );
 }

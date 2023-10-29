@@ -19,7 +19,7 @@ function DatosUni({ universidad }) {
     correo_universidad,
   } = universidad;
   return (
-    <section>
+    <section className="grid gap-2">
       <NoRefererLink
         href={maps_universidad}
         Icon={FaMapMarkerAlt}

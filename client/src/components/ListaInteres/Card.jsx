@@ -3,10 +3,11 @@ import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { List, theme } from "antd";
+import { Tooltip, theme } from "antd";
 import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import { twMerge } from "tailwind-merge";
 
 function Card({
   setButtonPopUpVerMas,
@@ -24,52 +25,105 @@ function Card({
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
-    })();
-  }, [id_universidad]);
-  useEffect(()=>{
-    (async()=>{
+      setMailRector(await get("/getmail", { id_universidad }));
       setEstadoCarta(await get("/verestado", { id_universidad, token }));
-    })();
-  });
-  useEffect(() => {
-    (async ()=> {
       setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
     })();
-  });
-  useEffect(()=> {
-    (async ()=>{
-      setMailRector(await get("/getmail", { id_universidad }));
-    })();
-  }, [id_universidad]);
-  const sendTicket = async ()=>{
-    const formData = new FormData()
-    formData.append('idUniversidad',id_universidad);
+  }, [id_universidad, token]);
+  const sendTicket = async () => {
+    const formData = new FormData();
+    formData.append("idUniversidad", id_universidad);
     try {
       const res = await axios.post(
         "http://localhost:4000/api/enviarticket",
         formData,
         {
-          headers:{
-            Authorization : `Bearer ${token}`
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(res)
+      console.log(res);
     } catch (ex) {
       console.log(ex);
     }
-  }
-  console.log("carta: ",estadoCarta);
-  console.log("Estado ticket: ",estadoTicket) 
+  };
+  console.log("carta: ", estadoCarta);
+  console.log("Estado ticket: ", estadoTicket);
   console.log("mail", mailRector);
   return (
     <>
       {universidad && (
-        <List.Item
-          className="px-4 my-4"
+        <div
+          className="px-4 py-3 mb-3 overflow-x-auto"
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-          extra={
-            <section className="grid gap-8">
+        >
+          <section className="flex justify-between gap-2 mb-3">
+            <h3 className="text-xl min-w-[12rem]">
+              {universidad.nombre_universidad}
+            </h3>
+
+            <div className="text-xs flex justify-end gap-4 opacity-60">
+              {estadoCarta && (
+                <p className="flex flex-wrap h-fit gap-x-1 justify-center">
+                  <span className="block h-fit">carta:</span>
+                  <span className="block h-fit text-amber-500">
+                    {estadoCarta}
+                  </span>
+                </p>
+              )}
+              {estadoCarta && (
+                <p className="flex flex-wrap h-fit gap-x-1 justify-center">
+                  <span className="block h-fit text-nowrap">
+                    ticket consulta:
+                  </span>
+                  <span className="block h-fit text-amber-500">
+                    {estadoTicket}
+                  </span>
+                </p>
+              )}
+            </div>
+          </section>
+          <div className="gap-4 flex justify-between">
+            <DatosUni universidad={universidad} />
+            <section className="grid gap-2">
+              {!estadoCarta && (
+                <button
+                  className="w-24 border rounded-md p-2 text-center"
+                  onClick={() => {
+                    setIdUniToShowInfo(id_universidad);
+                    setButtonPopUpCarta(true);
+                  }}
+                >
+                  Enviar Carta
+                </button>
+              )}
+              {estadoTicket ? (
+                <Tooltip
+                  title={estadoTicket === "aceptado" ? "" : estadoTicket}
+                >
+                  <Link
+                    className={twMerge(
+                      "w-24 border rounded-md p-2 text-center",
+                      estadoTicket === "aceptado"
+                        ? ""
+                        : "opacity-50 cursor-default hover:text-inherit"
+                    )}
+                    to={
+                      estadoTicket === "aceptado" ? `mailto:${mailRector}` : ""
+                    }
+                  >
+                    Enviar Consulta
+                  </Link>
+                </Tooltip>
+              ) : (
+                <button
+                  className="w-24 border rounded-md p-2 text-center"
+                  onClick={sendTicket}
+                >
+                  Consultar
+                </button>
+              )}
               <button
                 className="w-24 border rounded-md p-2 text-center"
                 onClick={() => {
@@ -85,45 +139,9 @@ function Card({
               >
                 Ver En Mapa
               </Link>
-              {estadoCarta != null ? (
-                <p className="">Estado: {estadoCarta}</p>
-              ) : (
-                <button
-                  className="w-24 border rounded-md p-2 text-center"
-                  onClick={() => {
-                    setIdUniToShowInfo(id_universidad);
-                    setButtonPopUpCarta(true);
-                  }}
-                >
-                  Enviar Carta
-                </button>
-              )}
-              {estadoTicket==="pendiente" ? (
-                <p className="w-24 border rounded-md p-2 text-center">Estado: {estadoTicket}</p>
-              ) : estadoTicket ==="aceptado" ? (
-                <Link
-                className="w-24 border rounded-md p-2 text-center"
-                to={`mailto:${mailRector}`}
-                >  
-                  Enviar Consulta
-                </Link>
-              ):(
-                <button
-                  className="w-24 border rounded-md p-2 text-center"
-                  onClick={sendTicket}
-                >
-                  Consultar
-                </button>
-              )}
-                
             </section>
-          }
-        >
-          <List.Item.Meta
-            title={universidad.nombre_universidad}
-            description={<DatosUni universidad={universidad} />}
-          />
-        </List.Item>
+          </div>
+        </div>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 const Icon_Text = ({ Icon, text }) => (
-  <p className="my-1">
-    <Icon size="30" color="#FF6700" className="inline-block pb-1 my-3 pl-1" />
+  <p className="flex justify-start gap-2">
+    <Icon size="25" color="#FF6700" />
     {text}
   </p>
 );
