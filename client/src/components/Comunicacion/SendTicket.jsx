@@ -59,10 +59,10 @@ function SendTicket({
                     estado != 1 ? (
                     <section className="grid gap-8">
                         
-                        <button onClick={acceptTicket}>
+                        <button className="w-36 border rounded-md p-2 text-center" onClick={acceptTicket}>
                             Aceptar Comunicacion
                         </button>
-                        <button onClick={declineTicket}>
+                        <button className="w-36 border rounded-md p-2 text-center" onClick={declineTicket}>
                             Rechazar Comunicacion
                         </button>
                     </section>):(<p>Comunicacion aceptada</p>)

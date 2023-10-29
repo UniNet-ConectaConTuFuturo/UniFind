@@ -28,7 +28,7 @@ function Interesado({
         title={usuario.name_user}
         items={items}
         extra={
-          <button
+          <button className="w-28 border rounded-md p-2 text-center"
             onClick={() => {
               setCartaName({nombreSoli, id_usuario});
               setButtonPopUpExamen(true);
