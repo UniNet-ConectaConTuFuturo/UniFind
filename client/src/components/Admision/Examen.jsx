@@ -1,6 +1,6 @@
 import { post } from "../../api/api";
 import FileDownload from "./FileDownload";
-import './estilos.css';
+import './Examen.css';
 
 function Examen({ cartaName }) {
   const {id_usuario, nombreSoli} = cartaName
