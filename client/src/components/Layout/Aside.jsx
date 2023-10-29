@@ -54,7 +54,7 @@ function SideBar({ setTrigger }) {
         <>
           <AsideIcon
             url="/comunicacion"
-            Icon={FaRocketchat}
+            Icon={HiChatBubbleLeftRight}
             texto="COMUNICACIÓN"
           />
         </>
