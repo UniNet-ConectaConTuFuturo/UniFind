@@ -78,8 +78,8 @@ function FileUpload({ id_universidad }) {
         <h2 className="text-black block text-center text-xl">
           <b>Seleccione el formato de Carta</b>
         </h2>
-        <div className="structure grid grid-cols-2">
-          <div className="adjuntar">
+        <div className="structure grid grid-cols-2 gap-10">
+          <div className="adjuntar item-grid">
             <Form.Item label="Adjuntar carta:" name={"AdjuntarCarta"} wrapperCol={{ offset: 4, span: 16 }} rules={[{
               required:"true",
               message:"Por favor subir la carta"
@@ -95,7 +95,7 @@ function FileUpload({ id_universidad }) {
             <input className="block" type="file" onChange={saveFile} /> 
             <button className="block" onClick={uploadFile}>Upload</button> */}
           </div>
-          <div className="generar pl-10">
+          <div className="generar">
             <Form.Item label="Generar carta:" name={"GenerarCarta"} wrapperCol={{ offset: 4, span: 16 }} rules={[{
               required:"true",
             }]}>
