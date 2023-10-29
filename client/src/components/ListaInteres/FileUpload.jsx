@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload, UploadProps } from 'antd';
+import { Button, message, Upload } from 'antd';
 
 function FileUpload({ id_universidad }) {
   const { token } = useOutletContext();

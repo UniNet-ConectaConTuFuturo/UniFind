@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import pool from "../connection.js";
+import { rejects } from "assert";
 
 export function insertTicket(userID, uniID){
     return new Promise((resolve, reject) =>{
@@ -40,4 +41,16 @@ export function selectTicket(select, where){
             }
         )
     })
+}
+
+export function selectTicketRector(id){
+  return new Promise((resolve, reject)=>{
+    pool.query(
+      `SELECT u.id_usuario, u.mail_user, u.tel_user, t.estado as estadoticket from usuarios u JOIN tickets t on u.id_usuario = t.id_usuario AND t.id_universidad = (SELECT id_universidad from usuarios WHERE id_usuario= ${id})`,
+      (err,data)=>{
+        if(err) reject(err);
+        resolve(data);
+      }
+    )
+  })
 }

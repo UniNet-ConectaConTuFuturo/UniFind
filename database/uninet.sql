@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2023 a las 22:04:48
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 29-10-2023 a las 02:43:17
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `uninet`
 --
 
-CREATE DATABASE IF NOT EXISTS `uninet`;
-use `uninet`;
 -- --------------------------------------------------------
 
 --
@@ -3390,6 +3388,13 @@ CREATE TABLE `favoritas` (
   `id_universidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `favoritas`
+--
+
+INSERT INTO `favoritas` (`id_usuario`, `id_universidad`) VALUES
+(2, 63);
+
 -- --------------------------------------------------------
 
 --
@@ -3402,6 +3407,37 @@ CREATE TABLE `solicitudes` (
   `solicitud` varchar(255) NOT NULL,
   `estado` enum('aceptada','rechazada','pendiente','senguda instancia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`id_usuario`, `id_universidad`, `solicitud`, `estado`) VALUES
+(2, 63, 'ajam', 'pendiente'),
+(2, 63, 'ajam', 'pendiente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tickets`
+--
+
+CREATE TABLE `tickets` (
+  `id_usuario` int(11) NOT NULL,
+  `id_universidad` int(11) NOT NULL,
+  `estado` enum('pendiente','aceptado','rechazado') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tickets`
+--
+
+INSERT INTO `tickets` (`id_usuario`, `id_universidad`, `estado`) VALUES
+(2, 63, 'pendiente'),
+(2, 63, 'pendiente'),
+(2, 63, 'pendiente'),
+(2, 63, 'pendiente'),
+(2, 63, 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -3519,10 +3555,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `id_universidad`) 
-  VALUES (1, "rector@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, 63);
-INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`) 
-  VALUES (2, "ingresante@gmail.com ", "admin", "uninet", "2023-01-01", "admin", 1, "Informatico");
+INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`, `id_universidad`) VALUES
+(1, 'rector@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', 1, NULL, 63),
+(2, 'ingresante@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', 1, 'Informatico', NULL);
 
 -- --------------------------------------------------------
 
@@ -3562,6 +3597,13 @@ ALTER TABLE `favoritas`
 -- Indices de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_universidad` (`id_universidad`);
+
+--
+-- Indices de la tabla `tickets`
+--
+ALTER TABLE `tickets`
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_universidad` (`id_universidad`);
 
@@ -3623,6 +3665,13 @@ ALTER TABLE `favoritas`
 ALTER TABLE `solicitudes`
   ADD CONSTRAINT `solicitudes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `solicitudes_ibfk_2` FOREIGN KEY (`id_universidad`) REFERENCES `universidades` (`id_universidad`);
+
+--
+-- Filtros para la tabla `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`id_universidad`) REFERENCES `universidades` (`id_universidad`);
 
 --
 -- Filtros para la tabla `usuarios`

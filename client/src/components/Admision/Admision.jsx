@@ -16,6 +16,7 @@ function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
   const [cartaName, setCartaName] = useState("");
+  console.log("estado", pendiente);   
   const getItems = (panelStyle) => [
     {
       key: 1,

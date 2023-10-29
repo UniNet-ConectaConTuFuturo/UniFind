@@ -4,23 +4,44 @@ import { Suspense, lazy, useState } from "react";
 import { Collapse, theme, List } from "antd";
 import SendTicket from "./SendTicket";
 const CustomEmpty = lazy(()=>import("../UI/CustomEmpty"))
+import { useLoaderData } from "react-router-dom";
 
   
 function Comunicacion() {
-  /* const { aceptada, pendiente } = useLoaderData(); */
-  const pendiente = [1], aceptada = [];
+  const { aceptada, pendiente } = useLoaderData();
+  console.log("estado:", pendiente);
+  console.log("estado aceptado", aceptada) 
   const getItems = (panelStyle) => [
     {
       key: 1,
       label: "PENDIENTES",
       style: panelStyle,
-      children: pendiente.length ? <SendTicket /> : <CustomEmpty/>,
+      children: pendiente.length ? (
+        <List
+          dataSource={pendiente}
+          renderItem={(u)=>(
+            <SendTicket
+              key={u.id_usuario}
+              mail_user = {u.mail_user}
+              tel_user={u.tel_user}
+              />
+          )}/>) : <CustomEmpty/>,
     },
     {
       key: 2,
       label: "ACEPTADOS",
       style: panelStyle,
-      children: aceptada.length ? <SendTicket /> : <CustomEmpty/>,
+      children: aceptada.length ? (
+        <List
+          dataSource={aceptada}
+          renderItem={(u)=>(
+            <SendTicket
+              key={u.id_usuario}
+              mail_user = {u.mail_user}
+              tel_user={u.tel_user}
+              />
+              
+          )}/>) : <CustomEmpty/>,
     },
   ];
   const { ["token"]: antd } = theme.useToken();

@@ -51,7 +51,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/comunicacion",
-        loader: async () => ((await is.auth()) ? null : redirect("/home")),
+        loader: async () => 
+          (await is.rector()
+            ? get("/estadoticketrector", {
+              token: localStorage.getItem("TokenUniNet"),
+            }) : redirect("/home")),
         Component: Comunicacion,
       },
       {

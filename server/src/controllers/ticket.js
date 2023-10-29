@@ -74,3 +74,29 @@ export async function getTicket(req, res) {
     res.status(404).end();
   }
 }
+
+export async function getTicketV2(req, res) {
+  const {token} = req.body
+  try {
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+      if (err) throw err;
+      const { id } = decoded;
+      const data = await consultas.selectTicketRector(id);
+      console.log("datos:",data);
+      return res
+        .json({
+          pendiente: data.filter(
+            (ticket) => ticket.estadoticket === "pendiente"
+          ),
+          aceptada: data.filter(
+            (ticket) => ticket.estadoticket === "aceptado"
+            ),
+        })
+        .end();
+    });
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}
