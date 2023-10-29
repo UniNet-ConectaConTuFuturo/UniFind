@@ -29,20 +29,12 @@ function SideBar({ setTrigger }) {
       )}
       <AsideIcon url="/mapa" Icon={FaMapMarkedAlt} texto="MAPA" />
       {user !== userOptions.rector && (
-        <>
           <AsideIconLock
             url="/listainteres"
             Icon={FaStar}
             texto="FAVORITOS"
             condition={user === userOptions.noAuthenticated}
           />
-          <AsideIconLock
-            url="/chat/ingresante"
-            Icon={HiChatBubbleLeftRight}
-            texto="CHAT"
-            condition={user === userOptions.noAuthenticated}
-          />
-        </>
       )}
       {user === userOptions.rector && (
         <>
