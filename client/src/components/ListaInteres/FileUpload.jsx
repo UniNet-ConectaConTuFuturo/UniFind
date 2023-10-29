@@ -85,7 +85,7 @@ function FileUpload({ id_universidad }) {
               message:"Por favor subir la carta"
             }]}>
               <Upload {...props} type="file" customRequest={saveFile}>
-                <Button icon={<UploadOutlined />}>Subir archivo txt</Button>
+                <Button icon={<UploadOutlined />}>Subir archivo .txt</Button>
               </Upload>
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
