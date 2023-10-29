@@ -1,12 +1,53 @@
 import { Descriptions, List } from "antd";
 import axios from "axios";
-import { useState, useEffect } from "react";
-function SendTicket({mail_user,tel_user}) {
+import { useOutletContext } from "react-router-dom";
+
+function SendTicket({
+    user,
+    mail_user,
+    tel_user,
+    id_usuario,
+    estado 
+    }){
     const items = [
+        { label: "Nombre", children: user, span: 1 },
         { label: "Correo", children: mail_user, span: 1 },
         { label: "Telefono", children: tel_user, span: 1 },
-    ]
 
+    ]
+    const { token } = useOutletContext();
+    console.log("token", token)
+    const acceptTicket = async ()=>{
+        const formData = new FormData()
+        formData.append('id_usuario',id_usuario);
+        formData.append('estado',"aceptado")
+        formData.append('token', token)
+        try {
+        const res = await axios.post(
+            "http://localhost:4000/api/aceptarticket",
+            formData
+        );
+        console.log(res)
+        } catch (ex) {
+        console.log(ex);
+        }
+    }
+    const declineTicket = async ()=>{
+        const formData = new FormData()
+        formData.append('id_usuario',id_usuario);
+        formData.append('estado',"rechazado")
+        formData.append('token', token)
+        try {
+        const res = await axios.post(
+            "http://localhost:4000/api/rechazarticket",
+            formData
+        );
+        console.log(res)
+        } catch (ex) {
+        console.log(ex);
+        }
+    }
+    console.log(estado  )
     
     return (
         <List.Item>
@@ -14,15 +55,17 @@ function SendTicket({mail_user,tel_user}) {
                 size="small"
                 title="Solicitud de Comunicación"
                 items={items}
-                extra={
+                extra={ 
+                    estado != 1 ? (
                     <section className="grid gap-8">
-                        <button>
+                        
+                        <button onClick={acceptTicket}>
                             Aceptar Comunicacion
                         </button>
-                        <button>
+                        <button onClick={declineTicket}>
                             Rechazar Comunicacion
                         </button>
-                    </section>
+                    </section>):(<p>Comunicacion aceptada</p>)
                   }/>
         </List.Item>
         /*<div className="card silhouette">

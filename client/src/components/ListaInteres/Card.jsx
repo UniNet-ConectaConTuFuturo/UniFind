@@ -17,6 +17,7 @@ function Card({
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
   const [estadoTicket, setEstadoTicket] = useState(null);
+  const [mailRector, setMailRector] = useState(null);
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
 
@@ -29,15 +30,17 @@ function Card({
     (async()=>{
       setEstadoCarta(await get("/verestado", { id_universidad, token }));
     })();
-  }, [id_universidad]);
+  });
   useEffect(() => {
     (async ()=> {
       setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
     })();
+  });
+  useEffect(()=> {
+    (async ()=>{
+      setMailRector(await get("/getmail", { id_universidad }));
+    })();
   }, [id_universidad]);
-
-  
-
   const sendTicket = async ()=>{
     const formData = new FormData()
     formData.append('idUniversidad',id_universidad);
@@ -56,7 +59,9 @@ function Card({
       console.log(ex);
     }
   }
-  console.log(estadoCarta);
+  console.log("carta: ",estadoCarta);
+  console.log("Estado ticket: ",estadoTicket) 
+  console.log("mail", mailRector);
   return (
     <>
       {universidad && (
@@ -94,9 +99,14 @@ function Card({
                 </button>
               )}
               {estadoTicket==="pendiente" ? (
-                <p className="">Estado: {estadoTicket}</p>
+                <p className="w-24 border rounded-md p-2 text-center">Estado: {estadoTicket}</p>
               ) : estadoTicket ==="aceptado" ? (
-                <p className="">Estado: {estadoTicket}</p>
+                <Link
+                className="w-24 border rounded-md p-2 text-center"
+                to={`mailto:${mailRector}`}
+                >  
+                  Enviar Consulta
+                </Link>
               ):(
                 <button
                   className="w-24 border rounded-md p-2 text-center"

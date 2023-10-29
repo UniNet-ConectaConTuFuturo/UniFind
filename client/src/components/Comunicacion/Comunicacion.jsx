@@ -22,13 +22,16 @@ function Comunicacion() {
           renderItem={(u)=>(
             <SendTicket
               key={u.id_usuario}
+              user= {u.name_user}
               mail_user = {u.mail_user}
               tel_user={u.tel_user}
+              id_usuario={u.id_usuario}
+              estado={0}
               />
           )}/>) : <CustomEmpty/>,
     },
     {
-      key: 2,
+      key: 2, 
       label: "ACEPTADOS",
       style: panelStyle,
       children: aceptada.length ? (
@@ -36,9 +39,12 @@ function Comunicacion() {
           dataSource={aceptada}
           renderItem={(u)=>(
             <SendTicket
-              key={u.id_usuario}
-              mail_user = {u.mail_user}
-              tel_user={u.tel_user}
+            key={u.id_usuario}
+            user= {u.nombre_usuario}
+            mail_user = {u.mail_user}
+            tel_user={u.tel_user}
+            id_usuario={u.id_usuario}
+            estado = {1}
               />
               
           )}/>) : <CustomEmpty/>,

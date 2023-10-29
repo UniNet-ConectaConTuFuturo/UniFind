@@ -46,8 +46,20 @@ export function selectTicket(select, where){
 export function selectTicketRector(id){
   return new Promise((resolve, reject)=>{
     pool.query(
-      `SELECT u.id_usuario, u.mail_user, u.tel_user, t.estado as estadoticket from usuarios u JOIN tickets t on u.id_usuario = t.id_usuario AND t.id_universidad = (SELECT id_universidad from usuarios WHERE id_usuario= ${id})`,
+      `SELECT u.id_usuario, u.name_user, u.mail_user, u.tel_user, t.estado as estadoticket from usuarios u JOIN tickets t on u.id_usuario = t.id_usuario AND t.id_universidad = (SELECT id_universidad from usuarios WHERE id_usuario= ${id})`,
       (err,data)=>{
+        if(err) reject(err);
+        resolve(data);
+      }
+    )
+  })
+}
+
+export function changeEstadoTicket(estado, id_usuario, id_rector){
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `UPDATE tickets SET estado="${estado}" WHERE id_usuario = ${id_usuario} AND id_universidad=(SELECT id_universidad FROM usuarios WHERE id_usuario=${id_rector})`,
+      (err, data) => {
         if(err) reject(err);
         resolve(data);
       }
