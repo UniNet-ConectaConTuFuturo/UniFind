@@ -14,10 +14,10 @@ function Home() {
             />
             <b> UniNet </b>
           </a>
-          <a href="/promocion" className="text-white z-10 p-4 shadow-2xl">
+          <a href="/promocion" className="text-white z-10 p-4">
             Nosotros
           </a>
-          <a href="/contacto" className="text-white z-10 p-4 shadow-2xl">
+          <a href="/contacto" className="text-white z-10 p-4">
             Contacto
           </a>
         </nav>

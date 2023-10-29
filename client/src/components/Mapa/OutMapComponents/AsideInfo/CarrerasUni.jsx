@@ -16,7 +16,7 @@ function CarrerasUni({ id_universidad }) {
     })();
   }, [id_universidad]);
   return (
-    <div data-simplebar className="carreras overflow-y-scroll pl-1 max-h-96">
+    <div data-simplebar className="carreras overflow-y-scroll no-scrollbar pl-1 max-h-96">
       {carreras.map((carrera, i) => {
         return <p key={i}>{carrera.nombre_carrera}</p>;
       })}
