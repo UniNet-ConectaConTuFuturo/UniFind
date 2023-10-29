@@ -27,7 +27,7 @@ function FileDownload({ id_universidad }) {
     link.click();
     window.URL.revokeObjectURL(url);
   }
-  return (<button onClick={downloadFile}>Descargar Carta</button>);
+  return (<button className="boton descargar w-[20%]" onClick={downloadFile}>Descargar Carta</button>);
 };
 
 export default FileDownload;

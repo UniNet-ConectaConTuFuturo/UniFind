@@ -33,10 +33,13 @@ function Examen({ cartaName }) {
       <form className="w-full full h-48">
         <p className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden">Bienvenido al centro de mando. Aquí podrá: <br></br><ol><li > * Descargar la carta de la solicitud.<br></br></li><li>* Aceptar al Ingresante<br></br></li><li>* Rechazar al Ingresante<br></br></li><li>* Enviar al Ingresante a Segunda Instancia</li></ol></p>
         {/* <button className="text-black">Generar Exámen</button> */}
-        <FileDownload />
-    <button class="boton aceptar" onClick={aceptarCarta}>Aceptar Carta</button>
-    <button class="boton rechazar" onClick={rechazarCarta}>Rechazar Carta</button>
-    <button class="boton segunda-instancia" onClick={segundainstanciaCarta}>Segunda Instancia</button>
+        <div className="botones w-full">
+          <FileDownload />
+          <button class="boton aceptar w-[20%]" onClick={aceptarCarta}>Aceptar Carta</button>
+          <button class="boton rechazar w-[20%]" onClick={rechazarCarta}>Rechazar Carta</button>
+          <button class="boton segunda-instancia w-[20%]" onClick={segundainstanciaCarta}>Segunda Instancia</button>
+        </div>
+    
       </form>
     </div>
   );
