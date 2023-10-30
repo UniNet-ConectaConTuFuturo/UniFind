@@ -30,7 +30,7 @@ export async function uploadCarta(req, res) {
       const { id } = decoded;
       console.log(id);
       const fileName = `idUn${id_universidad}idU${id}.txt`;
-      const filePath = path.join(__dirname, "..", "..", "cartas", fileName);
+      const filePath = path.join(__dirname, "cartas", fileName);
       file.mv(filePath, (err) => {
         console.log(err);
         if (err) {
@@ -73,7 +73,8 @@ export async function generateCarta(req, res) {
       
       ${user[0].name_user}`;
       const fileName = `idUn${id_universidad}idU${id}.txt`;
-      const filePath = path.join(__dirname, "..", "..", "cartas", fileName);
+      console.log("dirname;",__dirname)
+      const filePath = path.join(__dirname, "cartas", fileName);
       await fs.writeFile(filePath, data, (err) => {
         if (err) {
           console.log(err);
