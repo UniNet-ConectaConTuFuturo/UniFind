@@ -19,11 +19,11 @@ const __dirname = path.dirname(__filename);
 
 export async function uploadCarta(req, res) {
   //const {token, id_universidad} = req.body;
+  console.log(req.files);
   console.log(req.body);
-  console.log(req.body.idUniversidad);
   const token = req.headers.authorization.split(" ")[1];
-  const file = req.files.file;
-  const id_universidad = req.body.idUniversidad;
+  const file = req.files["files[]"];
+  const{ id_universidad }= req.body;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;

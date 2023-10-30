@@ -2,8 +2,7 @@ import { useState } from "react";
 /* css */
 import "./ListaInteres.css";
 /* Components */
-import Card from "./Card";
-import FileUpload from "./FileUpload";
+import Item from "./Item";
 import Modal from "../UI/Modal";
 import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
@@ -11,6 +10,7 @@ import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
 /* Scrollbar */
 import "simplebar";
 import "simplebar/dist/simplebar.css";
+import Carta from "./Carta/Carta";
 
 function ListaInteres() {
   const favoritas = useLoaderData();
@@ -33,7 +33,7 @@ function ListaInteres() {
             pagination={{ align: "center", pageSize: 3 }}
             dataSource={favoritas}
             renderItem={(u) => (
-              <Card
+              <Item
                 key={u.id_universidad}
                 setButtonPopUpVerMas={setButtonPopUpVerMas}
                 setButtonPopUpCarta={setButtonPopUpCarta}
@@ -62,7 +62,7 @@ function ListaInteres() {
       </Modal>
 
       <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
-        <FileUpload id_universidad={idUniToShowInfo} />
+        <Carta id_universidad={idUniToShowInfo} />
       </Modal>
     </main>
   );

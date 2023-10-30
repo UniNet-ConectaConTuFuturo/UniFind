@@ -9,7 +9,7 @@ import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { twMerge } from "tailwind-merge";
 
-function Card({
+function Item({
   setButtonPopUpVerMas,
   setButtonPopUpCarta,
   setIdUniToShowInfo,
@@ -146,11 +146,11 @@ function Card({
     </>
   );
 }
-Card.propTypes = {
+Item.propTypes = {
   setButtonPopUpVerMas: PropTypes.func,
   setButtonPopUpCarta: PropTypes.func,
   setIdUniToShowInfo: PropTypes.func,
   id_universidad: PropTypes.number,
 };
 
-export default Card;
+export default Item;
