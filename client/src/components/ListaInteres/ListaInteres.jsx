@@ -1,4 +1,6 @@
 import { useState } from "react";
+/* Icons */
+
 /* css */
 import "./ListaInteres.css";
 /* Components */
@@ -8,6 +10,7 @@ import Modal from "../UI/Modal";
 import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
+import GuiaUso from "./GuiaUso";
 /* Scrollbar */
 import "simplebar";
 import "simplebar/dist/simplebar.css";
@@ -22,6 +25,9 @@ function ListaInteres() {
   return (
     <main className="bg-teal-700 h-screen py-8">
       <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
+        <div className="float-right">
+          <GuiaUso />
+        </div>
         <h1
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"

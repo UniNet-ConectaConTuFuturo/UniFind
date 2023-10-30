@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
@@ -21,6 +21,7 @@ function Card({
   const [mailRector, setMailRector] = useState(null);
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
+  const Cardref = useRef();
 
   useEffect(() => {
     (async () => {
@@ -28,6 +29,7 @@ function Card({
       setMailRector(await get("/getmail", { id_universidad }));
       setEstadoCarta(await get("/verestado", { id_universidad, token }));
       setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
+      Cardref.current.focus();
     })();
   }, [id_universidad, token]);
   const sendTicket = async () => {
@@ -88,7 +90,7 @@ function Card({
             <DatosUni universidad={universidad} />
             <section className="grid gap-2">
               {!estadoCarta && (
-                <button
+                <button ref={Cardref}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
                     setIdUniToShowInfo(id_universidad);
