@@ -8,6 +8,7 @@ import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { twMerge } from "tailwind-merge";
+import { useLista } from "../../hooks/useLista";
 
 function Card({
   setButtonPopUpVerMas,
@@ -22,7 +23,7 @@ function Card({
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
   const Cardref = useRef();
-
+  const {refButton1} = useLista()
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
@@ -90,7 +91,7 @@ function Card({
             <DatosUni universidad={universidad} />
             <section className="grid gap-2">
               {!estadoCarta && (
-                <button ref={Cardref}
+                <button ref={refButton1}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
                     setIdUniToShowInfo(id_universidad);

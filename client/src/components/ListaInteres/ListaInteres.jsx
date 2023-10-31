@@ -14,15 +14,20 @@ import GuiaUso from "./GuiaUso";
 /* Scrollbar */
 import "simplebar";
 import "simplebar/dist/simplebar.css";
+import ListaProvider from "./ListaProvider";
 
 function ListaInteres() {
+  //Lista
   const favoritas = useLoaderData();
+  //Modal
   const [buttonPopUpCarta, setButtonPopUpCarta] = useState(false);
   const [buttonPopUpVerMas, setButtonPopUpVerMas] = useState(false);
   const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
   const { ["token"]: antd } = theme.useToken();
   console.log(favoritas);
   return (
+    <ListaProvider>
+
     <main className="bg-teal-700 h-screen py-8">
       <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
         <div className="float-right">
@@ -31,34 +36,34 @@ function ListaInteres() {
         <h1
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
           className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
-        >
+          >
           Lista de Interés
         </h1>
         {favoritas.length ? (
           <List
-            pagination={{ align: "center", pageSize: 3 }}
-            dataSource={favoritas}
-            renderItem={(u) => (
-              <Card
-                key={u.id_universidad}
-                setButtonPopUpVerMas={setButtonPopUpVerMas}
-                setButtonPopUpCarta={setButtonPopUpCarta}
-                id_universidad={u.id_universidad}
-                setIdUniToShowInfo={setIdUniToShowInfo}
-              />
+          pagination={{ align: "center", pageSize: 3 }}
+          dataSource={favoritas}
+          renderItem={(u) => (
+            <Card
+            key={u.id_universidad}
+            setButtonPopUpVerMas={setButtonPopUpVerMas}
+            setButtonPopUpCarta={setButtonPopUpCarta}
+            id_universidad={u.id_universidad}
+            setIdUniToShowInfo={setIdUniToShowInfo}
+            />
             )}
-          />
-        ) : (
-          <div
-            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-            className="p-4"
-          >
+            />
+            ) : (
+              <div
+              style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+              className="p-4"
+              >
             <Empty
               imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
               style={{ fontWeight: 700 }}
               description="Lista vacia"
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-            />
+              />
           </div>
         )}
       </div>
@@ -71,6 +76,7 @@ function ListaInteres() {
         <FileUpload id_universidad={idUniToShowInfo} />
       </Modal>
     </main>
+        </ListaProvider>
   );
 }
 

@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Tour } from 'antd';
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { useLista } from '../../hooks/useLista';
 const App = () => {
   const [open, setOpen] = useState(false);
+  const {refButton1} = useLista();
   const ref = useRef();
-  const Cardref = useRef();
   const steps = [
     {
       title: 'Guía de Uso',
@@ -15,7 +16,7 @@ const App = () => {
       title: 'Enviar Carta',
       description: 'Aquí podrás enviar tu solicitud para entrar a la universidad, a través de nuestras cartas.',
       placement: 'right',
-      target: () => Cardref.current
+      target: () => refButton1.current
     },
     {
       title: 'Top',
