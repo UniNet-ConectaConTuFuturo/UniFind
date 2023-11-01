@@ -22,7 +22,6 @@ function Card({
   const [mailRector, setMailRector] = useState(null);
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
-  const Cardref = useRef();
   const {refButton1} = useLista()
   useEffect(() => {
     (async () => {
@@ -30,7 +29,6 @@ function Card({
       setMailRector(await get("/getmail", { id_universidad }));
       setEstadoCarta(await get("/verestado", { id_universidad, token }));
       setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
-      Cardref.current.focus();
     })();
   }, [id_universidad, token]);
   const sendTicket = async () => {

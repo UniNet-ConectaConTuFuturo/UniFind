@@ -5,6 +5,9 @@ import { useLista } from '../../hooks/useLista';
 const App = () => {
   const [open, setOpen] = useState(false);
   const {refButton1} = useLista();
+/*   const {refButton2} = useLista();
+  const {refButton3} = useLista();
+  const {refButton4} = useLista(); */
   const ref = useRef();
   const steps = [
     {
@@ -19,10 +22,10 @@ const App = () => {
       target: () => refButton1.current
     },
     {
-      title: 'Top',
-      description: 'On the top of target.',
+      title: 'Enviar Carta',
+      description: 'Aquí podrás enviar tu solicitud para entrar a la universidad, a través de nuestras cartas.',
       placement: 'top',
-      target: () => ref.current,
+      target: () => refButton1.current
     },
   ];
   return (
