@@ -18,3 +18,22 @@
   body{
     background-color: darkgray;
   }
+
+.guia{
+  filter: invert(0);
+  transition: 0.25s;
+}
+.guia:hover{
+  filter: invert(1);
+  transition: 0.25s;
+}
+
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-buttons .ant-btn-primary {
+  background-color: #1677ff;
+  color: white;
+}
+.ant-tour .ant-tour-inner .ant-tour-footer .ant-tour-buttons .ant-btn-primary:hover {
+  background-color: white;
+  border-color: #1677ff;
+  color: #1677ff;
+}
