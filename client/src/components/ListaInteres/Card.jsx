@@ -23,6 +23,9 @@ function Card({
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
   const {refButton1} = useLista()
+  const {refButton2} = useLista()
+  const {refButton3} = useLista()
+  const {refButton4} = useLista()
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
@@ -89,7 +92,8 @@ function Card({
             <DatosUni universidad={universidad} />
             <section className="grid gap-2">
               {!estadoCarta && (
-                <button ref={refButton1}
+                <button 
+                  ref={refButton1}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
                     setIdUniToShowInfo(id_universidad);
@@ -119,6 +123,7 @@ function Card({
                 </Tooltip>
               ) : (
                 <button
+                  ref={refButton2}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={sendTicket}
                 >
@@ -126,6 +131,7 @@ function Card({
                 </button>
               )}
               <button
+                ref={refButton3}
                 className="w-24 border rounded-md p-2 text-center"
                 onClick={() => {
                   setIdUniToShowInfo(id_universidad);
@@ -135,6 +141,7 @@ function Card({
                 Ver Carreras
               </button>
               <Link
+                ref={refButton4}
                 to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
                 className="w-24 border rounded-md p-2 text-center"
               >

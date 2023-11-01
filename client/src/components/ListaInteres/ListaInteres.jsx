@@ -10,7 +10,7 @@ import Modal from "../UI/Modal";
 import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
-import GuiaUso from "./GuiaUso";
+import GuiaUsoIngresante from "./GuiaUsoIngresante";
 /* Scrollbar */
 import "simplebar";
 import "simplebar/dist/simplebar.css";
@@ -31,7 +31,7 @@ function ListaInteres() {
     <main className="bg-teal-700 h-screen py-8">
       <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
         <div className="float-right">
-          <GuiaUso />
+          <GuiaUsoIngresante />
         </div>
         <h1
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
