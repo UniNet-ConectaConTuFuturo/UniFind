@@ -31,9 +31,10 @@ function GenerarCarta({ id_universidad }) {
   }
 
   return (
-    <div className="generar">
+    <div className="generar flex flex-col">
+      <p>Generar carta:</p>
       <Button
-        className="form-btn bg-[#1677ff] hover:bg-transparent mt-4"
+        className="form-btn bg-[#1677ff] hover:bg-transparent mt-4 self-center w-2/3"
         onClick={handleUpload}
       >
         Generar Carta

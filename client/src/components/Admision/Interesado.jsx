@@ -10,7 +10,7 @@ function Interesado({
   nombreSoli,
 }) {
   const [usuario, setUsuario] = useState({});
-
+  const {refButtonVerSolicitud} = useLista()
   useEffect(() => {
     if (id_usuario)
       (async () => setUsuario(await get("/get/user", { id_usuario })))();
@@ -29,6 +29,7 @@ function Interesado({
         items={items}
         extra={
           <button className="w-28 border rounded-md p-2 text-center"
+            ref={refButtonVerSolicitud}
             onClick={() => {
               setCartaName({nombreSoli, id_usuario});
               setButtonPopUpExamen(true);

@@ -35,8 +35,9 @@ function FileUpload({ id_universidad }) {
   }
 
   return (
-    <div className="adjuntar item-grid">
-      <Upload
+    <div className="adjuntar item-grid flex flex-col">
+      <p>Subir carta:</p>
+      <Upload className="self-center"
         onRemove={(file) => {
           const index = fileList.indexOf(file);
           const newFileList = fileList.slice();
@@ -63,7 +64,7 @@ function FileUpload({ id_universidad }) {
       >
         <Button icon={<UploadOutlined />}>Seleccionar Archivo (.txt)</Button>
       </Upload>
-      <Button
+      <Button className="w-2/3 self-center"
         onClick={handleUpload}
         disabled={fileList.length === 0}
         loading={uploading}

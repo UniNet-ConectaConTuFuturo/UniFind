@@ -22,10 +22,10 @@ function Item({
   const [mailRector, setMailRector] = useState(null);
   const { token } = useOutletContext();
   const { ["token"]: antd } = theme.useToken();
-  const {refButton1} = useLista()
-  const {refButton2} = useLista()
-  const {refButton3} = useLista()
-  const {refButton4} = useLista()
+  const {refButtonEnviarCarta} = useLista()
+  const {refButtonConsultar} = useLista()
+  const {refButtonVerCarreras} = useLista()
+  const {refButtonVerEnMapa} = useLista()
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
@@ -93,7 +93,7 @@ function Item({
             <section className="grid gap-2">
               {!estadoCarta && (
                 <button 
-                  ref={refButton1}
+                  ref={refButtonEnviarCarta}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {
                     setIdUniToShowInfo(id_universidad);
@@ -123,7 +123,7 @@ function Item({
                 </Tooltip>
               ) : (
                 <button
-                  ref={refButton2}
+                  ref={refButtonConsultar}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={sendTicket}
                 >
@@ -131,7 +131,7 @@ function Item({
                 </button>
               )}
               <button
-                ref={refButton3}
+                ref={refButtonVerCarreras}
                 className="w-24 border rounded-md p-2 text-center"
                 onClick={() => {
                   setIdUniToShowInfo(id_universidad);
@@ -141,7 +141,7 @@ function Item({
                 Ver Carreras
               </button>
               <Link
-                ref={refButton4}
+                ref={refButtonVerEnMapa}
                 to={`/mapa/@${universidad.Point.x},${universidad.Point.y},13z?selected=${id_universidad}`}
                 className="w-24 border rounded-md p-2 text-center"
               >
