@@ -1,4 +1,4 @@
-import { ListaContext } from "./ListaContext";
+import { ListaContext } from "../../context/ListaContext";
 import PropTypes from "prop-types";
 import { useRef } from "react";
 

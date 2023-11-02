@@ -1,4 +1,4 @@
-import { useMapa } from "../../../hooks/useMapa";
+import { useMapa } from "../../../hooks/useContexts";
 import { Rnd } from "react-rnd";
 import { BiMove } from "react-icons/bi";
 function GeoInfo() {

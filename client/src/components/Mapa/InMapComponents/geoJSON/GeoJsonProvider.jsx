@@ -1,8 +1,8 @@
 import { useMap } from "react-leaflet";
-import GeoJsonContext from "./GeoJsonContext";
+import {GeoJsonContext} from "../../../../context/GeoJsonContext";
 import PropTypes from "prop-types";
-import { useMapa } from "../../../hooks/useMapa";
-import { capitalizeFirst } from "../../../api/TextFunctions";
+import { useMapa } from "../../../../hooks/useContexts";
+import { capitalizeFirst } from "../../../../api/TextFunctions";
 import { useRef } from "react";
 
 function GeoJsonProvider({ children }) {

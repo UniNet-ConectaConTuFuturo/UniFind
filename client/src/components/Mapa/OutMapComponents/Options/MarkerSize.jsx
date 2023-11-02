@@ -2,7 +2,7 @@ import { ConfigProvider, Segmented } from "antd";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BiHide } from "react-icons/bi";
 import "./markersize.css";
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useContexts";
 function MarkerSize() {
   const { setMarkerSize, markerSize } = useMapa();
   return (

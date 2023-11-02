@@ -1,6 +1,6 @@
 import { GeoJSON, useMapEvent } from "react-leaflet";
 import { useRef } from "react";
-import useGeoJson from "../../../../hooks/useGeoJson";
+import {useGeoJson} from "../../../../hooks/useContexts";
 import provincias from "../../../../geoJSON/provincia.json";
 import departamentos from "../../../../geoJSON/departamentos.json";
 import zoomLayers from "./zoomLayers";

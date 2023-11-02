@@ -3,7 +3,7 @@ import { LayerGroup, Pane, useMapEvent } from "react-leaflet";
 const DisplayDepartaments = lazy(() => import("./DisplayDepartaments"));
 const DisplayProvincias = lazy(() => import("./DisplayProvincias"));
 const DisplayPais = lazy(() => import("./DisplayPais"));
-import GeoJsonProvider from "../../../../context/Mapa/GeoJSON/GeoJsonProvider";
+import GeoJsonProvider from "./GeoJsonProvider";
 import zoomLayers from "./zoomLayers";
 
 function DisplayGeoJSON() {

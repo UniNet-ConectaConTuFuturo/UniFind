@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { get } from "../../api/api";
 import { Descriptions, List } from "antd";
+import { useAdmision } from "../../hooks/useContexts";
 function Interesado({
   id_usuario,
   setCartaName,
@@ -10,7 +11,7 @@ function Interesado({
   nombreSoli,
 }) {
   const [usuario, setUsuario] = useState({});
-  const {refButtonVerSolicitud} = useLista()
+  const {refButtonVerSolicitud} = useAdmision()
   useEffect(() => {
     if (id_usuario)
       (async () => setUsuario(await get("/get/user", { id_usuario })))();

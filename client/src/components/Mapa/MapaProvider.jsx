@@ -1,4 +1,4 @@
-import { MapaContext } from "./MapaContext";
+import { MapaContext } from "../../context/MapaContext";
 import { useReducer, useRef, useState } from "react";
 import PropTypes from "prop-types";
 

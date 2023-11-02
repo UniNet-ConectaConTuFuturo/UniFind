@@ -1,7 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import { Suspense, lazy } from "react";
 
-import MapaProvider from "../../context/Mapa/MapaProvider";
+import MapaProvider from "./MapaProvider";
 import { MapContainer } from "react-leaflet";
 
 const ControlZoom = lazy(() => import("./OutMapComponents/ControlZoom"));

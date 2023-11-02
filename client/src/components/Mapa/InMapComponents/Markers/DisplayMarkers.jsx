@@ -1,6 +1,6 @@
 import { FeatureGroup, useMap } from "react-leaflet";
 import { useEffect, useRef, useState } from "react";
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useContexts";
 import { get } from "../../../../api/api";
 
 import MyMarker from "./MyMarker";

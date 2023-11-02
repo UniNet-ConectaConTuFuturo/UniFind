@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Marker, Tooltip, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import { myIconPrototype, mySelectedIconPrototype } from "./myIcon";
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useContexts";
 import { useRef } from "react";
 import { useOutletContext, useSearchParams } from "react-router-dom";
 function MyMarker({ u }) {

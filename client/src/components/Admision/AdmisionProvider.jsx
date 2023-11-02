@@ -1,4 +1,4 @@
-import { AdmisionContext } from "./AdmisionContext";
+import { AdmisionContext } from "../../context/AdmisionContext";
 import PropTypes from "prop-types";
 import { useRef } from "react";
 

@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useContexts";
 const Informacion = lazy(() => import("./Informacion"));
 const LeafletControl = lazy(() => import("../UI/LeafletControl"));
 

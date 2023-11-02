@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Tour } from 'antd';
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { useLista } from '../../hooks/useLista';
+import { useAdmision } from '../../hooks/useContexts';
 const App = () => {
   const [open, setOpen] = useState(false);
-  const {refButtonVerSolicitud} = useLista();
+  const {refButtonVerSolicitud} = useAdmision();
   const ref = useRef();
   const steps = [
     {

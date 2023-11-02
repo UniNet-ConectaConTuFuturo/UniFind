@@ -5,7 +5,7 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import Option from "./Option";
 import MarkerSize from "./MarkerSize";
 import CustomCheckBox from "./CustomCheckBox";
-import { useMapa } from "../../../../hooks/useMapa";
+import { useMapa } from "../../../../hooks/useContexts";
 function Options() {
   /* Front */
   const refToggle = useRef(null);

@@ -1,7 +1,6 @@
 import { GeoJSON, useMapEvent } from "react-leaflet";
-import useGeoJson from "../../../../hooks/useGeoJson";
+import {useGeoJson, useMapa} from "../../../../hooks/useContexts";
 import { removeAccents } from "../../../../api/TextFunctions";
-import { useMapa } from "../../../../hooks/useMapa";
 import { useRef } from "react";
 import zoomLayers from "./zoomLayers";
 function DisplayDepartaments() {

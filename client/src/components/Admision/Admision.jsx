@@ -4,21 +4,22 @@ import { Collapse, theme, List } from "antd";
 import Interesado from "./Interesado";
 const Examen = lazy(() => import("./Examen"));
 const Modal = lazy(() => import("../UI/Modal"));
-const CustomEmpty = lazy(()=>import("../UI/CustomEmpty"))
+const CustomEmpty = lazy(() => import("../UI/CustomEmpty"));
 //CSS
 import "../ListaInteres/ListaInteres.css";
 import { useLoaderData } from "react-router-dom";
 //Scrollbar
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
+import "simplebar";
+import "simplebar/dist/simplebar.css";
 //Guia de Uso
-import GuiaUsoRector from "./GuiaUsoRector"
+import GuiaUsoRector from "./GuiaUsoRector";
+import AdmisionProvider from "./AdmisionProvider";
 
 function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
   const [cartaName, setCartaName] = useState("");
-  console.log("estado", pendiente);   
+  console.log("estado", pendiente);
   const getItems = (panelStyle) => [
     {
       key: 1,
@@ -38,7 +39,7 @@ function Admision() {
           )}
         />
       ) : (
-        <CustomEmpty/>
+        <CustomEmpty />
       ),
     },
     {
@@ -59,7 +60,7 @@ function Admision() {
           )}
         />
       ) : (
-        <CustomEmpty/>
+        <CustomEmpty />
       ),
     },
     {
@@ -80,7 +81,7 @@ function Admision() {
           )}
         />
       ) : (
-        <CustomEmpty/>
+        <CustomEmpty />
       ),
     },
     {
@@ -101,7 +102,7 @@ function Admision() {
           )}
         />
       ) : (
-        <CustomEmpty/>
+        <CustomEmpty />
       ),
     },
   ];
@@ -114,31 +115,33 @@ function Admision() {
     border: "none",
   };
   return (
-    <main className="bg-teal-700 h-screen py-8">
-      <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
-      <div className="float-right">
-          <GuiaUsoRector />
+    <AdmisionProvider>
+      <main className="bg-teal-700 h-screen py-8">
+        <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
+          <div className="float-right">
+            <GuiaUsoRector />
+          </div>
+          <h1
+            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+            className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
+          >
+            Interesados
+          </h1>
+          <Suspense>
+            <Collapse
+              className="bg-transparent"
+              bordered={false}
+              items={getItems(panelStyle)}
+            />
+          </Suspense>
         </div>
-        <h1
-          style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-          className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
-        >
-          Interesados
-        </h1>
         <Suspense>
-          <Collapse
-            className="bg-transparent"
-            bordered={false}
-            items={getItems(panelStyle)}
-          />
+          <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
+            <Examen cartaName={cartaName} />
+          </Modal>
         </Suspense>
-      </div>
-      <Suspense>
-        <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
-          <Examen cartaName={cartaName} />
-        </Modal>
-      </Suspense>
-    </main>
+      </main>
+    </AdmisionProvider>
   );
 }
 

@@ -8,7 +8,7 @@ import DatosUni from "../Mapa/OutMapComponents/AsideInfo/DatosUni";
 import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { twMerge } from "tailwind-merge";
-import { useLista } from "../../hooks/useLista";
+import { useLista } from "../../hooks/useContexts";
 
 function Item({
   setButtonPopUpVerMas,
