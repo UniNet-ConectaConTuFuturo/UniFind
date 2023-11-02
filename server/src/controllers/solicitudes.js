@@ -19,11 +19,9 @@ const __dirname = path.dirname(__filename);
 
 export async function uploadCarta(req, res) {
   //const {token, id_universidad} = req.body;
-  console.log(req.files);
-  console.log(req.body);
   const token = req.headers.authorization.split(" ")[1];
-  const file = req.files["files[]"];
-  const{ id_universidad }= req.body;
+  const file = req.files["file[originFileObj]"];
+  const { id_universidad } = req.body;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
@@ -73,7 +71,7 @@ export async function generateCarta(req, res) {
       
       ${user[0].name_user}`;
       const fileName = `idUn${id_universidad}idU${id}.txt`;
-      console.log("dirname;",__dirname)
+      console.log("dirname;", __dirname);
       const filePath = path.join(__dirname, "cartas", fileName);
       await fs.writeFile(filePath, data, (err) => {
         if (err) {
@@ -165,15 +163,14 @@ export async function verEstado(req, res) {
       if (err) throw err;
       const { id } = decoded;
       const data = await selectEstadoSolicitudes(id, id_universidad);
-      console.log(data)
-      if(data.length > 0){ 
-        console.log("estado: ",data) 
-        return res.json(data).end()
-        
-      }else{
-        return res.status(200).end()
+      console.log(data);
+      if (data.length > 0) {
+        console.log("estado: ", data);
+        return res.json(data).end();
+      } else {
+        return res.status(200).end();
       }
-    })
+    });
   } catch (err) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
