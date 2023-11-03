@@ -1,29 +1,11 @@
+import Header from "../UI/Header";
+
 function Promocion() {
   return (
-    <div className="home bg-black h-screen w-full">
-      <img
-        className="background w-full h-screen absolute object-cover opacity-20"
-        src="/images/education.png"
-      />
-      <header className="absolute pl-28">
-        <nav className="flex items-center gap-4">
-          <a href="/" className="text-white z-10 p-4 pointer-events-none text-lg">
-            <img
-              className="w-20 h-20 inline-block scale-75"
-              src="/images/iconoBlanco.png"
-              alt=""
-            />
-            <b> UniNet </b>
-          </a>
-          <a href="/home" className="text-white z-10 p-4">
-            Servicios
-          </a>
-          <a href="/contacto" className="text-white z-10 p-4">
-            Contacto
-          </a>
-        </nav>
-      </header>
-      <div className="prom-cont pl-10 pt-14 opacity-95">
+    <div className="h-screen w-full bg-[url(/images/education.png)] bg-cover">
+      <div className="backdrop-brightness-[0.20] h-full w-full">
+      <Header/>
+      <main className="prom-cont pl-10 pt-14 opacity-95">
         <div className="title pl-10 pt-20 ">
           <h2 className="text-xl pl-4 text-gray-300">
             <b>Conecta con tu futuro</b>
@@ -42,6 +24,7 @@ function Promocion() {
             <img className="" src="/images/libro.svg" alt="" />
           </div>
         </div>
+      </main>
       </div>
     </div>
   );
