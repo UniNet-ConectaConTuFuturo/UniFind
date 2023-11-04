@@ -63,14 +63,14 @@ function Item({
           style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
         >
           <section className="flex justify-between gap-2 mb-3">
-            <h3 className="text-xl min-w-[12rem]">
+            <h3 className="text-xl min-w-[12rem] text-white">
               {universidad.nombre_universidad}
             </h3>
 
             <div className="text-xs flex justify-end gap-4 opacity-60">
               {estadoCarta && (
                 <p className="flex flex-wrap h-fit gap-x-1 justify-center">
-                  <span className="block h-fit">carta:</span>
+                  <span className="block h-fit text-white">carta:</span>
                   <span className="block h-fit text-amber-500">
                     {estadoCarta}
                   </span>
@@ -78,7 +78,7 @@ function Item({
               )}
               {estadoCarta && (
                 <p className="flex flex-wrap h-fit gap-x-1 justify-center">
-                  <span className="block h-fit text-nowrap">
+                  <span className="block h-fit text-nowrap text-white">
                     ticket consulta:
                   </span>
                   <span className="block h-fit text-amber-500">

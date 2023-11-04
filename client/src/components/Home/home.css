@@ -30,10 +30,31 @@
   background-position: right;
   background-image: linear-gradient(
     to left,
-    rgba(125, 229, 237, 0.8) 0%,
-    rgba(125, 229, 237, 0.7) 40%,
-    rgba(125, 229, 237, 0) 100%
+    rgba(103, 191, 197, 0.8) 0%,
+    rgba(103, 191, 197, 0.7) 40%,
+    rgba(103, 191, 197, 0) 100%
   );
   /* background-color: rgb(125, 229, 237);
   background-color: rgb(50, 151, 96); */
+}
+
+.centerbar{
+  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(255, 255, 255));
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  transition: 0.5s;
+}
+.centerbar:hover{
+  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(255, 255, 255));
+  background-position: 50% 100%;
+  background-size: 100% 100%;
+  transition: 0.5s;
+  border-color: black;
+}
+.centerbar .logo{
+  transition: 1s;
+}
+.centerbar:hover .logo{
+  filter: invert(1);
+  transition: 0.5s;
 }

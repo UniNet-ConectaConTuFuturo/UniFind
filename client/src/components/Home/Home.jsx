@@ -5,7 +5,6 @@ import Header from "../UI/Header";
 function Home() {
   return (
     <>
-      <Header />
       <main className="flex flex-col w-full h-screen relative">
         <Link
           to="/mapa"
@@ -17,6 +16,20 @@ function Home() {
                 Centro de Información
               </span>
             </div>
+          </div>
+        </Link>
+
+        <Link className="centerbar gradiente relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white">
+          <div
+            to="/"
+            className="logo text-white z-10 p-4 text-lg"
+          >
+            <img
+              className="w-20 h-20 inline-block scale-75"
+              src="/images/iconoBlanco.png"
+              alt=""
+            />
+            <b> UniNet </b>
           </div>
         </Link>
 
