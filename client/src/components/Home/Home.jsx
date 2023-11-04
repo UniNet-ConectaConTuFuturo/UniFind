@@ -19,11 +19,11 @@ function Home() {
           </div>
         </Link>
 
-        <Link className="centerbar gradiente relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white">
-          <div
-            to="/"
-            className="logo text-white z-10 p-4 text-lg"
-          >
+        <Link
+          to="/promocion"
+          className="centerbar gradiente relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white"
+        >
+          <div className="logo text-white z-10 p-4 text-lg">
             <img
               className="w-20 h-20 inline-block scale-75"
               src="/images/iconoBlanco.png"
