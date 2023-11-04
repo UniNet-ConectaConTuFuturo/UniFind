@@ -1,25 +1,39 @@
-.gradiente{
-    transition: background-color .5s;  
-    background-size: 0% 100%;
+.gradiente {
+  transition: background-color 0.5s;
+  background-size: 0% 100%;
 }
 
-.gradiente:hover{
-    opacity: .7;
-    background-size: 100% 100%;
-    /* background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%); */
-    background-repeat:no-repeat;
-    transition: background-size 1s, background-color 1s;
+.gradiente:hover {
+  background-size: 100% 100%;
+  /* background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%); */
+  background-repeat: no-repeat;
+  transition: background-size 1s, background-color 1s;
 }
 
 .left:hover {
-    background-position: left;
-    background-image:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.5) 100%);
-    background-color: rgb(50, 151, 96);
+  background-position: left;
+  background-image: linear-gradient(
+    to right,
+    rgba(50, 151, 96, 0.8) 0%,
+    rgba(50, 151, 96, 0.7) 40%,
+    rgba(50, 151, 96, 0) 100%
+  );
+  /* background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 100%
+  ); */
+  /* background-color: rgb(50, 151, 96) */
 }
 .right:hover {
-    background-position: right;
-    background-image:linear-gradient(to left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,.5) 100%);
-    background-color: rgb(125, 229, 237);
-    background-color: rgb(50, 151, 96);
+  background-position: right;
+  background-image: linear-gradient(
+    to left,
+    rgba(125, 229, 237, 0.8) 0%,
+    rgba(125, 229, 237, 0.7) 40%,
+    rgba(125, 229, 237, 0) 100%
+  );
+  /* background-color: rgb(125, 229, 237);
+  background-color: rgb(50, 151, 96); */
 }
-

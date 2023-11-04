@@ -23,23 +23,22 @@ function SideBar({ setTrigger }) {
   const { user } = useLoaderData();
   return (
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">
-      <AsideIcon url="/" Icon={FaHome} texto="HOME" />
+      <AsideIcon url="/home" Icon={FaHome} texto="HOME" />
       {user === userOptions.noAuthenticated && (
         <AsideIcon url="/identificacion" Icon={FaUserAlt} texto="LOGIN" />
       )}
       <AsideIcon url="/mapa" Icon={FaMapMarkedAlt} texto="MAPA" />
       {user !== userOptions.rector && (
-          <AsideIconLock
-            url="/listainteres"
-            Icon={FaStar}
-            texto="FAVORITOS"
-            condition={user === userOptions.noAuthenticated}
-          />
+        <AsideIconLock
+          url="/listainteres"
+          Icon={FaStar}
+          texto="FAVORITOS"
+          condition={user === userOptions.noAuthenticated}
+        />
       )}
       {user === userOptions.rector && (
         <>
           <AsideIcon url="/admision" Icon={FaAddressCard} texto="ADMISIÓN" />
-          
         </>
       )}
       {user === userOptions.rector && (
