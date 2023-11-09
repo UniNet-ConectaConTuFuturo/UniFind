@@ -88,6 +88,7 @@ function Admision() {
       key: 4,
       label: "SEGUNDA INSTANCIA",
       style: panelStyle,
+      extra: genExam(),
       children: segunda_instancia.length ? (
         <List
           dataSource={segunda_instancia}
@@ -107,6 +108,13 @@ function Admision() {
     },
   ];
   const { ["token"]: antd } = theme.useToken();
+
+  const genExam = () => (
+    <a class="group text-white transition duration-300">
+      Generar Exámen
+      <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
+    </a>
+    )
 
   const panelStyle = {
     marginBottom: 24,
