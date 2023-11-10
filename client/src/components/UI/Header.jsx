@@ -1,38 +1,32 @@
-import { useMatch } from "react-router-dom"
+import { Link, useMatch } from "react-router-dom";
 
 function Header() {
-    const isPromocion = useMatch("/promocion")
-    const isHome = useMatch("/home")
-    console.log(isPromocion);
-    return (
-        <header className="fixed pl-28 w-full z-10 bg-gradient-to-b from-black to-transparent  ">
-            <nav className="flex items-center gap-4">
-                <a href="/" className="text-white z-10 p-4 pointer-events-none text-lg">
-                    <img
-                        className="w-20 h-20 inline-block scale-75"
-                        src="/images/iconoBlanco.png"
-                        alt=""
-                    />
-                    <b> UniNet </b>
-                </a>
-                {!isPromocion &&
-
-                    <a href="/promocion" className="text-white z-10 p-4">
-                        Nosotros
-                    </a>
-                }
-                {!isHome &&
-
-                    <a href="/home" className="text-white z-10 p-4">
-                        Servicios
-                    </a>
-                }
-                <a href="/contacto" className="text-white z-10 p-4">
-                    Contacto
-                </a>
-            </nav>
-        </header>
-    )
+  const isHome = useMatch("/");
+  return (
+    <header className="fixed w-full pr-8 z-10 bg-gradient-to-b from-black to-transparent">
+      <nav className="flex items-center h-28 justify-end gap-16">
+        {!isHome && (
+          <Link to="/" className="grid items-center grid-flow-col">
+            <span className="-ml-2 text-white underline underline-offset-2 z-10">
+              Inicio
+            </span>
+          </Link>
+        )}
+        <a
+          href="/servicios"
+          className="text-white underline underline-offset-2 z-10"
+        >
+          Servicios
+        </a>
+        <a
+          href="/nosotros"
+          className="text-white underline underline-offset-2 z-10"
+        >
+          Nosotros
+        </a>
+      </nav>
+    </header>
+  );
 }
 
-export default Header
+export default Header;

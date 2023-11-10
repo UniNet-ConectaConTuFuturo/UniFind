@@ -1,50 +1,43 @@
-import "./home.css";
-import { Link } from "react-router-dom";
 import Header from "../UI/Header";
 
 function Home() {
   return (
-    <>
-      <main className="flex flex-col w-full h-screen relative">
-        <Link
-          to="/mapa"
-          className="h-1/2 bg-[url(/images/universidad1.png)] bg-cover"
-        >
-          <div className="gradiente right w-full h-full">
-            <div className="h-full w-full grid items-center p-8 justify-end">
-              <span className="text-white text-6xl font-normal font-['Inter']">
-                Centro de Información
-              </span>
+    <div className="min-h-[100vh] w-full bg-[url(/images/education.png)] bg-cover">
+      <div className="backdrop-brightness-[0.20] min-h-[100vh]">
+        <Header />
+        <main className="pt-20  opacity-95">
+          <section className="flex flex-wrap gap-8 justify-center">
+            <div>
+              <h1 className="text-9xl font-medium italic text-white">UniNet</h1>
+              <h2 className="text-xl pl-4 font-bold italic text-gray-300">
+                Conecta con tu futuro
+              </h2>
             </div>
-          </div>
-        </Link>
-
-        <Link
-          to="/promocion"
-          className="centerbar gradiente relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white"
-        >
-          <div className="logo text-white z-10 p-4 text-lg">
-            <img
-              className="w-20 h-20 inline-block scale-75"
-              src="/images/iconoBlanco.png"
-              alt=""
-            />
-            <b> UniNet </b>
-          </div>
-        </Link>
-
-        <Link
-          to="/admision"
-          className="h-1/2 bg-[url(/images/examen.png)] bg-center bg-cover"
-        >
-          <div className="gradiente left w-full h-full grid items-center p-8">
-            <span className="text-white text-6xl font-normal font-['Inter']">
-              Sistema de Admisión
-            </span>
-          </div>
-        </Link>
-      </main>
-    </>
+            <div className="pt-4">
+              <img
+                className="brightness-90 w-48"
+                src="/images/logoColor.svg"
+                /* src="/images/libro.svg" */
+                alt=""
+              />
+            </div>
+          </section>
+          <section className="py-16 text-gray-400 text-center">
+            <p>
+              Conocé las instituciones educativas a través de un mapa
+              interactivo.
+            </p>
+            <br />
+            <p>
+              Investiga las carreras e información importante sobre tu
+              universidad ideal.
+            </p>
+            <br />
+            <p>Hazlo eficiente y eficazmente.</p>
+          </section>
+        </main>
+      </div>
+    </div>
   );
 }
 

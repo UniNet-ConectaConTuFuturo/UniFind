@@ -23,7 +23,7 @@ function SideBar({ setTrigger }) {
   const { user } = useLoaderData();
   return (
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">
-      <AsideIcon url="/home" Icon={FaHome} texto="HOME" />
+      <AsideIcon url="/" Icon={FaHome} texto="HOME" />
       {user === userOptions.noAuthenticated && (
         <AsideIcon url="/identificacion" Icon={FaUserAlt} texto="LOGIN" />
       )}

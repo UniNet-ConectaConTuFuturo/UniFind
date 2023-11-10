@@ -9,8 +9,8 @@ import * as is from "./middlewares/authentication";
 import { lazy } from "react";
 import { get } from "./api/api";
 const Layout = lazy(() => import("./components/Layout/Layout"));
-const Promocion = lazy(() => import("./components/Promocion/Promocion"));
 const Home = lazy(() => import("./components/Home/Home"));
+const Servicios = lazy(() => import("./components/Servicios/Servicios"));
 const Identification = lazy(() =>
   import("./components/Identification/Identification")
 );
@@ -29,15 +29,11 @@ const Admision = lazy(() => import("./components/Admision/Admision"));
 const router = createBrowserRouter([
   {
     path: "/",
-    loader: () => redirect("/promocion"),
-  },
-  {
-    path: "/promocion",
-    Component: Promocion,
-  },
-  {
-    path: "/home",
     Component: Home,
+  },
+  {
+    path: "/servicios",
+    Component: Servicios,
   },
   {
     path: "",
@@ -46,21 +42,22 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/identificacion",
-        loader: async () => ((await is.notAuth()) ? null : redirect("/home")),
+        loader: async () => ((await is.notAuth()) ? null : redirect("/")),
         Component: Identification,
       },
       {
         path: "/comunicacion",
-        loader: async () => 
-          (await is.rector()
+        loader: async () =>
+          (await is.rector())
             ? get("/estadoticketrector", {
-              token: localStorage.getItem("TokenUniNet"),
-            }) : redirect("/home")),
+                token: localStorage.getItem("TokenUniNet"),
+              })
+            : redirect("/"),
         Component: Comunicacion,
       },
       {
         path: "/configuracion",
-        loader: async () => ((await is.auth()) ? null : redirect("/home")),
+        loader: async () => ((await is.auth()) ? null : redirect("/")),
         Component: AccountSettings,
       },
       { path: "/mapa/:xyz?", Component: Mapa },
