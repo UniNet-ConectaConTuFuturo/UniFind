@@ -42,6 +42,9 @@ export default {
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
       },
+      dropShadow: {
+        logo: ["0 0 1rem rgba(100, 150, 200, 1)"],
+      },
     },
   },
   plugins: [],

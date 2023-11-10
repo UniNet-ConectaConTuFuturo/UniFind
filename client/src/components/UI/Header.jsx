@@ -3,7 +3,7 @@ import { Link, useMatch } from "react-router-dom";
 function Header() {
   const isHome = useMatch("/");
   return (
-    <header className="fixed w-full pr-8 z-10 bg-gradient-to-b from-black to-transparent">
+    <header className="fixed w-full pr-16 z-10 bg-gradient-to-b from-black to-transparent">
       <nav className="flex items-center h-28 justify-end gap-16">
         {!isHome && (
           <Link to="/" className="grid items-center grid-flow-col">

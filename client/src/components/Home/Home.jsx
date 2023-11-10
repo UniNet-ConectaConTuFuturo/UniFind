@@ -15,8 +15,8 @@ function Home() {
             </div>
             <div className="pt-4">
               <img
-                className="brightness-90 w-48"
-                src="/images/logoColor.svg"
+                className="brightness-90 w-48 drop-shadow-logo"
+                src="/images/logo-color.png"
                 /* src="/images/libro.svg" */
                 alt=""
               />
