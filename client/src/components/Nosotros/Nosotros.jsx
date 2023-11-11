@@ -1,5 +1,6 @@
 import Header from "../UI/Header";
 import { Avatar, List, theme } from "antd";
+
 const data = [
   {
     title: "Campagna, Valentino",
@@ -8,17 +9,17 @@ const data = [
   },
   {
     title: "Gomez Waipán, Leonardo",
-    description: "Analista - Programador Front-end",
+    description: "Líder - Programador Front-end",
     image: "/nosotros/leo.jpeg",
   },
   {
     title: "Ocampo, Julián",
-    description: "Programador Front-end",
+    description: "Programador Front-end - Analista",
     image: "/nosotros/juliocampo.png",
   },
   {
     title: "Rivero, Julián",
-    description: "Programador Back-end",
+    description: "Programador Back-end - Analista",
     image: "/nosotros/julir.jpeg",
   },
   {
@@ -30,20 +31,22 @@ const data = [
 function Nosotros() {
   const { ["token"]: antd } = theme.useToken();
   return (
-    <div className="min-h-[100vh] w-full bg-[url(/images/education.png)] bg-cover">
-      <div className="backdrop-brightness-[0.20] min-h-[100vh]">
+    <div className="min-h-screen w-full bg-[url(/images/education.png)] bg-cover">
+      <div className="backdrop-brightness-[0.20] min-h-screen">
         <Header />
         <main className="py-32 px-[10vw] text-white">
+          <div className="nosotros h-full">
+
           <List
             itemLayout="horizontal"
             dataSource={data}
             renderItem={(item, index) => (
               <div
-                className="px-4 py-3 mb-3 overflow-x-auto"
-                style={{
-                  background: "#fff2",
-                  borderRadius: antd.borderRadiusLG,
-                }}
+              className="px-4 py-3 mb-3 overflow-x-auto"
+              style={{
+                background: "#fff2",
+                borderRadius: antd.borderRadiusLG,
+              }}
               >
                 <List.Item>
                   <List.Item.Meta
@@ -56,11 +59,12 @@ function Nosotros() {
                     description={
                       <span className="text-gray-500">{item.description}</span>
                     }
-                  />
+                    />
                 </List.Item>
               </div>
             )}
-          />
+            />
+            </div>
         </main>
       </div>
     </div>

@@ -10,11 +10,12 @@ import { Empty, List, theme } from "antd";
 import { useLoaderData } from "react-router-dom";
 import CarrerasUni from "../Mapa/OutMapComponents/AsideInfo/CarrerasUni";
 import GuiaUsoIngresante from "./GuiaUsoIngresante";
+import Carta from "./Carta/Carta";
+import ListaProvider from "./ListaProvider";
 /* Scrollbar */
 import "simplebar";
 import "simplebar/dist/simplebar.css";
-import Carta from "./Carta/Carta";
-import ListaProvider from "./ListaProvider";
+
 
 function ListaInteres() {
   //Lista

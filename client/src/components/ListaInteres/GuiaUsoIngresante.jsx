@@ -47,17 +47,16 @@ function GuiaUsoIngresante() {
   ];
   return (
     <>
-      <AiOutlineQuestionCircle
-        className="guia cursor-pointer"
-        size="40"
-        type="primary"
-        onClick={() => setOpen(true)}
-        ref={ref}
-      >
-        Begin Tour
-      </AiOutlineQuestionCircle>
-
-      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+      <div className="tour" ref={ref}>
+        <AiOutlineQuestionCircle
+          className="guia cursor-pointer"
+          size="40"
+          type="primary"
+          onClick={() => setOpen(true)}
+        >
+        </AiOutlineQuestionCircle>
+        <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+      </div>
     </>
   );
 }
