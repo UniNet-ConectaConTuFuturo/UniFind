@@ -12,17 +12,13 @@ function Header() {
             </span>
           </Link>
         )}
-        <a
-          href="/servicios"
-          className="text-white underline underline-offset-2 z-10"
-        >
+        <a href="/servicios" className="group text-white transition duration-300 z-10">
           Servicios
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
         </a>
-        <a
-          href="/nosotros"
-          className="text-white underline underline-offset-2 z-10"
-        >
+        <a href="/nosotros" className="group text-white transition duration-300 z-10">
           Nosotros
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
         </a>
       </nav>
     </header>

@@ -110,7 +110,7 @@ function Admision() {
   const { ["token"]: antd } = theme.useToken();
 
   const genExam = () => (
-    <a class="group text-white transition duration-300">
+    <a className="group text-white transition duration-300">
       Generar Exámen
       <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
     </a>

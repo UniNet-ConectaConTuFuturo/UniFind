@@ -17,23 +17,22 @@ function Home() {
               <img
                 className="brightness-90 w-48 drop-shadow-logo"
                 src="/images/logo-color.png"
-                /* src="/images/libro.svg" */
                 alt=""
               />
             </div>
           </section>
-          <section className="py-16 text-gray-400 text-center">
-            <p>
+          <section className="py-16 text-white text-center opacity-80 ">
+            <p className="">
               Conocé las instituciones educativas a través de un mapa
               interactivo.
             </p>
             <br />
-            <p>
+            <p className="">
               Investiga las carreras e información importante sobre tu
               universidad ideal.
             </p>
             <br />
-            <p>Hazlo eficiente y eficazmente.</p>
+            <p className="">Hazlo eficiente y eficazmente.</p>
           </section>
         </main>
       </div>

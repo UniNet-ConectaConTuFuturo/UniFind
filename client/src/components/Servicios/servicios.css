@@ -1,5 +1,5 @@
 .gradiente {
-  transition: background-color 0.5s;
+  transition: background-size 0.5s, background-color 0.5s;
   background-size: 0% 100%;
 }
 
@@ -39,22 +39,11 @@
 }
 
 .centerbar{
-  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(255, 255, 255));
   background-position: 50% 50%;
-  background-repeat: no-repeat;
+  border-color: black;
   transition: 0.5s;
 }
 .centerbar:hover{
-  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(255, 255, 255));
-  background-position: 50% 100%;
-  background-size: 100% 100%;
   transition: 0.5s;
-  border-color: black;
-}
-.centerbar .logo{
-  transition: 1s;
-}
-.centerbar:hover .logo{
-  filter: invert(1);
-  transition: 0.5s;
+  border-color: white;
 }
