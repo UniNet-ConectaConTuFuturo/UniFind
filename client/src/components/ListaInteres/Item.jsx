@@ -123,7 +123,7 @@ function Item({
                       estadoTicket === "aceptado" ? `mailto:${mailRector}` : ""
                     }
                   >
-                    Enviar Consulta
+                    Consultar
                   </Link>
                 </Tooltip>
               ) : (
@@ -132,7 +132,7 @@ function Item({
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={sendTicket}
                 >
-                  Consultar
+                  Solicitar Consulta
                 </button>
               )}
               <button

@@ -65,7 +65,7 @@ function FileUpload({ id_universidad }) {
         loading={uploading}
         style={{ marginTop: 16 }}
       >
-        {uploading ? "Uploading" : "Start Upload"}
+        {uploading ? "Enviando" : "Enviar"}
       </Button>
     </div>
   );

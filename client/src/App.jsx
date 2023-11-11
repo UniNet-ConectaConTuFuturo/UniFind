@@ -8,6 +8,7 @@ import * as is from "./middlewares/authentication";
 /* Componentes */
 import { lazy } from "react";
 import { get } from "./api/api";
+import Nosotros from "./components/Nosotros/Nosotros";
 const Layout = lazy(() => import("./components/Layout/Layout"));
 const Home = lazy(() => import("./components/Home/Home"));
 const Servicios = lazy(() => import("./components/Servicios/Servicios"));
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Home,
+  },
+  {
+    path: "/nosotros",
+    Component: Nosotros,
   },
   {
     path: "/servicios",

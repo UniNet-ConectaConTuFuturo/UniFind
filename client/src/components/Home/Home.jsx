@@ -5,7 +5,7 @@ function Home() {
     <div className="min-h-[100vh] w-full bg-[url(/images/education.png)] bg-cover">
       <div className="backdrop-brightness-[0.20] min-h-[100vh]">
         <Header />
-        <main className="pt-20  opacity-95">
+        <main className="pt-20">
           <section className="flex flex-wrap gap-8 justify-center">
             <div>
               <h1 className="text-9xl font-medium italic text-white">UniNet</h1>

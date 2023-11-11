@@ -11,7 +11,6 @@ function GenerarCarta({ id_universidad }) {
 
   async function handleUpload() {
     setUploading(true);
-    console.log(formData);
     try {
       await axios.post(
         "http://localhost:4000/api/generate",
@@ -36,8 +35,9 @@ function GenerarCarta({ id_universidad }) {
       <Button
         className="form-btn bg-[#1677ff] hover:bg-transparent mt-4 self-center w-2/3"
         onClick={handleUpload}
+        loading={uploading}
       >
-        Generar Carta
+        {uploading ? "Enviando" : "Generar Carta"}
       </Button>
     </div>
   );
