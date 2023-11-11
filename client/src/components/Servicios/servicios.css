@@ -28,31 +28,35 @@
   );
 }
 
-.center{
+.center {
   background-position: 50% 50%;
   border-color: white;
 }
-.center:hover{
+.center:hover {
   border-color: black;
 }
-.centerbar{
-  background-position: 50% 50%;
-  transition: 0.5s;
+@property --c {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
 }
-.centerbar:hover{
+.centerbar {
+  transition: --c 1s;
   background-image: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0) 100%);
-  background-position: 50% 100%;
-  background-size: 100% 100%;
-  transition: 0.5s;
+    #0000 10%,
+    var(--c) 45% 55%,
+    #0000 90%
+  );
 }
-.centerbar .logo{
+.centerbar:hover {
+  transition: --c 1s;
+  --c: #fffd;
+}
+.centerbar .logo {
   transition: 1s;
 }
-.centerbar:hover .logo{
+.centerbar:hover .logo {
   filter: invert(1);
   transition: 1s;
 }
