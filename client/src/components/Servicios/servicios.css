@@ -28,31 +28,31 @@
   );
 }
 
-.center {
+.center{
   background-position: 50% 50%;
+  border-color: white;
+}
+.center:hover{
   border-color: black;
-  transition: border-color 0.5s ease;
 }
-/* .center:hover {
-  border-color: black;
-} */
-@property --c {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #0000;
+.centerbar{
+  background-position: 50% 50%;
+  transition: 0.5s;
 }
-.centerbar {
-  transition: --c 1s;
-  background-image: linear-gradient(to right, #0000, var(--c), #0000);
+.centerbar:hover{
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  background-position: 50% 100%;
+  background-size: 100% 100%;
+  transition: 0.5s;
 }
-.centerbar:hover {
-  transition: --c 1s;
-  --c: #fffc;
-}
-.centerbar .logo {
+.centerbar .logo{
   transition: 1s;
 }
-.centerbar:hover .logo {
+.centerbar:hover .logo{
   filter: invert(1);
   transition: 1s;
 }
