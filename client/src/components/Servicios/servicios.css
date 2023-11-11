@@ -31,9 +31,11 @@
 .center {
   background-position: 50% 50%;
   border-color: white;
+  transition: 1s;
 }
 .center:hover {
   border-color: black;
+  transition: 1s;
 }
 @property --c {
   syntax: "<color>";
