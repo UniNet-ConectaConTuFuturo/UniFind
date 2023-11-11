@@ -1,31 +1,28 @@
-.gradiente {
-  transition: background-size 0.5s, background-color 0.5s;
-  background-size: 0% 100%;
+@property --r {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
 }
-
-.gradiente:hover {
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  transition: background-size 1s, background-color 1s;
-}
-
-.left:hover {
-  background-position: left;
-  background-image: linear-gradient(
-    to right,
-    rgba(50, 151, 96, 0.8) 0%,
-    rgba(50, 151, 96, 0.7) 40%,
-    rgba(50, 151, 96, 0) 100%
-  );
+.right {
+  transition: --r 1s;
+  background-image: linear-gradient(to right, #0000, var(--r) 50%);
 }
 .right:hover {
-  background-position: right;
-  background-image: linear-gradient(
-    to left,
-    rgba(103, 191, 197, 0.8) 0%,
-    rgba(103, 191, 197, 0.7) 40%,
-    rgba(103, 191, 197, 0) 100%
-  );
+  transition: --r 1s;
+  --r: #49be;
+}
+@property --l {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+.left {
+  transition: --l 1s;
+  background-image: linear-gradient(to left, #0000, var(--l) 50%);
+}
+.left:hover {
+  transition: --l 1s;
+  --l: #396e;
 }
 
 .center {

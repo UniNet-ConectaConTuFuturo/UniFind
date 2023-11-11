@@ -8,13 +8,13 @@ function LogOut({ setToken, setTrigger }) {
       </h3>
       <div className="flex justify-between">
         <button
-          className="border rounded-lg p-2 bg-green-950 bg-opacity-80 hover:bg-green-500 font-bold text-black"
+          className="border rounded-sm p-2 w-40 bg-green-950 bg-opacity-80 hover:bg-green-500 font-bold text-black"
           onClick={() => setTrigger(false)}
         >
           No, cancelar
         </button>
         <button
-          className="border rounded-lg p-2 bg-red-950 bg-opacity-80 hover:bg-red-500 font-bold text-black"
+          className="border rounded-sm p-2 w-40 bg-red-950 bg-opacity-80 hover:bg-red-500 font-bold text-black"
           onClick={() => setToken("")}
         >
           Si, cerrar sesión
