@@ -5,7 +5,6 @@
 
 .gradiente:hover {
   background-size: 100% 100%;
-  /* background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0) 40%, rgba(255,255,255,.7) 100%); */
   background-repeat: no-repeat;
   transition: background-size 1s, background-color 1s;
 }
@@ -18,13 +17,6 @@
     rgba(50, 151, 96, 0.7) 40%,
     rgba(50, 151, 96, 0) 100%
   );
-  /* background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.5) 100%
-  ); */
-  /* background-color: rgb(50, 151, 96) */
 }
 .right:hover {
   background-position: right;
@@ -34,16 +26,33 @@
     rgba(103, 191, 197, 0.7) 40%,
     rgba(103, 191, 197, 0) 100%
   );
-  /* background-color: rgb(125, 229, 237);
-  background-color: rgb(50, 151, 96); */
 }
 
+.center{
+  background-position: 50% 50%;
+  border-color: white;
+}
+.center:hover{
+  border-color: black;
+}
 .centerbar{
   background-position: 50% 50%;
-  border-color: black;
   transition: 0.5s;
 }
 .centerbar:hover{
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  background-position: 50% 100%;
+  background-size: 100% 100%;
   transition: 0.5s;
-  border-color: white;
+}
+.centerbar .logo{
+  transition: 1s;
+}
+.centerbar:hover .logo{
+  filter: invert(1);
+  transition: 1s;
 }

@@ -20,9 +20,9 @@ function Servicios() {
 
         <Link
           to="/"
-          className="centerbar relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white bg-[url(/images/education.png)] bg-cover"
+          className="center relative flex justify-center w-full z-10 bg-black border-y-2 border-y-white bg-[url(/images/education.png)] bg-cover"
         >
-          <div className="contenedor flex justify-center w-full backdrop-brightness-[0.30]">
+          <div className="centerbar gradiente contenedor flex justify-center w-full backdrop-brightness-[0.30]">
             <div className="logo text-white z-10 p-4 text-lg">
               <img
                 className="w-20 h-20 inline-block scale-75"
