@@ -27,56 +27,55 @@ function ListaInteres() {
   console.log(favoritas);
   return (
     <ListaProvider>
-
-    <main className="bg-teal-700 h-screen py-8">
-      <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
-        <div className="float-right">
-          <GuiaUsoIngresante />
-        </div>
-        <h1
-          style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-          className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
+      <main className="bg-teal-700 h-screen py-8">
+        <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
+          <div className="float-right">
+            <GuiaUsoIngresante />
+          </div>
+          <h1
+            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
+            className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
           >
-          Lista de Interés
-        </h1>
-        {favoritas.length ? (
-          <List
-            pagination={{ align: "center", pageSize: 3 }}
-            dataSource={favoritas}
-            renderItem={(u) => (
-              <Item
-                key={u.id_universidad}
-                setButtonPopUpVerMas={setButtonPopUpVerMas}
-                setButtonPopUpCarta={setButtonPopUpCarta}
-                id_universidad={u.id_universidad}
-                setIdUniToShowInfo={setIdUniToShowInfo}
-              />
-            )}
+            Lista de Interés
+          </h1>
+          {favoritas.length ? (
+            <List
+              pagination={{ align: "center", pageSize: 3 }}
+              dataSource={favoritas}
+              renderItem={(u) => (
+                <Item
+                  key={u.id_universidad}
+                  setButtonPopUpVerMas={setButtonPopUpVerMas}
+                  setButtonPopUpCarta={setButtonPopUpCarta}
+                  id_universidad={u.id_universidad}
+                  setIdUniToShowInfo={setIdUniToShowInfo}
+                />
+              )}
             />
-            ) : (
-              <div
+          ) : (
+            <div
               style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
               className="p-4"
-              >
-            <Empty
-              imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
-              style={{ fontWeight: 700 }}
-              description="Lista vacia"
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
+            >
+              <Empty
+                imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
+                style={{ fontWeight: 700 }}
+                description="Lista vacia"
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
               />
-          </div>
-        )}
-      </div>
+            </div>
+          )}
+        </div>
 
-      <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
-        <CarrerasUni id_universidad={idUniToShowInfo} />
-      </Modal>
+        <Modal trigger={buttonPopUpVerMas} setTrigger={setButtonPopUpVerMas}>
+          <CarrerasUni id_universidad={idUniToShowInfo} />
+        </Modal>
 
-      <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
-        <Carta id_universidad={idUniToShowInfo} />
-      </Modal>
-    </main>
-        </ListaProvider>
+        <Modal trigger={buttonPopUpCarta} setTrigger={setButtonPopUpCarta}>
+          <Carta id_universidad={idUniToShowInfo} />
+        </Modal>
+      </main>
+    </ListaProvider>
   );
 }
 

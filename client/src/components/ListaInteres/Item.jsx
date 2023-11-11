@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { get } from "../../api/api";
 import PropTypes from "prop-types";
@@ -16,16 +16,12 @@ function Item({
   setIdUniToShowInfo,
   id_universidad,
 }) {
+  //Datos
+  const { token } = useOutletContext();
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
   const [estadoTicket, setEstadoTicket] = useState(null);
   const [mailRector, setMailRector] = useState(null);
-  const { token } = useOutletContext();
-  const { ["token"]: antd } = theme.useToken();
-  const {refButtonEnviarCarta} = useLista()
-  const {refButtonConsultar} = useLista()
-  const {refButtonVerCarreras} = useLista()
-  const {refButtonVerEnMapa} = useLista()
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
@@ -34,6 +30,15 @@ function Item({
       setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
     })();
   }, [id_universidad, token]);
+  //Guia
+  const {
+    refButtonEnviarCarta,
+    refButtonConsultar,
+    refButtonVerCarreras,
+    refButtonVerEnMapa,
+  } = useLista();
+  // Diseño
+  const { ["token"]: antd } = theme.useToken();
   const sendTicket = async () => {
     const formData = new FormData();
     formData.append("idUniversidad", id_universidad);
@@ -92,7 +97,7 @@ function Item({
             <DatosUni universidad={universidad} />
             <section className="grid gap-2">
               {!estadoCarta && (
-                <button 
+                <button
                   ref={refButtonEnviarCarta}
                   className="w-24 border rounded-md p-2 text-center"
                   onClick={() => {

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FaLock } from "react-icons/fa";
 import { Tooltip } from "antd";
+import { twMerge } from "tailwind-merge";
 /*
 const InlineDialog = styled(TooltipPrimitive)`
   background: white;
@@ -13,17 +14,18 @@ const InlineDialog = styled(TooltipPrimitive)`
   max-width: 300px;
   padding: ${token("space.100", "8px")} ${token("space.150", "12px")};
 `; */
-const AsideIconLock = ({ url, Icon, texto, condition }) => (
+const AsideIconLock = ({ url, Icon, texto, condition, className }) => (
   <Tooltip title={condition ? "Debe iniciar sesión" : ""} placement="right">
     <Link
       to={url}
       onClick={(e) => {
         if (condition) e.preventDefault();
       }}
-      className={
-        (condition ? "disabled" : "") +
-        " sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden"
-      }
+      className={twMerge(
+        condition ? "disabled" : "",
+        "sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden",
+        className
+      )}
     >
       <div className="mx-2.5 relative">
         <FaLock size="20" color="white" className="absolute bottom-0 right-0" />
@@ -39,5 +41,6 @@ AsideIconLock.propTypes = {
   Icon: PropTypes.func,
   texto: PropTypes.string,
   condition: PropTypes.bool,
+  className: PropTypes.string,
 };
 export default AsideIconLock;
