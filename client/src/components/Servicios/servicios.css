@@ -30,8 +30,12 @@
 
 .center {
   background-position: 50% 50%;
+  border-color: white;
+  transition: 1s;
+}
+.center:hover{
   border-color: black;
-  transition: border-color 0.5s ease;
+  transition: 1s;
 }
 /* .center:hover {
   border-color: black;
