@@ -44,19 +44,16 @@ const App = () => {
     },
   ];
   return (
-    <>
+    <article className="float-right">
       <AiOutlineQuestionCircle
         className="guia cursor-pointer"
         size="40"
         type="primary"
         onClick={() => setOpen(true)}
         ref={ref}
-      >
-        Begin Tour
-      </AiOutlineQuestionCircle>
-
+      />
       <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
-    </>
+    </article>
   );
 };
 export default App;

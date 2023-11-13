@@ -1,23 +1,22 @@
 import { post } from "../../api/api";
 import FileDownload from "./FileDownload";
 import "./Examen.css";
+import { message } from "antd";
 
 function Examen({ cartaName }) {
   const { id_usuario, nombreSoli } = cartaName;
   const aceptarCarta = async () => {
     try {
       await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
-      console.log(res);
-    } catch (ex) {
-      console.log(ex);
+    } catch {
+      message.error("Ocurrio un error");
     }
   };
   const rechazarCarta = async () => {
     try {
       await post("/cambio/rechazado", { id_usuario, estado: "rechazada" });
-      console.log(res);
-    } catch (ex) {
-      console.log(ex);
+    } catch {
+      message.error("Ocurrio un error");
     }
   };
   const segundainstanciaCarta = async () => {
@@ -26,9 +25,8 @@ function Examen({ cartaName }) {
         id_usuario,
         estado: "segunda instancia",
       });
-      console.log(res);
-    } catch (ex) {
-      console.log(ex);
+    } catch {
+      message.error("Ocurrio un error");
     }
   };
   return (

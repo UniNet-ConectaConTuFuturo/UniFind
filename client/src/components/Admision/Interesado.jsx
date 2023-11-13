@@ -11,7 +11,7 @@ function Interesado({
   nombreSoli,
 }) {
   const [usuario, setUsuario] = useState({});
-  const {refButtonVerSolicitud} = useAdmision()
+  const { refButtonVerSolicitud } = useAdmision();
   useEffect(() => {
     if (id_usuario)
       (async () => setUsuario(await get("/get/user", { id_usuario })))();
@@ -29,10 +29,11 @@ function Interesado({
         title={usuario.name_user}
         items={items}
         extra={
-          <button className="w-28 border rounded-md p-2 text-center"
+          <button
+            className="w-28 border rounded-md p-2 text-center"
             ref={refButtonVerSolicitud}
             onClick={() => {
-              setCartaName({nombreSoli, id_usuario});
+              setCartaName({ nombreSoli, id_usuario });
               setButtonPopUpExamen(true);
             }}
           >
@@ -43,5 +44,11 @@ function Interesado({
     </List.Item>
   );
 }
+Interesado.propTypes = {
+  id_usuario: PropTypes.number,
+  setCartaName: PropTypes.func,
+  setButtonPopUpExamen: PropTypes.func,
+  nombreSoli: PropTypes.string,
+};
 //nombre, titulo, mail, telefono, btn rechazar, btn aceptar, btn/input ver carta / descarga
 export default Interesado;

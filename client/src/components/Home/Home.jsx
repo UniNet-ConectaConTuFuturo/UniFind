@@ -13,13 +13,11 @@ function Home() {
                 Conecta con tu futuro
               </h2>
             </div>
-            <div className="pt-4">
-              <img
-                className="brightness-90 w-48 drop-shadow-logo"
-                src="/images/logo-color.png"
-                alt=""
-              />
-            </div>
+            <img
+              className="pt-4 brightness-90 w-48 drop-shadow-logo"
+              src="/images/logo-color.png"
+              alt="logo UniNet"
+            />
           </section>
           <section className="py-16 text-white text-center opacity-80 ">
             <p className="">

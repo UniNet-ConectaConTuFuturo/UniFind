@@ -53,8 +53,7 @@ function GuiaUsoIngresante() {
           size="40"
           type="primary"
           onClick={() => setOpen(true)}
-        >
-        </AiOutlineQuestionCircle>
+        />
         <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
       </div>
     </>

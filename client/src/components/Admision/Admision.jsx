@@ -126,9 +126,7 @@ function Admision() {
     <AdmisionProvider>
       <main className="bg-teal-700 h-screen py-8">
         <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
-          <div className="float-right">
-            <GuiaUsoRector />
-          </div>
+          <GuiaUsoRector />
           <h1
             style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
             className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
