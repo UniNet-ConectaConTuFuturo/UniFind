@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { post } from "../../api/api";
-import { useOutletContext } from "react-router-dom";
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
+import "simplebar";
+import "simplebar/dist/simplebar.css";
 function AccountSettings() {
-  const { token } = useOutletContext();
   const formNuevo = {
     name_user: "",
     phoneNumber: "",
@@ -19,7 +17,7 @@ function AccountSettings() {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(e.target);
-    await post("/config-account", { form, token });
+    await post("/config-account", { form });
   }
   return (
     <div data-simplebar className="flex flex-col h-screen w-full">

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./FileUpload.css";
-import FileUpload from "./FileUpload";
-import GenerarCarta from "./GenerarCarta";
+import FileUpload from "./Carta/FileUpload";
+import GenerarCarta from "./Carta/GenerarCarta";
 
 function Carta({ id_universidad }) {
   return (

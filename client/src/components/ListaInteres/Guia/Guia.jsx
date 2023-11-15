@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { Tour } from "antd";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { useLista } from "../../hooks/useContexts";
-function GuiaUsoIngresante() {
+import { useLista } from "../../../hooks/useContexts";
+function Guia() {
   const [open, setOpen] = useState(false);
   const { refButtonEnviarCarta } = useLista();
   const { refButtonConsultar } = useLista();
@@ -46,17 +46,15 @@ function GuiaUsoIngresante() {
     },
   ];
   return (
-    <>
-      <div className="tour" ref={ref}>
-        <AiOutlineQuestionCircle
-          className="guia cursor-pointer"
-          size="40"
-          type="primary"
-          onClick={() => setOpen(true)}
-        />
-        <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
-      </div>
-    </>
+    <div role="tour" className="float-right" ref={ref}>
+      <AiOutlineQuestionCircle
+        className="guia cursor-pointer"
+        size="40"
+        type="primary"
+        onClick={() => setOpen(true)}
+      />
+      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+    </div>
   );
 }
-export default GuiaUsoIngresante;
+export default Guia;

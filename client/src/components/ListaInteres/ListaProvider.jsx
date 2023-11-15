@@ -1,18 +1,31 @@
 import { ListaContext } from "../../context/ListaContext";
 import PropTypes from "prop-types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function ListaProvider({ children }) {
-    const refButtonEnviarCarta = useRef(null)
-    const refButtonConsultar = useRef(null)
-    const refButtonVerCarreras = useRef(null)
-    const refButtonVerEnMapa = useRef(null)
+  //Modales
+  const [popUpCarta, setPopUpCarta] = useState(false);
+  const [popUpVerMas, setPopUpVerMas] = useState(false);
+  const [idUniToShowInfo, setIdUniToShowInfo] = useState(0);
+  //Guía
+  const refButtonEnviarCarta = useRef(null);
+  const refButtonConsultar = useRef(null);
+  const refButtonVerCarreras = useRef(null);
+  const refButtonVerEnMapa = useRef(null);
+
   return (
     <ListaContext.Provider
-      value={{refButtonEnviarCarta,
+      value={{
+        popUpCarta,
+        setPopUpCarta,
+        popUpVerMas,
+        setPopUpVerMas,
+        idUniToShowInfo,
+        setIdUniToShowInfo,
+        refButtonEnviarCarta,
         refButtonConsultar,
         refButtonVerCarreras,
-        refButtonVerEnMapa
+        refButtonVerEnMapa,
       }}
     >
       {children}

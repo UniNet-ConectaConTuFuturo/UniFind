@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { get } from "../../api/api";
-import {useOutletContext} from "react-router-dom"
+import { useOutletContext } from "react-router-dom";
 
 function FileDownload({ id_universidad }) {
   const { token } = useOutletContext();
@@ -15,19 +15,26 @@ function FileDownload({ id_universidad }) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        responseType: 'blob',
+        responseType: "blob",
       }
     );
 
     const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.setAttribute('download', 'downloaded-file.txt');
+    link.setAttribute("download", "downloaded-file.txt");
     document.body.appendChild(link);
     link.click();
     window.URL.revokeObjectURL(url);
-  }
-  return (<button className="boton descargar w-[20%]" onClick={downloadFile}>Descargar Carta</button>);
+  };
+  return (
+    <button className="boton descargar w-[20%]" onClick={downloadFile}>
+      Descargar Carta
+    </button>
+  );
+}
+FileDownload.propTypes = {
+  id_universidad: PropTypes.number,
 };
 
 export default FileDownload;

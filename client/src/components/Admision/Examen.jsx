@@ -2,12 +2,12 @@ import { post } from "../../api/api";
 import FileDownload from "./FileDownload";
 import "./Examen.css";
 import { message } from "antd";
+import PropTypes from "prop-types";
 
-function Examen({ cartaName }) {
-  const { id_usuario, nombreSoli } = cartaName;
+function Examen({ id_usuario, nombreSoli }) {
   const aceptarCarta = async () => {
     try {
-      await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
+      await post("/cambio/aceptado", false, { id_usuario, estado: "aceptada" });
     } catch {
       message.error("Ocurrio un error");
     }
@@ -33,29 +33,21 @@ function Examen({ cartaName }) {
     <div className="w-full">
       <form className="w-full full h-48">
         <p className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden">
-          Bienvenido al centro de mando. Aquí podrá: <br></br>
-          <ol>
-            <li>
-              {" "}
-              * Descargar la carta de la solicitud.<br></br>
-            </li>
-            <li>
-              * Aceptar al Ingresante<br></br>
-            </li>
-            <li>
-              * Rechazar al Ingresante<br></br>
-            </li>
-            <li>* Enviar al Ingresante a Segunda Instancia</li>
-          </ol>
+          Carta de Pepito:
+          <br />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A vero
+          recusandae voluptates consectetur error? Vel tempora praesentium sunt
+          ratione molestias, aliquam consequuntur accusamus sint beatae quo
+          nihil quam, consequatur autem!
         </p>
         {/* <button className="text-black">Generar Exámen</button> */}
         <div className="botones w-full">
           <FileDownload />
           <button className="boton aceptar w-[20%]" onClick={aceptarCarta}>
-            Aceptar Carta
+            Aceptar
           </button>
           <button className="boton rechazar w-[20%]" onClick={rechazarCarta}>
-            Rechazar Carta
+            Rechazar
           </button>
           <button
             className="boton segunda-instancia w-[20%]"
@@ -68,5 +60,7 @@ function Examen({ cartaName }) {
     </div>
   );
 }
-
+Examen.propTypes = {
+  id_usuario: PropTypes.number,
+};
 export default Examen;
