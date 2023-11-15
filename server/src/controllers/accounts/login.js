@@ -25,7 +25,7 @@ export async function SignIn(req, res) {
       //Guardar id en Token
       console.log(process.env.SECRET, process.env.JWTPARAMS);
       const token = jwt.sign(
-        { id: id_usuario },
+        { id_usuario },
         process.env.SECRET,
         JSON.parse(process.env.JWTPARAMS)
       );

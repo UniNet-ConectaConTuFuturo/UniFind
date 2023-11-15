@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./FileUpload.css";
+import "./Carta/FileUpload.css";
 import FileUpload from "./Carta/FileUpload";
 import GenerarCarta from "./Carta/GenerarCarta";
 

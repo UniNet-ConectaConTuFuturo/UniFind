@@ -28,7 +28,7 @@ export async function RectorFirstStep(req, res) {
       name: data.name_user,
       email: correo_universidad,
     };
-    //await sendMail(params);
+    //await sendMail(params, "template_al6t6fo");
 
     /* Guardar Codigo temporal */
     InsertOrUpdateCode(correo_universidad, code, res);
@@ -67,7 +67,7 @@ export async function RectorSecondStep(req, res) {
 
     //Guardar id en Token
     const token = jwt.sign(
-      { id: id_usuario },
+      { id_usuario },
       process.env.SECRET,
       JSON.parse(process.env.JWTPARAMS)
     );

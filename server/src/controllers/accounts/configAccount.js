@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 export async function handleFormSubmit(req, res) {
   try {
     const {
-      form,
-      token
+      form
     } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
 
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
@@ -13,9 +13,7 @@ export async function handleFormSubmit(req, res) {
       if (!form.phoneNumber.trim()) delete form.phoneNumber;
       if (!form.address.trim()) delete form.address;
 
-      const { id } = decoded;
-
-      await updateUser(form, id);
+      await updateUser(form, decoded.id_usuario);
 
       console.log("Actualización exitosa!");
       return res.status(200).json({ success: true }).end();

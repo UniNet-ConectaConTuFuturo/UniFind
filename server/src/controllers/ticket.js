@@ -11,8 +11,7 @@ export async function sendTicket(req, res){
     try{
         jwt.verify(token, process.env.SECRET, async (err, decoded) => {
             if (err) throw err;
-            const { id } = decoded;
-            await consultas.insertTicket(id,id_universidad);
+            await consultas.insertTicket(decoded.id_usuario,id_universidad);
           });
     }catch (error) {
         console.error("Error verifying token:", error);
@@ -21,12 +20,12 @@ export async function sendTicket(req, res){
 }
 
 export async function estadoTicket(req, res) {
-  const { id_universidad, token } = req.body;
+  const { id_universidad } = req.body;
+  const token = req.headers.authorization.split(" ")[1];
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      const data = await consultas.selectEstadoTicket(id, id_universidad);
+      const data = await consultas.selectEstadoTicket(decoded.id_usuario, id_universidad);
       console.log(data)
       if(data.length > 0){ 
         console.log("estado: ",data) 
@@ -50,9 +49,8 @@ export async function getTicket(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
       let select = "estado";
-      let where = `id_usuario = ${id} AND id_universidad = ${id_universidad}`
+      let where = `id_usuario = ${decoded.id_usuario} AND id_universidad = ${id_universidad}`
       const data = await consultas.selectTicket(select, where);
       console.log(data);
       return res
@@ -76,12 +74,12 @@ export async function getTicket(req, res) {
 }
 
 export async function getTicketV2(req, res) {
-  const {token} = req.body
+  
+  const token = req.headers.authorization.split(" ")[1];
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      const data = await consultas.selectTicketRector(id);
+      const data = await consultas.selectTicketRector(decoded.id_usuario);
       console.log("datos:",data);
       return res
         .json({
@@ -102,16 +100,12 @@ export async function getTicketV2(req, res) {
 }
 
 export async function acceptTicket(req, res) {
-  const { id_usuario, estado, token } = req.body;
-  //const { token } = req.headers.authorization.split("")[1]; 
-  console.log("body", req.body);
-  console.log("token", token)
+  const { id_usuario, estado } = req.body;
+  const token = req.headers.authorization.split(" ")[1];
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log('id_recotr', id)
-      await consultas.changeEstadoTicket(estado, id_usuario, id);
+      await consultas.changeEstadoTicket(estado, id_usuario, decoded.id_usuario);
       return res.status(200).end();
     })
     

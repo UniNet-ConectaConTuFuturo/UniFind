@@ -4,10 +4,9 @@ import { useMapa } from "../../../../hooks/useContexts";
 import { get } from "../../../../api/api";
 
 import MyMarker from "./MyMarker";
-import { useOutletContext, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function DisplayMarkers() {
-  const { token } = useOutletContext();
   const [searchParams] = useSearchParams();
   const { actualizarBusqueda, filtrarFavoritas, autoZoom } = useMapa();
   const [markers, setMarkers] = useState([]);
@@ -26,13 +25,13 @@ function DisplayMarkers() {
     (async () =>
       setMarkers(
         await get("/filter", {
-          token: filtrarFavoritas ? token : null,
+          filtrarFavoritas,
           names: searchParams.get("names"),
           gestion: searchParams.get("gestion"),
           carreras: searchParams.get("carreras"),
         })
       ))();
-  }, [actualizarBusqueda, filtrarFavoritas, token, searchParams, setMarkers]);
+  }, [actualizarBusqueda, filtrarFavoritas, searchParams, setMarkers]);
 
   return (
     <FeatureGroup ref={featureGroupRef}>

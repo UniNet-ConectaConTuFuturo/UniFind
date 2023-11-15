@@ -2,8 +2,8 @@ const ContentType = {
     "Content-type": "application/json; charset=utf-8",
   },
   Authorization = `Bearer ${localStorage.getItem("TokenUniNet")}`;
-export const post = (url, body, content = null) =>
-  fetch("/api" + url, {
+export async function post(url, body, content = null){
+  return fetch("/api" + url, {
     method: "POST",
     headers: {
       Authorization,
@@ -11,25 +11,24 @@ export const post = (url, body, content = null) =>
     },
     body: JSON.stringify(body),
   }).catch((err) => console.log(err));
-
-export function get(url, body = null, content = null) {
-  fetch(
+}
+export async function get(url, body = null, content = null) {
+  return fetch(
     "/api" + url,
-    body
+    !body
       ? {
-          method: "POST",
-          headers: {
-            Authorization,
-            ...(content ? content : ContentType),
-          },
-          body: JSON.stringify(body),
-        }
-      : {
-          method: "GET",
-          headers: {
-            Authorization,
-          },
-        }
+        method: "GET",
+        headers: {
+          Authorization,
+        },
+      } : {
+        method: "POST",
+        headers: {
+          Authorization,
+          ...(content ? content : ContentType),
+        },
+        body: JSON.stringify(body),
+      } 
   )
     .then((res) => res.json())
     .catch((err) => console.log(err));

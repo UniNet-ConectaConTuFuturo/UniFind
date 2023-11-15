@@ -49,10 +49,11 @@ export async function getDefaultCarreras(req, res) {
 }
 export async function getUniPoints(req, res) {
   try {
-    const { token, names, gestion, carreras } = req.body;
+    const { filtrarFavoritas, names, gestion, carreras } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
     const [ids_universidad, creates_universidades] = idsOrCreates(names);
     const [ids_carreras, creates_carreras] = idsOrCreates(carreras);
-    if (token) {
+    if (filtrarFavoritas) {
       jwt.verify(token, process.env.SECRET, async (err, decoded) => {
         if (err) throw err;
 
@@ -62,7 +63,7 @@ export async function getUniPoints(req, res) {
           ids_carreras,
           creates_carreras,
           gestion,
-          id_usuario: decoded.id,
+          id_usuario: decoded.id_usuario,
         });
         return res.json(data).end();
       });

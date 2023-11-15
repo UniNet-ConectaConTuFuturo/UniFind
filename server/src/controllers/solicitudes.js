@@ -25,8 +25,6 @@ export async function uploadCarta(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
       const fileName = `idUn${id_universidad}idU${id}.txt`;
       const filePath = path.join(__dirname, "cartas", fileName);
       file.mv(filePath, (err) => {
@@ -36,7 +34,7 @@ export async function uploadCarta(req, res) {
         }
         res.status(200).send({ message: "File Uploaded", code: 200 });
       });
-      await insertSolicitud(id, fileName, id_universidad);
+      await insertSolicitud(decoded.id_usuario, fileName, id_universidad);
     });
   } catch (error) {
     console.error("Error verifying token:", error);
@@ -50,9 +48,8 @@ export async function generateCarta(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
-      let where = `id_usuario = ${id}`;
+      const {id_usuario} = decoded
+      let where = `id_usuario = ${id_usuario}`;
       const select = "name_user,mail_user,title";
       const user = await selectFromUsuarios(select, where);
       where = `id_universidad = ${id_universidad}`;
@@ -78,7 +75,7 @@ export async function generateCarta(req, res) {
           console.log(err);
         }
       });
-      await insertSolicitud(id, fileName, id_universidad);
+      await insertSolicitud(id_usuario, fileName, id_universidad);
     });
   } catch (error) {
     console.error("Error verifying token:", error);
@@ -87,14 +84,12 @@ export async function generateCarta(req, res) {
 }
 
 export async function getSolicitudes(req, res) {
-  const { token } = req.body;
-  console.log(token);
+  const token = req.headers.authorization.split(" ")[1];
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      const data = await selectSolicitudes(id);
-      console.log(data);
+
+      const data = await selectSolicitudes(decoded.id_usuario);
       return res
         .json({
           pendiente: data.filter(
@@ -120,9 +115,7 @@ export async function getSolicitudes(req, res) {
 export async function getUser(req, res) {
   const { id_usuario } = req.body;
   try {
-    const where = `id_usuario = ${id_usuario}`;
-    const data = (await selectFromUsuarios("*", where))[0];
-    return res.json(data).end();
+    return res.json((await selectFromUsuarios("*", `id_usuario = ${id_usuario}`))[0]).end();
   } catch (error) {
     console.error(error);
     res.statusMessage = "Ocurrio un error";
@@ -157,13 +150,13 @@ export async function acceptCarta(req, res) {
 }
 
 export async function verEstado(req, res) {
-  const { id_universidad, token } = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+  const { id_universidad } = req.body;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      const data = await selectEstadoSolicitudes(id, id_universidad);
-      console.log(data);
+      const data = await selectEstadoSolicitudes(decoded.id_usuario, id_universidad);
+
       if (data.length > 0) {
         console.log("estado: ", data);
         return res.json(data).end();

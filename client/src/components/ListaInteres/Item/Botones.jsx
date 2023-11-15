@@ -19,7 +19,7 @@ function Botones({ id_universidad, Point, estadoTicket, estadoCarta }) {
   const [mailRector, setMailRector] = useState(null);
   useEffect(() => {
     (async () => {
-      setMailRector(get("/getmail", false, { id_universidad }));
+      setMailRector(await get("/getmail", { id_universidad }));
     })();
   }, [id_universidad]);
   return (

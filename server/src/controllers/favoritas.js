@@ -7,17 +7,16 @@ import jwt from "jsonwebtoken";
 
 export async function isFavorite(req, res) {
   try {
-    const { token, id_universidad } = req.body;
+    const { id_universidad } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
 
       if (
         typeof (
           await selectFromFavoritas(
             "id_usuario",
-            "id_usuario = " + id + " AND id_universidad = " + id_universidad
+            "id_usuario = " + decoded.id_usuario + " AND id_universidad = " + id_universidad
           )
         )[0] !== "undefined"
       ) {
@@ -34,12 +33,11 @@ export async function isFavorite(req, res) {
 }
 export async function setFavorite(req, res) {
   try {
-    const { token, id_universidad } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
+    const { id_universidad } = req.body;
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
-      await insertFavorita({ id_usuario: id, id_universidad });
+      await insertFavorita({ id_usuario: decoded.id_usuario, id_universidad });
       return res.json({ value: true }).end();
     });
   } catch (error) {
@@ -50,13 +48,12 @@ export async function setFavorite(req, res) {
 }
 export async function deleteFavorite(req, res) {
   try {
-    const { token, id_universidad } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
+    const { id_universidad } = req.body;
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
 
-      await DeleteFavorita({ id_usuario: id, id_universidad });
+      await DeleteFavorita({ id_usuario: decoded.id_usuario, id_universidad });
       return res.json({ value: true }).end();
     });
   } catch (error) {
@@ -67,17 +64,15 @@ export async function deleteFavorite(req, res) {
 }
 export async function getFavorites(req, res) {
   try {
-    const { token } = req.body;
+    const token = req.headers.authorization.split(" ")[1];
+    
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
-      console.log(id);
 
       const data = await selectFromFavoritas(
         "id_universidad",
-        "id_usuario = " + id
+        "id_usuario = " + decoded.id_usuario
       );
-      console.log(data);
       return res.json(data).end();
     });
   } catch (error) {

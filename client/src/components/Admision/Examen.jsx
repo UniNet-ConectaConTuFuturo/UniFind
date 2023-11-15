@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 function Examen({ id_usuario, nombreSoli }) {
   const aceptarCarta = async () => {
     try {
-      await post("/cambio/aceptado", false, { id_usuario, estado: "aceptada" });
+      await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
     } catch {
       message.error("Ocurrio un error");
     }

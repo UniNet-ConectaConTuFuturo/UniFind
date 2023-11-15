@@ -23,10 +23,10 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const data = await get("/login/user", form);
-      if (data.token) {
+      const res = await get("/login/user", form);
+      if (res.token) {
         setSpan(spanVacio);
-        setToken(data.token);
+        setToken(res.token);
       } else {
         setSpan({ ...spanVacio, ...data });
       }

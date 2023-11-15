@@ -1,35 +1,25 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { get, post } from "../../../api/api";
+import { get } from "../../../api/api";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { Tooltip, theme } from "antd";
+import { theme } from "antd";
 import DatosUni from "../../Mapa/OutMapComponents/AsideInfo/DatosUni";
-import { useOutletContext } from "react-router-dom";
-import axios from "axios";
-import { twMerge } from "tailwind-merge";
-import { useLista } from "../../../hooks/useContexts";
 import Botones from "./Botones";
 
 function Item({
-  setPopUpVerMas,
-  setPopUpCarta,
-  setIdUniToShowInfo,
   id_universidad,
 }) {
   //Datos
-  const { token } = useOutletContext();
   const [universidad, setUniversidad] = useState(null);
   const [estadoCarta, setEstadoCarta] = useState(null);
   const [estadoTicket, setEstadoTicket] = useState(null);
   useEffect(() => {
     (async () => {
       setUniversidad(await get("/get/uni", { id_universidad }));
-      setMailRector(await get("/getmail", { id_universidad }));
-      setEstadoCarta(await get("/verestado", { id_universidad, token }));
-      setEstadoTicket(await get("/estadoticket", { id_universidad, token }));
+      setEstadoCarta(await get("/verestado", { id_universidad }));
+      setEstadoTicket(await get("/estadoticket", { id_universidad }));
     })();
-  }, [id_universidad, token]);
+  }, [id_universidad]);
 
   // Diseño
   const { ["token"]: antd } = theme.useToken();
@@ -69,10 +59,10 @@ function Item({
           <div className="gap-4 flex justify-between">
             <DatosUni universidad={universidad} />
             <Botones
-              setPopUpCarta={setPopUpCarta}
-              setPopUpVerMas={setPopUpVerMas}
-              setIdUniToShowInfo={setIdUniToShowInfo}
-              id_universidad={id_universidad}
+              id_universidad={id_universidad} 
+              Point={universidad.Point} 
+              estadoTicket={estadoTicket} 
+              estadoCarta={estadoCarta}
             />
           </div>
         </div>

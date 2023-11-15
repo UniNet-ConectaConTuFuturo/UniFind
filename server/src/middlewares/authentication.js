@@ -4,17 +4,18 @@ export const whoIs = (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
     //const token = req.headers.authorization.split(" ")[1];
-    const { token } = req.body;
+    
+    const token = req.headers.authorization.split(" ")[1];
+    console.log("Token:",token);
     if (!token)
       return res.json({ user: "noAuthenticated" }).end();
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const { id } = decoded;
 
       //Consultar por decodedToken.id en la Tabla de Ingresantes
       const user_data = await selectFromUsuarios(
         "title, id_universidad",
-        "id_usuario = " + id
+        "id_usuario = " + decoded.id_usuario
       );
 
       if (user_data.length === 0) {

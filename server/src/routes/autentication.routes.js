@@ -52,5 +52,5 @@ router.post("/api/rector/second-step", [
 router.post("/api/login/user", [login.SignIn]);
 
 //Rutas Middleware
-router.post("/api/auth", [whoIs]);
+router.get("/api/auth", [whoIs]);
 export default router;

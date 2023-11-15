@@ -10,7 +10,7 @@ router.post("/api/upload",solicitud.uploadCarta);
 router.post("/api/generate",solicitud.generateCarta);
 
 //Ver Solicitudes Rector
-router.post("/api/get/soli", solicitud.getSolicitudes);
+router.get("/api/get/soli", solicitud.getSolicitudes);
 router.post("/api/get/user", solicitud.getUser);
 router.post("/api/readfile", solicitud.readCarta);
 

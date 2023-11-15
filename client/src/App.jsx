@@ -26,7 +26,6 @@ const Comunicacion = lazy(() =>
 );
 const Mapa = lazy(() => import("./components/Mapa/Mapa"));
 const Admision = lazy(() => import("./components/Admision/Admision"));
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
   {
     path: "",
     Component: Layout,
-    loader: () => get("/auth", { token: localStorage.getItem("TokenUniNet") }),
+    loader: () =>get("/auth"),
     children: [
       {
         path: "/identificacion",
@@ -70,9 +69,7 @@ const router = createBrowserRouter([
         path: "/listainteres",
         loader: async () =>
           (await is.entrant())
-            ? get("/getfavorites", {
-                token: localStorage.getItem("TokenUniNet"),
-              })
+            ? get("/getfavorites")
             : redirect("/identificacion"),
         Component: ListaInteres,
       },
@@ -80,9 +77,7 @@ const router = createBrowserRouter([
         path: "/admision",
         loader: async () =>
           (await is.rector())
-            ? get("/get/soli", {
-                token: localStorage.getItem("TokenUniNet"),
-              })
+            ? get("/get/soli")
             : redirect("/listainteres"),
         Component: Admision,
       },

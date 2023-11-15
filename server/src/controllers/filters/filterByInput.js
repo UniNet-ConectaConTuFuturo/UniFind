@@ -14,7 +14,7 @@ export async function getNames(req, res) {
         "%'"
     );
     const resp = formatNamesOptions(data);
-    if (
+    if (typeof inputValue ==="undefined" ||
       "Universidad de Buenos Aires (UBA)"
         .toLowerCase()
         .includes(inputValue.trim().toLowerCase())
@@ -25,7 +25,7 @@ export async function getNames(req, res) {
         selectedOption: "UBA",
         title: "Universidad de Buenos Aires",
       });
-    if (
+    if (typeof inputValue ==="undefined" ||
       "Universidad Tecnologica Nacional (UTN)"
         .toLowerCase()
         .includes(inputValue.trim().toLowerCase())

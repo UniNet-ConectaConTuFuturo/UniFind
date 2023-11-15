@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `uninet`
 --
-
+CREATE DATABASE IF NOT EXISTS `uninet`;
+USE `uninet`;
 -- --------------------------------------------------------
 
 --

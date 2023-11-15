@@ -23,7 +23,7 @@ function Fav({ id_universidad, dispatch }) {
     }
   }, [token, id_universidad]);
   async function handleClick(fetch, isfavorite) {
-    post(fetch, { id_universidad, token });
+    post(fetch, { id_universidad });
     setIsFavorite(isfavorite);
     dispatch({ id_universidad });
   }
