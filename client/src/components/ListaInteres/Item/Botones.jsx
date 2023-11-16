@@ -54,7 +54,10 @@ function Botones({ id_universidad, Point, estadoTicket, estadoCarta }) {
         <button
           ref={refButtonConsultar}
           className="w-24 border rounded-md p-2 text-center"
-          onClick={() => post("/enviarticket", true, { id_universidad })}
+          onClick={() => {
+            post("/enviarticket", { id_universidad })
+            window.location.reload();
+          }}
         >
           Solicitar Consulta
         </button>

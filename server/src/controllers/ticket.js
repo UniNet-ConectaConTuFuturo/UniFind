@@ -7,11 +7,12 @@ import {selectFromUsuarios} from "../database/consults/usuariosC.js"
 
 export async function sendTicket(req, res){
     const token = req.headers.authorization.split(" ")[1];
-    const id_universidad = req.body.idUniversidad;
+    const {id_universidad} = req.body;
+    console.log(id_universidad);
     try{
         jwt.verify(token, process.env.SECRET, async (err, decoded) => {
             if (err) throw err;
-            await consultas.insertTicket(decoded.id_usuario,id_universidad);
+            await consultas.insertTicket(decoded.id_usuario, id_universidad);
           });
     }catch (error) {
         console.error("Error verifying token:", error);
