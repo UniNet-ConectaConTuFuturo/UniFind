@@ -6,7 +6,7 @@ import { Descriptions, List } from "antd";
 import { useAdmision } from "../../hooks/useContexts";
 function Interesado({
   id_usuario,
-  setCartaName,
+  setIdToShow,
   setButtonPopUpExamen,
   nombreSoli,
 }) {
@@ -33,7 +33,7 @@ function Interesado({
             className="w-28 border rounded-md p-2 text-center"
             ref={refButtonVerSolicitud}
             onClick={() => {
-              setCartaName({ nombreSoli, id_usuario });
+              setIdToShow(id_usuario);
               setButtonPopUpExamen(true);
             }}
           >
@@ -46,7 +46,7 @@ function Interesado({
 }
 Interesado.propTypes = {
   id_usuario: PropTypes.number,
-  setCartaName: PropTypes.func,
+  setIdToShow: PropTypes.func,
   setButtonPopUpExamen: PropTypes.func,
   nombreSoli: PropTypes.string,
 };

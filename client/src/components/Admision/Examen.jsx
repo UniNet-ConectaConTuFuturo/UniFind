@@ -4,7 +4,8 @@ import "./Examen.css";
 import { message } from "antd";
 import PropTypes from "prop-types";
 
-function Examen({ id_usuario, nombreSoli }) {
+function Examen({ id_usuario }) {
+  console.log("user: ", id_usuario);
   const aceptarCarta = async () => {
     try {
       await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
