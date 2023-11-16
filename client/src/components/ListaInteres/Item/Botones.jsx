@@ -71,7 +71,11 @@ function Botones({ id_universidad, Point, estadoTicket, estadoCarta }) {
       </button>
       <Link
         ref={refButtonVerEnMapa}
-        to={`/mapa/@${Point.x},${Point.y},13z?selected=${id_universidad}`}
+        to={
+          id_universidad
+            ? `/mapa/@${Point.x},${Point.y},13z?selected=${id_universidad}`
+            : "/mapa"
+        }
         className="w-24 border rounded-md p-2 text-center"
       >
         Ver En Mapa

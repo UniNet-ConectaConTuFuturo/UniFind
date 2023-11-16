@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import PropTypes from "prop-types";
+import { useRef } from "react";
 import { Tour } from "antd";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useLista } from "../../../hooks/useContexts";
-function Guia() {
-  const [open, setOpen] = useState(false);
+function Guia({ open, setOpen }) {
   const { refButtonEnviarCarta } = useLista();
   const { refButtonConsultar } = useLista();
   const { refButtonVerCarreras } = useLista();
@@ -57,4 +57,8 @@ function Guia() {
     </div>
   );
 }
+Guia.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+};
 export default Guia;
