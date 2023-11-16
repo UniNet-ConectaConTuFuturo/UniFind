@@ -18,7 +18,7 @@ import AdmisionProvider from "./AdmisionProvider";
 function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
-  const [cartaName, setCartaName] = useState("");
+  const [idToShow, setIdToShow] = useState("");
   console.log("estado", pendiente);
   const getItems = (panelStyle) => [
     {
@@ -28,15 +28,16 @@ function Admision() {
       children: pendiente.length ? (
         <List
           dataSource={pendiente}
-          renderItem={(u) => (
+          renderItem={(u) => {
+            console.log(u);
+            return (
             <Interesado
               key={u.id_usuario}
-              nombreSoli={u.solicitud}
               id_usuario={u.id_usuario}
-              setCartaName={setCartaName}
+              setIdToShow={setIdToShow}
               setButtonPopUpExamen={setButtonPopUpExamen}
             />
-          )}
+          )}}
         />
       ) : (
         <CustomEmpty />
@@ -52,9 +53,8 @@ function Admision() {
           renderItem={(u) => (
             <Interesado
               key={u.id_usuario}
-              nombreSoli={u.solicitud}
               id_usuario={u.id_usuario}
-              setCartaName={setCartaName}
+              setIdToShow={setIdToShow}
               setButtonPopUpExamen={setButtonPopUpExamen}
             />
           )}
@@ -73,9 +73,8 @@ function Admision() {
           renderItem={(u) => (
             <Interesado
               key={u.id_usuario}
-              nombreSoli={u.solicitud}
               id_usuario={u.id_usuario}
-              setCartaName={setCartaName}
+              setIdToShow={setIdToShow}
               setButtonPopUpExamen={setButtonPopUpExamen}
             />
           )}
@@ -92,15 +91,16 @@ function Admision() {
       children: segunda_instancia.length ? (
         <List
           dataSource={segunda_instancia}
-          renderItem={(u) => (
+          renderItem={(u) => {
+            console.log(u);
+            return (
             <Interesado
               key={u.id_usuario}
-              nombreSoli={u.solicitud}
               id_usuario={u.id_usuario}
-              setCartaName={setCartaName}
+              setIdToShow={setIdToShow}
               setButtonPopUpExamen={setButtonPopUpExamen}
             />
-          )}
+          )}}
         />
       ) : (
         <CustomEmpty />
@@ -143,7 +143,7 @@ function Admision() {
         </div>
         <Suspense>
           <Modal trigger={buttonPopUpExamen} setTrigger={setButtonPopUpExamen}>
-            <Examen cartaName={cartaName} />
+            <Examen id_usuario={idToShow}/>
           </Modal>
         </Suspense>
       </main>

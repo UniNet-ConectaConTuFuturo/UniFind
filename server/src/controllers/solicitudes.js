@@ -25,7 +25,8 @@ export async function uploadCarta(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const fileName = `idUn${id_universidad}idU${id}.txt`;
+      const {id_usuario} = decoded
+      const fileName = `idUn${id_universidad}idU${id_usuario}.txt`;
       const filePath = path.join(__dirname, "cartas", fileName);
       file.mv(filePath, (err) => {
         console.log(err);
@@ -34,7 +35,7 @@ export async function uploadCarta(req, res) {
         }
         res.status(200).send({ message: "File Uploaded", code: 200 });
       });
-      await insertSolicitud(decoded.id_usuario, fileName, id_universidad);
+      await insertSolicitud(id_usuario, fileName, id_universidad);
     });
   } catch (error) {
     console.error("Error verifying token:", error);
