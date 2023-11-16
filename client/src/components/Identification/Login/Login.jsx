@@ -28,7 +28,7 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
         setSpan(spanVacio);
         setToken(res.token);
       } else {
-        setSpan({ ...spanVacio, ...data });
+        setSpan({ ...spanVacio, ...res });
       }
     } catch (error) {
       console.log(error);
@@ -41,30 +41,33 @@ const Login = forwardRef(function Login({ changeToRegistro }, ref) {
       ref={ref}
     >
       <div className="form-box w-[26rem] h-[24rem] bg-none border-2 rounded-lg flex flex-col justify-center items-center backdrop-blur-sm gap-4">
-      <h2 className="text-center text-white text-2xl">INGRESAR</h2>
-      <form onSubmit={handleSubmit}>
-        <Input
-          className=""
-          Name="mail_user"
-          value={form.mail_user}
-          span={span.spanEmail}
-          handleChange={handleChange}
-          label="Correo Electrónico"
-        />
-        <Input
-          className="pb-20"
-          type="password"
-          Name="password_user"
-          value={form.password_user}
-          span={span.spanPassword}
-          handleChange={handleChange}
-          label="Contraseña"
-        />
-        <input className="text-black w-full bg-white h-10 rounded-xl mt-10" type="submit" />
-      </form>
-      <a className="text-white text-end" href="#" onClick={changeToRegistro}>
-        ¿No estás registrado? Hazlo ahora!
-      </a>
+        <h2 className="text-center text-white text-2xl">INGRESAR</h2>
+        <form onSubmit={handleSubmit}>
+          <Input
+            className=""
+            Name="mail_user"
+            value={form.mail_user}
+            span={span.spanEmail}
+            handleChange={handleChange}
+            label="Correo Electrónico"
+          />
+          <Input
+            className="pb-20"
+            type="password"
+            Name="password_user"
+            value={form.password_user}
+            span={span.spanPassword}
+            handleChange={handleChange}
+            label="Contraseña"
+          />
+          <input
+            className="text-black w-full bg-white h-10 rounded-xl mt-10"
+            type="submit"
+          />
+        </form>
+        <a className="text-white text-end" href="#" onClick={changeToRegistro}>
+          ¿No estás registrado? Hazlo ahora!
+        </a>
       </div>
     </section>
   );

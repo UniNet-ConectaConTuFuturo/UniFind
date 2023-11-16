@@ -3,12 +3,8 @@ import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 export const whoIs = (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
-    //const token = req.headers.authorization.split(" ")[1];
-    
-    const token = req.headers.authorization.split(" ")[1];
-    console.log("Token:",token);
-    if (!token)
-      return res.json({ user: "noAuthenticated" }).end();
+    const token = req.headers.authorization.split(" ")[1] || null;
+    if (!token) return res.json({ user: "noAuthenticated" }).end();
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
 
