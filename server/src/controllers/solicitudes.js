@@ -44,7 +44,7 @@ export async function uploadCarta(req, res) {
 
 export async function generateCarta(req, res) {
   const token = req.headers.authorization.split(" ")[1];
-  const id_universidad = req.body.idUniversidad;
+  const {id_universidad} = req.body;
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
@@ -67,7 +67,7 @@ export async function generateCarta(req, res) {
       Agradezco de antemano su consideración de mi solicitud. Le saludo atentamente,
       
       ${user[0].name_user}`;
-      const fileName = `idUn${id_universidad}idU${id}.txt`;
+      const fileName = `idUn${id_universidad}idU${id_usuario}.txt`;
       console.log("dirname;", __dirname);
       const filePath = path.join(__dirname, "cartas", fileName);
       await fs.writeFile(filePath, data, (err) => {
