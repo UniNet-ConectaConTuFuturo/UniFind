@@ -110,28 +110,28 @@ function Admision() {
   const { ["token"]: antd } = theme.useToken();
 
   const genExam = () => (
-    <a className="group text-white transition duration-300">
+    <a className="group transition duration-300 text-black">
       Generar Exámen
-      <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white"></span>
+      <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black"></span>
     </a>
   );
 
   const panelStyle = {
     marginBottom: 24,
-    background: "#fff2",
+    background: "#0002",
     borderRadius: antd.borderRadiusLG,
     border: "none",
   };
   return (
     <AdmisionProvider>
-      <main className="bg-teal-700 h-screen py-8">
-        <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
+      <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
+        <div className="backdrop-brightness-[0.10] h-full py-8">
+        <div data-simplebar className="ml-40 mr-4 pr-8 h-full invert">
           <GuiaUsoRector />
           <h1
-            style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-            className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
+            className="bg-[#0002] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans"
           >
-            Interesados
+            Sistema de Admisión - Universidad
           </h1>
           <Suspense>
             <Collapse
@@ -146,6 +146,7 @@ function Admision() {
             <Examen id_usuario={idToShow}/>
           </Modal>
         </Suspense>
+        </div>
       </main>
     </AdmisionProvider>
   );

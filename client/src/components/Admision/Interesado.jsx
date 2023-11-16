@@ -30,7 +30,7 @@ function Interesado({
         items={items}
         extra={
           <button
-            className="w-28 border rounded-md p-2 text-center"
+            className="w-28 border rounded-md border-black p-2 text-center"
             ref={refButtonVerSolicitud}
             onClick={() => {
               setIdToShow(id_usuario);

@@ -56,16 +56,16 @@ function Comunicacion() {
 
   const panelStyle = {
     marginBottom: 24,
-    background: "#fff2",
+    background: "#0002",
     borderRadius: antd.borderRadiusLG,
     border: "none",
   };
   return (
-    <main className="bg-teal-700 h-screen py-8">
-      <div data-simplebar className="ml-40 mr-4 pr-8 h-full">
+    <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
+        <div className="backdrop-brightness-[0.10] h-full py-8">
+      <div data-simplebar className="ml-40 mr-4 pr-8 h-full invert">
         <h1
-          style={{ background: "#fff2", borderRadius: antd.borderRadiusLG }}
-          className="text-6xl mb-4 px-2 pb-2 inline-block font-sans"
+          className="bg-[#0002] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans"
         >
           Centro de Comunicación
         </h1>
@@ -82,6 +82,7 @@ function Comunicacion() {
           <Examen cartaName={cartaName} />
         </Modal>
       </Suspense> */}
+      </div>
     </main>
   );
 }

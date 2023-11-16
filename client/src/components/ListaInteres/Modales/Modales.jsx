@@ -14,7 +14,9 @@ function Modales() {
   return (
     <>
       <Modal trigger={popUpVerMas} setTrigger={setPopUpVerMas}>
-        <CarrerasUni id_universidad={idUniToShowInfo} />
+        <div className="max-h-[75vh] overflow-y-scroll">
+          <CarrerasUni id_universidad={idUniToShowInfo} />
+        </div>
       </Modal>
 
       <Modal trigger={popUpCarta} setTrigger={setPopUpCarta}>

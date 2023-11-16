@@ -5,7 +5,7 @@ import { get, post } from "../../../../api/api";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import BtnFav from "./UI/BtnFav";
 
-function Fav({ id_universidad, dispatch }) {
+function Fav({ id_universidad, dispatch, iconColor }) {
   const { token } = useOutletContext();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
@@ -28,18 +28,20 @@ function Fav({ id_universidad, dispatch }) {
     dispatch({ id_universidad });
   }
   return (
-    <section className="flex justify-center my-4">
+    <section className="flex justify-center mb-8">
       {isFavorite ? (
         <BtnFav
           onClick={() => handleClick("/deletefavorite", false)}
           Icon={FaBookmark}
           text="Quitar de favoritos"
+          iconColor={iconColor}
         />
       ) : (
         <BtnFav
           onClick={() => handleClick("/setfavorite", true)}
           Icon={FaRegBookmark}
           text="Guardar en favoritos"
+          iconColor={iconColor}
         />
       )}
     </section>
@@ -48,5 +50,6 @@ function Fav({ id_universidad, dispatch }) {
 Fav.propTypes = {
   id_universidad: PropTypes.number,
   dispatch: PropTypes.func,
+  iconColor: PropTypes.string
 };
 export default Fav;

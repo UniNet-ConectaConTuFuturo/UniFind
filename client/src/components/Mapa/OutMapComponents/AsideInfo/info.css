@@ -1,3 +1,9 @@
+.h-full-ant-tabs-content-holder,
+.h-full-content,
+.h-full-tabpane {
+  height: 100%;
+}
+
 .info-nav-container {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }

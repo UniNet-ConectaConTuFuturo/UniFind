@@ -15,7 +15,9 @@ function ListaInteres() {
   const [open, setOpen] = useState(false);
   return (
     <ListaProvider>
-      <main className="bg-teal-700 h-screen py-8">
+      <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
+        <div className="backdrop-brightness-[0.10] h-full py-8 text-gray-300">
+
         <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
           <Guia open={open} setOpen={setOpen} />
           <h1 className="bg-[#fff2] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans">
@@ -32,6 +34,7 @@ function ListaInteres() {
           )}
         </div>
         <Modales />
+          </div>
       </main>
     </ListaProvider>
   );

@@ -13,10 +13,11 @@ function Informacion({ id_universidad, dispatch, className }) {
   useEffect(() => {
     (async () => setUniversidad(await get("/get/uni", { id_universidad })))();
   }, [id_universidad]);
+  const iconColor = "#1677ff"
   return (
     <div
       className={twMerge(
-        "text-black flex flex-col content-end h-full",
+        "text-black flex flex-col content-end h-[98%] px-2 overflow-y-clip ",
         className
       )}
     >
@@ -26,16 +27,17 @@ function Informacion({ id_universidad, dispatch, className }) {
             {universidad.nombre_universidad}
           </h2>
           <Tabs
+            prefixCls="h-full"
             defaultActiveKey="1"
             items={[
               {
                 key: "1",
                 label: "Información",
                 children: (
-                  <>
-                    <DatosUni universidad={universidad} dispatch={dispatch} />
-                    <Fav id_universidad={id_universidad} dispatch={dispatch} />
-                  </>
+                  <div className="h-full flex justify-between flex-col break-all">
+                    <DatosUni universidad={universidad} iconColor={iconColor} />
+                    <Fav id_universidad={id_universidad} dispatch={dispatch} iconColor={iconColor} />
+                  </div>
                 ),
               },
               {

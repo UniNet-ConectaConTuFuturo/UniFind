@@ -8,7 +8,7 @@ import {
 import NoRefererLink from "./UI/NoRefererLink";
 import Icon_Text from "./UI/Icon_Text";
 
-function DatosUni({ universidad }) {
+function DatosUni({ universidad, iconColor }) {
   const {
     maps_universidad,
     direccion_universidad,
@@ -24,17 +24,24 @@ function DatosUni({ universidad }) {
         href={maps_universidad}
         Icon={FaMapMarkerAlt}
         text={`${direccion_universidad}, ${localidad_universidad}, ${zona_universidad}`}
-      />
+        iconColor={iconColor}
+      /><br/>
       <NoRefererLink
         href={web_universidad}
         Icon={FaGlobeAmericas}
         text={web_universidad}
-      />
+        iconColor={iconColor}
+      /><br/>
       <Icon_Text
         Icon={FaHandHoldingUsd}
         text={`Gestión: ${gestion_universidad}`}
+        iconColor={iconColor}
+      /><br/>
+      <Icon_Text
+        Icon={FaEnvelope}
+        text={correo_universidad}
+        iconColor={iconColor}
       />
-      <Icon_Text Icon={FaEnvelope} text={correo_universidad} />
     </section>
   );
 }
@@ -53,5 +60,6 @@ DatosUni.propTypes = {
       y: PropTypes.number,
     }),
   }),
+  iconColor: PropTypes.string,
 };
 export default DatosUni;
