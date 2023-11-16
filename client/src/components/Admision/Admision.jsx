@@ -16,7 +16,7 @@ import GuiaUsoRector from "./GuiaUsoRector";
 import AdmisionProvider from "./AdmisionProvider";
 
 function Admision() {
-  const { aceptada, pendiente, rechazada, segunda_instancia } = useLoaderData();
+  const { aceptada, pendiente, rechazada, segunda_instancia, nombre_universidad } = useLoaderData();
   const [buttonPopUpExamen, setButtonPopUpExamen] = useState(false);
   const [idToShow, setIdToShow] = useState("");
   console.log("estado", pendiente);
@@ -131,7 +131,8 @@ function Admision() {
           <h1
             className="bg-[#0002] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans"
           >
-            Sistema de Admisión - Universidad
+            Sistema de Admisión
+            <h3>{nombre_universidad}</h3>
           </h1>
           <Suspense>
             <Collapse

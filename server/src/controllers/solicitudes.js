@@ -89,8 +89,11 @@ export async function getSolicitudes(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-
-      const data = await selectSolicitudes(decoded.id_usuario);
+      const {id_usuario} = decoded
+      const data = await selectSolicitudes(id_usuario);
+      const {id_universidad} = (await selectFromUsuarios("id_universidad", "id_usuario =" + id_usuario ))[0]
+      console.log(id_universidad);
+      const {nombre_universidad} = (await selectFromUniversidades("nombre_universidad", "id_universidad = " + id_universidad))[0]
       return res
         .json({
           pendiente: data.filter(
@@ -103,6 +106,7 @@ export async function getSolicitudes(req, res) {
           segunda_instancia: data.filter(
             (solicitud) => solicitud.estado === "segunda instancia"
           ),
+          nombre_universidad
         })
         .end();
     });
