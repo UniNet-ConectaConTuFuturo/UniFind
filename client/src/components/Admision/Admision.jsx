@@ -7,13 +7,14 @@ const Modal = lazy(() => import("../UI/Modal"));
 const CustomEmpty = lazy(() => import("../UI/CustomEmpty"));
 //CSS
 import "../ListaInteres/ListaInteres.css";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 //Scrollbar
 import "simplebar";
 import "simplebar/dist/simplebar.css";
 //Guia de Uso
 import GuiaUsoRector from "./GuiaUsoRector";
 import AdmisionProvider from "./AdmisionProvider";
+import { get, post } from "../../api/api";
 
 function Admision() {
   const { aceptada, pendiente, rechazada, segunda_instancia, nombre_universidad } = useLoaderData();
@@ -25,6 +26,7 @@ function Admision() {
       key: 1,
       label: "PENDIENTES",
       style: panelStyle,
+      extra: Excel(),
       children: pendiente.length ? (
         <List
           dataSource={pendiente}
@@ -114,7 +116,13 @@ function Admision() {
       Generar Exámen
       <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black"></span>
     </a>
-  );
+);
+const Excel = () => (
+<a href="http://localhost:4000/api/exportarexcel" target="_blank" className="group transition duration-300 text-black">
+Excel
+<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black"></span>
+</a>
+);
 
   const panelStyle = {
     marginBottom: 24,

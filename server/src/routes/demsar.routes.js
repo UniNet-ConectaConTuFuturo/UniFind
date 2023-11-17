@@ -1,4 +1,6 @@
 import { Router } from "express";
 import {exportarExcel} from "../controllers/demsar.js";
+const router = Router();
+router.get('/api/exportarexcel', exportarExcel);
 
-router.post("/api/exportarExcel", exportarExcel);
+export default router;
