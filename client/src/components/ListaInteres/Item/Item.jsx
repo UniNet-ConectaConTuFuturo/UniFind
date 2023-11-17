@@ -17,10 +17,10 @@ function Item({ id_universidad }) {
     web_universidad: "uninet.com",
     gestion_universidad: "Pública o Privada",
     correo_universidad: "uninet@gmail.com",
-    Point: PropTypes.exact({
+    Point: {
       x: 0,
       y: 0,
-    }),
+    },
   });
   const [estadoCarta, setEstadoCarta] = useState(null);
   const [estadoTicket, setEstadoTicket] = useState(null);
@@ -32,7 +32,6 @@ function Item({ id_universidad }) {
         setEstadoTicket(await get("/estadoticket", { id_universidad }));
       })();
   }, [id_universidad]);
-
   // Diseño
   return (
     <>
