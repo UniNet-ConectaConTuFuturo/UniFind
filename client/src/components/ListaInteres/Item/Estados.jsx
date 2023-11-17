@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 function Estados({estadoCarta, estadoTicket}) {
+  console.log(estadoCarta, estadoTicket);
   return (
     <div className="text-xs flex justify-end gap-4 text-gray-400">
       {estadoCarta && (

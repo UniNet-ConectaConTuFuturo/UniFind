@@ -2,7 +2,7 @@ import path from "path";
 import jwt from "jsonwebtoken";
 
 //consultas
-import * as consultas from "../database/consults/ticktsC.js"
+import * as consultas from "../database/consults/ticketsC.js"
 import {selectFromUsuarios} from "../database/consults/usuariosC.js"
 
 export async function sendTicket(req, res){

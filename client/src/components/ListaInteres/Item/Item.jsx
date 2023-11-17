@@ -22,35 +22,33 @@ function Item({ id_universidad }) {
       y: 0,
     },
   });
-  const [estadoCarta, setEstadoCarta] = useState(null);
-  const [estadoTicket, setEstadoTicket] = useState(null);
+  const [estados, setEstados] = useState(null);
   useEffect(() => {
     if (id_universidad)
       (async () => {
         setUniversidad(await get("/get/uni", { id_universidad }));
-        setEstadoCarta(await get("/verestado", { id_universidad }));
-        setEstadoTicket(await get("/estadoticket", { id_universidad }));
+        setEstados(await get("/estados/lista-interes", { id_universidad }));
       })();
   }, [id_universidad]);
   // Diseño
   return (
     <>
-      {universidad && (
+      {universidad && estados && (
         <div className="bg-[#fff2] rounded-md px-4 py-3 mb-3 overflow-x-auto text-gray-300">
           <section className="flex justify-between gap-2 mb-3">
             <h3 className="text-xl min-w-[12rem] font-semibold">
               {universidad.nombre_universidad}
             </h3>
 
-            <Estados estadoCarta={estadoCarta} estadoTicket={estadoTicket}/>
+            <Estados estadoCarta={estados.carta} estadoTicket={estados.ticket}/>
           </section>
           <div className="gap-4 flex justify-between">
             <DatosUni universidad={universidad} iconColor="rgb(209 213 219)"/>
             <Botones
               id_universidad={id_universidad}
               Point={universidad.Point}
-              estadoTicket={estadoTicket}
-              estadoCarta={estadoCarta}
+              estadoTicket={estados.ticket}
+              estadoCarta={estados.carta}
             />
           </div>
         </div>

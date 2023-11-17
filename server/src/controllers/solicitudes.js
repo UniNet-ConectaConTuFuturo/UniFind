@@ -11,6 +11,7 @@ import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 import { changeEstado } from "../database/consults/solicitudesC.js";
 import { selectEstadoSolicitudes } from "../database/consults/solicitudesC.js";
+import {selectEstadoTicket} from "../database/consults/ticketsC.js"
 
 //To use __dirname
 import { fileURLToPath } from "url";
@@ -160,14 +161,10 @@ export async function verEstado(req, res) {
   try {
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
-      const data = await selectEstadoSolicitudes(decoded.id_usuario, id_universidad);
-
-      if (data.length > 0) {
-        console.log("estado: ", data);
-        return res.json(data).end();
-      } else {
-        return res.status(200).end();
-      }
+      const carta = await selectEstadoSolicitudes(decoded.id_usuario, id_universidad);
+      const ticket = await selectEstadoTicket(decoded.id_usuario, id_universidad);
+      console.log(carta, ticket);
+      return res.json({ticket: typeof ticket === "string" ? ticket : null, carta: typeof carta === "string" ? carta : null}).end();
     });
   } catch (err) {
     console.error(error);
