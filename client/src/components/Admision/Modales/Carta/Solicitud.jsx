@@ -1,11 +1,12 @@
-import { post } from "../../api/api";
+import { post } from "../../../../api/api";
 import FileDownload from "./FileDownload";
-import "./Examen.css";
+import "./Carta.css";
 import { message } from "antd";
-import PropTypes from "prop-types";
+import { useAdmision } from "../../../../hooks/useContexts";
 
-function Examen({ id_usuario }) {
-  console.log("user: ", id_usuario);
+function Examen() {
+  const { idToShow: id_usuario } = useAdmision();
+
   const aceptarCarta = async () => {
     try {
       await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
@@ -61,7 +62,4 @@ function Examen({ id_usuario }) {
     </div>
   );
 }
-Examen.propTypes = {
-  id_usuario: PropTypes.number,
-};
 export default Examen;

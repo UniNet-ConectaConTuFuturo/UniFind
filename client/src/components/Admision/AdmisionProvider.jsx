@@ -1,12 +1,21 @@
 import { AdmisionContext } from "../../context/AdmisionContext";
 import PropTypes from "prop-types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function AdmisionProvider({ children }) {
-    const refButtonVerSolicitud = useRef(null)
+  //Modales
+  const [popUpExamen, setPopUpExamen] = useState(false);
+  const [idToShow, setIdToShow] = useState("");
+  //Guía
+  const refButtonVerSolicitud = useRef(null);
   return (
     <AdmisionContext.Provider
-      value={{refButtonVerSolicitud
+      value={{
+        popUpExamen,
+        setPopUpExamen,
+        idToShow,
+        setIdToShow,
+        refButtonVerSolicitud,
       }}
     >
       {children}

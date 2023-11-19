@@ -1,6 +1,5 @@
-import PropTypes from "prop-types"
-function Estados({estadoCarta, estadoTicket}) {
-  console.log(estadoCarta, estadoTicket);
+import PropTypes from "prop-types";
+function Estados({ estadoCarta, estadoTicket }) {
   return (
     <div className="text-xs flex justify-end gap-4 text-gray-400">
       {estadoCarta && (
@@ -19,7 +18,7 @@ function Estados({estadoCarta, estadoTicket}) {
   );
 }
 Estados.propTypes = {
-    estadoCarta: PropTypes.any,
-    estadoTicket: PropTypes.any,
+  estadoCarta: PropTypes.any,
+  estadoTicket: PropTypes.any,
 };
-export default Estados
+export default Estados;

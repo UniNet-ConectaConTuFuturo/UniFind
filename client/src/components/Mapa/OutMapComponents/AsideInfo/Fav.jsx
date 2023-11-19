@@ -1,29 +1,19 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
 import { get, post } from "../../../../api/api";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import BtnFav from "./UI/BtnFav";
 
 function Fav({ id_universidad, dispatch, iconColor }) {
-  const { token } = useOutletContext();
   const [isFavorite, setIsFavorite] = useState(false);
   useEffect(() => {
-    if (token && id_universidad) {
-      console.log("token: ", token);
+    if (id_universidad) {
       (async () =>
-        setIsFavorite(
-          (
-            await get("/isfavorite", {
-              id_universidad,
-              token,
-            })
-          ).value
-        ))();
+        setIsFavorite((await get("/isfavorite", { id_universidad })).value))();
     }
-  }, [token, id_universidad]);
-  async function handleClick(fetch, isfavorite) {
-    post(fetch, { id_universidad });
+  }, [id_universidad]);
+  async function handleClick(url, isfavorite) {
+    post(url, { id_universidad });
     setIsFavorite(isfavorite);
     dispatch({ id_universidad });
   }
@@ -50,6 +40,6 @@ function Fav({ id_universidad, dispatch, iconColor }) {
 Fav.propTypes = {
   id_universidad: PropTypes.number,
   dispatch: PropTypes.func,
-  iconColor: PropTypes.string
+  iconColor: PropTypes.string,
 };
 export default Fav;

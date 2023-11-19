@@ -18,9 +18,10 @@ function Botones({ id_universidad, Point, estadoTicket, estadoCarta }) {
   } = useLista();
   const [mailRector, setMailRector] = useState(null);
   useEffect(() => {
-    (async () => {
-      setMailRector(await get("/getmail", { id_universidad }));
-    })();
+    if (id_universidad)
+      (async () => {
+        setMailRector(await get("/getmail", { id_universidad }));
+      })();
   }, [id_universidad]);
   return (
     <section className="grid gap-2">
@@ -55,7 +56,7 @@ function Botones({ id_universidad, Point, estadoTicket, estadoCarta }) {
           ref={refButtonConsultar}
           className="w-24 border rounded-md p-2 text-center"
           onClick={() => {
-            post("/enviarticket", { id_universidad })
+            post("/enviarticket", { id_universidad });
             window.location.reload();
           }}
         >

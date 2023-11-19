@@ -21,7 +21,6 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 function SideBar({ setTrigger }) {
   const { user } = useLoaderData();
   const { state, location } = useNavigation();
-  console.log(state, location);
 
   return (
     <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 zIndex-1001">

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { get } from "../../api/api";
+import { get } from "../../../../api/api";
 import { useOutletContext } from "react-router-dom";
 
 function FileDownload({ id_universidad }) {

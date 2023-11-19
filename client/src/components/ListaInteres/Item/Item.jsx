@@ -33,22 +33,27 @@ function Item({ id_universidad }) {
   // Diseño
   return (
     <>
-      {universidad && estados && (
+      {universidad && (
         <div className="bg-[#fff2] rounded-md px-4 py-3 mb-3 overflow-x-auto text-gray-300">
           <section className="flex justify-between gap-2 mb-3">
             <h3 className="text-xl min-w-[12rem] font-semibold">
               {universidad.nombre_universidad}
             </h3>
 
-            <Estados estadoCarta={estados.carta} estadoTicket={estados.ticket}/>
+            {estados && (
+              <Estados
+                estadoCarta={estados.carta}
+                estadoTicket={estados.ticket}
+              />
+            )}
           </section>
           <div className="gap-4 flex justify-between">
-            <DatosUni universidad={universidad} iconColor="rgb(209 213 219)"/>
+            <DatosUni universidad={universidad} iconColor="rgb(209 213 219)" />
             <Botones
               id_universidad={id_universidad}
               Point={universidad.Point}
-              estadoTicket={estados.ticket}
-              estadoCarta={estados.carta}
+              estadoTicket={estados ? estados.ticket : null}
+              estadoCarta={estados ? estados.carta : null}
             />
           </div>
         </div>

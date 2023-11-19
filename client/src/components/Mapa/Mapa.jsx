@@ -20,7 +20,6 @@ const GeoInfo = lazy(() => import("./OutMapComponents/GeoInfo"));
 const AsideInfo = lazy(() => import("./OutMapComponents/AsideInfo/AsideInfo"));
 
 function Mapa() {
-  console.log("mapa");
   const { xyz } = useParams();
   const [x, y, z] = xyz ? xyz.slice(1, -1).split(",") : new Array(3);
   return (

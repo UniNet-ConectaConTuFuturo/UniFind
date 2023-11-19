@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Tour } from "antd";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { useAdmision } from "../../hooks/useContexts";
+import { useAdmision } from "../../../hooks/useContexts";
 const App = () => {
   const [open, setOpen] = useState(false);
   const { refButtonVerSolicitud } = useAdmision();
