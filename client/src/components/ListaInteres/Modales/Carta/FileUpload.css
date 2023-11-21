@@ -1,11 +1,23 @@
-.form-btn{
-    color: white;
+.ant-upload {
+  margin: 0 !important;
+  width: 100% !important;
 }
-
-.form-btn:hover{
-    color: #1677ff;
+.ant-upload-list-item-actions {
+  display: flex;
+  gap: 0.5rem;
 }
-
-.item-grid {
-    box-shadow: 0.25rem 0 0 -0.2rem rgb(202, 202, 202);
+a[title="Preview file"] {
+  display: flex;
+  pointer-events: all !important;
+  cursor: pointer !important;
+  opacity: 100 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  height: 22px !important;
+  width: 24px !important;
+  border-radius: 4px;
+  justify-content: center !important;
+}
+a[title="Preview file"]:hover {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
 }

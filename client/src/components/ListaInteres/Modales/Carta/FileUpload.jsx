@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
-import "./FileUpload.css";
 
 function FileUpload({ id_universidad }) {
   const { token } = useOutletContext();
@@ -35,8 +34,7 @@ function FileUpload({ id_universidad }) {
   }
 
   return (
-    <div className="adjuntar item-grid flex flex-col">
-      <p>Subir carta:</p>
+    <>
       <Upload
         className="self-center"
         onRemove={() => setFileList([])}
@@ -67,7 +65,7 @@ function FileUpload({ id_universidad }) {
       >
         {uploading ? "Enviando" : "Enviar"}
       </Button>
-    </div>
+    </>
   );
 }
 FileUpload.propTypes = {
