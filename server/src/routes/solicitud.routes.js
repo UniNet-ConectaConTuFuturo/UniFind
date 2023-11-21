@@ -6,8 +6,7 @@ import * as solicitud from "../controllers/solicitudes.js";
 const router = Router();
 
 //Subir Carta
-router.post("/api/upload",solicitud.uploadCarta);
-router.post("/api/generate",solicitud.generateCarta);
+router.post("/api/upload", solicitud.uploadCarta);
 
 //Ver Solicitudes Rector
 router.get("/api/get/soli", solicitud.getSolicitudes);
@@ -21,7 +20,5 @@ router.post("/api/cambio/segundainstancia", solicitud.acceptCarta);
 
 //Ver estado
 router.post("/api/estados/lista-interes", solicitud.verEstado);
-
-
 
 export default router;

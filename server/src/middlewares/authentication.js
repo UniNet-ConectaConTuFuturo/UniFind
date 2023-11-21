@@ -4,8 +4,8 @@ export const whoIs = (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
     const token = req.headers.authorization.split(" ")[1] || null;
-    console.log(token, !token);
-    if (!token || token === "null") return res.json({ user: "noAuthenticated" }).end();
+    if (!token || token === "null")
+      return res.json({ user: "noAuthenticated" }).end();
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) throw err;
 

@@ -1,9 +1,10 @@
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
 import { createPortal } from "react-dom";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/esm/Page/TextLayer.css";
 import { Suspense, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -54,5 +55,8 @@ function PreviewPDF({ file, setPreviewVisible }) {
     </>
   );
 }
-
+PreviewPDF.propTypes = {
+  file: PropTypes.any,
+  setPreviewVisible: PropTypes.func,
+};
 export default PreviewPDF;
