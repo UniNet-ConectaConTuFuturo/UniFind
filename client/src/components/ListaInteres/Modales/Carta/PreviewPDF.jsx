@@ -21,7 +21,14 @@ function PreviewPDF({ file, setPreviewVisible }) {
     const lista = [];
     console.log(numPages);
     for (let index = 0; index < numPages; index++)
-      lista.push(<Page key={`page_${index + 1}`} pageNumber={index + 1} />);
+      lista.push(
+        <Page
+          className="my-4"
+          scale={0.8}
+          key={`page_${index + 1}`}
+          pageNumber={index + 1}
+        />
+      );
     setPages(lista);
     console.log(lista);
   }, [numPages, setPages]);
@@ -29,7 +36,7 @@ function PreviewPDF({ file, setPreviewVisible }) {
     <>
       {createPortal(
         <div
-          className="fixed top-0 right-0 bottom-0 left-0 z-[9999] flex justify-center  overflow-y-scroll py-16"
+          className="fixed top-0 right-0 bottom-0 left-0 z-[9999] flex justify-center  overflow-y-scroll bg-black bg-opacity-75"
           onClick={() => setPreviewVisible(false)}
         >
           <div className="w-fit h-fit">
