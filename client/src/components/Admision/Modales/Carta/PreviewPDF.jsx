@@ -2,7 +2,6 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
-import { createPortal } from "react-dom";
 import { Suspense, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -15,7 +14,7 @@ const options = {
   standardFontDataUrl: "/standard_fonts/",
 };
 
-function PreviewPDF({ file, setPreviewVisible }) {
+function PreviewPDF({ file }) {
   const [numPages, setNumPages] = useState();
   const [Pages, setPages] = useState([]);
   useEffect(() => {
@@ -23,7 +22,7 @@ function PreviewPDF({ file, setPreviewVisible }) {
     for (let index = 0; index < numPages; index++)
       lista.push(
         <Page
-          className="my-4"
+          className={index === 0 ? "" : "my-4"}
           scale={0.8}
           key={`page_${index + 1}`}
           pageNumber={index + 1}
@@ -32,29 +31,20 @@ function PreviewPDF({ file, setPreviewVisible }) {
     setPages(lista);
   }, [numPages, setPages]);
   return (
-    <>
-      {createPortal(
-        <div
-          className="fixed top-0 right-0 bottom-0 left-0 z-[9999] flex justify-center  overflow-y-scroll bg-black bg-opacity-75"
-          onClick={() => setPreviewVisible(false)}
+    <div className="w-fit flex justify-center max-h-[75vh] overflow-y-scroll shadow-2xl shadow-black rounded-sm">
+      <div className="w-fit h-fit">
+        <Document
+          options={options}
+          file={file}
+          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
         >
-          <div className="w-fit h-fit">
-            <Document
-              options={options}
-              file={file}
-              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-            >
-              <Suspense>{Pages}</Suspense>
-            </Document>
-          </div>
-        </div>,
-        document.body
-      )}
-    </>
+          <Suspense>{Pages}</Suspense>
+        </Document>
+      </div>
+    </div>
   );
 }
 PreviewPDF.propTypes = {
   file: PropTypes.any,
-  setPreviewVisible: PropTypes.func,
 };
 export default PreviewPDF;

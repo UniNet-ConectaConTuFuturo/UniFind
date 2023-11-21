@@ -46,7 +46,7 @@ const CodeForm = forwardRef(function CodeForm(
   return (
     <div
       ref={ref}
-      className="center transition-position-y-transform duration-700 nearby-right"
+      className="center transition-position-y-transform duration-700 nearby-right text-white"
       role="CodeForm"
     >
       <button

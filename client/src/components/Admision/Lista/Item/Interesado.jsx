@@ -14,7 +14,8 @@ const getDescriptionItems = (usuario) => {
   return items;
 };
 function Interesado({ id_usuario }) {
-  const { refButtonVerSolicitud, setIdToShow, setPopUpExamen } = useAdmision();
+  const { refButtonVerSolicitud, setUserToShow, setPopUpExamen } =
+    useAdmision();
   const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function Interesado({ id_usuario }) {
           className="w-28 border rounded-md border-black p-2 text-center"
           ref={refButtonVerSolicitud}
           onClick={() => {
-            setIdToShow(id_usuario);
+            setUserToShow({ id_usuario, name_user: usuario.name_user });
             setPopUpExamen(true);
           }}
         >
@@ -40,7 +41,7 @@ function Interesado({ id_usuario }) {
       }
     >
       <List.Item.Meta
-        title={<h3 className="text-xl font-bold">{usuario.name_user}</h3>}
+        title={<span className="text-xl font-bold">{usuario.name_user}</span>}
         description={<Descriptions size="small" items={items} />}
       />
     </List.Item>

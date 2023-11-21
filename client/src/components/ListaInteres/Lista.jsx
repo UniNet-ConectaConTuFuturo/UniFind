@@ -1,7 +1,7 @@
-import { Empty, List } from "antd";
+import { List } from "antd";
 import Item from "./Item/Item";
 import { useLoaderData } from "react-router-dom";
-
+import CustomEmpty from "../UI/CustomEmpty";
 function Lista() {
   const favoritas = useLoaderData();
   return (
@@ -15,13 +15,8 @@ function Lista() {
           )}
         />
       ) : (
-        <div className="bg-[#fff2] rounded-md p-4">
-          <Empty
-            imageStyle={{ opacity: 0.5, filter: "invert(1)" }}
-            style={{ fontWeight: 700 }}
-            description="Lista vacia"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
+        <div className="bg-[#0002] rounded-md p-4 invert">
+          <CustomEmpty />
         </div>
       )}
     </>

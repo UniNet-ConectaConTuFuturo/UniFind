@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 function AdmisionProvider({ children }) {
   //Modales
   const [popUpExamen, setPopUpExamen] = useState(false);
-  const [idToShow, setIdToShow] = useState("");
+  const [userToShow, setUserToShow] = useState("");
   //Guía
   const refButtonVerSolicitud = useRef(null);
   return (
@@ -13,8 +13,8 @@ function AdmisionProvider({ children }) {
       value={{
         popUpExamen,
         setPopUpExamen,
-        idToShow,
-        setIdToShow,
+        userToShow,
+        setUserToShow,
         refButtonVerSolicitud,
       }}
     >

@@ -5,11 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 import path from "path";
 import fileupload from "express-fileupload";
-
-//To use __dirname
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import __dirname from "./dirname.js";
 
 //Import Routes
 import autenticationRoutes from "./routes/autentication.routes.js";
@@ -18,7 +14,7 @@ import filterRoutes from "./routes/filter.routes.js";
 import getRoutes from "./routes/getdata.routes.js";
 import favoritasRoutes from "./routes/favoritas.routes.js";
 import bddRoutes from "./database/modificar.js";
-import solicitudRoutes from "./routes/solicitud.routes.js";
+import SA_Routes from "./routes/SA.routes.js";
 import ticketRoutes from "./routes/ticket.routes.js";
 import demsarRoutes from "./routes/demsar.routes.js";
 
@@ -60,7 +56,7 @@ app.use(getRoutes);
 app.use(filterRoutes);
 app.use(favoritasRoutes);
 app.use(bddRoutes);
-app.use(solicitudRoutes);
+app.use(SA_Routes);
 app.use(ticketRoutes);
 app.use(demsarRoutes);
 

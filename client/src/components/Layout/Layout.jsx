@@ -1,7 +1,6 @@
 import { Outlet, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Aside from "./Aside";
-import Modal from "../UI/Modal";
 import LogOut from "./LogOut";
 function Layout() {
   // Global Provider
@@ -30,9 +29,7 @@ function Layout() {
           setSearchParams,
         }}
       />
-      <Modal trigger={trigger} setTrigger={setTrigger}>
-        <LogOut setToken={setToken} setTrigger={setTrigger} />
-      </Modal>
+      <LogOut setToken={setToken} trigger={trigger} setTrigger={setTrigger} />
     </>
   );
 }

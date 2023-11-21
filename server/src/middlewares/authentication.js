@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { selectFromUsuarios } from "../database/consults/usuariosC.js";
+import __dirname from "../dirname.js";
 export const whoIs = (req, res) => {
   try {
     //const token = req.headers["x-access-token"];
@@ -19,14 +20,10 @@ export const whoIs = (req, res) => {
         res.statusMessage = "La cuenta fue borrada de la base de datos";
         return res.json({ user: "noAuthenticated" }).end();
       }
-      if (user_data[0].title) {
-        return res.json({ user: "entrant" }).end();
-      }
       if (user_data[0].id_universidad) {
         return res.json({ user: "rector" }).end();
       }
-
-      return res.json({ user: "noAuthenticated" }).end();
+      return res.json({ user: "entrant" }).end();
     });
   } catch (err) {
     return res.json({ user: "noAuthenticated" }).end();

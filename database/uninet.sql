@@ -3406,7 +3406,7 @@ CREATE TABLE `solicitudes` (
   `id_usuario` int(11) NOT NULL,
   `id_universidad` int(11) NOT NULL,
   `solicitud` varchar(255) NOT NULL,
-  `estado` enum('aceptada','rechazada','pendiente','senguda instancia') NOT NULL
+  `estado` enum('aceptada','rechazada','pendiente','segunda instancia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
