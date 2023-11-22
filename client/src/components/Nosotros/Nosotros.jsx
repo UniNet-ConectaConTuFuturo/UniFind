@@ -34,7 +34,7 @@ function Nosotros() {
     <div className="min-h-screen w-full bg-[url(/images/education.png)] bg-cover">
       <div className="backdrop-brightness-[0.20] min-h-screen">
         <Header />
-        <main className="py-32 px-[10vw] text-white">
+        <main className="pt-24 px-[10vw] text-white">
           <div className="nosotros h-full">
             <List
               itemLayout="horizontal"

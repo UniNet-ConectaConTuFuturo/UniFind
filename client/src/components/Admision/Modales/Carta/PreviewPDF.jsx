@@ -23,7 +23,7 @@ function PreviewPDF({ file }) {
       lista.push(
         <Page
           className={index === 0 ? "" : "my-4"}
-          scale={0.8}
+          scale={0.5}
           key={`page_${index + 1}`}
           pageNumber={index + 1}
         />
@@ -31,7 +31,7 @@ function PreviewPDF({ file }) {
     setPages(lista);
   }, [numPages, setPages]);
   return (
-    <div className="w-fit flex justify-center max-h-[75vh] overflow-y-scroll shadow-2xl shadow-black rounded-sm">
+    <div className="w-fit flex justify-center max-h-[75vh] max-w-[75vw] overflow-y-scroll shadow-2xl shadow-black rounded-sm">
       <div className="w-fit h-fit">
         <Document
           options={options}

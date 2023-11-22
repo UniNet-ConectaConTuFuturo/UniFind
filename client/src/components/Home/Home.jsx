@@ -19,7 +19,7 @@ function Home() {
               alt="logo UniNet"
             />
           </section>
-          <section className="py-16 text-white text-center opacity-80 ">
+          <section className="pt-24 text-white text-center opacity-80 ">
             <p className="">
               Conocé las instituciones educativas a través de un mapa
               interactivo.
