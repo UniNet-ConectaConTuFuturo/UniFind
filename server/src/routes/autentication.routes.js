@@ -13,17 +13,17 @@ const router = Router();
 //Rutas registro ingresante
 router.post("/api/entrant/validate-registro", [
   validate.User,
-  validate.Title,
+  /* validate.Title, */
   end,
 ]);
 router.post("/api/entrant/first-step", [
   validate.User,
-  validate.Title,
+  /* validate.Title, */
   entrant.EntrantFirstStep,
 ]);
 router.post("/api/entrant/second-step", [
   validate.User,
-  validate.Title,
+  /* validate.Title, */
   validate.EntrantCode,
   entrant.EntrantSecondStep,
 ]);

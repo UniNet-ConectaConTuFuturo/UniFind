@@ -1,0 +1,23 @@
+.ant-upload {
+  margin: 0 !important;
+  width: 100% !important;
+}
+.ant-upload-list-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+a[title="Preview file"] {
+  display: flex;
+  pointer-events: all !important;
+  cursor: pointer !important;
+  opacity: 100 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  height: 22px !important;
+  width: 24px !important;
+  border-radius: 4px;
+  justify-content: center !important;
+}
+a[title="Preview file"]:hover {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}

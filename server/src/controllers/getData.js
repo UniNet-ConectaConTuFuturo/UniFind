@@ -1,5 +1,6 @@
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 import { selectNombreFromCarrerasByUniversidad } from "../database/consults/carrerasC.js";
+import { selectFromUsuarios } from "../database/consults/usuariosC.js";
 
 export async function uni(req, res) {
   try {
@@ -27,4 +28,15 @@ export async function carreras(req, res) {
   }
 }
 
-
+export async function publicUser(req, res) {
+  const { id_usuario } = req.body;
+  try {
+    return res
+      .json((await selectFromUsuarios("*", `id_usuario = ${id_usuario}`))[0])
+      .end();
+  } catch (error) {
+    console.error(error);
+    res.statusMessage = "Ocurrio un error";
+    res.status(404).end();
+  }
+}

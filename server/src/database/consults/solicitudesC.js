@@ -15,11 +15,11 @@ export function insertSolicitud(userID, fileName, uniID) {
     );
   });
 }
-export function selectSolicitudes(id_usuario) {
+export function selectSolicitudes({ id_rector }) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT id_usuario, solicitud, estado FROM solicitudes WHERE id_universidad = " +
-        `(SELECT id_universidad FROM usuarios WHERE id_usuario = ${id_usuario})`,
+      "SELECT id_usuario, id_universidad, solicitud, estado FROM solicitudes WHERE id_universidad = " +
+        `(SELECT id_universidad FROM usuarios WHERE id_usuario = ${id_rector})`,
       (err, data) => {
         if (err) reject(err);
         resolve(data);
@@ -27,29 +27,43 @@ export function selectSolicitudes(id_usuario) {
     );
   });
 }
-export function changeEstado(estado, id_usuario){
+export function selectSolicitud({ id_rector, id_usuario }) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT id_usuario, id_universidad, solicitud, estado FROM solicitudes WHERE " +
+        `id_universidad = (SELECT id_universidad FROM usuarios WHERE id_usuario = ${id_rector})` +
+        " AND " +
+        `id_usuario = ${id_usuario}`,
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
+  });
+}
+export function changeEstado(estado, id_usuario) {
   return new Promise((resolve, reject) => {
     pool.query(
       `UPDATE solicitudes SET estado="${estado}" WHERE id_usuario = ${id_usuario}`,
       (err, data) => {
-        if(err) reject(err);
+        if (err) reject(err);
         resolve(data);
       }
-    )
-  })
+    );
+  });
 }
-export function selectEstadoSolicitudes(id_usuario, id_universidad){
-  return new Promise((resolve, reject)=>{
+export function selectEstadoSolicitudes(id_usuario, id_universidad) {
+  return new Promise((resolve, reject) => {
     pool.query(
       `Select estado FROM solicitudes WHERE id_usuario = ${id_usuario} AND id_universidad = ${id_universidad}`,
       (err, data) => {
-        if(err) reject(err);
-        if(data.length > 0){
-        resolve(data[0].estado)
-      }else{
-        resolve(data)
-      };
+        if (err) reject(err);
+        if (data.length > 0) {
+          resolve(data[0].estado);
+        } else {
+          resolve(data);
+        }
       }
-    )
-  })
+    );
+  });
 }

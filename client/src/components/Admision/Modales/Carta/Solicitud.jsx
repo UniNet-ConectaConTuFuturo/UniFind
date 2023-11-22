@@ -1,65 +1,62 @@
 import { post } from "../../../../api/api";
 import FileDownload from "./FileDownload";
-import "./Carta.css";
-import { message } from "antd";
+import { Modal } from "antd";
 import { useAdmision } from "../../../../hooks/useContexts";
+import { useEffect, useState } from "react";
+import PreviewPDF from "./PreviewPDF";
+import cambiarEstado from "./cambiarEstado";
+function Solicitud() {
+  const { userToShow, popUpExamen, setPopUpExamen } = useAdmision();
+  const { id_usuario, name_user } = userToShow;
+  const [file, setFile] = useState(null);
+  useEffect(() => {
+    if (id_usuario) {
+      (async () =>
+        setFile(await (await post("/readfile", { id_usuario })).blob()))();
+    }
+  }, [id_usuario]);
 
-function Examen() {
-  const { idToShow: id_usuario } = useAdmision();
-
-  const aceptarCarta = async () => {
-    try {
-      await post("/cambio/aceptado", { id_usuario, estado: "aceptada" });
-    } catch {
-      message.error("Ocurrio un error");
-    }
-  };
-  const rechazarCarta = async () => {
-    try {
-      await post("/cambio/rechazado", { id_usuario, estado: "rechazada" });
-    } catch {
-      message.error("Ocurrio un error");
-    }
-  };
-  const segundainstanciaCarta = async () => {
-    try {
-      await post("/cambio/segundainstancia", {
-        id_usuario,
-        estado: "segunda instancia",
-      });
-    } catch {
-      message.error("Ocurrio un error");
-    }
-  };
   return (
-    <div className="w-full">
-      <form className="w-full full h-48">
-        <p className="w-full h-36 outline-1 resize-none text-black border-1 border-black mt-3 overflow-hidden">
-          Carta de Pepito:
-          <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. A vero
-          recusandae voluptates consectetur error? Vel tempora praesentium sunt
-          ratione molestias, aliquam consequuntur accusamus sint beatae quo
-          nihil quam, consequatur autem!
-        </p>
-        {/* <button className="text-black">Generar Exámen</button> */}
-        <div className="botones w-full">
-          <FileDownload />
-          <button className="boton aceptar w-[20%]" onClick={aceptarCarta}>
+    <Modal
+      title={<span className="font-bold">Solicitud de {name_user}</span>}
+      width="fit-content"
+      centered
+      open={popUpExamen}
+      onCancel={() => setPopUpExamen(false)}
+      footer={
+        <div className="flex gap-4 justify-end font-semibold">
+          <button className="py-1 px-2 bg-white bg-opacity-75 shadow-2xl shadow-black rounded-sm">
+            <FileDownload file={file} />
+          </button>
+          <button
+            className="py-1 px-2 bg-white bg-opacity-75 shadow-2xl shadow-black rounded-sm"
+            onClick={() => cambiarEstado("pendiente", id_usuario)}
+          >
+            Pendiente
+          </button>
+          <button
+            className="py-1 px-2 bg-white bg-opacity-75 shadow-2xl shadow-black rounded-sm"
+            onClick={() => cambiarEstado("aceptada", id_usuario)}
+          >
             Aceptar
           </button>
-          <button className="boton rechazar w-[20%]" onClick={rechazarCarta}>
+          <button
+            className="py-1 px-2 bg-white bg-opacity-75 shadow-2xl shadow-black rounded-sm"
+            onClick={() => cambiarEstado("rechazada", id_usuario)}
+          >
             Rechazar
           </button>
           <button
-            className="boton segunda-instancia w-[20%]"
-            onClick={segundainstanciaCarta}
+            className="py-1 px-2 bg-white bg-opacity-75 shadow-2xl shadow-black rounded-sm"
+            onClick={() => cambiarEstado("segunda_instancia", id_usuario)}
           >
             Segunda Instancia
           </button>
         </div>
-      </form>
-    </div>
+      }
+    >
+      <PreviewPDF file={file} />
+    </Modal>
   );
 }
-export default Examen;
+export default Solicitud;

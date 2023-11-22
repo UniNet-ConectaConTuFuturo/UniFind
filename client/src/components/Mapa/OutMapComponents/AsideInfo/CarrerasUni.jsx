@@ -1,20 +1,17 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { get } from "../../../../api/api";
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
+import "simplebar";
+import "simplebar/dist/simplebar.css";
 
 function CarrerasUni({ id_universidad }) {
   const [carreras, setCarreras] = useState([]);
   useEffect(() => {
     (async () => {
-      setCarreras(
-        await get("/get/carreras", {
-          id_universidad,
-        })
-      );
+      setCarreras(await get("/get/carreras", { id_universidad }));
     })();
   }, [id_universidad]);
+  console.log(id_universidad);
   return (
     <div role="Lista Carreras" className="h-full">
       {carreras.map((carrera, i) => {
