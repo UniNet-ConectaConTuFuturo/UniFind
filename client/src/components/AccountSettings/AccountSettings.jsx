@@ -2,6 +2,7 @@ import { useState } from "react";
 import { post } from "../../api/api";
 import "simplebar";
 import "simplebar/dist/simplebar.css";
+import { ConfigProvider, List, Table } from "antd";
 function AccountSettings() {
   const formNuevo = {
     name_user: "",
@@ -20,102 +21,137 @@ function AccountSettings() {
     await post("/config-account", { form });
   }
   return (
-    <div data-simplebar className="flex flex-col h-screen w-full">
-      <div className="py-6  bg-dark">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-xl-7 mx-auto">
-              <div className="mb-5">
-                <h5 className="mb-0 text-success">Información de Contacto</h5>
-              </div>
-              <form onSubmit={handleSubmit} className="mb-6 text-primary">
-                <div className="row mb-5">
-                  <div className="col-md-12">
-                    <div className="">
-                      <label className="form-label" htmlFor="first_name">
-                        Nombre
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="first_name"
-                        name="name_user"
-                        value={form.name_user}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row g-5">
-                  <div className="col-12">
-                    <div className="">
-                      <label className="form-label" htmlFor="phone_number">
-                        Número de Teléfono
-                      </label>
-                      <input
-                        type="tel"
-                        className="form-control"
-                        id="phone_number"
-                        name="phoneNumber"
-                        value={form.phoneNumber}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="">
-                      <label className="form-label" htmlFor="address">
-                        Dirección
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="address"
-                        name="address"
-                        value={form.address}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-check"></div>
-                  </div>
-                </div>
-                <div className="text-end col-12 mx-auto">
-                  <button type="button" className="btn btn-sm btn-neutral me-2">
-                    Cancelar
-                  </button>
-                  <button type="submit" className="btn btn-sm btn-primary">
-                    Guardar
-                  </button>
-                </div>
-              </form>
-              <hr className="my-10" />
-              {/* <!-- Individual switch cards --> */}
-              <div className="row g-6"></div>
-              <div className="col-md-12">
-                <div className="card shadow border-0 bg-warning">
-                  <div className="card-body d-flex align-items-center">
-                    <div>
-                      <h5 className="text-danger mb-2">Desactivar cuenta</h5>
-                      <p className="text-sm text-muted">
-                        Considera que esto no es cerrar sesión, una vez borrada
-                        la cuenta no hay vuelta atrás. Se certero.
-                      </p>
-                    </div>
-                    <div className="ms-auto">
-                      <button type="button" className="btn btn-sm btn-danger">
-                        Borrar cuenta
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
+      <div className="backdrop-brightness-[0.10] h-full py-8 text-gray-300">
+
+        <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
+          <h1 className="bg-[#fff2] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans">
+            Configuración
+          </h1>
+          <ConfigProvider theme={{ components: { 
+            Table: { 
+              colorBgContainer: "#fff2",
+              colorBorderSecondary: "#000",
+              borderRadiusLG: 1,
+              colorText: "rgb(209 213 219)",
+              cellPaddingBlock: 24,
+              } } }}>
+
+            <Table
+              footer={null}
+              pagination={false}
+              showHeader={false}
+
+              columns={[{
+                dataIndex: 'label',
+                key: 'label',
+                render: false,
+                width: "30%"
+              },
+              {
+                dataIndex: 'input',
+                key: 'input',
+                render: false,
+                width: "70%"
+              }
+              ]}
+
+              dataSource={[
+                {
+                  key: 1,
+                  label: "Correo Electrónico",
+                  input: (<input
+                    type="text"
+                    className="form-control"
+                    placeholder="Pepe"
+                    id="first_name"
+                    name="name_user"
+                    value={form.name_user}
+                    onChange={handleChange}
+                  />)
+                },
+                {
+                  key: 1,
+                  label: "Nombre y Apellido",
+                  input: (<input
+                    type="text"
+                    className="form-control"
+                    placeholder="Pepe"
+                    id="first_name"
+                    name="name_user"
+                    value={form.name_user}
+                    onChange={handleChange}
+                  />)
+                },
+                {
+                  key: 1,
+                  label: "Contraseña",
+                  input: (<input
+                    type="text"
+                    className="form-control"
+                    placeholder="****"
+                    id="first_name"
+                    name="name_user"
+                    value={form.name_user}
+                    onChange={handleChange}
+                  />)
+                },
+                {
+                  key: 1,
+                  label: "Número de Teléfono",
+                  input: (<input
+                    type="tel"
+                    className="form-control"
+                    id="phone_number"
+                    name="phoneNumber"
+                    value={form.phoneNumber}
+                    onChange={handleChange}
+                  />)
+                },
+                {
+                  key: 1,
+                  label: "Dirección",
+                  input: (<input
+                    type="text"
+                    className="form-control"
+                    id="address"
+                    name="address"
+                    value={form.address}
+                    onChange={handleChange}
+                  />)
+                },
+                {
+                  key: 1,
+                  label: "Titulo",
+                  input: (<input
+                    type="text"
+                    className="form-control"
+                    id="address"
+                    name="address"
+                    value={form.address}
+                    onChange={handleChange}
+                  />)
+                },
+              ]}
+            />
+          </ConfigProvider>
+
+            <button type="button" className="btn btn-sm btn-neutral me-2">
+              Cancelar
+            </button>
+            <button type="submit" className="btn btn-sm btn-primary">
+              Guardar
+            </button>
+          <button type="button" className="btn btn-sm btn-danger">
+            Borrar cuenta
+          </button>
+          {/* <p className="text-sm text-muted">
+                Considera que esto no es cerrar sesión, una vez borrada
+                la cuenta no hay vuelta atrás. Se certero.
+              </p> */}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

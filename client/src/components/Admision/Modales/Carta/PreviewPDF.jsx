@@ -4,6 +4,7 @@ import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
 import { Suspense, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import {twMerge} from "tailwind-merge"
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -22,9 +23,9 @@ function PreviewPDF({ file }) {
     for (let index = 0; index < numPages; index++)
       lista.push(
         <Page
-          className={index === 0 ? "" : "my-4"}
-          scale={0.5}
+          className={twMerge(index === 0 ? "" : "my-4", "max-w-full min-w-fit")}
           key={`page_${index + 1}`}
+          scale={1}
           pageNumber={index + 1}
         />
       );
@@ -36,6 +37,7 @@ function PreviewPDF({ file }) {
         <Document
           options={options}
           file={file}
+          className="w-full"
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
         >
           <Suspense>{Pages}</Suspense>
