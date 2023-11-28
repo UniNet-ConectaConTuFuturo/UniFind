@@ -17,9 +17,6 @@ router.post("/api/estados/lista-interes", verEstado);
 //sistema de admision - rector
 router.get("/api/get/soli", getSolicitudes);
 router.post("/api/readfile", readCarta);
-
 router.post("/api/cambio/:estado", changeEstado);
-/* router.post("/api/cambio/rechazado", changeEstado);
-router.post("/api/cambio/segundainstancia", changeEstado); */
 
 export default router;

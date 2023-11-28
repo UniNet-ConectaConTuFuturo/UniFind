@@ -16,25 +16,24 @@ function ListaInteres() {
   return (
     <ListaProvider>
       <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
-        <div className="backdrop-brightness-[0.10] h-full py-8 text-gray-300">
-
-        <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
-          <Guia open={open} setOpen={setOpen} />
-          <h1 className="bg-[#fff2] rounded-md text-6xl mb-4 px-2 pb-2 inline-block font-sans">
-            Lista de Interés
-          </h1>
-          {open ? (
-            <div role="Lista de Prueba">
-              <Item />
-            </div>
-          ) : (
-            <div role="Lista de Interés">
-              <Lista />
-            </div>
-          )}
-        </div>
-        <Modales />
+        <div className="backdrop-brightness-[0.10] h-full py-6 text-gray-300">
+          <div data-simplebar className="ml-40 mr-4 pr-8 h-full ">
+            <Guia open={open} setOpen={setOpen} />
+            <h1 className="bg-[#fff2] rounded-sm text-6xl mb-4 px-2 pb-2 inline-block font-sans">
+              Lista de Interés
+            </h1>
+            {open ? (
+              <div role="Lista de Prueba">
+                <Item />
+              </div>
+            ) : (
+              <div role="Lista de Interés">
+                <Lista />
+              </div>
+            )}
           </div>
+          <Modales />
+        </div>
       </main>
     </ListaProvider>
   );

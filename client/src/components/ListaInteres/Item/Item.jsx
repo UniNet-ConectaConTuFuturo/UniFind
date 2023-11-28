@@ -34,7 +34,7 @@ function Item({ id_universidad }) {
   return (
     <>
       {universidad && (
-        <div className="bg-[#fff2] rounded-md px-4 py-3 mb-3 overflow-x-auto text-gray-300">
+        <div className="bg-[#fff2] rounded-sm px-4 py-3 mb-3 overflow-x-auto text-gray-300">
           <section className="flex justify-between gap-2 mb-3">
             <h3 className="text-xl min-w-[12rem] font-semibold">
               {universidad.nombre_universidad}

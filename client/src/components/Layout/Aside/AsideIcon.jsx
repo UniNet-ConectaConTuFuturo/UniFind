@@ -6,7 +6,7 @@ const AsideIcon = ({ url, Icon, texto, onClick, className }) => (
     to={url}
     onClick={onClick}
     className={twMerge(
-      "sidebar-icon relative flex justify-start items-center h-16 w-16 shadow-lg bg-in_bg rounded-xl hover:rounded-3xl transition-all duration-300 overflow-x-hidden",
+      "sidebar-icon relative flex justify-start items-center h-16 w-full shadow-lg bg-in_bg rounded-xl hover:rounded-2xl transition-all duration-300 overflow-x-hidden",
       className
     )}
   >

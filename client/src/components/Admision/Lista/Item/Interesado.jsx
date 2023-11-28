@@ -29,7 +29,7 @@ function Interesado({ id_usuario }) {
     <List.Item
       extra={
         <button
-          className="w-28 border rounded-md border-black p-2 text-center"
+          className="w-28 border rounded-sm border-black p-2 text-center"
           ref={refButtonVerSolicitud}
           onClick={() => {
             setUserToShow({ id_usuario, name_user: usuario.name_user });

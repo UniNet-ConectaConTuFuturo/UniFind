@@ -1,6 +1,7 @@
 import { selectFromUniversidades } from "../database/consults/universidadesC.js";
 import { selectNombreFromCarrerasByUniversidad } from "../database/consults/carrerasC.js";
 import { selectFromUsuarios } from "../database/consults/usuariosC.js";
+import jwt from "jsonwebtoken";
 
 export async function uni(req, res) {
   try {
@@ -29,10 +30,27 @@ export async function carreras(req, res) {
 }
 
 export async function publicUser(req, res) {
-  const { id_usuario } = req.body;
   try {
+    let id_usuario;
+    req.body.id_usuario
+      ? (id_usuario = req.body.id_usuario)
+      : jwt.verify(
+          req.headers.authorization.split(" ")[1],
+          process.env.SECRET,
+          async (err, decoded) => {
+            if (err) throw err;
+            id_usuario = decoded.id_usuario;
+          }
+        );
     return res
-      .json((await selectFromUsuarios("*", `id_usuario = ${id_usuario}`))[0])
+      .json(
+        (
+          await selectFromUsuarios(
+            "mail_user, name_user, date_user, direction_user, tel_user, title",
+            `id_usuario = ${id_usuario}`
+          )
+        )[0]
+      )
       .end();
   } catch (error) {
     console.error(error);

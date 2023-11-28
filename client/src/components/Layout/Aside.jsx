@@ -23,7 +23,7 @@ function SideBar({ setTrigger }) {
   const { state, location } = useNavigation();
 
   return (
-    <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-28 bg-bg-sb_bg opacity-90 z-[1001]">
+    <aside className="sidebar flex flex-col gap-4 px-4 pt-6 fixed top-0 left-0 bottom-0 w-24  bg-bg-sb_bg opacity-90 z-[1001]">
       <AsideIcon
         url="/"
         Icon={FaHome}
