@@ -3547,7 +3547,7 @@ CREATE TABLE `usuarios` (
   `password_user` varchar(255) NOT NULL,
   `date_user` varchar(255) NOT NULL,
   `direction_user` varchar(255) NOT NULL,
-  `tel_user` int(20) NOT NULL,
+  `tel_user` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `id_universidad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -3557,8 +3557,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `mail_user`, `name_user`, `password_user`, `date_user`, `direction_user`, `tel_user`, `title`, `id_universidad`) VALUES
-(1, 'rector@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', 1, NULL, 63),
-(2, 'ingresante@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', 1, 'Informatico', NULL);
+(1, 'rector@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', "1", NULL, 63),
+(2, 'ingresante@gmail.com ', 'admin', 'uninet', '2023-01-01', 'admin', "1", 'Informatico', NULL);
 
 -- --------------------------------------------------------
 

@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import { get } from "../../api/api";
 import PropTypes from "prop-types";
-function Form({ setForm, form }) {
+import PhoneInput from "react-phone-input-2";
+import { useLoaderData } from "react-router-dom";
+
+function Form({ setForm }) {
+  const defaultForm = useLoaderData();
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    setForm({ ...form, [name]: value });
+    setForm((form)=>({ ...form, [name]: value }));
   };
-  useEffect(() => {
-    (async () => setForm(await get("/get/user")))();
-  }, [setForm]);
   const dataSource = [];
-  if (form) {
     dataSource.push({
       key: 1,
       label: "Correo Electrónico",
@@ -20,7 +18,7 @@ function Form({ setForm, form }) {
           maxLength={255}
           className="block w-full bg-transparent outline-none"
           name="mail_user"
-          value={form.mail_user}
+          defaultValue={defaultForm.mail_user}
           onChange={handleChange}
         />
       ),
@@ -34,23 +32,27 @@ function Form({ setForm, form }) {
           maxLength={255}
           className="block w-full bg-transparent outline-none"
           name="name_user"
-          value={form.name_user}
+          defaultValue={defaultForm.name_user}
           onChange={handleChange}
         />
       ),
     });
+    console.log(defaultForm.password_user);
     dataSource.push({
       key: 3,
       label: "Contraseña",
       input: (
         <input
-          type="text"
+          type="password"
           maxLength={255}
           className="block w-full bg-transparent outline-none"
-          placeholder="****"
           name="password_user"
-          value={form.password_user}
+          defaultValue={"        "}
           onChange={handleChange}
+          onFocus={(e)=>{if(e.target.value === "        ") e.target.value = ""}}
+          onBlur={(e)=>{
+            if(!e.target.value) e.target.value = "        "}}
+
         />
       ),
     });
@@ -63,7 +65,7 @@ function Form({ setForm, form }) {
           maxLength={255}
           className="block w-full bg-transparent outline-none cursor-text"
           name="date_user"
-          value={form.date_user}
+          defaultValue={defaultForm.date_user}
           onChange={handleChange}
         />
       ),
@@ -77,7 +79,7 @@ function Form({ setForm, form }) {
           maxLength={255}
           className="block w-full bg-transparent outline-none"
           name="direction_user"
-          value={form.direction_user}
+          defaultValue={defaultForm.direction_user}
           onChange={handleChange}
         />
       ),
@@ -86,18 +88,20 @@ function Form({ setForm, form }) {
       key: 6,
       label: "Número de Teléfono",
       input: (
-        <input
-          type="tel"
-          maxLength={255}
-          className="block w-full bg-transparent outline-none"
-          name="tel_user"
-          value={form.tel_user}
-          onChange={handleChange}
-        />
+        <PhoneInput
+        country="ar"
+        containerClass='outline-none border-none'
+        inputClass="block w-full bg-transparent outline-none"
+        jumpCursorToEnd={true}
+        specialLabel=""
+        placeholder=""
+        defaultValue={defaultForm.tel_user}
+        limitMaxLength={true}
+        onChange={(phone) => handleChange({ target: { name: "tel_user", value: phone } })}        
+      />
       ),
     });
-    console.log(form);
-    if (form.title)
+    if (defaultForm.title)
       dataSource.push({
         key: 7,
         label: "Titulo",
@@ -107,16 +111,14 @@ function Form({ setForm, form }) {
             maxLength={255}
             className="block w-full bg-transparent outline-none"
             name="title"
-            value={form.title}
+            defaultValue={defaultForm.title}
             onChange={handleChange}
           />
         ),
       });
-  }
   return dataSource;
 }
 Form.propTypes = {
   setForm: PropTypes.func,
-  form: PropTypes.any,
 };
 export default Form;

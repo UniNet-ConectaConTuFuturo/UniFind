@@ -1,6 +1,7 @@
 import { Descriptions, List } from "antd";
-import axios from "axios";
+//import axios from "axios";
 import { useOutletContext } from "react-router-dom";
+import { post } from "../../api/api";
 
 function SendTicket({
     user,
@@ -18,31 +19,35 @@ function SendTicket({
     const { token } = useOutletContext();
     console.log("token", token)
     const acceptTicket = async ()=>{
-        const formData = new FormData()
+        /* const formData = new FormData()
         formData.append('id_usuario',id_usuario);
         formData.append('estado',"aceptado")
-        formData.append('token', token)
+        formData.append('token', token) */
         try {
-        const res = await axios.post(
+        /* const res = await axios.post(
             "http://localhost:4000/api/aceptarticket",
             formData
-        );
-        console.log(res)
+        ); */
+        await post("/aceptarticket", {
+            id_usuario, estado: "aceptado", token
+        })
         } catch (ex) {
         console.log(ex);
         }
     }
     const declineTicket = async ()=>{
-        const formData = new FormData()
+        /* const formData = new FormData()
         formData.append('id_usuario',id_usuario);
         formData.append('estado',"rechazado")
-        formData.append('token', token)
+        formData.append('token', token) */
         try {
-        const res = await axios.post(
+        /* const res = await axios.post(
             "http://localhost:4000/api/rechazarticket",
             formData
-        );
-        console.log(res)
+        ); */
+        await post("/rechazarticket", {
+            id_usuario, estado: "rechazado", token
+        })
         } catch (ex) {
         console.log(ex);
         }

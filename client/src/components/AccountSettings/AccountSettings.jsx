@@ -7,7 +7,7 @@ import Collums from "./Collums";
 import Footer from "./Footer";
 function AccountSettings() {
   const [form, setForm] = useState(null);
-
+  console.log(form);
   return (
     <main className="bg-[url(/images/examen.png)] bg-cover h-screen">
       <div className="backdrop-brightness-[0.10] h-full py-6 text-gray-300">
@@ -32,7 +32,7 @@ function AccountSettings() {
               pagination={false}
               showHeader={false}
               columns={Collums}
-              dataSource={Form({ form, setForm })}
+              dataSource={Form({ setForm })}
             />
             <Footer form={form} />
           </ConfigProvider>
